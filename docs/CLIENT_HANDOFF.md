@@ -145,3 +145,10 @@ All core brand assets are in `/public`:
   - Contact and quote initiation: `/contact`
 - Navigation was simplified around the primary sales journey: Home, Solutions, Products, RFQ, Resources, Contact.
 - This split is deliberate to keep the homepage calmer, easier to scan on mobile, and more premium in presentation while preserving all existing routes and RFQ behavior.
+
+## Phase 20 UX Cleanup (Visual Density Reduction)
+- Reduced CTA competition across key pages with a clearer hierarchy: primary quote action, secondary navigational actions, tertiary helper links.
+- Homepage is now an executive overview with calmer pacing and fewer competing visual blocks.
+- Detailed content emphasis remains in Solutions, Products, RFQ, and Resources pages.
+- Launch copy remains available but is positioned as a lower-priority public resource.
+- The overall information architecture is intentionally calmer and easier to scan on mobile.

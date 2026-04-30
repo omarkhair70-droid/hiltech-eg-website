@@ -74,3 +74,10 @@ Implemented via `VisualPanel`:
 - Content integrity:
   - Never use fake project photos or unverified field imagery as technical proof.
   - Keep diagrams conceptual unless client-verified assets are supplied.
+
+## Phase 20 Density & CTA Rules
+- Prefer one primary CTA per section context.
+- Keep secondary actions outlined or link-style to avoid equal visual weight.
+- Avoid three equally prominent buttons in one cluster.
+- Prioritize shorter paragraphs and fewer stacked card groups on mobile.
+- Treat utility pages (like launch copy) as secondary journey nodes.
