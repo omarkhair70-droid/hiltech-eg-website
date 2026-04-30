@@ -1,0 +1,4 @@
+import type { Metadata } from 'next';
+import { site } from '@/content/site';
+export const metadata: Metadata={title:'About HILTECH | Hiltech Network System - H.N.S',description:'Learn about HILTECH and Hiltech Network System - H.N.S, delivering reliable network infrastructure solutions for business facilities across Egypt.'};
+export default function Page(){return <main className="section"><div className="container space-y-5"><h1 className="text-4xl font-bold">About HILTECH</h1><p>HILTECH ({site.officialName}) delivers structured, reliable infrastructure solutions that help businesses stay connected, secure, and operational.</p><p className="font-semibold text-orange-600">{site.slogan}</p></div></main>}
