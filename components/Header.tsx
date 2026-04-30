@@ -9,6 +9,7 @@ import { site } from '@/content/site';
 const nav = [
   ['Home', '/'],
   ['Services', '/services'],
+  ['Solutions', '/solutions'],
   ['About', '/about'],
   ['Products & Partners', '/products-partners'],
   ['Contact', '/contact'],
