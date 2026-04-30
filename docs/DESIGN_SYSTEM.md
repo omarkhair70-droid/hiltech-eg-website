@@ -55,3 +55,22 @@ Implemented via `VisualPanel`:
 - Keep RFQ/product cards aligned to `PremiumCard` base.
 - When adding solution pages, reuse `SectionShell + SectionHeader + VisualPanel` first.
 - Introduce tokenized typography classes globally only when multiple pages require exact same text styles.
+
+## Technical diagram visual system (Phase 17)
+- Use `components/diagrams/TechnicalDiagramPanel` as the default wrapper for all enterprise visual diagrams.
+- Diagram palette: dark navy base (`from-navy-950 via-navy-900`), orange highlights for active links/nodes, slate text for secondary labels.
+- Diagram content rules:
+  - Use conceptual SVG/CSS/HTML topology visuals only.
+  - Keep labels explicit (e.g., endpoints, ODF, rack, uplink, PoE switch, NVR).
+  - Do not rely only on color; include text labels and path grouping.
+- Placement rules:
+  - Primary solution diagrams on `/solutions/[slug]` near the top.
+  - Compact preview diagrams on `/solutions` and selected product intelligence pages.
+  - RFQ workflow diagram on `/rfq` as a compact process explainer.
+- Mobile constraints:
+  - All diagrams must use responsive `viewBox` and `w-full h-auto` behavior.
+  - No horizontal overflow or clipped labels.
+  - Keep panel height controlled and avoid blocking primary CTAs.
+- Content integrity:
+  - Never use fake project photos or unverified field imagery as technical proof.
+  - Keep diagrams conceptual unless client-verified assets are supplied.

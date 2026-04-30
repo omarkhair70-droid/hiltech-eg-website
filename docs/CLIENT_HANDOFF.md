@@ -111,3 +111,12 @@ All core brand assets are in `/public`:
 - Solutions connect directly to Product Intelligence guides via related links and route users into RFQ actions (`/rfq`, `/products-partners`, `/contact`).
 - Product Intelligence category pages now include subtle “Related solutions” links where relevant.
 - Scope/pricing/availability note remains explicit: final technical scope, product availability, and quotation are confirmed per project and RFQ review.
+
+## Phase 17 technical diagrams note
+- New diagram panels across Solutions, RFQ, Products Intelligence, and Homepage are **conceptual visual aids** to explain telecom/infrastructure architecture and workflow.
+- These visuals are not real project photos, not as-built drawings, and not client-specific documentation.
+- Future upgrades can include:
+  - verified topology diagrams from real delivered projects,
+  - downloadable technical PDFs,
+  - authenticated project photos,
+  - verified case-study evidence after client approval.
