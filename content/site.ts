@@ -68,15 +68,15 @@ export const scenarioCards = [
 ];
 
 export const quoteOptions = [
-  'Service Installation: Structured Cabling',
-  'Service Installation: Fiber Optic Installation',
-  'Service Installation: Data Center / Rack Setup',
-  'Service Installation: CCTV & Security Infrastructure',
-  'Testing & Validation: Fluke / OTDR',
-  'Product Supply: CAT6 / Copper Cabling',
-  'Product Supply: Fiber Cable & Accessories',
-  'Product Supply: Cabinets / Racks / PDU',
-  'Product Supply: Patch Panels & Connectivity',
+  'Structured Cabling',
+  'Fiber Optic Installation',
+  'Data Center / Rack Setup',
+  'CCTV & Security',
+  'Fluke / OTDR Testing',
+  'CAT6 / Copper Supply',
+  'Fiber Cable & Accessories',
+  'Cabinets / Racks / PDU',
+  'Patch Panels & Connectivity',
   'Maintenance & Support',
   'Not sure yet'
 ];
