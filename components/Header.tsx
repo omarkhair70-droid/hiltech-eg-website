@@ -18,9 +18,9 @@ export default function Header() {
   const [showLogoImage, setShowLogoImage] = useState(true);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="container flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 text-xl font-extrabold tracking-wide text-navy-900">
+    <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 backdrop-blur-md">
+      <div className="container flex h-14 items-center justify-between gap-3 md:h-16 md:gap-4">
+        <Link href="/" className="flex items-center gap-2 text-lg font-extrabold tracking-[0.12em] text-navy-900 md:text-xl">
           {showLogoImage ? (
             <Image
               src="/logo.png"
@@ -47,22 +47,34 @@ export default function Header() {
           <Link href="/contact" className="btn-primary">Request a Quote</Link>
         </div>
 
-        <button className="rounded border border-slate-300 px-3 py-1.5 text-sm font-semibold md:hidden" onClick={() => setOpen((v) => !v)}>
+        <button
+          className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 md:hidden"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+        >
           Menu
         </button>
       </div>
 
       {open ? (
-        <div className="border-t border-slate-200 bg-white md:hidden">
-          <div className="container flex flex-col gap-3 py-4">
+        <div id="mobile-nav" className="border-t border-slate-200 bg-white md:hidden">
+          <div className="container py-3">
+            <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
             {nav.map(([label, href]) => (
-              <Link key={href} href={href} onClick={() => setOpen(false)} className="font-medium text-slate-700">
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-navy-900"
+              >
                 {label}
               </Link>
             ))}
-            <Link href="/contact" className="btn-primary w-fit" onClick={() => setOpen(false)}>
-              Request a Quote
-            </Link>
+              <Link href="/contact" className="btn-primary mt-2 w-full justify-center rounded-lg py-2.5" onClick={() => setOpen(false)}>
+                Request a Quote
+              </Link>
+            </div>
           </div>
         </div>
       ) : null}
