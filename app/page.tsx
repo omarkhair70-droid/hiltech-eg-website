@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Hero, InfrastructureStack, ProductsSupply, ProjectScenarios, Sectors, ServicesGrid } from '@/components/Sections';
+import { site } from '@/content/site';
 
 export const metadata: Metadata = {
   title: 'HILTECH | Enterprise Network Infrastructure & Project Supply in Egypt',
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
     title: 'HILTECH | Enterprise Network Infrastructure & Project Supply',
     description:
       'Reliable network infrastructure, data room delivery, testing workflows, and project-based product supply for business facilities.',
+    images: [site.ogImage],
   },
+  twitter: { card: 'summary_large_image', images: [site.ogImage] },
 };
 
 const ecosystems = [

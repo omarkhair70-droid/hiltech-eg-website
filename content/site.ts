@@ -1,14 +1,28 @@
+const whatsappBase = 'https://wa.me/201555357807';
+
+const whatsappMessages = {
+  general: 'Hello HILTECH, I would like to discuss a network infrastructure request.',
+  rfq: 'Hello HILTECH, I would like to request availability and quotation for project supply.',
+};
+
 export const site = {
   brand: 'HILTECH',
   officialName: 'Hiltech Network System - H.N.S',
   slogan: 'Strong & Connected',
   positioning: 'Reliable Network Infrastructure, Delivered with Precision.',
+  defaultTitle: 'HILTECH | Network Infrastructure, Fiber Optics & Project Supply',
+  defaultDescription:
+    'HILTECH delivers structured cabling, fiber optic systems, data room infrastructure, CCTV connectivity, network testing, and project-based supply for enterprise environments across Egypt.',
+  siteUrl: 'https://hiltech-eg.com',
+  ogImage: '/og-image.png',
   contact: {
     email: 'info@hiltech-eg.com',
     phone: '01000087808',
     whatsappIntl: '+20 15 55357807',
     whatsappLocal: '01555357807',
-    whatsappLink: 'https://wa.me/201555357807',
+    whatsappLink: whatsappBase,
+    whatsappGeneralLink: `${whatsappBase}?text=${encodeURIComponent(whatsappMessages.general)}`,
+    whatsappRFQLink: `${whatsappBase}?text=${encodeURIComponent(whatsappMessages.rfq)}`,
     addressEn: 'D1 Tiba Building, Zahraa El Maadi, Cairo, Egypt',
     addressAr: 'شارع زهراء المعادي الرئيسي - عمارات طيبة 1 - بجوار معمار المرشدي - المعادي - القاهرة',
     facebook: 'https://www.facebook.com/share/1DzM44rzsh/'
