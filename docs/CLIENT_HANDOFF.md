@@ -56,3 +56,5 @@ All core brand assets are in `/public`:
 - Official partnerships to publish
 - Domain DNS ownership and registrar access
 - Future backend/contact form integration
+
+- Phase 13 update: Homepage narrative now follows an enterprise infrastructure flow: **Physical Layer → Lifecycle → Capabilities → RFQ**, connecting services, project supply, and RFQ basket actions in one operating model.
