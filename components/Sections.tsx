@@ -1,55 +1,31 @@
 import Link from 'next/link';
-import { sectors, services, site } from '@/content/site';
+import { infrastructureStack, scenarioCards, sectors, services, site } from '@/content/site';
 
 const productSupplyCards = [
-  {
-    title: 'Fiber Optic Cables & Accessories',
-    examples: 'OM3 / multimode / outdoor armored fiber / patch cords / LC & SC connectors / ODF / splice trays',
-  },
-  {
-    title: 'CAT6 Copper Cables',
-    examples: 'UTP / LSZH / enterprise cabling / patch cords / keystone jacks / wall plates',
-  },
-  {
-    title: 'Patch Panels & Connectivity',
-    examples: 'Patch panels / connectors / cable termination accessories / structured cabling components',
-  },
-  {
-    title: 'Network Cabinets & UPS Battery Cabinets',
-    examples: 'Network cabinets / rack preparation / APC & Schneider-style UPS battery cabinet supply',
-  },
-  {
-    title: 'Cable Management & Duct Systems',
-    examples: 'PVC duct systems / decorative trunking / accessories / organized routing',
-  },
-  {
-    title: 'CCTV & Security Components',
-    examples: 'Network cameras / surveillance connectivity / camera cabling / control-room readiness',
-  },
-];
-
-const processSteps = [
-  { title: 'Site Survey', description: 'Assess site conditions, scope, requirements, and future expansion needs.' },
-  { title: 'Solution Design', description: 'Define the infrastructure layout, product direction, and execution approach.' },
-  { title: 'Installation', description: 'Deliver structured cabling, racks, fiber, CCTV, or network components with organized implementation.' },
-  { title: 'Testing & Validation', description: 'Use Fluke/OTDR-oriented workflows to verify network quality before handover.' },
-  { title: 'Handover & Support', description: 'Provide final coordination, documentation notes, and support for ongoing stability.' },
+  { title: 'Fiber Optic Systems', examples: ['OM3/OS2 cables', 'ODF & splice trays', 'LC/SC connectivity'] },
+  { title: 'CAT6 Copper Cabling', examples: ['CAT6 / CAT6A bulk cable', 'Patch cords', 'Keystone modules'] },
+  { title: 'Patch Panels & Connectivity', examples: ['Patch panels', 'RJ45 accessories', 'Termination components'] },
+  { title: 'Cabinets / Racks / PDU', examples: ['Network cabinets', 'Rack PDUs', 'UPS battery cabinets'] },
+  { title: 'Cable Management', examples: ['Duct systems', 'Cable trunking', 'Routing accessories'] },
+  { title: 'CCTV & Security Components', examples: ['Camera connectivity', 'Control-room links', 'Structured camera cabling'] },
 ];
 
 export function Hero() {
-  return <section className="section bg-navy-900 text-white"><div className="container"><div className="max-w-4xl"><p className="font-medium text-orange-300">{site.slogan}</p><h1 className="mt-3 text-4xl font-bold leading-tight md:text-5xl">{site.positioning}</h1><p className="mt-5 text-base text-slate-200 md:text-lg">HILTECH delivers structured cabling, fiber optics, data center infrastructure, CCTV systems, network testing, and project-based supply for enterprise connectivity projects across Egypt.</p><div className="mt-5 flex flex-wrap gap-2">{['Structured Cabling','Fiber Optic Infrastructure','Project Supply & Support'].map((chip)=><span key={chip} className="rounded-full border border-orange-300/40 bg-orange-500/10 px-3 py-1 text-xs font-semibold text-orange-200">{chip}</span>)}</div><div className="mt-8 flex flex-wrap gap-3"><Link className="btn-primary" href="/contact">Request a Quote</Link><Link className="btn-secondary bg-white text-slate-900" href="/services">Explore Services</Link><a className="btn-secondary border-orange-300 text-orange-200" href={site.contact.whatsappLink}>WhatsApp Us</a></div></div></div></section>;
+  return <section className="section bg-navy-900 text-white"><div className="container"><div className="grid gap-10 lg:grid-cols-2 lg:items-center"><div><p className="font-medium text-orange-300">{site.slogan}</p><h1 className="mt-3 text-4xl font-bold leading-tight md:text-5xl">{site.positioning}</h1><p className="mt-5 text-base text-slate-200 md:text-lg">HILTECH delivers structured cabling, fiber optics, data room infrastructure, CCTV connectivity, testing workflows, and project-based supply for enterprise environments across Egypt.</p><div className="mt-6 flex flex-wrap gap-2">{['Structured Cabling','Fiber Optic Systems','Data Room Infrastructure','Testing & Validation','Project Supply'].map((chip)=><span key={chip} className="rounded-full border border-orange-300/40 bg-orange-500/10 px-3 py-1 text-xs font-semibold text-orange-200">{chip}</span>)}</div><div className="mt-8 flex flex-wrap gap-3"><Link className="btn-primary" href="/contact">Request a Quote</Link><Link className="btn-secondary bg-white text-slate-900" href="/services">Explore Services</Link><a className="btn-secondary border-orange-300 text-orange-200" href={site.contact.whatsappLink}>WhatsApp Us</a></div></div><div className="relative hidden overflow-hidden rounded-2xl border border-slate-700 bg-gradient-to-br from-navy-800 to-navy-900 p-7 lg:block"><div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.12)_1px,transparent_1px)] bg-[size:32px_32px]" /><div className="relative z-10 space-y-4">{['Fiber Layer','Structured Cabling Layer','Data Room Layer','Testing Layer'].map((layer, i) => <div key={layer} className="rounded-xl border border-slate-600/80 bg-navy-900/80 p-3"><div className="flex items-center justify-between"><p className="text-sm font-semibold">{layer}</p><span className="h-2.5 w-2.5 rounded-full bg-orange-400" /></div><p className="mt-1 text-xs text-slate-300">{['OM3/OS2 routes and ODF points','CAT6 endpoints, panels, and pathways','Racks, PDUs, cabinet organization','Fluke/OTDR-oriented verification nodes'][i]}</p></div>)}</div><div className="absolute left-6 top-12 h-1 w-24 rounded bg-orange-500" /><div className="absolute bottom-6 right-6 h-24 w-24 rounded-full border border-orange-300/50" /></div></div></div></section>;
+}
+
+export function InfrastructureStack() {
+  return <section className="section"><div className="container"><h2 className="text-3xl font-bold">The Infrastructure Stack Behind Reliable Connectivity</h2><p className="mt-3 max-w-4xl text-slate-700">From survey and product selection to installation, testing, and handover, HILTECH supports the physical infrastructure layer that keeps business networks stable and scalable.</p><div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{infrastructureStack.map((item, i)=><article key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-md"><p className="text-xs font-semibold tracking-wider text-orange-600">STEP 0{i+1}</p><h3 className="mt-2 font-semibold text-slate-900">{item.title}</h3><p className="mt-2 text-sm text-slate-600">{item.description}</p></article>)}</div></div></section>;
 }
 
 export function ServicesGrid() {
-  return <section className="section"><div className="container"><h2 className="text-3xl font-bold">Core Infrastructure Services</h2><div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">{services.map((s) => <article key={s.title} className="group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"><div className="mb-3 h-1 w-10 rounded bg-orange-500" /><p className="mb-2 inline-block rounded-full border border-orange-200 bg-orange-50 px-2 py-0.5 text-xs font-medium text-orange-700">{s.label}</p><h3 className="font-semibold text-slate-900">{s.title}</h3><p className="mt-2 text-sm text-slate-600">{s.description}</p></article>)}</div></div></section>;
+  return <section className="section"><div className="container"><h2 className="text-3xl font-bold">Core Infrastructure Services</h2><p className="mt-3 max-w-3xl text-slate-700">Execution-focused services for enterprise network infrastructure, from cabling and fiber to testing and support.</p><div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">{services.map((s) => <article key={s.title} className="group flex h-full flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-md"><div className="mb-3 h-1.5 w-full rounded bg-orange-500" /><p className="mb-2 inline-block w-fit rounded-full border border-orange-200 bg-orange-50 px-2 py-0.5 text-xs font-medium text-orange-700">{s.label}</p><h3 className="font-semibold text-slate-900">{s.title}</h3><p className="mt-2 text-sm text-slate-600">{s.description}</p><p className="mt-3 text-xs text-slate-500">Technical scope • Procurement-aware • Enterprise-ready</p></article>)}</div></div></section>;
 }
 
 export function ProductsSupply() {
-  return <section className="section bg-white"><div className="container"><h2 className="text-3xl font-bold">Infrastructure Products & Project Supply</h2><p className="mt-3 max-w-4xl text-slate-700">From CAT6 copper and fiber optic cables to patch panels, cabinets, connectors, and accessories, HILTECH supports projects with reliable infrastructure products selected around scope, compatibility, and performance.</p><div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{productSupplyCards.map((item) => <div key={item.title} className="rounded-lg border border-slate-200 bg-slate-50 p-5"><p className="mb-2 text-xs font-semibold uppercase tracking-wide text-orange-600">Product Supply</p><p className="font-semibold text-slate-900">{item.title}</p><p className="mt-2 text-sm text-slate-600">{item.examples}</p></div>)}</div><p className="mt-6 text-sm text-slate-600">Available for project supply. Subject to availability and client confirmation. Product references do not imply formal partnership unless explicitly stated.</p></div></section>;
+  return <section className="section bg-white"><div className="container"><h2 className="text-3xl font-bold">Infrastructure Products & Project Supply</h2><p className="mt-3 max-w-4xl text-slate-700">HILTECH supports project procurement with selected infrastructure products, components, and accessories based on project scope and availability.</p><div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{productSupplyCards.map((item) => <div key={item.title} className="rounded-xl border border-slate-200 bg-slate-50 p-5 transition duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-md"><p className="mb-2 text-xs font-semibold uppercase tracking-wide text-orange-600">Product Supply</p><p className="font-semibold text-slate-900">{item.title}</p><ul className="mt-2 space-y-1 text-sm text-slate-600">{item.examples.map((example)=><li key={example}>• {example}</li>)}</ul></div>)}</div><div className="mt-8 flex flex-wrap gap-3"><Link href="/products-partners" className="btn-primary">View Products & Project Supply</Link><Link href="/contact" className="btn-secondary">Request Availability</Link></div></div></section>;
 }
 
-export function Sectors() {return <section className="section"><div className="container"><h2 className="text-3xl font-bold">Solutions Built for Your Environment</h2><div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{sectors.map((s)=><div key={s.title} className="rounded-lg border border-slate-200 bg-white p-5"><p className="text-sm font-semibold text-orange-600">• {s.title}</p><p className="mt-2 text-sm text-slate-600">{s.description}</p></div>)}</div></div></section>;}
+export function ProjectScenarios() { return <section className="section"><div className="container"><h2 className="text-3xl font-bold">Project Scenarios We Support</h2><div className="mt-8 grid gap-4 md:grid-cols-2">{scenarioCards.map((scenario)=> <article key={scenario.title} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-md"><p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Scenario</p><h3 className="mt-2 text-lg font-semibold">{scenario.title}</h3><p className="mt-2 text-sm text-slate-600">{scenario.description}</p></article>)}</div></div></section>; }
 
-export function Process() {
-  return <section className="section"><div className="container"><h2 className="text-3xl font-bold">Our Delivery Process</h2><ol className="mt-7 grid gap-4 md:grid-cols-5">{processSteps.map((step, i) => <li key={step.title} className="rounded-lg border border-slate-200 bg-white p-4"><div className="mb-3 flex items-center gap-2"><span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-sm font-bold text-white">{i + 1}</span><p className="font-semibold">{step.title}</p></div><p className="text-sm text-slate-600">{step.description}</p></li>)}</ol></div></section>;
-}
+export function Sectors() {return <section className="section"><div className="container"><h2 className="text-3xl font-bold">Solutions Built for Your Environment</h2><div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{sectors.map((s)=><div key={s.title} className="rounded-lg border border-slate-200 bg-white p-5 transition hover:border-orange-200 hover:shadow-sm"><p className="text-sm font-semibold text-orange-600">• {s.title}</p><p className="mt-2 text-sm text-slate-600">{s.description}</p></div>)}</div></div></section>;}
