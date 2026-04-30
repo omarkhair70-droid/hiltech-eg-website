@@ -4,11 +4,15 @@ import { quoteOptions, site } from '@/content/site';
 import RFQSummary from './RFQSummary';
 
 export const metadata: Metadata = {
-  title: 'Request a Project Quote | HILTECH Egypt',
-  description: 'Submit an RFQ for network infrastructure services or project supply in Egypt. Share scope, location, timeline, and technical requirements.',
+  title: 'Contact HILTECH | RFQ for Infrastructure Projects',
+  description:
+    'Request quotations for structured cabling, fiber optics, data room infrastructure, CCTV connectivity, testing, and project supply in Egypt.',
+  alternates: { canonical: '/contact' },
   openGraph: {
-    title: 'Request a Project Quote | HILTECH',
-    description: 'RFQ-focused contact flow for structured cabling, fiber, data room infrastructure, testing, and project supply.',
+    title: 'Contact HILTECH | Project RFQ in Egypt',
+    description:
+      'RFQ-focused contact flow for network infrastructure, fiber optics, data room systems, CCTV connectivity, and project supply in Egypt.',
+    url: `${site.siteUrl}/contact`,
     images: [site.ogImage],
   },
   twitter: { card: 'summary_large_image', images: [site.ogImage] },

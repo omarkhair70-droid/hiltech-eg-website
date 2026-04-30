@@ -5,18 +5,18 @@ import { site } from '@/content/site';
 import ProductsClient from './ProductsClient';
 
 export const metadata: Metadata = {
-  title: 'Products & Partners',
+  title: 'Products & Partners | Project Supply in Egypt',
   description:
-    'Browse project supply categories for structured cabling, fiber optics, cabinets, power, and security infrastructure with enterprise RFQ support in Egypt.',
+    'Browse project supply categories for structured cabling, fiber optics, racks, power systems, and CCTV infrastructure with RFQ support in Egypt.',
+  alternates: { canonical: '/products-partners' },
   openGraph: {
-    title: 'HILTECH Products & Partners | Project Supply Readiness',
-    description: 'Category-based enterprise product supply support with availability and quotation upon request.',
+    title: 'HILTECH Products & Partners | Project Supply',
+    description:
+      'Category-based project supply support across network infrastructure, fiber optics, data room equipment, and CCTV connectivity in Egypt.',
+    url: `${site.siteUrl}/products-partners`,
     images: [site.ogImage],
   },
-  twitter: {
-    card: 'summary_large_image',
-    images: [site.ogImage],
-  },
+  twitter: { card: 'summary_large_image', images: [site.ogImage] },
 };
 
 export default function Page() {
