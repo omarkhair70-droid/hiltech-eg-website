@@ -120,3 +120,11 @@ All core brand assets are in `/public`:
   - downloadable technical PDFs,
   - authenticated project photos,
   - verified case-study evidence after client approval.
+
+## Phase 18 - Sales & Launch Materials
+- Added `/resources` as a public-safe hub for sales and project communication materials.
+- Added static pages for `/resources/company-profile`, `/resources/rfq-guide`, `/resources/launch-copy`, and `/resources/one-pagers/[slug]`.
+- Sales copy content is managed in `content/sales-materials.ts` and can be edited directly for messaging updates.
+- Current materials are PDF-ready content only; no downloadable PDF generation is implemented in this phase.
+- Future enhancement can add automated PDF generation from the same structured content.
+- Launch copy is written to be public-safe, but every post/message should be reviewed and approved by the client before publication.
