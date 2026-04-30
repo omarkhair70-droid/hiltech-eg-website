@@ -3,9 +3,13 @@ import Link from 'next/link';
 import { productCategories, productDisclaimer, products, type ProductCategory } from '@/content/products';
 
 export const metadata: Metadata = {
-  title: 'Products & Project Supply | HILTECH',
+  title: 'Products & Project Supply | Enterprise Procurement Support | HILTECH',
   description:
-    'Premium B2B product catalog for structured cabling, fiber optics, cabinets, and security infrastructure supply.',
+    'Enterprise-focused product catalog for structured cabling, fiber optics, data room components, and security infrastructure procurement support.',
+  openGraph: {
+    title: 'Products & Project Supply | HILTECH',
+    description: 'Browse infrastructure categories and request availability for enterprise network projects.',
+  },
 };
 
 function ProductCard({
@@ -102,9 +106,9 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="mt-8">
+        <section className="sticky top-16 z-20 mt-8 rounded-xl border border-slate-200 bg-white/95 p-4 backdrop-blur">
           <h2 className="text-2xl font-bold">Browse by Category</h2>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-2 flex flex-wrap gap-2">
             <a
               className="rounded-full border border-orange-200 bg-orange-50 px-4 py-1.5 text-sm font-semibold text-orange-700 shadow-sm"
               href="#all"
@@ -129,7 +133,7 @@ export default function Page() {
             const categoryId = category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
             return (
               <div key={category} id={categoryId} className="scroll-mt-20">
-                <h3 className="text-2xl font-bold tracking-tight text-slate-900">{category}</h3>
+                <h3 className="text-2xl font-bold tracking-tight text-slate-900">{category}</h3><p className="mt-1 text-sm text-slate-600">Category-aligned components selected to support compatibility, deployment quality, and procurement planning.</p>
                 <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                   {categoryProducts.map((item) => (
                     <ProductCard key={item.id} {...item} />

@@ -37,15 +37,32 @@ export const sectors = [
   { title: 'Enterprise Facilities', description: 'Project-based infrastructure delivery for large-scale technical environments.' }
 ];
 
+export const infrastructureStack = [
+  { title: 'Site Survey & Scope', description: 'Map site constraints, routes, room requirements, and implementation priorities.' },
+  { title: 'Product Selection & Supply', description: 'Align products, compatibility, and availability with project technical scope.' },
+  { title: 'Structured Installation', description: 'Execute structured cabling, racks, endpoints, and connectivity with standards focus.' },
+  { title: 'Cable Management', description: 'Organize pathways, patching, labeling, and cabinet discipline for maintainability.' },
+  { title: 'Testing & Validation', description: 'Use Fluke/OTDR-oriented checks to verify link performance and readiness.' },
+  { title: 'Handover & Support', description: 'Coordinate final status, handover documentation notes, and operational support.' }
+];
+
+export const scenarioCards = [
+  { title: 'Office Network Rollout', description: 'Structured cabling, CAT6 endpoints, patch panels, cabinet organization, and testing.' },
+  { title: 'Data Room Expansion', description: 'Rack preparation, ODFs, PDUs, fiber/copper patching, cable management, and validation.' },
+  { title: 'Fiber Backbone Extension', description: 'OM3/OS2 fiber routes, LC/SC connectivity, splice trays, ODFs, and OTDR-oriented testing.' },
+  { title: 'CCTV Infrastructure Readiness', description: 'Camera cabling, network links, control-room preparation, and surveillance connectivity.' }
+];
+
 export const quoteOptions = [
-  'Structured Cabling',
-  'Fiber Optic Installation',
-  'CAT6 / Copper Cabling Supply',
-  'Fiber Cable & Accessories Supply',
-  'Data Center / Rack Setup',
-  'Network Cabinets / UPS Battery Cabinets',
-  'CCTV & Security Systems',
-  'Testing: Fluke / OTDR',
+  'Service Installation: Structured Cabling',
+  'Service Installation: Fiber Optic Installation',
+  'Service Installation: Data Center / Rack Setup',
+  'Service Installation: CCTV & Security Infrastructure',
+  'Testing & Validation: Fluke / OTDR',
+  'Product Supply: CAT6 / Copper Cabling',
+  'Product Supply: Fiber Cable & Accessories',
+  'Product Supply: Cabinets / Racks / PDU',
+  'Product Supply: Patch Panels & Connectivity',
   'Maintenance & Support',
   'Not sure yet'
 ];
