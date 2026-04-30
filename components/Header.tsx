@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { readRFQItems } from '@/lib/rfq';
 import { site } from '@/content/site';
 
 const nav = [
@@ -16,6 +17,18 @@ const nav = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [showLogoImage, setShowLogoImage] = useState(true);
+  const [rfqCount, setRfqCount] = useState(0);
+
+  useEffect(() => {
+    const sync = () => setRfqCount(readRFQItems().reduce((sum, item) => sum + item.quantity, 0));
+    sync();
+    window.addEventListener('rfq-updated', sync);
+    window.addEventListener('storage', sync);
+    return () => {
+      window.removeEventListener('rfq-updated', sync);
+      window.removeEventListener('storage', sync);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 backdrop-blur-md">
@@ -43,7 +56,8 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <Link href="/products-partners" className="text-sm font-semibold text-navy-900">RFQ Basket ({rfqCount})</Link>
           <Link href="/contact" className="btn-primary">Request a Quote</Link>
         </div>
 
