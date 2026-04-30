@@ -40,12 +40,12 @@ export default function Header() {
               alt="HILTECH logo"
               width={132}
               height={38}
-              className="h-8 w-auto max-w-[132px] object-contain md:h-9"
+              className="h-7 w-auto max-w-[128px] object-contain md:h-8"
               onError={() => setShowLogoImage(false)}
               priority
             />
           ) : null}
-          <span>HILTECH</span>
+          <span className={showLogoImage ? "sr-only" : ""}>HILTECH</span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">

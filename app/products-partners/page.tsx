@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { productDisclaimer } from '@/content/products';
 import { site } from '@/content/site';
@@ -27,6 +28,15 @@ export default function Page() {
           For project quantities, BOQs, or preferred brands, send your requirement list and HILTECH will confirm availability and quotation.
         </p>
 
+        <section className="relative mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-navy-900 p-5 text-white">
+          <Image src="/og-image.png" alt="Product supply capability visual" fill className="object-cover opacity-30" sizes="100vw" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-900/85 via-navy-900/60 to-navy-900/80" />
+          <div className="relative z-10 max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-wider text-orange-200">Branded Supply Scope</p>
+            <p className="mt-2 text-sm text-slate-100">Built for enterprise procurement workflows, with category-driven RFQ support across cabling, racks, accessories, and validation-ready infrastructure components.</p>
+          </div>
+        </section>
+
         <section className="mt-8 rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-orange-50/30 p-6">
           <h2 className="text-2xl font-bold text-slate-900">Featured Project Supply</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-3">
@@ -38,7 +48,8 @@ export default function Page() {
 
         <ProductsClient />
 
-        <p className="mt-12 rounded-xl border border-orange-200 bg-orange-50/60 p-5 text-sm leading-relaxed text-slate-700 shadow-sm">{productDisclaimer}</p>
+        <p className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">Product imagery can be added later as brand-approved assets become available.</p>
+        <p className="mt-6 rounded-xl border border-orange-200 bg-orange-50/60 p-5 text-sm leading-relaxed text-slate-700 shadow-sm">{productDisclaimer}</p>
       </div>
     </main>
   );
