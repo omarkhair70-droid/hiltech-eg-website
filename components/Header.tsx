@@ -8,10 +8,10 @@ import { site } from '@/content/site';
 
 const nav = [
   ['Home', '/'],
-  ['Services', '/services'],
   ['Solutions', '/solutions'],
-  ['About', '/about'],
-  ['Products & Partners', '/products-partners'],
+  ['Products', '/products-partners'],
+  ['RFQ', '/rfq'],
+  ['Resources', '/resources'],
   ['Contact', '/contact'],
 ] as const;
 

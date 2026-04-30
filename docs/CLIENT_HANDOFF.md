@@ -128,3 +128,20 @@ All core brand assets are in `/public`:
 - Current materials are PDF-ready content only; no downloadable PDF generation is implemented in this phase.
 - Future enhancement can add automated PDF generation from the same structured content.
 - Launch copy is written to be public-safe, but every post/message should be reviewed and approved by the client before publication.
+
+## Phase 19 - Information Architecture Cleanup & Homepage Compression
+- Homepage (`/`) is now intentionally compressed into an executive overview flow:
+  1. Hero
+  2. What HILTECH Does
+  3. Solutions preview
+  4. Products/RFQ preview
+  5. Assurance preview
+  6. Final CTA
+- Detailed content is intentionally split into internal pages to reduce visual crowding and improve decision flow:
+  - Full solution depth: `/solutions`
+  - Product intelligence and category detail: `/products-partners`
+  - RFQ workflow and review: `/rfq`
+  - Sales/launch materials: `/resources`
+  - Contact and quote initiation: `/contact`
+- Navigation was simplified around the primary sales journey: Home, Solutions, Products, RFQ, Resources, Contact.
+- This split is deliberate to keep the homepage calmer, easier to scan on mobile, and more premium in presentation while preserving all existing routes and RFQ behavior.
