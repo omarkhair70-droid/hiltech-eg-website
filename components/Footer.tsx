@@ -14,7 +14,7 @@ const footerServices = [
 export default function Footer() {
   return (
     <footer className="bg-navy-900 text-white">
-      <div className="container grid gap-8 py-12 md:grid-cols-4">
+      <div className="container grid gap-8 py-12 md:grid-cols-4 md:py-14">
         <div>
           <div className="inline-flex rounded-xl border border-slate-700/80 bg-white/5 px-3 py-2 shadow-sm">
             <Image
@@ -37,7 +37,7 @@ export default function Footer() {
               <li key={service}>{service}</li>
             ))}
           </ul>
-          <Link href="/contact" className="mt-3 inline-block text-sm font-semibold text-orange-300 underline">Request Quote</Link>
+          <Link href="/contact" className="mt-3 inline-flex rounded-md border border-orange-300/40 px-3 py-1.5 text-sm font-semibold text-orange-300 hover:bg-white/10">Request Quote</Link>
         </div>
 
         <div>
