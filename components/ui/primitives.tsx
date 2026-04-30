@@ -6,7 +6,7 @@ import { design } from '@/lib/design';
 const cx = (...parts: Array<string | undefined | false>) => parts.filter(Boolean).join(' ');
 
 export function SectionShell({ children, className, compact = false }: { children: ReactNode; className?: string; compact?: boolean }) {
-  return <section className={cx(compact ? design.sectionYCompact : design.sectionY, className)}><div className={design.container}>{children}</div></section>;
+  return <section className={cx(compact ? design.sectionYCompact : design.sectionY, 'scroll-mt-24 md:scroll-mt-20', className)}><div className={design.container}>{children}</div></section>;
 }
 
 export function SectionHeader({ eyebrow, title, description, className }: { eyebrow?: string; title: string; description?: string; className?: string }) {
@@ -38,7 +38,7 @@ export function BadgePill({ children, tone = 'orange' }: { children: ReactNode; 
 }
 
 export function CapabilityPill({ children }: { children: ReactNode }) {
-  return <span className="inline-flex rounded-full border border-orange-300/40 bg-orange-500/10 px-3 py-1 text-[11px] font-semibold text-orange-200">{children}</span>;
+  return <span className="inline-flex rounded-full border border-orange-300/70 bg-orange-100/80 px-3 py-1 text-[11px] font-semibold text-navy-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">{children}</span>;
 }
 
 export function NoticeBox({ children, tone = 'info' }: { children: ReactNode; tone?: 'info' | 'highlight' }) {

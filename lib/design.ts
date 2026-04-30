@@ -1,7 +1,7 @@
 export const design = {
   container: 'mx-auto w-full max-w-6xl px-4 sm:px-5',
-  sectionY: 'py-12 md:py-16 lg:py-20',
-  sectionYCompact: 'py-10 md:py-14',
+  sectionY: 'py-10 md:py-16 lg:py-20',
+  sectionYCompact: 'py-9 md:py-14',
   headingDisplay: 'text-3xl font-bold leading-[1.15] sm:text-4xl lg:text-5xl',
   headingSection: 'text-2xl font-bold leading-tight sm:text-3xl',
   headingCard: 'text-base font-semibold text-slate-900',
