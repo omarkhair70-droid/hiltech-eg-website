@@ -36,7 +36,7 @@ export default function Footer() {
           <ul className="mt-3 space-y-1 text-sm">
             <li><a className="underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
             <li><a className="underline" href={`tel:${site.contact.phone}`}>{site.contact.phone}</a></li>
-            <li><a className="underline" href={site.contact.whatsappLink}>{site.contact.whatsappIntl}</a></li>
+            <li><a className="underline" href={site.contact.whatsappGeneralLink}>{site.contact.whatsappIntl}</a></li>
             <li>{site.contact.addressEn}</li>
           </ul>
         </div>

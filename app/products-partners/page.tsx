@@ -1,14 +1,20 @@
 import type { Metadata } from 'next';
 import { productDisclaimer } from '@/content/products';
+import { site } from '@/content/site';
 import ProductsClient from './ProductsClient';
 
 export const metadata: Metadata = {
-  title: 'Products & Project Supply | Enterprise Procurement Support | HILTECH',
+  title: 'Products & Partners',
   description:
-    'Enterprise-focused product catalog for structured cabling, fiber optics, data room components, and security infrastructure procurement support.',
+    'Browse project supply categories for structured cabling, fiber optics, cabinets, power, and security infrastructure with enterprise RFQ support in Egypt.',
   openGraph: {
-    title: 'Products & Project Supply | HILTECH',
-    description: 'Browse infrastructure categories and request availability for enterprise network projects.',
+    title: 'HILTECH Products & Partners | Project Supply Readiness',
+    description: 'Category-based enterprise product supply support with availability and quotation upon request.',
+    images: [site.ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [site.ogImage],
   },
 };
 
@@ -17,6 +23,9 @@ export default function Page() {
     <main className="section">
       <div className="container">
         <h1 className="text-3xl font-bold leading-tight sm:text-4xl">Products &amp; Project Supply</h1>
+        <p className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
+          For project quantities, BOQs, or preferred brands, send your requirement list and HILTECH will confirm availability and quotation.
+        </p>
 
         <section className="mt-8 rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-orange-50/30 p-6">
           <h2 className="text-2xl font-bold text-slate-900">Featured Project Supply</h2>

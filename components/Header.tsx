@@ -38,9 +38,9 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="HILTECH logo"
-              width={34}
-              height={34}
-              className="rounded-sm"
+              width={132}
+              height={38}
+              className="h-8 w-auto max-w-[132px] object-contain md:h-9"
               onError={() => setShowLogoImage(false)}
               priority
             />
