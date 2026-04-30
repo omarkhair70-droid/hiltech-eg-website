@@ -5,11 +5,13 @@ import { site } from '@/content/site';
 export const metadata: Metadata = {
   title: 'HILTECH | Enterprise Network Infrastructure & Project Supply in Egypt',
   description:
-    'Premium enterprise network infrastructure services in Egypt: structured cabling, fiber optic systems, data room readiness, testing, and project supply support.',
+    'Premium network infrastructure delivery in Egypt: structured cabling, fiber optics, data room infrastructure, CCTV connectivity, and project supply support.',
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'HILTECH | Enterprise Network Infrastructure & Project Supply',
     description:
-      'Reliable network infrastructure, data room delivery, testing workflows, and project-based product supply for business facilities.',
+      'Reliable network infrastructure, data room delivery, CCTV connectivity, testing workflows, and project-based supply for business facilities in Egypt.',
+    url: site.siteUrl,
     images: [site.ogImage],
   },
   twitter: { card: 'summary_large_image', images: [site.ogImage] },

@@ -3,12 +3,15 @@ import { ServicesGrid } from '@/components/Sections';
 import { site } from '@/content/site';
 
 export const metadata: Metadata = {
-  title: 'Services | Enterprise Infrastructure Delivery',
+  title: 'Services | Enterprise Infrastructure Delivery in Egypt',
   description:
-    'Explore HILTECH enterprise services: structured cabling, fiber optic installation, data room setup, testing workflows, CCTV readiness, and ongoing support.',
+    'Structured cabling, fiber optics, data room infrastructure, CCTV connectivity, testing, and support services for enterprise environments in Egypt.',
+  alternates: { canonical: '/services' },
   openGraph: {
     title: 'HILTECH Services | Enterprise Infrastructure Delivery',
-    description: 'Technical infrastructure services for enterprise connectivity, testing, and long-term network stability.',
+    description:
+      'Enterprise infrastructure services across network cabling, fiber optics, data room readiness, CCTV connectivity, and validation workflows in Egypt.',
+    url: `${site.siteUrl}/services`,
     images: [site.ogImage],
   },
   twitter: { card: 'summary_large_image', images: [site.ogImage] },
