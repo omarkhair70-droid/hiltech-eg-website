@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { RFQFlowDiagram, TechnicalDiagramPanel } from '@/components/diagrams';
 import { site } from '@/content/site';
 import RFQReviewClient from './rfq-review-client';
 
@@ -9,4 +10,6 @@ export const metadata: Metadata = {
   openGraph: { title: 'Review Your RFQ Request | HILTECH', description: 'Enterprise RFQ review flow for products, quantities, notes, and quotation requests.', url: `${site.siteUrl}/rfq`, images: [site.ogImage] },
 };
 
-export default function RFQPage() { return <main className="section"><div className="container"><RFQReviewClient /></div></main>; }
+export default function RFQPage() {
+  return <main className="section"><div className="container"><div className="mb-6"><TechnicalDiagramPanel title="Procurement Workflow Visual" subtitle="Select products → add quantities and notes → review request → send to HILTECH for confirmation." labels={["Product Selection", "RFQ Basket", "Review", "WhatsApp Submission"]} note="Conceptual workflow visual to support request quality."><RFQFlowDiagram /></TechnicalDiagramPanel></div><RFQReviewClient /></div></main>;
+}
