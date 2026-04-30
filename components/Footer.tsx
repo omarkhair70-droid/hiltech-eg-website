@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { site } from '@/content/site';
 
@@ -15,8 +16,16 @@ export default function Footer() {
     <footer className="bg-navy-900 text-white">
       <div className="container grid gap-8 py-12 md:grid-cols-4">
         <div>
-          <h3 className="text-xl font-bold">{site.brand}</h3>
-          <p>{site.officialName}</p>
+          <div className="rounded-xl border border-slate-700 bg-white/5 p-3">
+            <Image
+              src="/logo-dark.png"
+              alt="HILTECH brand logo"
+              width={168}
+              height={48}
+              className="h-9 w-auto object-contain"
+            />
+          </div>
+          <p className="mt-3">{site.officialName}</p>
           <p className="text-orange-300">{site.slogan}</p>
           <p className="mt-3 text-sm">© HILTECH. All rights reserved.</p>
         </div>
