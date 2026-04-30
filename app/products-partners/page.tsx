@@ -1,15 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import {
-  featuredProjectSupply,
-  productCategories,
-  productDisclaimer,
-  products,
-  type ProductCategory,
-} from '@/content/products';
+import { productCategories, productDisclaimer, products, type ProductCategory } from '@/content/products';
 
 export const metadata: Metadata = {
-  title: 'Products Catalog Lite | HILTECH',
+  title: 'Products & Project Supply | HILTECH',
   description:
     'Premium B2B product catalog for structured cabling, fiber optics, cabinets, and security infrastructure supply.',
 };
@@ -28,30 +22,41 @@ function ProductCard({
   useCase: string;
 }) {
   return (
-    <article className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-      <p className="mb-3 inline-flex w-fit rounded-full border border-orange-200 bg-orange-50 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-orange-700">
+    <article className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:shadow-md">
+      <div className="mb-4 h-1 w-12 rounded-full bg-orange-400" />
+      <p className="mb-3 inline-flex w-fit rounded-full border border-orange-100 bg-orange-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-orange-700">
         {category}
       </p>
-      <h3 className="text-lg font-semibold text-slate-900">{name}</h3>
-      <p className="mt-2 text-sm text-slate-600">
-        <span className="font-semibold text-slate-700">Brand:</span> {brand}
-      </p>
-      <p className="mt-2 text-sm text-slate-600">
-        <span className="font-semibold text-slate-700">Short specs:</span> {shortSpecs}
-      </p>
-      <p className="mt-2 text-sm text-slate-600">
-        <span className="font-semibold text-slate-700">Use case:</span> {useCase}
-      </p>
-      <p className="mt-3 rounded-md bg-slate-50 px-3 py-2 text-xs font-medium text-slate-600">
+      <h3 className="text-lg font-bold leading-tight text-slate-900">{name}</h3>
+
+      <div className="mt-4 space-y-2 text-sm text-slate-600">
+        <p>
+          <span className="font-semibold text-slate-800">Brand:</span> {brand}
+        </p>
+        <p>
+          <span className="font-semibold text-slate-800">Specs:</span> {shortSpecs}
+        </p>
+        <p>
+          <span className="font-semibold text-slate-800">Use case:</span> {useCase}
+        </p>
+      </div>
+
+      <p className="mt-4 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-600">
         Price and availability upon request
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">
-        <Link className="btn-primary" href="/contact">
-          Request Availability
-        </Link>
-        <a className="btn-secondary" href="https://wa.me/201102815044">
-          WhatsApp
-        </a>
+
+      <div className="mt-auto pt-4">
+        <div className="flex flex-wrap gap-2">
+          <Link className="btn-primary" href="/contact">
+            Request Availability
+          </Link>
+          <a
+            className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+            href="https://wa.me/201102815044"
+          >
+            WhatsApp
+          </a>
+        </div>
       </div>
     </article>
   );
@@ -61,31 +66,55 @@ export default function Page() {
   return (
     <main className="section">
       <div className="container">
-        <h1 className="text-4xl font-bold">Products Catalog Lite</h1>
+        <h1 className="text-4xl font-bold">Products &amp; Project Supply</h1>
         <p className="mt-4 max-w-4xl text-slate-700">
-          Premium static catalog for B2B infrastructure procurement support. Product examples below are organized by
-          category for project scoping and supply discussions.
+          Infrastructure products, cabling systems, cabinets, connectivity components, and security-ready supplies
+          organized for project-based procurement and availability requests.
         </p>
 
-        <section className="mt-8 rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6">
-          <h2 className="text-2xl font-bold">Featured Project Supply</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700">
-            {featuredProjectSupply.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+        <section className="mt-8 rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-orange-50/30 p-6">
+          <h2 className="text-2xl font-bold text-slate-900">Featured Project Supply</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="mb-3 h-1 w-10 rounded-full bg-orange-400" />
+              <h3 className="text-base font-semibold text-slate-900">Structured Cabling Rollouts</h3>
+              <p className="mt-2 text-sm text-slate-700">
+                CAT6, fiber backbone, patch panels, faceplates, keystone modules, and connectivity components for
+                office and enterprise networks.
+              </p>
+            </article>
+            <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="mb-3 h-1 w-10 rounded-full bg-orange-400" />
+              <h3 className="text-base font-semibold text-slate-900">Data Room Expansion</h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Racks, cabinets, PDUs, ODFs, cable management, patch panels, and fiber/copper organization for
+                technical rooms.
+              </p>
+            </article>
+            <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="mb-3 h-1 w-10 rounded-full bg-orange-400" />
+              <h3 className="text-base font-semibold text-slate-900">CCTV &amp; Security Readiness</h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Camera connectivity, cabling paths, network links, and infrastructure preparation for surveillance
+                systems.
+              </p>
+            </article>
+          </div>
         </section>
 
         <section className="mt-8">
           <h2 className="text-2xl font-bold">Browse by Category</h2>
           <div className="mt-4 flex flex-wrap gap-2">
-            <a className="rounded-full border border-slate-300 bg-white px-3 py-1 text-sm font-medium" href="#all">
+            <a
+              className="rounded-full border border-orange-200 bg-orange-50 px-4 py-1.5 text-sm font-semibold text-orange-700 shadow-sm"
+              href="#all"
+            >
               All
             </a>
             {productCategories.map((category) => (
               <a
                 key={category}
-                className="rounded-full border border-slate-300 bg-white px-3 py-1 text-sm font-medium"
+                className="rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
                 href={`#${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
               >
                 {category}
@@ -94,14 +123,14 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="all" className="mt-10 space-y-10">
+        <section id="all" className="mt-10 space-y-12">
           {productCategories.map((category) => {
             const categoryProducts = products.filter((item) => item.category === category);
             const categoryId = category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
             return (
-              <div key={category} id={categoryId}>
-                <h3 className="text-xl font-bold">{category}</h3>
-                <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              <div key={category} id={categoryId} className="scroll-mt-20">
+                <h3 className="text-2xl font-bold tracking-tight text-slate-900">{category}</h3>
+                <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                   {categoryProducts.map((item) => (
                     <ProductCard key={item.id} {...item} />
                   ))}
@@ -111,7 +140,7 @@ export default function Page() {
           })}
         </section>
 
-        <p className="mt-10 rounded-md border-l-4 border-orange-500 bg-orange-50 p-4 text-sm text-slate-700">
+        <p className="mt-12 rounded-xl border border-orange-200 bg-orange-50/60 p-5 text-sm leading-relaxed text-slate-700 shadow-sm">
           {productDisclaimer}
         </p>
       </div>
