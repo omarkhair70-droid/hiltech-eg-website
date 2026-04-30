@@ -57,7 +57,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Link href="/products-partners" className="rounded-full border border-slate-300 px-3 py-1.5 text-sm font-semibold text-navy-900">RFQ Basket ({rfqCount})</Link>
+          <Link href="/rfq" className="rounded-full border border-slate-300 px-3 py-1.5 text-sm font-semibold text-navy-900">RFQ Basket ({rfqCount})</Link>
           <Link href="/contact" className="inline-flex items-center rounded-md bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-orange-600">Request a Quote</Link>
         </div>
 
@@ -85,7 +85,7 @@ export default function Header() {
                 {label}
               </Link>
             ))}
-              <Link href="/contact" className="mt-2 inline-flex w-full justify-center rounded-md bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600" onClick={() => setOpen(false)}>
+              <Link href="/rfq" className="mt-2 inline-flex w-full justify-center rounded-md border border-slate-300 px-5 py-2.5 font-semibold text-slate-700" onClick={() => setOpen(false)}>RFQ Basket ({rfqCount})</Link><Link href="/contact" className="mt-2 inline-flex w-full justify-center rounded-md bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600" onClick={() => setOpen(false)}>
                 Request a Quote
               </Link>
             </div>
