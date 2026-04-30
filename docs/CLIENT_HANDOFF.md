@@ -66,3 +66,34 @@ All core brand assets are in `/public`:
 - WhatsApp submission is generated as an encoded structured message including project details + RFQ item list.
 - No backend/database is storing RFQ submissions in this phase; data remains only in the user browser until sent.
 - Future enhancement option: backend form/email workflow with persistence and status tracking.
+
+## Phase 15: Product Intelligence Pages
+- Added static Product Intelligence category data model in `content/product-intelligence.ts` with procurement-focused fields: strategic summary, typical components, use cases, RFQ checklist, compatibility notes, handover notes, and advisory disclaimers.
+- Added seven category intelligence guide pages under `/products-partners/[slug]`:
+  - `/products-partners/fiber-optic-systems`
+  - `/products-partners/copper-cat6-cabling`
+  - `/products-partners/patch-cords-connectivity`
+  - `/products-partners/faceplates-keystone-rj45`
+  - `/products-partners/cabinets-racks-pdu`
+  - `/products-partners/cable-management-duct-systems`
+  - `/products-partners/cctv-security`
+- Each guide is designed as a technical procurement assistant page (not a blog): stack fit, component matrix, use-case guidance, RFQ checklist, compatibility/handover notes, and related product examples.
+- `/products-partners` now includes **Explore Product Intelligence by Category** cards linking to each category guide.
+- Product categories and product card badges now link to their category intelligence guide to support contextual planning.
+- Each category guide includes RFQ preparation controls to:
+  - browse products,
+  - review RFQ basket,
+  - request project quote,
+  - optionally add starter example items (removable/editable) into the existing RFQ basket.
+- Pricing/availability policy remains unchanged: **price and availability upon request**, subject to confirmation during RFQ review.
+
+### How to update category intelligence content
+1. Open `content/product-intelligence.ts`.
+2. Locate the required category by `slug`.
+3. Update copy fields (`intro`, `strategicSummary`, `requestChecklist`, etc.) as needed.
+4. Keep disclaimers and compatibility language factual; do not add unverified claims.
+5. Rebuild the site to verify rendering and metadata updates.
+
+### RFQ relationship reminder
+- Category guide pages are advisory + preparatory and route users back into the same RFQ basket flow (`/products-partners` and `/rfq`).
+- Final availability, equivalents, and pricing are still confirmed by HILTECH after RFQ scope review.
