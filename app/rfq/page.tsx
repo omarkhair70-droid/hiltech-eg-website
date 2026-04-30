@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { RFQFlowDiagram, TechnicalDiagramPanel } from '@/components/diagrams';
 import { site } from '@/content/site';
 import RFQReviewClient from './rfq-review-client';
 
@@ -11,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function RFQPage() {
-  return <main className="section"><div className="container"><div className="mb-6"><TechnicalDiagramPanel title="Procurement Workflow Visual" subtitle="Select products → add quantities and notes → review request → send to HILTECH for confirmation." labels={["Product Selection", "RFQ Basket", "Review", "WhatsApp Submission"]} note="Conceptual workflow visual to support request quality."><RFQFlowDiagram /></TechnicalDiagramPanel></div><RFQReviewClient /></div><p className="container mt-2 text-sm text-slate-600">Need help preparing your request? <a className="font-semibold text-navy-900 underline" href="/resources/rfq-guide">Review the RFQ Preparation Guide</a>.</p></main>;
+  return <main className="section"><div className="container"><p className="mb-4 text-sm text-slate-700">Review selected items, add project details, then send your RFQ to HILTECH.</p><RFQReviewClient /></div><p className="container mt-2 text-sm text-slate-600">Need help preparing your request? <a className="font-semibold text-navy-900 underline" href="/resources/rfq-guide">Review the RFQ Preparation Guide</a>.</p></main>;
 }

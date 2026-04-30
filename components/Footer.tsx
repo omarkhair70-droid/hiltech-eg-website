@@ -2,14 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { site } from '@/content/site';
 
-const footerServices = [
-  'Structured Cabling',
-  'Fiber Optic Installation',
-  'Network Infrastructure',
-  'CCTV & Security Systems',
-  'Data Center Setup',
-  'Network Testing & Certification',
-];
+const footerServices = ['Structured Cabling', 'Fiber Infrastructure', 'Data Room Readiness', 'Project Supply & RFQ'];
 
 export default function Footer() {
   return (
@@ -53,8 +46,7 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold">Resources</h4>
           <ul className="mt-3 space-y-1 text-sm">
-            <li><Link className="underline" href="/resources">Sales & Project Resources</Link></li>
-            <li><Link className="underline" href="/resources/company-profile">Company Profile</Link></li>
+            <li><Link className="underline" href="/resources">Resources Hub</Link></li>
             <li><Link className="underline" href="/resources/rfq-guide">RFQ Preparation Guide</Link></li>
           </ul>
           <h4 className="mt-4 font-semibold">Compliance</h4>
