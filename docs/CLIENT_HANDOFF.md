@@ -97,3 +97,17 @@ All core brand assets are in `/public`:
 ### RFQ relationship reminder
 - Category guide pages are advisory + preparatory and route users back into the same RFQ basket flow (`/products-partners` and `/rfq`).
 - Final availability, equivalents, and pricing are still confirmed by HILTECH after RFQ scope review.
+
+## Phase 16: Enterprise Solutions Pages
+- Added a static solutions data model in `content/solutions.ts` powering six enterprise-focused solution pages:
+  - `/solutions/structured-cabling`
+  - `/solutions/fiber-backbone`
+  - `/solutions/data-rooms`
+  - `/solutions/cctv-infrastructure`
+  - `/solutions/network-testing`
+  - `/solutions/project-supply-rfq`
+- Added a new landing page at `/solutions` to frame HILTECH around business/infrastructure outcomes (not only product/service lists).
+- Solution content is fully editable from `content/solutions.ts` (titles, intros, outcomes, delivery scope, implementation flow, related intelligence links, RFQ checklist, assurance notes, disclaimer).
+- Solutions connect directly to Product Intelligence guides via related links and route users into RFQ actions (`/rfq`, `/products-partners`, `/contact`).
+- Product Intelligence category pages now include subtle “Related solutions” links where relevant.
+- Scope/pricing/availability note remains explicit: final technical scope, product availability, and quotation are confirmed per project and RFQ review.
