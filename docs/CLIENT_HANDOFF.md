@@ -58,3 +58,11 @@ All core brand assets are in `/public`:
 - Future backend/contact form integration
 
 - Phase 13 update: Homepage narrative now follows an enterprise infrastructure flow: **Physical Layer → Lifecycle → Capabilities → RFQ**, connecting services, project supply, and RFQ basket actions in one operating model.
+
+## Phase 14: Advanced RFQ Experience
+- RFQ basket now uses an expanded client-side item model: id, name, category, brand, specs, quantity, unit, notes, and optional urgency.
+- Basket items are added from product cards using **Add to RFQ** and persisted in browser localStorage (client-side only).
+- Quantities, units, notes, and urgency can be edited from the products basket drawer and the dedicated `/rfq` review page.
+- WhatsApp submission is generated as an encoded structured message including project details + RFQ item list.
+- No backend/database is storing RFQ submissions in this phase; data remains only in the user browser until sent.
+- Future enhancement option: backend form/email workflow with persistence and status tracking.

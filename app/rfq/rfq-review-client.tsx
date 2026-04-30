@@ -1,0 +1,48 @@
+'use client';
+
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
+import { buildRFQWhatsappMessage, getRFQWhatsappLink, normalizeRFQItem, readRFQItems, writeRFQItems, type RFQItem, type RFQProjectDetails } from '@/lib/rfq';
+
+const projectFields = [
+  ['fullName', 'Full Name'],
+  ['companyName', 'Company Name'],
+  ['phoneNumber', 'Phone Number'],
+  ['emailAddress', 'Email Address'],
+  ['projectLocation', 'Project Location'],
+] as const;
+
+export default function RFQReviewClient() {
+  const [items, setItems] = useState<RFQItem[]>([]);
+  const [project, setProject] = useState<RFQProjectDetails>({});
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => setItems(readRFQItems()), []);
+  useEffect(() => writeRFQItems(items), [items]);
+
+  const count = useMemo(() => items.reduce((sum, i) => sum + i.quantity, 0), [items]);
+  const updateItem = (id: string, patch: Partial<RFQItem>) => setItems((prev) => prev.map((entry) => (entry.id === id ? normalizeRFQItem({ ...entry, ...patch }) : entry)));
+  const message = buildRFQWhatsappMessage(items, project);
+
+  return (
+    <div>
+      <h1 className="text-3xl font-bold">Review Your RFQ Request</h1>
+      <p className="mt-2 text-slate-700">Build your project supply request, add quantities and notes, then send it directly to HILTECH for availability and quotation.</p>
+      <div className="mt-6 grid gap-6 lg:grid-cols-3">
+        <section className="space-y-4 lg:col-span-2">
+          <div className="rounded-xl border p-4"><p className="font-semibold">RFQ Summary</p><p className="text-sm text-slate-600">{items.length} items • {count} total units</p></div>
+          {items.length === 0 ? <div className="rounded-xl border bg-slate-50 p-5"><p className="font-semibold">Your RFQ basket is empty.</p><p className="mt-1 text-sm text-slate-600">Start by adding products for a structured supply request.</p><div className="mt-3 flex flex-wrap gap-2"><Link className="btn-primary" href="/products-partners">Browse Products & Project Supply</Link><Link className="inline-flex items-center rounded-lg border px-4 py-2" href="/contact">Request Project Quote</Link></div></div> : items.map((item) => <article key={item.id} className="rounded-xl border p-4"><h3 className="font-semibold">{item.name}</h3><p className="text-xs text-slate-600">{item.category} • {item.brand}</p><div className="mt-2 flex flex-wrap items-center gap-2"><button className="rounded border px-2" onClick={() => updateItem(item.id, { quantity: item.quantity - 1 })}>-</button><input type="number" min={1} className="w-20 rounded border px-2 py-1" value={item.quantity} onChange={(e) => updateItem(item.id, { quantity: Number(e.target.value) || 1 })} /><button className="rounded border px-2" onClick={() => updateItem(item.id, { quantity: item.quantity + 1 })}>+</button><input className="w-24 rounded border px-2 py-1 text-sm" value={item.unit} onChange={(e) => updateItem(item.id, { unit: e.target.value })} /><select className="rounded border px-2 py-1 text-sm" value={item.urgency || 'Standard'} onChange={(e) => updateItem(item.id, { urgency: e.target.value as RFQItem['urgency'] })}><option>Standard</option><option>Urgent</option></select><button className="ml-auto text-sm text-red-600" onClick={() => setItems((prev) => prev.filter((entry) => entry.id !== item.id))}>Remove</button></div><textarea className="mt-2 w-full rounded border p-2" rows={2} value={item.notes} onChange={(e) => updateItem(item.id, { notes: e.target.value })} placeholder="Item notes" /></article>)}
+        </section>
+        <aside className="space-y-4">
+          <div className="rounded-xl border p-4"><p className="font-semibold">Project details</p><div className="mt-2 space-y-2">{projectFields.map(([key, label]) => <input key={key} className="w-full rounded border px-3 py-2 text-sm" placeholder={label} value={project[key] || ''} onChange={(e) => setProject((p) => ({ ...p, [key]: e.target.value }))} />)}<textarea className="w-full rounded border px-3 py-2 text-sm" rows={3} placeholder="Project Notes" value={project.projectNotes || ''} onChange={(e) => setProject((p) => ({ ...p, projectNotes: e.target.value }))} /></div></div>
+          <div className="rounded-xl border p-4 text-sm"><p className="font-semibold">RFQ guidance</p><ul className="mt-2 list-disc space-y-1 pl-4 text-slate-600"><li>Add quantities</li><li>Include preferred brands</li><li>Mention delivery timing</li><li>Add site/project notes</li></ul></div>
+          <a className="btn-primary w-full justify-center" href={getRFQWhatsappLink(items, project)} target="_blank" rel="noreferrer">Submit via WhatsApp</a>
+          <button className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={async () => { await navigator.clipboard.writeText(message); setCopied(true); setTimeout(() => setCopied(false), 1500); }}>Copy RFQ Message</button>
+          {copied ? <p className="text-xs text-emerald-700">Copied.</p> : null}
+          <button className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={() => setItems([])}>Clear Basket</button>
+          <Link href="/products-partners" className="inline-flex w-full justify-center rounded-lg border px-4 py-2">Browse Products</Link>
+        </aside>
+      </div>
+    </div>
+  );
+}
