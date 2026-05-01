@@ -177,3 +177,11 @@ All core brand assets are in `/public`:
 - Reviewed and corrected diagram panels (titles, subtitles, labels, overlays) to prevent white/faint text mismatches on light surfaces.
 - Reviewed Final CTA quick-reference treatment and corrected white-on-white/low-contrast readability risks.
 - Corrected repeated white-on-white and low-opacity readability bugs identified in mobile QA.
+
+
+## Smart Project Scope Finder (/scope-finder)
+- Provides a static, client-side guided questionnaire to suggest a preliminary infrastructure scope direction.
+- Recommendation output includes suggested solutions, product categories, RFQ starter items, and request checklist points.
+- Recommendations are preliminary only; final scope, pricing, availability, and compatibility must be confirmed by HILTECH.
+- Users can add suggested starter items directly into the RFQ Basket (local storage) and continue through existing RFQ workflow.
+- No backend submission, database, AI API, analytics, or authentication is used in this feature.
