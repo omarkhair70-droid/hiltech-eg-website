@@ -5,9 +5,9 @@ import { site } from '@/content/site';
 export const metadata: Metadata = {
   title: 'RFQ Preparation Guide | HILTECH Resources',
   description: 'Checklist for preparing complete infrastructure RFQ requests before quotation.',
-  alternates: { canonical: 'https://hiltech-eg.com/resources/rfq-guide' },
-  openGraph: { title: 'RFQ Preparation Guide | HILTECH', description: 'Prepare your project RFQ with a complete scope and checklist.', url: 'https://hiltech-eg.com/resources/rfq-guide', images: ['/og-image.png'] },
-  twitter: { card: 'summary_large_image', images: ['/og-image.png'] },
+  alternates: { canonical: `${site.siteUrl}/resources/rfq-guide` },
+  openGraph: { title: 'RFQ Preparation Guide | HILTECH', description: 'Prepare your project RFQ with a complete scope and checklist.', url: `${site.siteUrl}/resources/rfq-guide`, images: [site.ogImage] },
+  twitter: { card: 'summary_large_image', images: [site.ogImage] },
 };
 
 const checklist = [

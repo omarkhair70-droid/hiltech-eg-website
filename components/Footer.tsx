@@ -2,7 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { site } from '@/content/site';
 
-const footerServices = ['Structured Cabling', 'Fiber Infrastructure', 'Data Room Readiness', 'Project Supply & RFQ'];
+const footerServices = [
+  { label: 'Structured Cabling', href: '/solutions/structured-cabling' },
+  { label: 'Fiber Infrastructure', href: '/solutions/fiber-backbone' },
+  { label: 'Data Room Readiness', href: '/solutions/data-rooms' },
+  { label: 'Project Supply & RFQ', href: '/products-partners' },
+];
 
 export default function Footer() {
   return (
@@ -27,7 +32,9 @@ export default function Footer() {
           <h4 className="font-semibold">Services</h4>
           <ul className="mt-3 space-y-1 text-sm text-slate-200">
             {footerServices.map((service) => (
-              <li key={service}>{service}</li>
+              <li key={service.label}>
+                <Link className="underline hover:text-white" href={service.href}>{service.label}</Link>
+              </li>
             ))}
           </ul>
           <Link href="/contact" className="mt-3 inline-flex rounded-md border border-orange-300/40 px-3 py-1.5 text-sm font-semibold text-orange-300 hover:bg-white/10">Request Project Quote</Link>

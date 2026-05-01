@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Services | Enterprise Infrastructure Delivery in Egypt',
   description:
     'Structured cabling, fiber optics, data room infrastructure, CCTV connectivity, testing, and support services for enterprise environments in Egypt.',
-  alternates: { canonical: '/services' },
+  alternates: { canonical: `${site.siteUrl}/services` },
   openGraph: {
     title: 'HILTECH Services | Enterprise Infrastructure Delivery',
     description:

@@ -205,3 +205,13 @@ All core brand assets are in `/public`:
 - **Phase 22B.1 (May 1, 2026):** Adjusted product image presentation in `/products-partners` to use contained image frames (`object-contain`) with padded premium dark backgrounds for less cropping on mobile and desktop.
 - Product visuals remain illustrative/non-official references and existing missing-image fallback now matches the updated premium frame styling.
 - Floating RFQ Basket mobile overlap was reduced through safer mobile positioning and extra catalog bottom spacing so titles/actions remain reachable while scrolling.
+
+## Phase 23A - Final Launch Polish Fixes (May 2026)
+- Canonical URLs were standardized to absolute `https://hiltech-eg.com/...` formatting across core launch routes and resource detail pages for cleaner SEO audits.
+- `/products-partners` maturity copy was updated to reflect that catalog visuals are now available while keeping trust language: visuals are illustrative and final specs/availability/quotation are confirmed by HILTECH.
+- `/resources/launch-copy` was reviewed and reframed as **Client Communication Templates** to keep the page public-safe and client-facing.
+- Homepage hero includes a concise 5-second clarity micro-line covering what HILTECH does, for whom, and where.
+- Floating RFQ basket on products pages was tightened for mobile overlap reduction with safer bottom safe-area spacing and extra page bottom padding.
+- Footer service labels are now linked to relevant solution/product routes for faster navigation.
+- WhatsApp and contact references were checked; approved WhatsApp number (`201555357807`) and approved email (`info@hiltech-eg.com`) remain unchanged.
+- ESLint setup was hardened with a minimal Next.js config so `npm run lint` no longer triggers interactive initialization prompts.
