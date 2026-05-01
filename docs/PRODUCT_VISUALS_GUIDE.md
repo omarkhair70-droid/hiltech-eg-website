@@ -51,3 +51,8 @@ Before accepting any generated asset, confirm:
 - Lighting and background are consistent with the catalog style.
 - No stock watermark appears.
 - Image is clear (not blurry), high resolution, and square.
+
+## Upload Location (Current)
+- Approved uploaded product images must be stored in: `/public/products/`.
+- Current integrated uploaded image count: **18**.
+- If a product does not yet have a matching image file, the catalog renders a fallback illustrative placeholder card visual.
