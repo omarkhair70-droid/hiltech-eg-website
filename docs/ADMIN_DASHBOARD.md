@@ -66,3 +66,17 @@
 ### Navigation
 - `/admin/rfq` includes a shortcut to `/admin/products`.
 - `/admin/products` includes a link back to `/admin/rfq`.
+
+## Phase 26B - RFQ notification audit
+
+RFQ detail (`/admin/rfq/[id]`) now includes notification audit metadata:
+- Attempted at
+- Sent at
+- Provider
+- Message ID
+- Error
+
+Notes:
+- This metadata is internal/admin only.
+- Email notifications are best-effort and non-blocking for RFQ creation.
+- Missing/invalid email configuration should never prevent RFQ save success.

@@ -1,6 +1,7 @@
 import { randomBytes } from 'crypto';
 import { NextResponse } from 'next/server';
-import { insertRFQItems, insertRFQRequest, isSupabaseConfigured } from '@/lib/server/supabase-admin';
+import { sendNewRFQInternalNotification } from '@/lib/server/rfq-notifications';
+import { insertRFQItems, insertRFQRequest, isSupabaseConfigured, updateRFQNotificationAudit } from '@/lib/server/supabase-admin';
 import { validateRFQPayload } from '@/lib/validators/rfq';
 
 function generateRequestCode(now = new Date()) {
@@ -52,6 +53,64 @@ export async function POST(request: Request) {
         notes: item.notes,
       })),
     );
+
+    const attemptedAt = new Date().toISOString();
+
+    try {
+      const result = await sendNewRFQInternalNotification({
+        id: created.id,
+        requestCode: created.request_code,
+        customerName: validated.customer.fullName,
+        companyName: validated.customer.companyName,
+        phone: validated.customer.phone,
+        email: validated.customer.email,
+        projectLocation: validated.customer.projectLocation,
+        urgency: validated.urgency,
+        source: validated.source,
+        requestType: validated.customer.requestType,
+        items: validated.items.map((item) => ({ name: item.name, quantity: item.quantity, unit: item.unit })),
+      });
+
+      const sentAt = result.ok ? new Date().toISOString() : null;
+      await updateRFQNotificationAudit(created.id, {
+        notification_attempted_at: attemptedAt,
+        notification_sent_at: sentAt,
+        notification_provider: result.provider,
+        notification_message_id: result.ok ? (result.messageId || null) : null,
+        notification_error: result.ok ? null : result.error,
+      });
+
+      if (!result.ok) {
+        console.error('RFQ notification send failed', {
+          requestCode: created.request_code,
+          id: created.id,
+          provider: result.provider,
+          error: result.error,
+        });
+      }
+    } catch (notificationError) {
+      console.error('RFQ notification pipeline error', {
+        requestCode: created.request_code,
+        id: created.id,
+        error: notificationError,
+      });
+
+      try {
+        await updateRFQNotificationAudit(created.id, {
+          notification_attempted_at: attemptedAt,
+          notification_sent_at: null,
+          notification_provider: (process.env.EMAIL_PROVIDER || 'none').trim().toLowerCase() || 'none',
+          notification_message_id: null,
+          notification_error: notificationError instanceof Error ? notificationError.message : 'Unknown notification error',
+        });
+      } catch (auditError) {
+        console.error('RFQ notification audit update failed', {
+          requestCode: created.request_code,
+          id: created.id,
+          error: auditError,
+        });
+      }
+    }
 
     return NextResponse.json({ ok: true, id: created.id, requestCode: created.request_code });
   } catch (error) {

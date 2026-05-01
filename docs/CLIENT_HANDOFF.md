@@ -298,3 +298,11 @@ All core brand assets are in `/public`:
 - Success messaging now explicitly reminds customers to save the reference number and use the same phone/email later for tracking.
 - `/track` now supports request code prefill from the `request_code` query parameter for a smoother follow-up flow.
 - Privacy verification is unchanged: customers must still provide the matching phone or email; request code alone is not sufficient.
+
+## Phase 26B - Internal RFQ Email Notifications (May 2026)
+- After successful RFQ save, the system sends a best-effort internal notification email to HILTECH.
+- Email target is configured by `RFQ_NOTIFY_TO` and sender by `RFQ_NOTIFY_FROM`.
+- Recommended sender identity: `HILTECH RFQ <rfq@notify.hiltech-eg.com>`.
+- Recommended Resend domain: `notify.hiltech-eg.com` (must be DNS-verified in Resend).
+- RFQ save success does **not** depend on email delivery; failures are logged/audited and do not block customer success.
+- Phase 26B does not include customer confirmation emails.

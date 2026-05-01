@@ -79,3 +79,29 @@ export async function insertRFQItems(
   if (items.length === 0) return;
   await postgrestInsert('rfq_request_items', items, 'return=minimal');
 }
+
+
+export async function updateRFQNotificationAudit(
+  id: string,
+  payload: {
+    notification_attempted_at?: string | null;
+    notification_sent_at?: string | null;
+    notification_provider?: string | null;
+    notification_message_id?: string | null;
+    notification_error?: string | null;
+  },
+) {
+  const response = await fetch(`${getBaseUrl()}/rest/v1/rfq_requests?id=eq.${encodeURIComponent(id)}`, {
+    method: 'PATCH',
+    headers: {
+      ...getHeaders(),
+      Prefer: 'return=minimal',
+    },
+    body: JSON.stringify(payload),
+    cache: 'no-store',
+  });
+
+  if (!response.ok) {
+    throw new Error(`Supabase update failed (rfq_requests notification audit): ${response.status} ${await response.text()}`);
+  }
+}
