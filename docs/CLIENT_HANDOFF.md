@@ -158,3 +158,8 @@ All core brand assets are in `/public`:
 - Homepage remains an executive overview and avoids long-form clutter, but now reinforces stronger hero presence, clearer solution/product pathways, a compact assurance strip, and a more confident final CTA hierarchy.
 - Internal pages were refined with targeted contrast, section framing, and CTA clarity improvements so they feel enterprise-grade without becoming visually crowded.
 - Details and technical depth remain on internal pages (`/solutions`, `/products-partners`, `/rfq`, `/resources`, `/contact`) while homepage remains a concise decision and navigation layer.
+
+## Phase 20.2 - Critical Contrast & Readability Hotfix
+- Applied a focused contrast/readability hotfix across cards, CTA states, and diagram panel text treatment to eliminate obvious low-contrast white-on-light issues.
+- Important text should not use low-opacity white on light cards/panels; prefer dark navy/slate text on light backgrounds.
+- Future diagram or card additions must pass a mobile-first contrast review before release.

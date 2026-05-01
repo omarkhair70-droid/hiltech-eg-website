@@ -21,7 +21,7 @@ export function CTAButton({ href, children, variant = 'primary', className }: { 
   const styles = {
     primary: 'inline-flex items-center justify-center rounded-md bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600',
     secondary: 'inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-2.5 font-semibold text-slate-900 hover:bg-slate-100',
-    ghost: 'inline-flex items-center justify-center rounded-md border border-slate-500/80 bg-transparent px-5 py-2.5 font-semibold text-slate-100 hover:border-orange-300 hover:text-orange-200',
+    ghost: 'inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-2.5 font-semibold text-slate-900 hover:border-slate-400 hover:bg-slate-50',
     link: 'inline-flex items-center gap-1 font-semibold text-navy-900 underline-offset-4 hover:underline',
   };
   if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return <a href={href} className={cx(styles[variant], className)}>{children}</a>;
