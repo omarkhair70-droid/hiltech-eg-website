@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'About HILTECH | Network Infrastructure Company in Egypt',
   description:
     'Learn how HILTECH delivers structured cabling, fiber optics, data room infrastructure, CCTV connectivity, and project supply support across Egypt.',
-  alternates: { canonical: '/about' },
+  alternates: { canonical: `${site.siteUrl}/about` },
   openGraph: {
     title: 'About HILTECH | Infrastructure in Egypt',
     description:

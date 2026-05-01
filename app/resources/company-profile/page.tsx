@@ -6,9 +6,9 @@ import { site } from '@/content/site';
 export const metadata: Metadata = {
   title: 'Company Profile | HILTECH Resources',
   description: 'HILTECH company profile with positioning, service scope, solution areas, and RFQ workflow details.',
-  alternates: { canonical: 'https://hiltech-eg.com/resources/company-profile' },
-  openGraph: { title: 'Company Profile | HILTECH', description: 'PDF-ready company profile content prepared for client communication.', url: 'https://hiltech-eg.com/resources/company-profile', images: ['/og-image.png'] },
-  twitter: { card: 'summary_large_image', images: ['/og-image.png'] },
+  alternates: { canonical: `${site.siteUrl}/resources/company-profile` },
+  openGraph: { title: 'Company Profile | HILTECH', description: 'PDF-ready company profile content prepared for client communication.', url: `${site.siteUrl}/resources/company-profile`, images: [site.ogImage] },
+  twitter: { card: 'summary_large_image', images: [site.ogImage] },
 };
 
 export default function CompanyProfilePage() {

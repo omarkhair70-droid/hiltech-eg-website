@@ -5,7 +5,7 @@ import RFQReviewClient from './rfq-review-client';
 export const metadata: Metadata = {
   title: 'Review Your RFQ Request | HILTECH',
   description: 'Review your RFQ basket, add project details, and send a structured WhatsApp request for availability and quotation.',
-  alternates: { canonical: '/rfq' },
+  alternates: { canonical: `${site.siteUrl}/rfq` },
   openGraph: { title: 'Review Your RFQ Request | HILTECH', description: 'Enterprise RFQ review flow for products, quantities, notes, and quotation requests.', url: `${site.siteUrl}/rfq`, images: [site.ogImage] },
 };
 
