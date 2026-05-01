@@ -56,3 +56,25 @@ Optional future (not required in 25C.1):
 - Service role key remains server-only.
 - No client-side Supabase admin writes.
 - RLS is enabled; public write policies are not added in this phase.
+
+## Phase 25C.2 Product Admin UI
+
+### Admin routes
+- `/admin/products` (list + filter + summary)
+- `/admin/products/new` (create)
+- `/admin/products/[id]` (edit/status)
+
+### Access and security
+- Admin session is required for all product admin routes.
+- Unauthenticated users are redirected to `/admin/login`.
+- Product admin writes use server-only helpers and keep `SUPABASE_SERVICE_ROLE_KEY` server-side.
+
+### Product create/edit notes
+- Required fields: `product_code`, `name`, `slug`, `category`.
+- `status` values: `active`, `hidden`, `archived`.
+- `image_path` must be empty or start with `/products/` (example: `/products/example.png`).
+- Image upload/storage is not included in this phase.
+
+### Public catalog behavior
+- Public `/products-partners` remains static in Phase 25C.2.
+- DB-backed public read remains planned for Phase 25C.3.

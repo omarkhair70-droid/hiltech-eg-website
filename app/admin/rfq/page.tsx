@@ -26,7 +26,7 @@ export default async function AdminRFQPage({ searchParams }: { searchParams: Pro
 
   const [summary, rows] = await Promise.all([getRFQSummaryCounts(), listRFQRequests(query)]);
 
-  return <main className="section"><div className="container space-y-5"><div className="flex flex-wrap items-center justify-between gap-3"><h1 className="text-2xl font-semibold text-slate-900">RFQ Admin Dashboard</h1><form action="/api/admin/logout" method="post"><button className="rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold">Logout</button></form></div>
+  return <main className="section"><div className="container space-y-5"><div className="flex flex-wrap items-center justify-between gap-3"><div><h1 className="text-2xl font-semibold text-slate-900">RFQ Admin Dashboard</h1><Link href="/admin/products" className="text-sm underline">Go to Product Admin</Link></div><form action="/api/admin/logout" method="post"><button className="rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold">Logout</button></form></div>
     <div className="grid grid-cols-2 gap-3 md:grid-cols-4">{[['New', summary.new], ['In review', summary.in_review], ['Quoted', summary.quoted], ['Total', summary.total]].map(([label, value]) => <div key={String(label)} className="rounded-lg border border-slate-200 bg-white p-3"><p className="text-xs uppercase text-slate-500">{label}</p><p className="mt-1 text-2xl font-semibold">{value}</p></div>)}</div>
     <form className="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 md:grid-cols-5" method="get">
       <input name="search" defaultValue={query.search || ''} placeholder="Search code/name/phone/company" className="rounded-md border border-slate-300 px-3 py-2 text-sm md:col-span-2" />
