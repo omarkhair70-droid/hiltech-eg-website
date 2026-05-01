@@ -39,3 +39,13 @@
 - Move from shared password to Supabase Auth (staff users).
 - Add per-user audit trail (who changed status and when).
 - Add role-based permissions and optional IP allow-list.
+
+## Phase 25C.1 Product admin foundation
+
+- Product database schema and seed are added for upcoming admin workflows.
+- Server-side product admin helpers are prepared in `lib/server/products-admin.ts`.
+- Public `/products-partners` still reads static content in this phase.
+- Planned UI routes for Phase 25C.2:
+  - `/admin/products`
+  - `/admin/products/new`
+  - `/admin/products/[id]`

@@ -60,3 +60,23 @@ Security notes:
 - Admin pages are protected behind `/admin/login`.
 - Session is a signed `httpOnly` cookie (secure in production, sameSite=lax).
 - Service role key remains server-only.
+
+## Phase 25C.1 Product database foundation
+
+Run product migrations:
+- `supabase/migrations/20260501182000_create_products.sql`
+- `supabase/migrations/20260501183000_seed_products_from_static.sql`
+
+This adds `public.products` for future admin-managed catalog operations while keeping the public catalog static in Phase 25C.1.
+
+Security note:
+- RLS is enabled on `public.products`.
+- No public write policies are created in this phase.
+- Admin/server-side writes continue using `SUPABASE_SERVICE_ROLE_KEY` only.
+
+Future (optional) public read hardening:
+- Add anon `SELECT` policy limited to `status = 'active'` when public catalog reads are migrated to DB.
+
+No new required env vars in this phase:
+- Required: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
+- Optional future flags (not required now): `PRODUCTS_DB_ENABLED`, `PRODUCTS_DB_PUBLIC_MODE`

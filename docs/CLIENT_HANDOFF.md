@@ -236,3 +236,10 @@ All core brand assets are in `/public`:
   - `ADMIN_SESSION_SECRET`
   - optional `ADMIN_SESSION_TTL_HOURS`
 - Future hardening path remains Supabase Auth with per-user roles/auditing.
+
+## Phase 25C.1 - Product DB Foundation (May 2026)
+- Added Supabase `public.products` schema and initial seed from static catalog content.
+- `product_code` preserves existing static product identity to keep RFQ item mapping stable.
+- `image_path` in database points to existing `/public/products/*.png` style paths.
+- Public products page (`/products-partners`) still uses static source in this phase for stability.
+- Internal Product Admin UI is planned for Phase 25C.2.
