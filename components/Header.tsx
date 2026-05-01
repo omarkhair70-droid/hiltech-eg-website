@@ -9,6 +9,7 @@ const nav = [
   ['Home', '/'],
   ['Solutions', '/solutions'],
   ['Products', '/products-partners'],
+  ['Scope Finder', '/scope-finder'],
   ['RFQ', '/rfq'],
   ['Resources', '/resources'],
   ['Contact', '/contact'],
