@@ -163,3 +163,10 @@ All core brand assets are in `/public`:
 - Applied a focused contrast/readability hotfix across cards, CTA states, and diagram panel text treatment to eliminate obvious low-contrast white-on-light issues.
 - Important text should not use low-opacity white on light cards/panels; prefer dark navy/slate text on light backgrounds.
 - Future diagram or card additions must pass a mobile-first contrast review before release.
+
+## Phase 20.2 Final Mobile QA & Launch Stabilization (May 2026)
+- Final mobile QA pass completed across launch-critical pages and RFQ/product/resource/contact flows.
+- Contrast and readability were rechecked with targeted fixes for mobile card text, CTA clarity, and footer readability.
+- WhatsApp links were verified against the approved destination (`https://wa.me/201555357807`) and centralized site links.
+- Safe translation protection (`translate="no"`) was applied to brand/menu/navigation labels where appropriate.
+- Site UI is stabilized for final launch review.
