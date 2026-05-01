@@ -124,3 +124,40 @@ Security and data exposure notes:
 Database/migration note:
 - No additional Supabase migration is required for Phase 26A.
 - Tracking reads existing `rfq_requests` + `rfq_request_items` data.
+
+## Phase 26B internal RFQ email notifications
+
+Phase 26B adds best-effort internal email alerts after successful `POST /api/rfq` persistence.
+
+### Required environment variables
+- `EMAIL_PROVIDER` (set `resend` to enable sending)
+- `RESEND_API_KEY`
+- `RFQ_NOTIFY_FROM`
+- `RFQ_NOTIFY_TO` (comma-separated recipients)
+- `APP_BASE_URL` (example: `https://hiltech-eg.com`)
+
+### Resend recommendations
+- Recommended sender: `HILTECH RFQ <rfq@notify.hiltech-eg.com>`
+- Recommended sending domain in Resend: `notify.hiltech-eg.com`
+- DNS/domain verification in Resend is required before production sending.
+
+### Behavior and reliability
+- RFQ notification delivery is best-effort.
+- RFQ database save remains the source of success.
+- If email send fails, RFQ still saves and API returns success.
+- Notification failures are logged server-side and written to RFQ notification audit fields when possible.
+
+### Database migration
+Run:
+- `supabase/migrations/20260501190000_add_rfq_notification_audit.sql`
+
+This adds optional audit columns on `rfq_requests`:
+- `notification_attempted_at`
+- `notification_sent_at`
+- `notification_provider`
+- `notification_message_id`
+- `notification_error`
+
+### Scope limits (Phase 26B)
+- No customer confirmation email is sent in this phase.
+- No Supabase Auth changes are included in this phase.

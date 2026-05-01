@@ -69,7 +69,7 @@ export const listRFQRequests = cache(async (filters: RFQListFilters = {}) => {
 
 export async function getRFQRequest(id: string) {
   const params = new URLSearchParams({
-    select: 'id,request_code,full_name,company_name,phone,email,project_location,project_notes,request_type,source,urgency,status,internal_notes,whatsapp_message,created_at,last_status_changed_at,rfq_request_items(id,name,quantity,unit,brand,category,urgency,notes,created_at)',
+    select: 'id,request_code,full_name,company_name,phone,email,project_location,project_notes,request_type,source,urgency,status,internal_notes,whatsapp_message,created_at,last_status_changed_at,notification_attempted_at,notification_sent_at,notification_provider,notification_message_id,notification_error,rfq_request_items(id,name,quantity,unit,brand,category,urgency,notes,created_at)',
     id: `eq.${id}`,
     limit: '1',
   });
