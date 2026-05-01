@@ -201,3 +201,7 @@ All core brand assets are in `/public`:
 - Product visuals remain illustrative/non-official and should not be represented as official manufacturer photos.
 - Product catalog browsing now uses category filtering with progressive **Load More** behavior to reduce page fatigue.
 - RFQ basket flow, Add to RFQ behavior, Product Intelligence routing, and Scope Finder routing remain unchanged.
+
+- **Phase 22B.1 (May 1, 2026):** Adjusted product image presentation in `/products-partners` to use contained image frames (`object-contain`) with padded premium dark backgrounds for less cropping on mobile and desktop.
+- Product visuals remain illustrative/non-official references and existing missing-image fallback now matches the updated premium frame styling.
+- Floating RFQ Basket mobile overlap was reduced through safer mobile positioning and extra catalog bottom spacing so titles/actions remain reachable while scrolling.
