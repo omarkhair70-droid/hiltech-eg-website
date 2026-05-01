@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description: 'Review your RFQ basket, add project details, and send a structured WhatsApp request for availability and quotation.',
   alternates: { canonical: `${site.siteUrl}/rfq` },
   openGraph: { title: 'Review Your RFQ Request | HILTECH', description: 'Enterprise RFQ review flow for products, quantities, notes, and quotation requests.', url: `${site.siteUrl}/rfq`, images: [site.ogImage] },
+  twitter: { card: 'summary_large_image', images: [site.ogImage] },
 };
 
 export default function RFQPage() {
