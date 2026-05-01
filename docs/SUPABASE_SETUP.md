@@ -102,3 +102,25 @@ Still required:
 Operational note:
 - After changing Vercel env vars, redeploy is required.
 - In DB mode, products with status `hidden`/`archived` are not shown publicly.
+
+## Phase 26A public RFQ customer tracking
+
+New routes:
+- `GET /track`
+- `POST /api/rfq/track`
+
+Customer tracking input requirements:
+- `request_code` (required)
+- `phone_or_email` (required, must match original RFQ contact)
+
+Security and data exposure notes:
+- Tracking is handled server-side only through `SUPABASE_SERVICE_ROLE_KEY`.
+- Do not use client-side Supabase for tracking.
+- `SUPABASE_SERVICE_ROLE_KEY` remains server-only and must never be exposed in browser code.
+- Public response is intentionally limited to safe fields only.
+- No `internal_notes`, `project_notes`, `whatsapp_message`, phone/email, or item notes are returned.
+- API responses are served with `Cache-Control: no-store`.
+
+Database/migration note:
+- No additional Supabase migration is required for Phase 26A.
+- Tracking reads existing `rfq_requests` + `rfq_request_items` data.

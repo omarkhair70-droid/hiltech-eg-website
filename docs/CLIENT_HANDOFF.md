@@ -270,3 +270,25 @@ All core brand assets are in `/public`:
 - `/track` route does not exist in this phase; if introduced in a future phase, it must be set to `noindex, nofollow` and kept out of sitemap.
 - Sitemap remains scoped to public pages only and avoids private/admin/API routes.
 - Google Search Console submission should only happen after `https://hiltech-eg.com` is confirmed pointing to the target production Vercel deployment.
+
+## Phase 26A - Public RFQ Tracking (/track)
+- Added a public tracking page at `/track` so customers can check RFQ status safely.
+- Customers must provide both:
+  - RFQ reference code (`request_code`), and
+  - the same phone or email used during submission.
+- Tracking does not reveal whether a code exists unless both fields match.
+- Returned tracking details are intentionally limited to:
+  - request code
+  - status + friendly explanation
+  - created time
+  - last status/update time
+  - customer display name (first-name style)
+  - project location (if available)
+  - item count and optional item names only
+- Sensitive/admin-only fields are never returned publicly:
+  - internal notes
+  - project notes
+  - stored WhatsApp message
+  - customer phone/email
+  - item notes
+- Admin status updates from `/admin/rfq` are reflected in `/track` automatically because tracking reads the same RFQ status fields.
