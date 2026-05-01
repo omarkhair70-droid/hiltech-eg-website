@@ -222,3 +222,17 @@ All core brand assets are in `/public`:
 - Existing WhatsApp RFQ message flow is preserved as parallel/fallback submission path.
 - If backend is unavailable, users still can copy RFQ message and submit via WhatsApp without blocking.
 - Dashboard and RFQ operations management remain out of scope for this phase and are planned for future Phase 25B.
+
+## Phase 25B - Internal RFQ Admin Dashboard (May 2026)
+- Added internal protected admin routes:
+  - `/admin/login`
+  - `/admin/rfq`
+  - `/admin/rfq/[id]`
+- Dashboard supports filtering RFQ requests by status/source/urgency/search and quick summary counts.
+- Request detail supports reviewing customer + items + stored WhatsApp message and updating status/internal notes.
+- Admin access uses env-configured password plus signed `httpOnly` cookie session.
+- Required env vars now include:
+  - `ADMIN_DASHBOARD_PASSWORD`
+  - `ADMIN_SESSION_SECRET`
+  - optional `ADMIN_SESSION_TTL_HOURS`
+- Future hardening path remains Supabase Auth with per-user roles/auditing.

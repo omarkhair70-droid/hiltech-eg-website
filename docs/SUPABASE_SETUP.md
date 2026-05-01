@@ -45,3 +45,18 @@ If env vars are missing or backend write fails:
 - Add status workflow management
 - Add filtering/search
 - Add operator notes/actions
+
+## Phase 25B Admin Dashboard setup
+
+New environment variables:
+- `ADMIN_DASHBOARD_PASSWORD`
+- `ADMIN_SESSION_SECRET`
+- `ADMIN_SESSION_TTL_HOURS` (optional, default `12`)
+
+Run migration:
+- `supabase/migrations/20260501170000_add_rfq_admin_fields.sql`
+
+Security notes:
+- Admin pages are protected behind `/admin/login`.
+- Session is a signed `httpOnly` cookie (secure in production, sameSite=lax).
+- Service role key remains server-only.
