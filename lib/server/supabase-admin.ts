@@ -37,7 +37,10 @@ async function postgrestInsert<T>(table: string, payload: unknown, prefer: strin
     throw new Error(`Supabase insert failed (${table}): ${response.status} ${body}`);
   }
 
-  return (await response.json()) as T[];
+  const text = await response.text();
+  if (!text) return [];
+
+  return JSON.parse(text) as T[];
 }
 
 export async function insertRFQRequest(payload: {
