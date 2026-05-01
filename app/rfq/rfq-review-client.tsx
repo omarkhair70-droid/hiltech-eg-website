@@ -12,10 +12,17 @@ const projectFields = [
   ['projectLocation', 'Project Location'],
 ] as const;
 
+type SubmitState =
+  | { status: 'idle' }
+  | { status: 'submitting' }
+  | { status: 'success'; requestCode: string }
+  | { status: 'error'; message: string };
+
 export default function RFQReviewClient() {
   const [items, setItems] = useState<RFQItem[]>([]);
   const [project, setProject] = useState<RFQProjectDetails>({});
   const [copied, setCopied] = useState(false);
+  const [submitState, setSubmitState] = useState<SubmitState>({ status: 'idle' });
 
   useEffect(() => setItems(readRFQItems()), []);
   useEffect(() => writeRFQItems(items), [items]);
@@ -29,6 +36,52 @@ export default function RFQReviewClient() {
     [items],
   );
 
+  async function submitRFQ() {
+    if (submitState.status === 'submitting') return;
+    setSubmitState({ status: 'submitting' });
+
+    try {
+      const response = await fetch('/api/rfq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customer: {
+            fullName: project.fullName,
+            companyName: project.companyName,
+            phone: project.phoneNumber,
+            email: project.emailAddress,
+            projectLocation: project.projectLocation,
+            projectNotes: project.projectNotes,
+            requestType: null,
+          },
+          items: items.map((item) => ({
+            productId: item.id,
+            name: item.name,
+            category: item.category,
+            brand: item.brand,
+            quantity: item.quantity,
+            unit: item.unit,
+            urgency: item.urgency,
+            notes: item.notes,
+          })),
+          urgency: null,
+          source: hasScopeFinderImports ? 'scope_finder' : 'rfq_page',
+          whatsappMessage: message,
+        }),
+      });
+
+      const data = (await response.json()) as { ok: boolean; requestCode?: string; error?: string };
+      if (!response.ok || !data.ok || !data.requestCode) {
+        setSubmitState({ status: 'error', message: data.error || 'We couldn’t save your RFQ right now. You can still send it via WhatsApp.' });
+        return;
+      }
+
+      setSubmitState({ status: 'success', requestCode: data.requestCode });
+    } catch {
+      setSubmitState({ status: 'error', message: 'We couldn’t save your RFQ right now. You can still send it via WhatsApp.' });
+    }
+  }
+
   return (
     <div>
       <h1 className="text-2xl font-bold leading-tight sm:text-3xl">Review Your RFQ Request</h1>
@@ -41,7 +94,10 @@ export default function RFQReviewClient() {
         <aside className="space-y-4">
           <div className="rounded-xl border p-4"><p className="font-semibold">Project details</p><div className="mt-2 space-y-2">{projectFields.map(([key, label]) => <input key={key} className="w-full rounded border px-3 py-2 text-sm" placeholder={label} value={project[key] || ''} onChange={(e) => setProject((p) => ({ ...p, [key]: e.target.value }))} />)}<textarea className="w-full rounded border px-3 py-2 text-sm" rows={3} placeholder="Project Notes" value={project.projectNotes || ''} onChange={(e) => setProject((p) => ({ ...p, projectNotes: e.target.value }))} /></div></div>
           <div className="rounded-xl border p-4 text-sm"><p className="font-semibold">RFQ guidance</p><ul className="mt-2 list-disc space-y-1 pl-4 text-slate-600"><li>Add quantities</li><li>Include preferred brands</li><li>Mention delivery timing</li><li>Add site/project notes</li></ul></div>
-          <a className="btn-primary w-full justify-center" href={getRFQWhatsappLink(items, project)} target="_blank" rel="noreferrer">WhatsApp HILTECH</a>
+          <button className="btn-primary w-full justify-center" onClick={submitRFQ} disabled={submitState.status === 'submitting' || items.length === 0}>{submitState.status === 'submitting' ? 'Saving RFQ...' : 'Submit RFQ Request'}</button>
+          {submitState.status === 'success' ? <p className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-900">RFQ request saved. Reference: {submitState.requestCode}</p> : null}
+          {submitState.status === 'error' ? <p className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">{submitState.message}</p> : null}
+          <a className="inline-flex w-full justify-center rounded-lg border px-4 py-2" href={getRFQWhatsappLink(items, project)} target="_blank" rel="noreferrer">{submitState.status === 'success' ? 'Send via WhatsApp too' : 'WhatsApp HILTECH'}</a>
           <button className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={async () => { await navigator.clipboard.writeText(message); setCopied(true); setTimeout(() => setCopied(false), 1500); }}>Copy RFQ Message</button>
           {copied ? <p className="text-xs text-emerald-700">Copied.</p> : null}
           <button className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={() => setItems([])}>Clear Basket</button>

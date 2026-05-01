@@ -215,3 +215,10 @@ All core brand assets are in `/public`:
 - Footer service labels are now linked to relevant solution/product routes for faster navigation.
 - WhatsApp and contact references were checked; approved WhatsApp number (`201555357807`) and approved email (`info@hiltech-eg.com`) remain unchanged.
 - ESLint setup was hardened with a minimal Next.js config so `npm run lint` no longer triggers interactive initialization prompts.
+
+## Phase 25A - Backend RFQ Intake Foundation (May 2026)
+- `/rfq` now supports backend RFQ persistence through `POST /api/rfq` when Supabase environment variables are configured.
+- Existing localStorage RFQ basket behavior is preserved.
+- Existing WhatsApp RFQ message flow is preserved as parallel/fallback submission path.
+- If backend is unavailable, users still can copy RFQ message and submit via WhatsApp without blocking.
+- Dashboard and RFQ operations management remain out of scope for this phase and are planned for future Phase 25B.
