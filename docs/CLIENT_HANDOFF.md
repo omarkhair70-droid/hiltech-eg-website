@@ -152,3 +152,9 @@ All core brand assets are in `/public`:
 - Detailed content emphasis remains in Solutions, Products, RFQ, and Resources pages.
 - Launch copy remains available but is positioned as a lower-priority public resource.
 - The overall information architecture is intentionally calmer and easier to scan on mobile.
+
+## Phase 20.1 - Premium Balance Restoration
+- Restored selective premium visual rhythm after Phase 20 cleanup while keeping the calmer information architecture intact.
+- Homepage remains an executive overview and avoids long-form clutter, but now reinforces stronger hero presence, clearer solution/product pathways, a compact assurance strip, and a more confident final CTA hierarchy.
+- Internal pages were refined with targeted contrast, section framing, and CTA clarity improvements so they feel enterprise-grade without becoming visually crowded.
+- Details and technical depth remain on internal pages (`/solutions`, `/products-partners`, `/rfq`, `/resources`, `/contact`) while homepage remains a concise decision and navigation layer.
