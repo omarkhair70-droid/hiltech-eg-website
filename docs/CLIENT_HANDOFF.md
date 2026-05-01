@@ -193,3 +193,11 @@ All core brand assets are in `/public`:
 - Users can add suggested starter items to the RFQ Basket directly from Scope Finder with duplicate prevention and confirmation feedback.
 - RFQ review users should adjust quantities, specs, and notes before sending WhatsApp RFQ.
 - Feature remains client-side only with existing localStorage RFQ basket flow (no backend/database/auth/AI API).
+
+## Phase 22B - Product Image Integration, Asset Move & Catalog Pagination
+- Uploaded product PNG assets were moved from `/public` into `/public/products` without filename changes.
+- `/products-partners` product cards now render catalog visuals from `content/product-visuals.ts` when an image exists.
+- Missing images now use an in-card premium fallback placeholder to avoid broken image icons.
+- Product visuals remain illustrative/non-official and should not be represented as official manufacturer photos.
+- Product catalog browsing now uses category filtering with progressive **Load More** behavior to reduce page fatigue.
+- RFQ basket flow, Add to RFQ behavior, Product Intelligence routing, and Scope Finder routing remain unchanged.
