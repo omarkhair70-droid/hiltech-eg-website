@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { productIntelligenceCategories, productIntelligenceSlugByCategory } from '@/content/product-intelligence';
 import { productVisuals } from '@/content/product-visuals';
-import { productCategories, products, type ProductItem } from '@/content/products';
+import { productCategories, products as staticProducts, type ProductItem } from '@/content/products';
 import { site } from '@/content/site';
 import { getRFQWhatsappLink, normalizeRFQItem, readRFQItems, writeRFQItems, type RFQItem } from '@/lib/rfq';
 
@@ -20,9 +20,11 @@ const visualsByProductId = new Map(productVisuals.map((visual) => [visual.produc
 
 function ProductVisual({ item }: { item: ProductItem }) {
   const visual = visualsByProductId.get(item.id);
+  const imagePath = item.image || visual?.imagePath || '';
+  const alt = visual?.alt || `Product image for ${item.name}`;
   const [broken, setBroken] = useState(false);
 
-  if (!visual || broken) {
+  if (!imagePath || broken) {
     return (
       <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-700/60 bg-gradient-to-br from-slate-950 via-navy-900 to-slate-900 p-4"><div className="flex h-full items-center justify-center rounded-xl border border-white/10 bg-white/5 text-center">
         <div>
@@ -37,8 +39,8 @@ function ProductVisual({ item }: { item: ProductItem }) {
     <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-700/60 bg-gradient-to-br from-slate-950 via-navy-900 to-slate-900 p-4">
       <div className="relative h-full w-full overflow-hidden rounded-xl border border-white/10 bg-white/5">
       <Image
-        src={visual.imagePath}
-        alt={visual.alt}
+        src={imagePath}
+        alt={alt}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         className="object-contain p-3"
@@ -49,7 +51,7 @@ function ProductVisual({ item }: { item: ProductItem }) {
   );
 }
 
-export default function ProductsClient() {
+export default function ProductsClient({ initialProducts = staticProducts }: { initialProducts?: ProductItem[] }) {
   const [items, setItems] = useState<RFQItem[]>([]);
   const [open, setOpen] = useState(false);
   const [justAdded, setJustAdded] = useState<string | null>(null);
@@ -63,8 +65,8 @@ export default function ProductsClient() {
   const updateItem = (id: string, patch: Partial<RFQItem>) => setItems((prev) => prev.map((entry) => (entry.id === id ? normalizeRFQItem({ ...entry, ...patch }) : entry)));
 
   const filteredProducts = useMemo(
-    () => (activeCategory === 'All' ? products : products.filter((item) => item.category === activeCategory)),
-    [activeCategory]
+    () => (activeCategory === 'All' ? initialProducts : initialProducts.filter((item) => item.category === activeCategory)),
+    [activeCategory, initialProducts]
   );
 
   const visibleProducts = filteredProducts.slice(0, visibleCount);

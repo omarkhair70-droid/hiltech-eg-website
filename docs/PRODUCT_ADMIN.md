@@ -78,3 +78,27 @@ Optional future (not required in 25C.1):
 ### Public catalog behavior
 - Public `/products-partners` remains static in Phase 25C.2.
 - DB-backed public read remains planned for Phase 25C.3.
+
+## Phase 25C.3 Public catalog DB read with static fallback
+
+### New public catalog mode flag
+- `PRODUCTS_DB_PUBLIC_MODE=static` (default): `/products-partners` uses static catalog only.
+- `PRODUCTS_DB_PUBLIC_MODE=db_with_fallback`: `/products-partners` attempts server-side Supabase read for public catalog.
+
+### Fallback behavior
+When `PRODUCTS_DB_PUBLIC_MODE=db_with_fallback`, the public catalog falls back to static catalog if:
+- Supabase env vars are missing,
+- Supabase query fails,
+- or DB returns zero active products.
+
+Fallback is permanent and intentional for resilience.
+
+### Admin/public visibility rules
+In DB mode:
+- only `status='active'` products are shown publicly,
+- `hidden` and `archived` products are excluded from `/products-partners`.
+
+Admin edits to name/specs/use case/image path appear on the public page only when DB mode is enabled.
+
+### Deploy note
+After updating `PRODUCTS_DB_PUBLIC_MODE` in Vercel, trigger a redeploy so the new mode is applied consistently.

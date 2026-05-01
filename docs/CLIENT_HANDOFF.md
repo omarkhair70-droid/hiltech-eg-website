@@ -251,3 +251,13 @@ All core brand assets are in `/public`:
 - `image_path` is manual text entry only in this phase and should use `/products/...` paths.
 - No image upload/storage UI is included yet.
 - Public product catalog behavior is unchanged in this phase and still reads static sources until Phase 25C.3.
+
+## Phase 25C.3 - Public catalog Supabase read with static fallback (May 2026)
+- `/products-partners` now supports a server-side Supabase catalog source when enabled.
+- Feature flag: `PRODUCTS_DB_PUBLIC_MODE`
+  - `static` (default): keep existing static catalog behavior.
+  - `db_with_fallback`: try Supabase `public.products` (active products only), then fallback to static if unavailable/error/empty.
+- Product Admin edits affect public catalog only in `db_with_fallback` mode.
+- `hidden` and `archived` products are excluded from public catalog in DB mode.
+- Static fallback remains permanent for reliability.
+- After changing Vercel environment variables, redeploy is required.

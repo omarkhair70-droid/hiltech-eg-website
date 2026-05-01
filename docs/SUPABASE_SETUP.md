@@ -80,3 +80,25 @@ Future (optional) public read hardening:
 No new required env vars in this phase:
 - Required: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
 - Optional future flags (not required now): `PRODUCTS_DB_ENABLED`, `PRODUCTS_DB_PUBLIC_MODE`
+
+## Phase 25C.3 public products read mode
+
+Public catalog mode is controlled by:
+- `PRODUCTS_DB_PUBLIC_MODE`
+
+Allowed values:
+- `static` (default)
+- `db_with_fallback`
+
+Behavior:
+- `static`: `/products-partners` uses static `content/products.ts`.
+- `db_with_fallback`: server-side read from `public.products` (active only). If unavailable/empty/error, static fallback is used automatically.
+
+No new required env vars were added for this phase.
+Still required:
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+Operational note:
+- After changing Vercel env vars, redeploy is required.
+- In DB mode, products with status `hidden`/`archived` are not shown publicly.
