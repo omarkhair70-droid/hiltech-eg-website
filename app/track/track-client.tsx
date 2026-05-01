@@ -18,8 +18,8 @@ interface TrackResponse {
   };
 }
 
-export default function TrackClient() {
-  const [requestCode, setRequestCode] = useState('');
+export default function TrackClient({ initialRequestCode = '' }: { initialRequestCode?: string }) {
+  const [requestCode, setRequestCode] = useState(initialRequestCode);
   const [phoneOrEmail, setPhoneOrEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<TrackResponse | null>(null);
