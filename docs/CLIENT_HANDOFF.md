@@ -170,3 +170,10 @@ All core brand assets are in `/public`:
 - WhatsApp links were verified against the approved destination (`https://wa.me/201555357807`) and centralized site links.
 - Safe translation protection (`translate="no"`) was applied to brand/menu/navigation labels where appropriate.
 - Site UI is stabilized for final launch review.
+
+
+## Phase 20.3 - System-wide Surface Contrast Fix
+- Applied a shared system-level contrast update so light cards consistently render dark readable text and links.
+- Reviewed and corrected diagram panels (titles, subtitles, labels, overlays) to prevent white/faint text mismatches on light surfaces.
+- Reviewed Final CTA quick-reference treatment and corrected white-on-white/low-contrast readability risks.
+- Corrected repeated white-on-white and low-opacity readability bugs identified in mobile QA.
