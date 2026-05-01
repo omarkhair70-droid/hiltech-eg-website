@@ -24,13 +24,18 @@ export default function RFQReviewClient() {
   const updateItem = (id: string, patch: Partial<RFQItem>) => setItems((prev) => prev.map((entry) => (entry.id === id ? normalizeRFQItem({ ...entry, ...patch }) : entry)));
   const message = buildRFQWhatsappMessage(items, project);
 
+  const hasScopeFinderImports = useMemo(
+    () => items.some((item) => item.notes.toLowerCase().includes('added from smart scope finder')),
+    [items],
+  );
+
   return (
     <div>
       <h1 className="text-2xl font-bold leading-tight sm:text-3xl">Review Your RFQ Request</h1>
       <p className="mt-2 text-slate-700">Build your project supply request, add quantities and notes, then send it directly to HILTECH for availability and quotation.</p>
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <section className="space-y-4 lg:col-span-2">
-          <div className="rounded-xl border p-4"><p className="font-semibold">RFQ Summary</p><p className="text-sm text-slate-600">{items.length} items • {count} total units</p></div>
+          <div className="rounded-xl border p-4"><p className="font-semibold">RFQ Summary</p><p className="text-sm text-slate-600">{items.length} items • {count} total units</p></div>{hasScopeFinderImports ? <p className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">Starter items imported from Scope Finder. Please adjust quantities, specs, and notes before sending.</p> : null}
           {items.length === 0 ? <div className="rounded-xl border bg-slate-50 p-5"><p className="font-semibold">Your RFQ basket is empty.</p><p className="mt-1 text-sm text-slate-600">Start by adding products for a structured supply request.</p><div className="mt-3 flex flex-wrap gap-2"><Link className="btn-primary" href="/products-partners">Browse Products</Link><Link className="inline-flex items-center rounded-lg border px-4 py-2" href="/contact">Request Project Quote</Link></div></div> : items.map((item) => <article key={item.id} className="rounded-xl border p-4"><h3 className="font-semibold">{item.name}</h3><p className="text-xs text-slate-600">{item.category} • {item.brand}</p><div className="mt-2 grid gap-2 sm:flex sm:flex-wrap sm:items-center"><button className="rounded border px-2" onClick={() => updateItem(item.id, { quantity: item.quantity - 1 })}>-</button><input type="number" min={1} className="w-full rounded border px-2 py-1 sm:w-20" value={item.quantity} onChange={(e) => updateItem(item.id, { quantity: Number(e.target.value) || 1 })} /><button className="rounded border px-2" onClick={() => updateItem(item.id, { quantity: item.quantity + 1 })}>+</button><input className="w-full rounded border px-2 py-1 text-sm sm:w-24" value={item.unit} onChange={(e) => updateItem(item.id, { unit: e.target.value })} /><select className="w-full rounded border px-2 py-1 text-sm sm:w-auto" value={item.urgency || 'Standard'} onChange={(e) => updateItem(item.id, { urgency: e.target.value as RFQItem['urgency'] })}><option>Standard</option><option>Urgent</option></select><button className="text-sm font-medium text-red-700 sm:ml-auto" onClick={() => setItems((prev) => prev.filter((entry) => entry.id !== item.id))}>Remove</button></div><textarea className="mt-2 w-full rounded border p-2" rows={2} value={item.notes} onChange={(e) => updateItem(item.id, { notes: e.target.value })} placeholder="Item notes" /></article>)}
         </section>
         <aside className="space-y-4">

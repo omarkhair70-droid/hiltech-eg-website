@@ -185,3 +185,11 @@ All core brand assets are in `/public`:
 - Recommendations are preliminary only; final scope, pricing, availability, and compatibility must be confirmed by HILTECH.
 - Users can add suggested starter items directly into the RFQ Basket (local storage) and continue through existing RFQ workflow.
 - No backend submission, database, AI API, analytics, or authentication is used in this feature.
+
+## Phase 21.1 - Scope Finder Experience Polish
+- Scope Finder is now a guided step-by-step wizard (one question per step) with clear progress indication.
+- Scope recommendations remain deterministic and preliminary; no final scope, pricing, or stock claims are generated.
+- Result view now highlights recommended direction, fit context, and why the recommendation matches selected answers.
+- Users can add suggested starter items to the RFQ Basket directly from Scope Finder with duplicate prevention and confirmation feedback.
+- RFQ review users should adjust quantities, specs, and notes before sending WhatsApp RFQ.
+- Feature remains client-side only with existing localStorage RFQ basket flow (no backend/database/auth/AI API).
