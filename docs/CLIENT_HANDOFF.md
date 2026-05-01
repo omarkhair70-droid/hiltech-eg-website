@@ -292,3 +292,9 @@ All core brand assets are in `/public`:
   - customer phone/email
   - item notes
 - Admin status updates from `/admin/rfq` are reflected in `/track` automatically because tracking reads the same RFQ status fields.
+
+## Phase 26A.1 - RFQ Tracking UX After Submission (May 2026)
+- After successful RFQ submission on `/rfq`, customers now see a **Track this RFQ** action that links directly to `/track?request_code=<reference>`.
+- Success messaging now explicitly reminds customers to save the reference number and use the same phone/email later for tracking.
+- `/track` now supports request code prefill from the `request_code` query parameter for a smoother follow-up flow.
+- Privacy verification is unchanged: customers must still provide the matching phone or email; request code alone is not sufficient.
