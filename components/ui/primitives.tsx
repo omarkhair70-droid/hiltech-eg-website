@@ -14,7 +14,7 @@ export function SectionHeader({ eyebrow, title, description, className }: { eyeb
 }
 
 export function PremiumCard({ children, className, accent = false }: { children: ReactNode; className?: string; accent?: boolean }) {
-  return <article className={cx(design.cardBase, className)}>{accent ? <div className="mb-3 h-1.5 w-12 rounded bg-orange-500" /> : null}{children}</article>;
+  return <article className={cx(design.cardBase, 'text-slate-900 [&_a]:text-navy-900 [&_a]:decoration-navy-700 [&_a:hover]:text-navy-800', className)}>{accent ? <div className="mb-3 h-1.5 w-12 rounded bg-orange-500" /> : null}{children}</article>;
 }
 
 export function CTAButton({ href, children, variant = 'primary', className }: { href: string; children: ReactNode; variant?: 'primary' | 'secondary' | 'ghost' | 'link'; className?: string }) {

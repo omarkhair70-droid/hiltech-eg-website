@@ -81,3 +81,10 @@ Implemented via `VisualPanel`:
 - Avoid three equally prominent buttons in one cluster.
 - Prioritize shorter paragraphs and fewer stacked card groups on mobile.
 - Treat utility pages (like launch copy) as secondary journey nodes.
+
+
+## Surface Contrast Rule (Phase 20.3)
+- Light card surfaces (`bg-white`, `bg-slate-50`, `bg-gray-50`, `bg-orange-50`) must use dark text (`text-navy-900` / `text-slate-900`) and readable link colors by default.
+- Dark panels (`bg-navy`, `bg-slate-900`, dark gradients) must use light text (`text-white` / `text-slate-200`) with strong hierarchy.
+- Never rely on inherited parent text color when a child card changes to a different surface tone.
+- Diagram titles, subtitles, and labels must pass mobile readability checks before release.
