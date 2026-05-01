@@ -62,14 +62,14 @@ export const requestChecklist = [
 const defaults: ScopeResult = {
   title: 'Infrastructure Discovery + Preliminary RFQ Direction',
   explanation:
-    'Your selections suggest a mixed or early-stage requirement. Start with a discovery-ready RFQ to confirm scope, compatibility, and implementation priorities with HILTECH.',
+    'Your selections suggest an early discovery stage. HILTECH can help define the scope, confirm compatibility, and prioritize the right implementation path before quotation.',
   solutionSlugs: ['structured-cabling', 'project-supply-rfq'],
   productSlugs: ['copper-cat6-cabling', 'patch-cords-connectivity', 'cabinets-racks-pdu'],
   starterItems: [
     { name: 'CAT6 cabling starter set', category: 'Copper/CAT6 Cabling', brand: 'Generic / Multi-brand', unit: 'set' },
     { name: 'Patch panel', category: 'Cabinets, Racks & PDU', brand: 'Generic / Multi-brand', unit: 'pcs' },
     { name: 'Network cabinet', category: 'Cabinets, Racks & PDU', brand: 'Generic / Multi-brand', unit: 'pcs' },
-    { name: 'Basic testing and validation scope', category: 'Testing & Validation', brand: 'Generic / Multi-brand', unit: 'set' },
+    { name: 'Preliminary testing and validation scope', category: 'Testing & Validation', brand: 'Generic / Multi-brand', unit: 'set' },
   ],
 };
 
@@ -102,6 +102,7 @@ export function resolveScopeResult(answers: ScopeAnswers): ScopeResult {
         { name: 'Patch panels', category: 'Cabinets, Racks & PDU', brand: 'Generic / Multi-brand', unit: 'pcs' },
         { name: 'ODF', category: 'Fiber Optic Systems', brand: 'Generic / Multi-brand', unit: 'pcs' },
         { name: 'Cable management accessories', category: 'Cable Management & Duct Systems', brand: 'Generic / Multi-brand', unit: 'set' },
+        { name: 'Rack and link testing validation scope', category: 'Testing & Validation', brand: 'Generic / Multi-brand', unit: 'set' },
       ],
     };
   }
@@ -147,7 +148,7 @@ export function resolveScopeResult(answers: ScopeAnswers): ScopeResult {
         { name: 'Patch panel', category: 'Cabinets, Racks & PDU', brand: 'Generic / Multi-brand', unit: 'pcs' },
         { name: 'Faceplates / keystone', category: 'Patch Cords & Connectivity', brand: 'Generic / Multi-brand', unit: 'set' },
         { name: 'Network cabinet', category: 'Cabinets, Racks & PDU', brand: 'Generic / Multi-brand', unit: 'pcs' },
-        { name: 'Testing and validation scope', category: 'Testing & Validation', brand: 'Generic / Multi-brand', unit: 'set' },
+        { name: 'Fluke-oriented testing and validation scope', category: 'Testing & Validation', brand: 'Generic / Multi-brand', unit: 'set' },
       ],
     };
   }
