@@ -17,8 +17,8 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     title: `${onePager.title} | HILTECH Resources`,
     description: onePager.shortIntro,
     alternates: { canonical: url },
-    openGraph: { title: `${onePager.title} | HILTECH`, description: onePager.shortIntro, url, images: ['/og-image.png'] },
-    twitter: { card: 'summary_large_image', images: ['/og-image.png'] },
+    openGraph: { title: `${onePager.title} | HILTECH`, description: onePager.shortIntro, url, images: [site.ogImage] },
+    twitter: { card: 'summary_large_image', images: [site.ogImage] },
   };
 }
 

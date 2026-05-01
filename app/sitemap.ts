@@ -12,6 +12,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...coreRoutes, ...solutionRoutes, ...intelligenceRoutes, ...onePagerRoutes].map((path) => ({
     url: `${base}${path}`,
-    lastModified: new Date(),
   }));
 }

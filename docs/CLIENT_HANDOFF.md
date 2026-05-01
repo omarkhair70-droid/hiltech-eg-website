@@ -261,3 +261,12 @@ All core brand assets are in `/public`:
 - `hidden` and `archived` products are excluded from public catalog in DB mode.
 - Static fallback remains permanent for reliability.
 - After changing Vercel environment variables, redeploy is required.
+
+## Phase 27A - SEO Launch Technical Fixes (May 2026)
+- Completed technical SEO hardening updates prior to Search Console submission readiness.
+- `robots` policy now explicitly disallows private/internal admin and API routes (`/admin`, `/admin/`, `/api`, `/api/`) while keeping public crawling enabled.
+- `/rfq` metadata now includes Twitter card metadata parity with other public launch pages.
+- Resource one-pager metadata now uses normalized absolute OG/Twitter image URL via shared `site.ogImage`.
+- `/track` route does not exist in this phase; if introduced in a future phase, it must be set to `noindex, nofollow` and kept out of sitemap.
+- Sitemap remains scoped to public pages only and avoids private/admin/API routes.
+- Google Search Console submission should only happen after `https://hiltech-eg.com` is confirmed pointing to the target production Vercel deployment.
