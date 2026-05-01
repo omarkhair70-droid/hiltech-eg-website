@@ -49,3 +49,20 @@
   - `/admin/products`
   - `/admin/products/new`
   - `/admin/products/[id]`
+
+## Phase 25C.2 Product Admin UI
+
+### New admin product routes
+- `/admin/products`
+- `/admin/products/new`
+- `/admin/products/[id]`
+
+### Operations
+- List/search/filter products by code/name/brand/category/status.
+- Create new products with source defaulting to `admin`.
+- Edit products and run quick status actions: hide, restore active, archive.
+- Preview product image path when provided.
+
+### Navigation
+- `/admin/rfq` includes a shortcut to `/admin/products`.
+- `/admin/products` includes a link back to `/admin/rfq`.

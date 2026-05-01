@@ -243,3 +243,11 @@ All core brand assets are in `/public`:
 - `image_path` in database points to existing `/public/products/*.png` style paths.
 - Public products page (`/products-partners`) still uses static source in this phase for stability.
 - Internal Product Admin UI is planned for Phase 25C.2.
+
+## Phase 25C.2 - Internal Product Admin (May 2026)
+- Internal admins can now manage Supabase product rows from `/admin/products` after admin login.
+- Admins can add products (`/admin/products/new`) and edit/status-manage products (`/admin/products/[id]`).
+- Status workflow supports `active`, `hidden`, and `archived` without hard delete.
+- `image_path` is manual text entry only in this phase and should use `/products/...` paths.
+- No image upload/storage UI is included yet.
+- Public product catalog behavior is unchanged in this phase and still reads static sources until Phase 25C.3.
