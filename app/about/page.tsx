@@ -31,7 +31,7 @@ export default function Page() {
 
         <section className="relative mt-6 overflow-hidden rounded-2xl border border-slate-200/90 bg-navy-900 px-4 py-4 text-white shadow-sm sm:px-5 sm:py-5">
           <div className="absolute inset-y-0 right-0 w-full sm:w-[58%]">
-            <Image src="/og-image.png" alt="HILTECH brand infrastructure visual" fill className="object-cover object-center" sizes="(max-width: 640px) 100vw, 58vw" />
+            <Image src="/field-execution-technician.jpg" alt="HILTECH technician performing on-site infrastructure execution work" fill className="object-cover object-center" sizes="(max-width: 640px) 100vw, 58vw" />
             <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/80 to-navy-900/50" />
           </div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-900/25" />
@@ -39,6 +39,13 @@ export default function Page() {
             <Image src="/logo-dark.png" alt="HILTECH" width={90} height={30} className="h-6 w-auto sm:h-7" />
             <p className="text-sm leading-relaxed text-slate-100">Execution-first technical delivery for reliable, maintainable, and scalable information networks.</p>
           </div>
+        </section>
+
+
+
+        <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+          <h2 className="text-lg font-semibold text-slate-900">Built around field execution, not presentation only.</h2>
+          <p className="mt-2 text-sm text-slate-700">From site preparation to termination and testing, our teams prioritize practical delivery quality and maintainable infrastructure outcomes.</p>
         </section>
 
         <section className="grid gap-4 pt-2 md:grid-cols-2">

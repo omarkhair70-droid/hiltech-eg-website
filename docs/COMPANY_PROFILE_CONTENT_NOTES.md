@@ -19,3 +19,17 @@
 - Partner logos for public display.
 - Final public contact number set if different from currently approved website contacts.
 - Downloadable PDF placement and official final profile file for `/public` assets.
+
+## Phase 28B visual asset selection
+Selected visuals now used on live pages:
+- `public/fiber-splicing-workbench.jpg` (current uploaded path)
+- `public/rack-cable-management-blue.jpg` (current uploaded path)
+- `public/copper-cable-pulling.jpg` (current uploaded path)
+- `public/testing-field-device.jpg` (current uploaded path)
+- `public/field-execution-technician.jpg` (current uploaded path)
+- `public/company-profile-cover.jpg` (current uploaded path)
+- `public/company-profile/references-unconfirmed/*` or `public/references-unconfirmed/*` (logo/reference strip if available)
+
+Notes:
+- Replace PDF-extracted visuals with original high-resolution project photography when available.
+- Partner/client logos are displayed based on company approval and supplied company profile material.

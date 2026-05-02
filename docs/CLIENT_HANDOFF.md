@@ -317,3 +317,18 @@ All core brand assets are in `/public`:
 - `/resources` company profile callout was updated to a safe request flow (`/contact`) because no downloadable company profile PDF asset exists in `/public` at this time.
 - Contact details from profile were reviewed against current approved site contacts; no contact number/email changes were made in this phase to avoid accidental override of approved production details.
 - No RFQ basket, admin dashboard, Supabase integration, or notification logic was changed.
+
+## Phase 28B - Company Profile Visual Assets Upgrade (May 2026)
+- Added selected company profile visuals to public pages using supplied company profile material.
+- Integrated proof visuals into `/services`, a field-execution visual strip into `/about`, and a company profile cover preview inside `/resources`.
+- Added partner/client reference logo strip support on `/services` when logo files exist under `public/company-profile/references-unconfirmed/ (fallback to `public/references-unconfirmed/` supported)`.
+- Confirmed no RFQ, admin, Supabase, tracking, notification, or database behavior changes in this phase.
+
+Visual assets used in Phase 28B:
+- `public/fiber-splicing-workbench.jpg` (current uploaded path)
+- `public/rack-cable-management-blue.jpg` (current uploaded path)
+- `public/copper-cable-pulling.jpg` (current uploaded path)
+- `public/testing-field-device.jpg` (current uploaded path)
+- `public/field-execution-technician.jpg` (current uploaded path)
+- `public/company-profile-cover.jpg` (current uploaded path)
+- `public/company-profile/references-unconfirmed/ (fallback to `public/references-unconfirmed/` supported)*` (if present)
