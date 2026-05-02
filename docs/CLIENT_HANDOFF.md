@@ -306,3 +306,14 @@ All core brand assets are in `/public`:
 - Recommended Resend domain: `notify.hiltech-eg.com` (must be DNS-verified in Resend).
 - RFQ save success does **not** depend on email delivery; failures are logged/audited and do not block customer success.
 - Phase 26B does not include customer confirmation emails.
+
+## Phase 28A - Company Profile Content & Proof Upgrade (May 2026)
+- Company-profile-based content was integrated into public-safe website copy with no unverified certification/partnership/client claims.
+- `/about` was strengthened to present HILTECH as a network infrastructure partner focused on design, implementation, and management of information networks, including fiber and copper expertise.
+- Mission and Vision blocks were added to `/about` using concise profile-aligned wording.
+- `/services` was upgraded to better reflect profile capabilities: site inspection/survey, engineering drawings/planning, fiber splicing work, copper extension/termination, rack/data room readiness, and testing workflows.
+- Added proof-oriented service credibility sections on `/services`: field-proven infrastructure work categories and testing tools used across delivery.
+- Added a client-safe references note on `/services` for partner/client references with explicit disclaimer that final public display should be confirmed by HILTECH.
+- `/resources` company profile callout was updated to a safe request flow (`/contact`) because no downloadable company profile PDF asset exists in `/public` at this time.
+- Contact details from profile were reviewed against current approved site contacts; no contact number/email changes were made in this phase to avoid accidental override of approved production details.
+- No RFQ basket, admin dashboard, Supabase integration, or notification logic was changed.

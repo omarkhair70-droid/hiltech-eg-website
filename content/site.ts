@@ -30,14 +30,14 @@ export const site = {
 };
 
 export const services = [
-  { title: 'Structured Cabling', description: 'Organized copper cabling systems for offices, data rooms, and enterprise networks.', label: 'Service' },
-  { title: 'Fiber Optic Installation', description: 'Fiber backbone installation, termination, accessories, and testing for high-speed connectivity.', label: 'Service' },
-  { title: 'Network Infrastructure', description: 'Passive and active infrastructure planning for reliable business network operations.', label: 'Service' },
-  { title: 'CCTV & Security Systems', description: 'Surveillance infrastructure, camera connectivity, and control-room readiness.', label: 'Service' },
-  { title: 'Data Center Setup', description: 'Rack, cabinet, cabling, and data room preparation for stable IT environments.', label: 'Data Center' },
-  { title: 'Network Testing & Certification', description: 'Fluke and OTDR-oriented testing workflows to verify performance before handover.', label: 'Testing' },
-  { title: 'Maintenance & Support', description: 'Preventive and corrective support to keep network infrastructure stable.', label: 'Service' },
-  { title: 'UTP / Fiber Solutions', description: 'Copper and fiber combinations selected based on distance, speed, and project requirements.', label: 'Service' }
+  { title: 'Site Inspection & Technical Survey', description: 'Detailed project site inspection to assess routes, constraints, and infrastructure readiness before implementation.', label: 'Survey' },
+  { title: 'Engineering Drawings & Infrastructure Planning', description: 'Structured planning and engineering drawings to align installation scope with project requirements.', label: 'Planning' },
+  { title: 'Fiber Optic Installation & Splicing', description: 'Optical fiber extension, welding/splicing, termination, and practical testing support for backbone reliability.', label: 'Fiber' },
+  { title: 'Copper Cabling Extension & Termination', description: 'Stranded copper cable extension and termination with structured layout and endpoint labeling discipline.', label: 'Copper' },
+  { title: 'Rack & Data Room Readiness', description: 'Rack preparation, patching, cable management, and data room infrastructure organization for maintainability.', label: 'Implementation' },
+  { title: 'Testing & Measurement Workflows', description: 'Testing support using Fluke, OTDR, power meter, digital copper tester, and related field tools where applicable.', label: 'Testing' },
+  { title: 'Network Infrastructure Implementation', description: 'Execution support for information network infrastructure projects from plan to delivery handover.', label: 'Delivery' },
+  { title: 'Maintenance & Operational Support', description: 'Practical support services to help maintain stable network performance after project delivery.', label: 'Support' }
 ];
 
 export const sectors = [
