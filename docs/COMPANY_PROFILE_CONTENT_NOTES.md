@@ -48,3 +48,8 @@ Notes:
   - `public/references-clients-panel.jpg`
 - Extracted individual logo assets (`client-*` / `partner-*`) remain available and are retained as a fallback display path when panel images are not present.
 - Preferred public presentation is the official supplied profile panel visuals to keep reference quality and layout consistency.
+
+## Phase 28D.2 visual display guidance
+- Equipment/tool visuals should use contain-safe rendering (`object-contain`) where readability of the full device/photo matters.
+- Original supplied reference panels are the preferred public presentation for partners/clients.
+- Extracted individual logos should remain fallback-only and not replace official panel visuals as the primary reference experience.

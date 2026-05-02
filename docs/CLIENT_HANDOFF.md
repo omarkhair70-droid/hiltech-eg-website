@@ -354,3 +354,11 @@ Visual assets used in Phase 28B:
 - Added `docs/LAUNCH_STATUS_AUDIT.md` with completed scope, operational pending items, technical notes, and next-phase recommendation.
 - Resources page keeps the Company Profile callout and now uses a small supporting profile-contact preview image without introducing any fake download action.
 - RFQ logic, admin authentication, Supabase schemas, tracking API, and notification backend behavior were not changed in this phase.
+
+## Phase 28D.2 - Visual Display Polish (May 2026)
+- `/services` testing-tools visuals now use contain-safe image presentation (no forced crop/zoom) with clean light frames and internal padding.
+- The `Testing & Measurement Tools` proof card display was tuned to avoid harsh cropping on the testing device visual.
+- `/resources` Company Profile card was simplified to a single clean cover preview and the oversized supporting preview panel was removed.
+- `/resources` two-column card layout now aligns with `items-start` so the RFQ Preparation Guide card no longer stretches into an empty tall desktop block.
+- `/services` reference presentation continues to prefer official panel assets (`references-partners-panel.jpg` + `references-clients-panel.jpg`); when missing, a clean note is shown instead of a prominent extracted-logo grid.
+- Backend/RFQ/admin/auth/Supabase/email/tracking behavior remained unchanged in this phase.
