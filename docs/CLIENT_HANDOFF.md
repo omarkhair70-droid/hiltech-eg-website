@@ -14,6 +14,11 @@
 - WhatsApp contact for quick coordination
 - RFQ Basket flow from Products & Partners to Contact
 
+
+## Phase 28B.1 - Navigation Discoverability Fix
+- Added **About** (`/about`) and **Services** (`/services`) to the public header/mobile navigation for easier discovery.
+- No backend behavior changed in this phase (navigation-only update).
+
 ## Official contact details
 
 - Email: `info@hiltech-eg.com`
