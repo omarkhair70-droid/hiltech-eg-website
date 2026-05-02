@@ -51,25 +51,41 @@ const proofAreas = [
 const testingTools = ['Fluke Test', 'OTDR', 'Power Meter', 'Digital Copper Tester', 'Fiber fusion splice'];
 
 async function getReferenceLogos() {
-  const companyProfileDirectory = path.join(process.cwd(), 'public/company-profile/references-unconfirmed');
-  const rootDirectory = path.join(process.cwd(), 'public/references-unconfirmed');
-  try {
-    const [files, basePath] = await (async () => {
+  const directories = [
+    {
+      fileSystemPath: path.join(process.cwd(), 'public/company-profile/references-unconfirmed'),
+      publicPath: '/company-profile/references-unconfirmed',
+      matcher: (file: string) => /\.(png|jpe?g|webp|svg)$/i.test(file),
+    },
+    {
+      fileSystemPath: path.join(process.cwd(), 'public/references-unconfirmed'),
+      publicPath: '/references-unconfirmed',
+      matcher: (file: string) => /\.(png|jpe?g|webp|svg)$/i.test(file),
+    },
+    {
+      fileSystemPath: path.join(process.cwd(), 'public'),
+      publicPath: '',
+      matcher: (file: string) => /^(client|partner)-.+\.png$/i.test(file),
+    },
+  ];
+
+  const logos = await Promise.all(
+    directories.map(async ({ fileSystemPath, publicPath, matcher }) => {
       try {
-        return [await fs.readdir(companyProfileDirectory), '/company-profile/references-unconfirmed'];
+        const files = await fs.readdir(fileSystemPath);
+        return files
+          .filter((file) => matcher(file))
+          .map((file) => ({
+            src: `${publicPath}/${file}`,
+            alt: `${file.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ')} reference logo`,
+          }));
       } catch {
-        return [await fs.readdir(rootDirectory), '/references-unconfirmed'];
+        return [];
       }
-    })();
-    return files
-      .filter((file) => /\.(png|jpe?g|webp|svg)$/i.test(file))
-      .map((file) => ({
-        src: `${basePath}/${file}`,
-        alt: `${file.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ')} reference logo`,
-      }));
-  } catch {
-    return [];
-  }
+    }),
+  );
+
+  return logos.flat();
 }
 
 export default async function Page() {
