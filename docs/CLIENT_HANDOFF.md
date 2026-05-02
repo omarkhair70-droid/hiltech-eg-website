@@ -218,6 +218,14 @@ All core brand assets are in `/public`:
 - Homepage hero includes a concise 5-second clarity micro-line covering what HILTECH does, for whom, and where.
 - Floating RFQ basket on products pages was tightened for mobile overlap reduction with safer bottom safe-area spacing and extra page bottom padding.
 - Footer service labels are now linked to relevant solution/product routes for faster navigation.
+
+## Phase 28D.1 - Reference Panels Visual Upgrade (May 2026)
+- Replaced the `/services` extracted individual partner/client logo grid with original company profile reference panel visuals for cleaner quality and more consistent presentation.
+- `/services` now prioritizes:
+  - `public/references-partners-panel.jpg`
+  - `public/references-clients-panel.jpg`
+- If panel images are unavailable, the page safely falls back to the existing individual `partner-*` / `client-*` logo grid to avoid rendering/build issues.
+- RFQ flow, backend behavior, admin/auth/Supabase/email/tracking, and product logic were not changed in this phase.
 - WhatsApp and contact references were checked; approved WhatsApp number (`201555357807`) and approved email (`info@hiltech-eg.com`) remain unchanged.
 - ESLint setup was hardened with a minimal Next.js config so `npm run lint` no longer triggers interactive initialization prompts.
 

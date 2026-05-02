@@ -41,3 +41,10 @@ Notes:
   - Partners
   - Client references
 - Replace PDF-extracted visuals with original high-resolution project photos later for long-term quality.
+
+## Phase 28D.1 reference presentation preference
+- `/services` now uses original company profile reference panel images as the primary references presentation:
+  - `public/references-partners-panel.jpg`
+  - `public/references-clients-panel.jpg`
+- Extracted individual logo assets (`client-*` / `partner-*`) remain available and are retained as a fallback display path when panel images are not present.
+- Preferred public presentation is the official supplied profile panel visuals to keep reference quality and layout consistency.
