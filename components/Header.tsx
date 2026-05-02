@@ -7,9 +7,10 @@ import { readRFQItems } from '@/lib/rfq';
 
 const nav = [
   ['Home', '/'],
+  ['About', '/about'],
+  ['Services', '/services'],
   ['Solutions', '/solutions'],
   ['Products', '/products-partners'],
-  ['Scope Finder', '/scope-finder'],
   ['RFQ', '/rfq'],
   ['Resources', '/resources'],
   ['Contact', '/contact'],
@@ -41,7 +42,7 @@ export default function Header() {
           <span translate="no" className={showLogoImage ? 'sr-only' : ''}>HILTECH</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-5 md:flex lg:gap-6">
           {nav.map(([label, href]) => (
             <Link key={href} href={href} translate="no" className="text-sm font-semibold text-slate-700 transition hover:text-navy-900">
               {label}

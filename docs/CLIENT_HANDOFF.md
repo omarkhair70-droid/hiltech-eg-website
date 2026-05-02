@@ -332,3 +332,12 @@ Visual assets used in Phase 28B:
 - `public/field-execution-technician.jpg` (current uploaded path)
 - `public/company-profile-cover.jpg` (current uploaded path)
 - `public/company-profile/references-unconfirmed/ (fallback to `public/references-unconfirmed/` supported)*` (if present)
+
+
+## Phase 28C - Visual Library, Logo Polish & Launch Audit (May 2026)
+- Navigation now includes About and Services directly in header desktop/mobile menus.
+- Services page includes a full company-profile field gallery organized by delivery area (Fiber, Rack & data room, Copper, Testing).
+- Services logo presentation was polished with grouped reference sections (Partners / Client references), sorted and displayed with stable clean cards.
+- Added `docs/LAUNCH_STATUS_AUDIT.md` with completed scope, operational pending items, technical notes, and next-phase recommendation.
+- Resources page keeps the Company Profile callout and now uses a small supporting profile-contact preview image without introducing any fake download action.
+- RFQ logic, admin authentication, Supabase schemas, tracking API, and notification backend behavior were not changed in this phase.

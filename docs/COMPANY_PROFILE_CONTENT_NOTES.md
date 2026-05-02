@@ -33,3 +33,11 @@ Selected visuals now used on live pages:
 Notes:
 - Replace PDF-extracted visuals with original high-resolution project photography when available.
 - Partner/client logos are displayed based on company approval and supplied company profile material.
+
+
+## Phase 28C visual library and logo organization
+- All remaining useful field images were organized into a dedicated visual library on `/services`.
+- Logo display groups now used on `/services`:
+  - Partners
+  - Client references
+- Replace PDF-extracted visuals with original high-resolution project photos later for long-term quality.
