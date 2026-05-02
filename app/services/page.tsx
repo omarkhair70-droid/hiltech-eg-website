@@ -45,12 +45,19 @@ const proofAreas = [
     description: 'Fluke, OTDR, power meter, copper testing, and splice support where applicable.',
     image: '/testing-field-device.jpg',
     alt: 'Field engineer using handheld testing equipment to validate network infrastructure.',
+    imageFit: 'contain',
   },
 ];
 
 const testingTools = ['Fluke Test', 'OTDR', 'Power Meter', 'Digital Copper Tester', 'Fiber fusion splice'];
 
-const fieldGalleryGroups = [
+type GalleryGroup = {
+  title: string;
+  imageFit?: 'contain' | 'cover';
+  images: { src: string; alt: string }[];
+};
+
+const fieldGalleryGroups: GalleryGroup[] = [
   {
     title: 'Fiber work',
     images: [
@@ -85,6 +92,7 @@ const fieldGalleryGroups = [
   },
   {
     title: 'Testing tools',
+    imageFit: 'contain',
     images: [
       { src: '/testing-fluke-meter.jpg', alt: 'Fluke test meter used for field validation and diagnostics.' },
       { src: '/testing-otdr-device.jpg', alt: 'OTDR testing device used for fiber path and fault measurements.' },
@@ -92,7 +100,7 @@ const fieldGalleryGroups = [
       { src: '/testing-digital-copper-tester.jpg', alt: 'Digital copper tester used for cable continuity and performance checks.' },
     ],
   },
-] as const;
+];
 
 type LogoItem = { src: string; alt: string; filename: string };
 
@@ -153,9 +161,8 @@ export default async function Page() {
     .then(() => true)
     .catch(() => false);
   const hasReferencePanels = hasPartnerPanel && hasClientPanel;
-
   const { partners, clients } = await getReferenceLogos();
-  const hasLogos = partners.length > 0 || clients.length > 0;
+  const hasLogoFallback = partners.length > 0 || clients.length > 0;
 
   return (
     <main className="section">
@@ -173,8 +180,14 @@ export default async function Page() {
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               {proofAreas.map((item) => (
                 <article key={item.title} className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
-                  <div className="relative aspect-[16/10] w-full">
-                    <Image src={item.image} alt={item.alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                  <div className="relative aspect-[16/10] w-full bg-white p-4">
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      className={item.imageFit === 'contain' ? 'object-contain p-4' : 'object-cover'}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                   </div>
                   <div className="p-4">
                     <h3 className="font-semibold text-slate-900">{item.title}</h3>
@@ -199,8 +212,14 @@ export default async function Page() {
                   <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {group.images.map((image) => (
                       <div key={image.src} className="overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
-                        <div className="relative aspect-[4/3] w-full">
-                          <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw" />
+                        <div className={`relative aspect-[4/3] w-full ${group.imageFit === 'contain' ? 'bg-white p-3' : ''}`}>
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            fill
+                            className={group.imageFit === 'contain' ? 'object-contain p-3' : 'object-cover'}
+                            sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                          />
                         </div>
                       </div>
                     ))}
@@ -226,7 +245,7 @@ export default async function Page() {
         </div>
       </section>
 
-      {hasReferencePanels || hasLogos ? (
+      {hasReferencePanels ? (
         <section className="section pt-0">
           <div className="container">
             <div className="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
@@ -266,33 +285,10 @@ export default async function Page() {
                   </article>
                 </div>
               ) : (
-                <>
-                  {partners.length > 0 ? (
-                    <div className="mt-5">
-                      <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Partners</h3>
-                      <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                        {partners.map((logo) => (
-                          <div key={logo.src} className="flex h-24 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-4">
-                            <Image src={logo.src} alt={logo.alt} width={140} height={64} className="h-auto max-h-10 w-auto object-contain" />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-
-                  {clients.length > 0 ? (
-                    <div className="mt-6">
-                      <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Client references</h3>
-                      <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                        {clients.map((logo) => (
-                          <div key={logo.src} className="flex h-24 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-4">
-                            <Image src={logo.src} alt={logo.alt} width={140} height={64} className="h-auto max-h-10 w-auto object-contain" />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                </>
+                <div className="mt-5 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-700">
+                  Official partner and client reference panels are not available yet. The section will be published once the original panel visuals are provided.
+                  {hasLogoFallback ? ' Extracted individual logos are retained internally as fallback assets.' : ''}
+                </div>
               )}
             </div>
           </div>
