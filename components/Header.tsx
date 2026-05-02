@@ -7,9 +7,10 @@ import { readRFQItems } from '@/lib/rfq';
 
 const nav = [
   ['Home', '/'],
+  ['About', '/about'],
+  ['Services', '/services'],
   ['Solutions', '/solutions'],
   ['Products', '/products-partners'],
-  ['Scope Finder', '/scope-finder'],
   ['RFQ', '/rfq'],
   ['Resources', '/resources'],
   ['Contact', '/contact'],
