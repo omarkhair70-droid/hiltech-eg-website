@@ -144,6 +144,16 @@ async function getReferenceLogos() {
 }
 
 export default async function Page() {
+  const hasPartnerPanel = await fs
+    .access(path.join(process.cwd(), 'public/references-partners-panel.jpg'))
+    .then(() => true)
+    .catch(() => false);
+  const hasClientPanel = await fs
+    .access(path.join(process.cwd(), 'public/references-clients-panel.jpg'))
+    .then(() => true)
+    .catch(() => false);
+  const hasReferencePanels = hasPartnerPanel && hasClientPanel;
+
   const { partners, clients } = await getReferenceLogos();
   const hasLogos = partners.length > 0 || clients.length > 0;
 
@@ -216,38 +226,74 @@ export default async function Page() {
         </div>
       </section>
 
-      {hasLogos ? (
+      {hasReferencePanels || hasLogos ? (
         <section className="section pt-0">
           <div className="container">
             <div className="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
               <h2 className="text-2xl font-bold text-slate-900">Selected partners and client references</h2>
               <p className="mt-2 text-sm text-slate-700">Displayed based on HILTECH&apos;s supplied company profile.</p>
 
-              {partners.length > 0 ? (
-                <div className="mt-5">
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Partners</h3>
-                  <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                    {partners.map((logo) => (
-                      <div key={logo.src} className="flex h-24 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-4">
-                        <Image src={logo.src} alt={logo.alt} width={140} height={64} className="h-auto max-h-10 w-auto object-contain" />
+              {hasReferencePanels ? (
+                <div className="mt-5 grid gap-4">
+                  <article className="rounded-xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                    <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Partners</h3>
+                    <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-white p-3 sm:p-4">
+                      <div className="relative aspect-[16/10] w-full sm:aspect-[21/10]">
+                        <Image
+                          src="/references-partners-panel.jpg"
+                          alt="HILTECH supplied company profile page showing selected partner references."
+                          fill
+                          className="object-contain"
+                          sizes="100vw"
+                        />
                       </div>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
+                    </div>
+                  </article>
 
-              {clients.length > 0 ? (
-                <div className="mt-6">
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Client references</h3>
-                  <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                    {clients.map((logo) => (
-                      <div key={logo.src} className="flex h-24 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-4">
-                        <Image src={logo.src} alt={logo.alt} width={140} height={64} className="h-auto max-h-10 w-auto object-contain" />
+                  <article className="rounded-xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                    <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Client references</h3>
+                    <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-white p-3 sm:p-4">
+                      <div className="relative aspect-[16/10] w-full sm:aspect-[21/10]">
+                        <Image
+                          src="/references-clients-panel.jpg"
+                          alt="HILTECH supplied company profile page showing selected client references."
+                          fill
+                          className="object-contain"
+                          sizes="100vw"
+                        />
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  </article>
                 </div>
-              ) : null}
+              ) : (
+                <>
+                  {partners.length > 0 ? (
+                    <div className="mt-5">
+                      <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Partners</h3>
+                      <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                        {partners.map((logo) => (
+                          <div key={logo.src} className="flex h-24 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-4">
+                            <Image src={logo.src} alt={logo.alt} width={140} height={64} className="h-auto max-h-10 w-auto object-contain" />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  {clients.length > 0 ? (
+                    <div className="mt-6">
+                      <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Client references</h3>
+                      <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                        {clients.map((logo) => (
+                          <div key={logo.src} className="flex h-24 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-4">
+                            <Image src={logo.src} alt={logo.alt} width={140} height={64} className="h-auto max-h-10 w-auto object-contain" />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </>
+              )}
             </div>
           </div>
         </section>
