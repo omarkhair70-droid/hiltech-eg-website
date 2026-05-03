@@ -362,3 +362,11 @@ Visual assets used in Phase 28B:
 - `/resources` two-column card layout now aligns with `items-start` so the RFQ Preparation Guide card no longer stretches into an empty tall desktop block.
 - `/services` reference presentation continues to prefer official panel assets (`references-partners-panel.jpg` + `references-clients-panel.jpg`); when missing, a clean note is shown instead of a prominent extracted-logo grid.
 - Backend/RFQ/admin/auth/Supabase/email/tracking behavior remained unchanged in this phase.
+
+## Phase 29A - Google Analytics Integration (May 2026)
+- Added Google Analytics 4 integration for the public website using a configurable environment variable.
+- Required Vercel environment variable: `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+- Example measurement ID format: `G-XXXXXXXXXX`
+- Analytics scripts are only injected when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set to a non-empty value.
+- Analytics is intended for public site traffic; `/admin` paths are excluded from analytics script injection.
+- A redeploy is required after setting or changing the environment variable.
