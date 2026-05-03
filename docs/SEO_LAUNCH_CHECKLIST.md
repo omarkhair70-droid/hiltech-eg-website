@@ -33,3 +33,12 @@
 - Redeploy production after setting the variable.
 - Verify GA is loading on public pages (not `/admin`) using browser DevTools Network for `gtag/js` and realtime GA4 view.
 - After any production domain switch, reconnect/verify both Google Analytics and Google Search Console properties for the final domain.
+
+## GA4 event verification (Phase 29C)
+- Open GA4 Realtime or DebugView on production.
+- Trigger key public actions and verify event arrival:
+  - Add to RFQ (`product_add_to_rfq`)
+  - Open basket (`rfq_basket_open`)
+  - Review RFQ basket (`rfq_basket_review_click`)
+  - Submit RFQ (`rfq_submit_attempt` then `rfq_submit_success` or `rfq_submit_error`)
+- Confirm no personal data, notes, or raw RFQ message content appears in event params.

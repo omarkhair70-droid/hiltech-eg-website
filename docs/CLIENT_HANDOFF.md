@@ -376,3 +376,9 @@ Visual assets used in Phase 28B:
 - `stock_status` values: `in_stock`, `low_stock`, `out_of_stock`, `backorder`, `unknown`.
 - Exact stock quantities and `inventory_notes` are admin-only and not exposed on public product pages.
 - Public product availability remains quote-confirmed; it is not a final stock commitment.
+
+## Phase 29C - GA4 RFQ & Product Interaction Events
+- Added a client-safe analytics helper (`lib/client/analytics.ts`) that only runs in browser, checks for `window.gtag`, and safely no-ops when GA is not configured.
+- Public pages now track key product and RFQ interactions (category filtering, add-to-RFQ, basket actions, RFQ submit lifecycle, WhatsApp/copy/clear/track/browse actions).
+- Privacy guardrails: no personal details (name/email/phone), no project/item notes, no exact RFQ message text, no request code, and no admin-only data are sent to GA events.
+- Analytics remains public-site focused; admin behavior is not tracked.
