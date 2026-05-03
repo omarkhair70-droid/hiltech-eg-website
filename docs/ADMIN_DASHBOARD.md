@@ -86,3 +86,8 @@ Notes:
 - Supported fields: stock status, stock quantity, low-stock threshold, internal inventory notes, and last stock checked date/time.
 - Admin product list includes stock filters and stock columns for quick inventory tracking.
 - Inventory notes and exact stock quantities are internal-only operational data.
+
+## Public Analytics Boundary (Phase 29C)
+- GA4 interaction events are implemented for public product/RFQ engagement analysis only.
+- Admin dashboard routes and internal operational data are excluded from these analytics events.
+- No admin notes, internal inventory fields, or dashboard actions are sent to GA.

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { trackEvent } from '@/lib/client/analytics';
 import { buildRFQWhatsappMessage, getRFQWhatsappLink, normalizeRFQItem, readRFQItems, writeRFQItems, type RFQItem, type RFQProjectDetails } from '@/lib/rfq';
 
 const projectFields = [
@@ -36,9 +37,12 @@ export default function RFQReviewClient() {
     [items],
   );
 
+  const source = hasScopeFinderImports ? 'scope_finder' : 'rfq_page';
+
   async function submitRFQ() {
     if (submitState.status === 'submitting') return;
     setSubmitState({ status: 'submitting' });
+    trackEvent('rfq_submit_attempt', { item_count: items.length, total_units: count, source });
 
     try {
       const response = await fetch('/api/rfq', {
@@ -65,7 +69,7 @@ export default function RFQReviewClient() {
             notes: item.notes,
           })),
           urgency: null,
-          source: hasScopeFinderImports ? 'scope_finder' : 'rfq_page',
+          source,
           whatsappMessage: message,
         }),
       });
@@ -73,12 +77,15 @@ export default function RFQReviewClient() {
       const data = (await response.json()) as { ok: boolean; requestCode?: string; error?: string };
       if (!response.ok || !data.ok || !data.requestCode) {
         setSubmitState({ status: 'error', message: data.error || 'We couldn’t save your RFQ right now. You can still send it via WhatsApp.' });
+        trackEvent('rfq_submit_error', { item_count: items.length, total_units: count, source, error_type: 'save_failed' });
         return;
       }
 
       setSubmitState({ status: 'success', requestCode: data.requestCode });
+      trackEvent('rfq_submit_success', { item_count: items.length, total_units: count, source });
     } catch {
       setSubmitState({ status: 'error', message: 'We couldn’t save your RFQ right now. You can still send it via WhatsApp.' });
+      trackEvent('rfq_submit_error', { item_count: items.length, total_units: count, source, error_type: 'network_error' });
     }
   }
 
@@ -97,12 +104,12 @@ export default function RFQReviewClient() {
           <button className="btn-primary w-full justify-center" onClick={submitRFQ} disabled={submitState.status === 'submitting' || items.length === 0}>{submitState.status === 'submitting' ? 'Saving RFQ...' : 'Submit RFQ Request'}</button>
           {submitState.status === 'success' ? <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-900"><p>RFQ request saved. Reference: {submitState.requestCode}</p><p className="mt-1 text-emerald-800">Save this reference number. You can use it with your phone or email to track request status later.</p></div> : null}
           {submitState.status === 'error' ? <p className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">{submitState.message}</p> : null}
-          {submitState.status === 'success' ? <Link href={`/track?request_code=${encodeURIComponent(submitState.requestCode)}`} className="inline-flex w-full justify-center rounded-lg border px-4 py-2">Track this RFQ</Link> : null}
-          <a className="inline-flex w-full justify-center rounded-lg border px-4 py-2" href={getRFQWhatsappLink(items, project)} target="_blank" rel="noreferrer">{submitState.status === 'success' ? 'Send via WhatsApp too' : 'WhatsApp HILTECH'}</a>
-          <button className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={async () => { await navigator.clipboard.writeText(message); setCopied(true); setTimeout(() => setCopied(false), 1500); }}>Copy RFQ Message</button>
+          {submitState.status === 'success' ? <Link href={`/track?request_code=${encodeURIComponent(submitState.requestCode)}`} className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={() => trackEvent('rfq_track_click', { source: 'rfq_page' })}>Track this RFQ</Link> : null}
+          <a className="inline-flex w-full justify-center rounded-lg border px-4 py-2" href={getRFQWhatsappLink(items, project)} target="_blank" rel="noreferrer" onClick={() => trackEvent('rfq_whatsapp_click', { item_count: items.length, total_units: count, source: 'rfq_page', after_save: submitState.status === 'success' })}>{submitState.status === 'success' ? 'Send via WhatsApp too' : 'WhatsApp HILTECH'}</a>
+          <button className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={async () => { await navigator.clipboard.writeText(message); trackEvent('rfq_copy_message', { item_count: items.length, total_units: count, source: 'rfq_page' }); setCopied(true); setTimeout(() => setCopied(false), 1500); }}>Copy RFQ Message</button>
           {copied ? <p className="text-xs text-emerald-700">Copied.</p> : null}
-          <button className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={() => setItems([])}>Clear Basket</button>
-          <Link href="/products-partners" className="inline-flex w-full justify-center rounded-lg border px-4 py-2">Browse Products</Link>
+          <button className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={() => { trackEvent('rfq_clear', { item_count: items.length, total_units: count, source: 'rfq_page' }); setItems([]); }}>Clear Basket</button>
+          <Link href="/products-partners" className="inline-flex w-full justify-center rounded-lg border px-4 py-2" onClick={() => trackEvent('rfq_browse_products_click', { source: 'rfq_page' })}>Browse Products</Link>
         </aside>
       </div>
     </div>
