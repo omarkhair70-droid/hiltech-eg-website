@@ -27,3 +27,9 @@
 - Do not promise first-page ranking.
 - Do not publish fake reviews, partnerships, certifications, or case studies.
 - Keep admin/API/customer-sensitive routes non-indexable.
+
+## Google Analytics verification (Phase 29A)
+- In Vercel Project Settings → Environment Variables, set `NEXT_PUBLIC_GA_MEASUREMENT_ID` (example: `G-XXXXXXXXXX`).
+- Redeploy production after setting the variable.
+- Verify GA is loading on public pages (not `/admin`) using browser DevTools Network for `gtag/js` and realtime GA4 view.
+- After any production domain switch, reconnect/verify both Google Analytics and Google Search Console properties for the final domain.
