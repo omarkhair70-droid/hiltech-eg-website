@@ -80,3 +80,9 @@ Notes:
 - This metadata is internal/admin only.
 - Email notifications are best-effort and non-blocking for RFQ creation.
 - Missing/invalid email configuration should never prevent RFQ save success.
+
+## Product Inventory Management
+- In **Admin > Products**, admins can edit inventory fields in the **Inventory** section of the product form.
+- Supported fields: stock status, stock quantity, low-stock threshold, internal inventory notes, and last stock checked date/time.
+- Admin product list includes stock filters and stock columns for quick inventory tracking.
+- Inventory notes and exact stock quantities are internal-only operational data.

@@ -370,3 +370,9 @@ Visual assets used in Phase 28B:
 - Analytics scripts are only injected when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set to a non-empty value.
 - Analytics is intended for public site traffic; `/admin` paths are excluded from analytics script injection.
 - A redeploy is required after setting or changing the environment variable.
+
+## Phase 29B - Product Inventory Management
+- Added inventory columns to `products`: `stock_status`, `stock_quantity`, `low_stock_threshold`, `inventory_notes`, `last_stock_checked_at`.
+- `stock_status` values: `in_stock`, `low_stock`, `out_of_stock`, `backorder`, `unknown`.
+- Exact stock quantities and `inventory_notes` are admin-only and not exposed on public product pages.
+- Public product availability remains quote-confirmed; it is not a final stock commitment.

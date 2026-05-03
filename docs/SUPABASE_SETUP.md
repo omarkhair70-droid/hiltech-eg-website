@@ -161,3 +161,7 @@ This adds optional audit columns on `rfq_requests`:
 ### Scope limits (Phase 26B)
 - No customer confirmation email is sent in this phase.
 - No Supabase Auth changes are included in this phase.
+
+## Phase 29B migration note
+- Added migration to extend `public.products` with optional inventory columns (`stock_status`, `stock_quantity`, `low_stock_threshold`, `inventory_notes`, `last_stock_checked_at`).
+- Migration is non-destructive and uses `ADD COLUMN IF NOT EXISTS`, safe `CHECK` constraints, and a stock status index.
