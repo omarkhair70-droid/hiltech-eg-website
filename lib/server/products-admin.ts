@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { PRODUCT_STATUSES, type ProductAdminFilters, type ProductAdminWritePayload, type ProductRow, type ProductStatus } from '@/lib/types/products';
+import { PRODUCT_STATUSES, PRODUCT_STOCK_STATUSES, type ProductAdminFilters, type ProductAdminWritePayload, type ProductRow, type ProductStatus } from '@/lib/types/products';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -46,6 +46,7 @@ export async function listProductsAdmin(filters: ProductAdminFilters = {}): Prom
 
   if (filters.status && PRODUCT_STATUSES.includes(filters.status)) params.set('status', `eq.${filters.status}`);
   if (filters.category) params.set('category', `eq.${filters.category}`);
+  if (filters.stock_status && PRODUCT_STOCK_STATUSES.includes(filters.stock_status)) params.set('stock_status', `eq.${filters.stock_status}`);
   if (filters.brand) params.set('brand', `eq.${filters.brand}`);
   if (filters.search) {
     const value = filters.search.replace(/,/g, ' ').trim();

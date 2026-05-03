@@ -2,6 +2,10 @@ export const PRODUCT_STATUSES = ['active', 'hidden', 'archived'] as const;
 
 export type ProductStatus = (typeof PRODUCT_STATUSES)[number];
 
+export const PRODUCT_STOCK_STATUSES = ['in_stock', 'low_stock', 'out_of_stock', 'backorder', 'unknown'] as const;
+
+export type ProductStockStatus = (typeof PRODUCT_STOCK_STATUSES)[number];
+
 export interface ProductRow {
   id: string;
   product_code: string;
@@ -24,6 +28,11 @@ export interface ProductRow {
   technical_notes: string | null;
   created_at: string;
   updated_at: string;
+  stock_status: ProductStockStatus;
+  stock_quantity: number | null;
+  low_stock_threshold: number | null;
+  inventory_notes: string | null;
+  last_stock_checked_at: string | null;
 }
 
 export interface ProductAdminFilters {
@@ -31,6 +40,7 @@ export interface ProductAdminFilters {
   category?: string;
   brand?: string;
   search?: string;
+  stock_status?: ProductStockStatus;
   limit?: number;
 }
 
@@ -53,4 +63,9 @@ export interface ProductAdminWritePayload {
   availability_note?: string | null;
   datasheet_url?: string | null;
   technical_notes?: string | null;
+  stock_status?: ProductStockStatus;
+  stock_quantity?: number | null;
+  low_stock_threshold?: number | null;
+  inventory_notes?: string | null;
+  last_stock_checked_at?: string | null;
 }
