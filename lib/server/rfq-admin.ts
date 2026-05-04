@@ -11,6 +11,7 @@ export type RFQStatus = (typeof RFQ_STATUSES)[number];
 export type RFQSalesPriority = (typeof RFQ_SALES_PRIORITIES)[number];
 
 export function isRFQAdminBackendConfigured() { return Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY); }
+function isUuid(value: string): boolean { return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value); }
 function getHeaders() { if (!SUPABASE_SERVICE_ROLE_KEY) throw new Error('SUPABASE_SERVICE_ROLE_KEY is not configured'); return { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`, 'Content-Type': 'application/json' }; }
 function getBaseUrl() { if (!SUPABASE_URL) throw new Error('SUPABASE_URL is not configured'); return SUPABASE_URL.replace(/\/$/, ''); }
 async function supabaseFetch(path: string, init?: RequestInit) { const response = await fetch(`${getBaseUrl()}/rest/v1/${path}`, { ...init, headers: { ...getHeaders(), ...(init?.headers || {}) }, cache: 'no-store' }); if (!response.ok) throw new Error(`Supabase request failed: ${response.status} ${await response.text()}`); return response; }
@@ -35,13 +36,18 @@ export const listRFQRequests = cache(async (filters: RFQListFilters = {}) => {
 export async function getRFQRequest(id: string) {
   const params = new URLSearchParams({ select: 'id,request_code,full_name,company_name,phone,email,project_location,project_notes,request_type,source,urgency,status,sales_priority,next_follow_up_at,internal_notes,last_admin_action_at,whatsapp_message,created_at,updated_at,last_status_changed_at,notification_attempted_at,notification_sent_at,notification_provider,notification_message_id,notification_error,rfq_request_items(id,product_id,name,quantity,unit,brand,category,urgency,notes,created_at)', id: `eq.${id}`, limit: '1' });
   const response = await supabaseFetch(`rfq_requests?${params.toString()}`); const rows = await response.json() as Array<any>; const rfq = rows[0] ?? null; if (!rfq) return null;
-  const productIds: string[] = (rfq.rfq_request_items || []).map((item: any) => item.product_id).filter((v: unknown): v is string => typeof v === 'string' && v.length > 0);
-  const productCodes: string[] = (rfq.rfq_request_items || []).map((item: any) => item.product_id).filter((code: unknown): code is string => typeof code === 'string' && code.length <= 64);
+  const productIdValues: string[] = (rfq.rfq_request_items || []).map((item: any) => item.product_id).filter((v: unknown): v is string => typeof v === 'string' && v.length > 0);
+  const productUuidIds: string[] = [...new Set(productIdValues.filter((id) => isUuid(id)))];
+  const productCodes: string[] = [...new Set(productIdValues.filter((id) => !isUuid(id) && id.length <= 64))];
   const byId = new Map(); const byCode = new Map();
-  if (productIds.length || productCodes.length) {
-    const clauses = [...new Set(productIds)].map((id: string) => `id.eq.${id}`).concat([...new Set(productCodes)].map((c: string) => `product_code.eq.${c}`));
-    const productParams = new URLSearchParams({ select: 'id,product_code,name,stock_status,stock_quantity,low_stock_threshold,last_stock_checked_at', or: `(${clauses.join(',')})`, limit: '200' });
-    const pRes = await supabaseFetch(`products?${productParams.toString()}`); const products = await pRes.json() as Array<any>; products.forEach((p) => { byId.set(p.id, p); byCode.set(p.product_code, p); });
+  if (productUuidIds.length || productCodes.length) {
+    const clauses = productUuidIds.map((id: string) => `id.eq.${id}`).concat(productCodes.map((c: string) => `product_code.eq.${c}`));
+    try {
+      const productParams = new URLSearchParams({ select: 'id,product_code,name,stock_status,stock_quantity,low_stock_threshold,last_stock_checked_at', or: `(${clauses.join(',')})`, limit: '200' });
+      const pRes = await supabaseFetch(`products?${productParams.toString()}`); const products = await pRes.json() as Array<any>; products.forEach((p) => { byId.set(p.id, p); byCode.set(p.product_code, p); });
+    } catch (error) {
+      console.error('RFQ admin product inventory lookup failed', error);
+    }
   }
   rfq.rfq_request_items = (rfq.rfq_request_items || []).map((item: any) => ({ ...item, matched_product: (item.product_id && byId.get(item.product_id)) || (item.product_id && byCode.get(item.product_id)) || null }));
   return rfq;
