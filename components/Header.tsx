@@ -12,6 +12,7 @@ const nav = [
   ['Solutions', '/solutions'],
   ['Products', '/products-partners'],
   ['RFQ', '/rfq'],
+  ['Track RFQ', '/track'],
   ['Resources', '/resources'],
   ['Contact', '/contact'],
 ] as const;

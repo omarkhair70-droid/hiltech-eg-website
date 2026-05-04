@@ -54,7 +54,9 @@ export default function Footer() {
           <h4 className="font-semibold">Resources</h4>
           <ul className="mt-3 space-y-1 text-sm text-slate-200">
             <li><Link className="underline" href="/resources">Resources Hub</Link></li>
-            <li><Link className="underline" href="/resources/rfq-guide">RFQ Preparation Guide</Link></li><li><Link className="underline" href="/scope-finder">Scope Finder</Link></li>
+            <li><Link className="underline" href="/resources/rfq-guide">RFQ Preparation Guide</Link></li>
+            <li><Link className="underline" href="/scope-finder">Scope Finder</Link></li>
+            <li><Link className="underline" href="/track">Track RFQ Request</Link></li>
           </ul>
           <h4 className="mt-4 font-semibold">Compliance</h4>
           <p className="mt-3 text-sm text-slate-300">
