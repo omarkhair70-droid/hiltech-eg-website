@@ -165,3 +165,12 @@ This adds optional audit columns on `rfq_requests`:
 ## Phase 29B migration note
 - Added migration to extend `public.products` with optional inventory columns (`stock_status`, `stock_quantity`, `low_stock_threshold`, `inventory_notes`, `last_stock_checked_at`).
 - Migration is non-destructive and uses `ADD COLUMN IF NOT EXISTS`, safe `CHECK` constraints, and a stock status index.
+
+## Phase 30A migration note
+Run:
+- `supabase/migrations/20260504100000_phase_30a_rfq_sales_workflow.sql`
+
+This non-destructive migration adds internal RFQ sales workflow fields:
+- `sales_priority` (with allowed values/check constraint)
+- `next_follow_up_at`
+- `last_admin_action_at`

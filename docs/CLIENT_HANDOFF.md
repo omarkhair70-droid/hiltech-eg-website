@@ -382,3 +382,10 @@ Visual assets used in Phase 28B:
 - Public pages now track key product and RFQ interactions (category filtering, add-to-RFQ, basket actions, RFQ submit lifecycle, WhatsApp/copy/clear/track/browse actions).
 - Privacy guardrails: no personal details (name/email/phone), no project/item notes, no exact RFQ message text, no request code, and no admin-only data are sent to GA events.
 - Analytics remains public-site focused; admin behavior is not tracked.
+
+## Phase 30A - RFQ Command Center and Internal Sales Workflow (May 2026)
+- Admin RFQ detail was upgraded into a command-center workflow page with richer customer/project metadata, item visibility, and internal follow-up controls.
+- Admin-only workflow fields now include sales priority, next follow-up, internal notes, and last admin action timestamp.
+- RFQ item review now includes internal inventory context (stock status, quantity, threshold, last check) to support quoting decisions.
+- Print RFQ Summary is available for customer-facing sharing and excludes internal notes.
+- Public customer tracking remains safe and only shows approved status/timeline data.

@@ -91,3 +91,12 @@ Notes:
 - GA4 interaction events are implemented for public product/RFQ engagement analysis only.
 - Admin dashboard routes and internal operational data are excluded from these analytics events.
 - No admin notes, internal inventory fields, or dashboard actions are sent to GA.
+
+## Phase 30A - RFQ Command Center usage
+1. Open `/admin/rfq` and use quick filters (New/Pending, Urgent, High value, Waiting customer/supplier, Follow-up due).
+2. Open an RFQ detail page to review request code, status, customer/project details, source, urgency, and requested items.
+3. Set **Sales priority** to guide internal execution.
+4. Set **Next follow-up date** to track callbacks and pending actions.
+5. Add **Internal notes** (admin-only, never shown in customer tracking).
+6. Use **Print RFQ Summary** for customer-facing output.
+7. Use item inventory badges and stock context to prioritize availability checks before quotation.
