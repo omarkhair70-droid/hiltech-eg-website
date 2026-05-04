@@ -174,3 +174,11 @@ This non-destructive migration adds internal RFQ sales workflow fields:
 - `sales_priority` (with allowed values/check constraint)
 - `next_follow_up_at`
 - `last_admin_action_at`
+
+## Phase 30A hotfix note
+Run:
+- `supabase/migrations/20260504113000_hotfix_rfq_internal_notes.sql`
+
+This non-destructive hotfix:
+- Adds `internal_notes` on `public.rfq_requests` if the column is missing.
+- Fixes RFQ admin detail inventory matching to avoid UUID vs `product_code` mismatch crashes.
