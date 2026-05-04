@@ -100,3 +100,13 @@ Notes:
 5. Add **Internal notes** (admin-only, never shown in customer tracking).
 6. Use **Print RFQ Summary** for customer-facing output.
 7. Use item inventory badges and stock context to prioritize availability checks before quotation.
+
+
+## Phase 31A: RFQ Quotation Builder (Admin Only)
+1. Open **/admin/rfq** and choose an RFQ row.
+2. In RFQ Command Center, use **Quotation Builder**.
+3. Set quotation status/currency/valid-until, then add item unit prices and line totals.
+4. Add payment and delivery terms, optional admin quotation notes, discount, and tax.
+5. Save as draft and verify subtotal/discount/tax/grand total.
+6. Use **Print Quotation Draft** for a print-friendly draft.
+7. Not public yet: quotation prices, quotation notes, and item quotation notes are not exposed on /track.
