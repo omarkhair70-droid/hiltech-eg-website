@@ -402,3 +402,9 @@ Visual assets used in Phase 28B:
 - It includes quick links into RFQ Command Center filters and Product Admin stock filters for faster daily execution.
 - This dashboard is admin-only and does not change public website behavior, RFQ submission flow, customer tracking visibility, or Google Analytics behavior.
 \n\n## Phase 31C - Product CSV Import / Export\n- Added admin-only Product CSV Import / Export tools at `/admin/products/import-export` for bulk updates via Excel/Google Sheets.\n- Admins can export the full product catalog/inventory CSV, download a template, run dry-run imports, and apply updates safely.\n- Imports match by `product_code`, can optionally create missing products, and never delete products.\n
+
+
+## Phase 31D - Customer Quote Approval / Rejection
+- Admins must explicitly set **quote_customer_visible** before any quotation is shown on tracking.
+- Customers can respond from tracking with Accept, Reject, or Request changes.
+- Internal/admin-only fields (internal notes, inventory notes, stock quantities) remain hidden from customer quote view.

@@ -159,3 +159,15 @@ Notes:
 - RFQ operations continue in **RFQ Command Center** (`/admin/rfq` and `/admin/rfq/[id]`).
 - Product operations continue in **Product Admin** (`/admin/products` and `/admin/products/[id]`).
 \n\n## Product CSV Import / Export (Phase 31C)\n- Open: Admin Dashboard → Product CSV Import / Export, or `/admin/products/import-export`.\n- Export: Click **Export products CSV** to download current product/catalog + inventory data.\n- Template: Click **Download template CSV** for required headers and sample rows.\n- Edit: Open in Excel/Google Sheets, keep header names unchanged, edit product rows.\n- Dry run: Upload CSV with **Dry run** checked to validate without writing changes.\n- Apply: Uncheck **Dry run** and run import to write updates/creates.\n- Required key column: `product_code` (primary match key).\n- Safety: No product deletions, admin-only access, and friendly validation errors for invalid rows.\n
+
+
+## Phase 31D - Quote Publish & Customer Response
+1. Prepare quotation draft values in RFQ detail.
+2. Set quotation status to **ready**.
+3. In **Customer Quote Visibility & Response**, enable quote visibility and optionally add a public message.
+4. Save visibility to publish (or disable to hide again).
+5. Monitor customer response status/notes/timestamps in the same RFQ detail panel.
+
+### Public vs Admin-only
+- Public: quote summary, quoted prices/totals, terms, validity, public message.
+- Admin-only: internal_notes, inventory notes, stock quantities/thresholds, provider error fields.

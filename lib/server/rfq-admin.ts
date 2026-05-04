@@ -8,9 +8,11 @@ const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 export const RFQ_STATUSES = ['new', 'in_review', 'quoted', 'waiting_client', 'won', 'lost', 'closed'] as const;
 export const RFQ_SALES_PRIORITIES = ['normal', 'urgent', 'high_value', 'waiting_customer', 'waiting_supplier'] as const;
 export const RFQ_QUOTATION_STATUSES = ['not_started', 'draft', 'ready', 'sent', 'revised', 'cancelled'] as const;
+export const RFQ_CUSTOMER_RESPONSE_STATUSES = ['no_response', 'accepted', 'rejected', 'changes_requested'] as const;
 export type RFQStatus = (typeof RFQ_STATUSES)[number];
 export type RFQSalesPriority = (typeof RFQ_SALES_PRIORITIES)[number];
 export type RFQQuotationStatus = (typeof RFQ_QUOTATION_STATUSES)[number];
+export type RFQCustomerResponseStatus = (typeof RFQ_CUSTOMER_RESPONSE_STATUSES)[number];
 
 export function isRFQAdminBackendConfigured() { return Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY); }
 function isUuid(value: string): boolean { return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value); }
@@ -21,7 +23,7 @@ async function supabaseFetch(path: string, init?: RequestInit) { const response 
 export interface RFQListFilters { status?: string; source?: string; urgency?: string; search?: string; quick?: string; sales_priority?: string; }
 
 export const listRFQRequests = cache(async (filters: RFQListFilters = {}) => {
-  const params = new URLSearchParams({ select: 'id,request_code,full_name,company_name,phone,email,project_location,source,urgency,status,created_at,sales_priority,next_follow_up_at,quotation_status,rfq_request_items(count)', order: 'created_at.desc', limit: '100' });
+  const params = new URLSearchParams({ select: 'id,request_code,full_name,company_name,phone,email,project_location,source,urgency,status,created_at,sales_priority,next_follow_up_at,quotation_status,quote_customer_visible,quote_customer_response_status,rfq_request_items(count)', order: 'created_at.desc', limit: '100' });
   if (filters.status && RFQ_STATUSES.includes(filters.status as RFQStatus)) params.set('status', `eq.${filters.status}`);
   if (filters.source) params.set('source', `eq.${filters.source}`);
   if (filters.urgency) params.set('urgency', `eq.${filters.urgency}`);
@@ -33,12 +35,16 @@ export const listRFQRequests = cache(async (filters: RFQListFilters = {}) => {
   if (filters.quick === 'followup_due') return baseRows.filter((r) => r.next_follow_up_at && new Date(r.next_follow_up_at).getTime() <= Date.now());
   if (filters.quick === 'quotation_drafts') return baseRows.filter((r) => r.quotation_status === 'draft');
   if (filters.quick === 'quotation_ready') return baseRows.filter((r) => r.quotation_status === 'ready');
+  if (filters.quick === 'quote_accepted') return baseRows.filter((r) => r.quote_customer_response_status === 'accepted');
+  if (filters.quick === 'quote_rejected') return baseRows.filter((r) => r.quote_customer_response_status === 'rejected');
+  if (filters.quick === 'quote_changes_requested') return baseRows.filter((r) => r.quote_customer_response_status === 'changes_requested');
+  if (filters.quick === 'quote_awaiting_response') return baseRows.filter((r) => r.quote_customer_visible && r.quote_customer_response_status === 'no_response');
   if (filters.quick && RFQ_SALES_PRIORITIES.includes(filters.quick as RFQSalesPriority)) return baseRows.filter((r) => r.sales_priority === filters.quick);
   return baseRows;
 });
 
 export async function getRFQRequest(id: string) {
-  const params = new URLSearchParams({ select: 'id,request_code,full_name,company_name,phone,email,project_location,project_notes,request_type,source,urgency,status,sales_priority,next_follow_up_at,internal_notes,last_admin_action_at,whatsapp_message,created_at,updated_at,last_status_changed_at,notification_attempted_at,notification_sent_at,notification_provider,notification_message_id,notification_error,quotation_status,quotation_currency,quotation_valid_until,quotation_payment_terms,quotation_delivery_terms,quotation_notes,quotation_discount_amount,quotation_tax_amount,quotation_updated_at,rfq_request_items(id,product_id,name,quantity,unit,brand,category,urgency,notes,quoted_unit_price,quoted_line_total,quoted_item_notes,created_at)', id: `eq.${id}`, limit: '1' });
+  const params = new URLSearchParams({ select: 'id,request_code,full_name,company_name,phone,email,project_location,project_notes,request_type,source,urgency,status,sales_priority,next_follow_up_at,internal_notes,last_admin_action_at,whatsapp_message,created_at,updated_at,last_status_changed_at,notification_attempted_at,notification_sent_at,notification_provider,notification_message_id,notification_error,quotation_status,quotation_currency,quotation_valid_until,quotation_payment_terms,quotation_delivery_terms,quotation_notes,quotation_discount_amount,quotation_tax_amount,quotation_updated_at,quote_customer_visible,quote_sent_at,quote_customer_response_status,quote_customer_response_notes,quote_customer_responded_at,quote_customer_last_viewed_at,quote_public_message,rfq_request_items(id,product_id,name,quantity,unit,brand,category,urgency,notes,quoted_unit_price,quoted_line_total,quoted_item_notes,created_at)', id: `eq.${id}`, limit: '1' });
   const response = await supabaseFetch(`rfq_requests?${params.toString()}`); const rows = await response.json() as Array<any>; const rfq = rows[0] ?? null; if (!rfq) return null;
   const productIdValues: string[] = (rfq.rfq_request_items || []).map((item: any) => item.product_id).filter((v: unknown): v is string => typeof v === 'string' && v.length > 0);
   const productUuidIds: string[] = [...new Set(productIdValues.filter((id) => isUuid(id)))];
@@ -58,6 +64,33 @@ export async function getRFQRequest(id: string) {
 }
 
 export async function getRFQSummaryCounts() { const response = await supabaseFetch('rfq_requests?select=status'); const rows = await response.json() as Array<{ status: string }>; return rows.reduce((acc, row) => { acc.total += 1; if (row.status === 'new') acc.new += 1; if (row.status === 'in_review') acc.in_review += 1; if (row.status === 'quoted') acc.quoted += 1; return acc; }, { new: 0, in_review: 0, quoted: 0, total: 0 }); }
+export async function getQuoteCustomerResponseSummary() {
+  const response = await supabaseFetch('rfq_requests?select=quote_customer_visible,quote_customer_response_status');
+  const rows = await response.json() as Array<{ quote_customer_visible: boolean; quote_customer_response_status: RFQCustomerResponseStatus }>;
+  return rows.reduce((acc, row) => {
+    if (row.quote_customer_visible && row.quote_customer_response_status === 'no_response') acc.awaiting_response += 1;
+    if (row.quote_customer_response_status === 'accepted') acc.accepted += 1;
+    if (row.quote_customer_response_status === 'rejected') acc.rejected += 1;
+    if (row.quote_customer_response_status === 'changes_requested') acc.changes_requested += 1;
+    return acc;
+  }, { awaiting_response: 0, accepted: 0, rejected: 0, changes_requested: 0 });
+}
+
+export async function updateQuoteCustomerVisibility(id: string, payload: { quoteCustomerVisible: boolean; quotePublicMessage: string | null }) {
+  const now = new Date().toISOString();
+  const existing = await getRFQRequest(id);
+  if (!existing) throw new Error('RFQ not found.');
+  const patch: Record<string, unknown> = {
+    quote_customer_visible: payload.quoteCustomerVisible,
+    quote_public_message: parseCappedText(payload.quotePublicMessage, 1000),
+    last_admin_action_at: now,
+  };
+  if (payload.quoteCustomerVisible) {
+    if (!existing.quote_sent_at) patch.quote_sent_at = now;
+    if (existing.quotation_status === 'ready') patch.quotation_status = 'sent';
+  }
+  await supabaseFetch(`rfq_requests?id=eq.${id}`, { method: 'PATCH', headers: { Prefer: 'return=minimal' }, body: JSON.stringify(patch) });
+}
 
 export async function updateRFQRequestWorkflow(id: string, payload: { status: RFQStatus; salesPriority: RFQSalesPriority; nextFollowUpAt: string | null; internalNotes: string | null; }) {
   if (!RFQ_STATUSES.includes(payload.status)) throw new Error('Invalid status value');
