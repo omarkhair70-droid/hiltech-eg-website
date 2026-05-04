@@ -395,3 +395,9 @@ Visual assets used in Phase 28B:
 - Added admin-only quotation builder in RFQ Command Center for draft pricing, terms, and totals.
 - Quotation data is internal only in this phase.
 - Customer /track page does not expose quotation prices or quotation notes.
+
+## Phase 31B - Admin Executive Dashboard (May 2026)
+- Added a new internal admin executive dashboard route at `/admin`.
+- The dashboard provides a high-level operational summary across RFQs, quotation workflow statuses, follow-up due workload, and product inventory health.
+- It includes quick links into RFQ Command Center filters and Product Admin stock filters for faster daily execution.
+- This dashboard is admin-only and does not change public website behavior, RFQ submission flow, customer tracking visibility, or Google Analytics behavior.

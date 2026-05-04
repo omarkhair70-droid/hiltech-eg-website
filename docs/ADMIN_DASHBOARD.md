@@ -110,3 +110,51 @@ Notes:
 5. Save as draft and verify subtotal/discount/tax/grand total.
 6. Use **Print Quotation Draft** for a print-friendly draft.
 7. Not public yet: quotation prices, quotation notes, and item quotation notes are not exposed on /track.
+
+## Admin Executive Dashboard
+
+### Route
+- `/admin`
+
+### Purpose
+- Provide one-screen operational visibility for admins across:
+  - RFQ volume and pipeline status
+  - Sales workflow priorities (urgent/high value/waiting/follow-up due)
+  - Quotation status distribution
+  - Product inventory health
+
+### Cards and metrics
+- **RFQ Overview**: Total RFQs, New, In review, Quoted, Waiting client, Won, Closed/Lost.
+- **Sales Workflow**: Urgent RFQs, High value RFQs, Waiting customer, Waiting supplier, Follow-up due.
+- **Quotation Overview**: Not started, Draft, Ready, Sent, Revised, Cancelled.
+- **Inventory Overview**: Total products, Active products, Low stock, Out of stock, Backorder, Unknown stock.
+
+### Quick links
+- RFQ shortcuts:
+  - `/admin/rfq?quick=new_pending`
+  - `/admin/rfq?quick=urgent`
+  - `/admin/rfq?quick=high_value`
+  - `/admin/rfq?quick=followup_due`
+  - `/admin/rfq?quick=quotation_drafts`
+  - `/admin/rfq?quick=quotation_ready`
+- Product shortcuts:
+  - `/admin/products`
+  - `/admin/products?stock_status=low_stock`
+  - `/admin/products?stock_status=out_of_stock`
+  - `/admin/products?stock_status=backorder`
+
+### Follow-up review workflow
+1. Open `/admin` and review **Follow-up Due** count and table.
+2. Open RFQ details from the table to update workflow status, notes, and next follow-up date.
+3. Return to `/admin` to verify due queue reduction.
+
+### Inventory attention workflow
+1. Open `/admin` and review **Inventory Attention** table.
+2. Open product edit from each row.
+3. Update stock status/threshold/quantity in Product Admin.
+4. Return to `/admin` to confirm attention list is resolved.
+
+### Connection with existing admin tools
+- `/admin` acts as the executive entry point.
+- RFQ operations continue in **RFQ Command Center** (`/admin/rfq` and `/admin/rfq/[id]`).
+- Product operations continue in **Product Admin** (`/admin/products` and `/admin/products/[id]`).
