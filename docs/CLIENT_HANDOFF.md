@@ -389,3 +389,9 @@ Visual assets used in Phase 28B:
 - RFQ item review now includes internal inventory context (stock status, quantity, threshold, last check) to support quoting decisions.
 - Print RFQ Summary is available for customer-facing sharing and excludes internal notes.
 - Public customer tracking remains safe and only shows approved status/timeline data.
+
+
+## Phase 31A - RFQ Quotation Builder
+- Added admin-only quotation builder in RFQ Command Center for draft pricing, terms, and totals.
+- Quotation data is internal only in this phase.
+- Customer /track page does not expose quotation prices or quotation notes.

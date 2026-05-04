@@ -182,3 +182,7 @@ Run:
 This non-destructive hotfix:
 - Adds `internal_notes` on `public.rfq_requests` if the column is missing.
 - Fixes RFQ admin detail inventory matching to avoid UUID vs `product_code` mismatch crashes.
+
+
+## Phase 31A Migration Note
+Run migration `supabase/migrations/20260504130000_phase_31a_rfq_quotation_builder.sql` to add RFQ quotation draft fields to `rfq_requests` and `rfq_request_items`.
