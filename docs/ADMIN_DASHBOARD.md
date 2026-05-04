@@ -158,3 +158,4 @@ Notes:
 - `/admin` acts as the executive entry point.
 - RFQ operations continue in **RFQ Command Center** (`/admin/rfq` and `/admin/rfq/[id]`).
 - Product operations continue in **Product Admin** (`/admin/products` and `/admin/products/[id]`).
+\n\n## Product CSV Import / Export (Phase 31C)\n- Open: Admin Dashboard → Product CSV Import / Export, or `/admin/products/import-export`.\n- Export: Click **Export products CSV** to download current product/catalog + inventory data.\n- Template: Click **Download template CSV** for required headers and sample rows.\n- Edit: Open in Excel/Google Sheets, keep header names unchanged, edit product rows.\n- Dry run: Upload CSV with **Dry run** checked to validate without writing changes.\n- Apply: Uncheck **Dry run** and run import to write updates/creates.\n- Required key column: `product_code` (primary match key).\n- Safety: No product deletions, admin-only access, and friendly validation errors for invalid rows.\n

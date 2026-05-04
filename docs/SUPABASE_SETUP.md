@@ -186,3 +186,4 @@ This non-destructive hotfix:
 
 ## Phase 31A Migration Note
 Run migration `supabase/migrations/20260504130000_phase_31a_rfq_quotation_builder.sql` to add RFQ quotation draft fields to `rfq_requests` and `rfq_request_items`.
+\n\n## Phase 31C Note\nPhase 31C (Product CSV Import / Export) does not require a new migration **if** the product inventory fields already exist (`stock_status`, `stock_quantity`, `low_stock_threshold`, `inventory_notes`, `last_stock_checked_at`).\n

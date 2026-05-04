@@ -401,3 +401,4 @@ Visual assets used in Phase 28B:
 - The dashboard provides a high-level operational summary across RFQs, quotation workflow statuses, follow-up due workload, and product inventory health.
 - It includes quick links into RFQ Command Center filters and Product Admin stock filters for faster daily execution.
 - This dashboard is admin-only and does not change public website behavior, RFQ submission flow, customer tracking visibility, or Google Analytics behavior.
+\n\n## Phase 31C - Product CSV Import / Export\n- Added admin-only Product CSV Import / Export tools at `/admin/products/import-export` for bulk updates via Excel/Google Sheets.\n- Admins can export the full product catalog/inventory CSV, download a template, run dry-run imports, and apply updates safely.\n- Imports match by `product_code`, can optionally create missing products, and never delete products.\n
