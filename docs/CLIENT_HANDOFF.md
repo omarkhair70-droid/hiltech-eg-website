@@ -408,3 +408,8 @@ Visual assets used in Phase 28B:
 - Admins must explicitly set **quote_customer_visible** before any quotation is shown on tracking.
 - Customers can respond from tracking with Accept, Reject, or Request changes.
 - Internal/admin-only fields (internal notes, inventory notes, stock quantities) remain hidden from customer quote view.
+
+
+## RFQ Tracking Discoverability
+- The public RFQ tracking page (`/track`) is now discoverable from the main site header navigation, footer resources links, and contact page helper text.
+- Customers must provide both: (1) RFQ reference code, and (2) the same phone number or email used when submitting the RFQ.
