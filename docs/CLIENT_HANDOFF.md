@@ -413,3 +413,8 @@ Visual assets used in Phase 28B:
 ## RFQ Tracking Discoverability
 - The public RFQ tracking page (`/track`) is now discoverable from the main site header navigation, footer resources links, and contact page helper text.
 - Customers must provide both: (1) RFQ reference code, and (2) the same phone number or email used when submitting the RFQ.
+
+## Public Website Journey Notes (Phase 35A)
+- Primary customer journey: Home -> Solutions/Products -> Start RFQ -> Track RFQ.
+- Primary CTA across public pages: **Start RFQ** (`/rfq`).
+- RFQ path safety: Contact page now clearly routes quotation requests to `/rfq`; mailto kept as secondary non-RFQ inquiry path; WhatsApp fallback remains available.

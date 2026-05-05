@@ -1,0 +1,47 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import { SectionShell } from '@/components/ui/primitives';
+import { site } from '@/content/site';
+
+export const metadata: Metadata = {
+  title: 'Field Work & References | HILTECH',
+  description: 'Selected field visuals, testing workflows, and reference materials for HILTECH infrastructure delivery.',
+  alternates: { canonical: `${site.siteUrl}/work` },
+  openGraph: { title: 'Field Work & References | HILTECH', description: 'Selected field visuals, testing workflows, and reference materials for HILTECH infrastructure delivery.', url: `${site.siteUrl}/work`, images: [site.ogImage] },
+  twitter: { card: 'summary_large_image', images: [site.ogImage] },
+};
+
+type GalleryGroup = { title: string; imageFit?: 'contain' | 'cover'; images: { src: string; alt: string }[] };
+const fieldGalleryGroups: GalleryGroup[] = [
+  { title: 'Fiber work gallery', images: [{ src: '/fiber-cable-closeup.jpg', alt: 'Close-up of installed fiber optic cable strands and protective jacket.' },{ src: '/fiber-connectors-closeup.jpg', alt: 'Fiber connectors arranged during preparation and termination tasks.' },{ src: '/fiber-distribution-panel.jpg', alt: 'Fiber distribution panel showing organized termination points.' },{ src: '/fiber-patch-panel-closeup.jpg', alt: 'Fiber patch panel with labeled ports and patching points.' },{ src: '/fiber-termination-box.jpg', alt: 'Wall-mounted fiber termination box with routed patch leads.' }] },
+  { title: 'Rack & data room work gallery', images: [{ src: '/rack-cable-management-white.jpg', alt: 'Structured rack cable management with clean white patch routing.' },{ src: '/rack-data-room.jpg', alt: 'Data room rack layout prepared for enterprise network deployment.' },{ src: '/rack-front-cabling.jpg', alt: 'Front-facing rack cabling with neat horizontal and vertical routing.' },{ src: '/rack-patch-panel-blue.jpg', alt: 'Rack patch panel with blue cabling arranged for maintainability.' },{ src: '/rack-terminal-panel.jpg', alt: 'Rack terminal panel with grouped terminations and labels.' },{ src: '/rack-yellow-patching.jpg', alt: 'Yellow network patch leads routed inside rack infrastructure.' }] },
+  { title: 'Copper cabling work gallery', images: [{ src: '/copper-cable-tray.jpg', alt: 'Copper cabling routed through tray infrastructure in a building corridor.' },{ src: '/copper-cabling-closeup.jpg', alt: 'Close-up of copper cable bundle prepared for structured cabling deployment.' },{ src: '/copper-ceiling-routing.jpg', alt: 'Copper route paths installed above ceiling for office connectivity.' },{ src: '/copper-floor-routing.jpg', alt: 'Copper floor-level routing prepared for workstation connectivity points.' },{ src: '/copper-patch-panel.jpg', alt: 'Copper patch panel with terminated and organized network ports.' },{ src: '/copper-riser-routing.jpg', alt: 'Vertical copper riser routing prepared between building floors.' }] },
+  { title: 'Testing tools gallery', imageFit: 'contain', images: [{ src: '/testing-fluke-meter.jpg', alt: 'Fluke test meter used for field validation and diagnostics.' },{ src: '/testing-otdr-device.jpg', alt: 'OTDR testing device used for fiber path and fault measurements.' },{ src: '/testing-power-meter.jpg', alt: 'Optical power meter used for fiber signal level verification.' },{ src: '/testing-digital-copper-tester.jpg', alt: 'Digital copper tester used for cable continuity and performance checks.' }] },
+];
+
+type LogoItem = { src: string; alt: string; filename: string };
+async function getReferenceLogos() {
+  const dirs = [
+    { fileSystemPath: path.join(process.cwd(), 'public/company-profile/references-unconfirmed'), publicPath: '/company-profile/references-unconfirmed', matcher: (f: string) => /^(client|partner)-.+\.(png|jpe?g|webp|svg)$/i.test(f) },
+    { fileSystemPath: path.join(process.cwd(), 'public/references-unconfirmed'), publicPath: '/references-unconfirmed', matcher: (f: string) => /^(client|partner)-.+\.(png|jpe?g|webp|svg)$/i.test(f) },
+    { fileSystemPath: path.join(process.cwd(), 'public'), publicPath: '', matcher: (f: string) => /^(client|partner)-.+\.png$/i.test(f) },
+  ];
+  const logos = await Promise.all(dirs.map(async ({ fileSystemPath, publicPath, matcher }) => {
+    try { const files = await fs.readdir(fileSystemPath); return files.filter((f) => matcher(f)).map((f) => ({ src: `${publicPath}/${f}`, filename: f, alt: `${f.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ')} logo shown in supplied company profile` })); } catch { return []; }
+  }));
+  const bySource = new Map<string, LogoItem>(); logos.flat().forEach((l) => bySource.set(l.src, l));
+  const sorted = [...bySource.values()].sort((a, b) => a.filename.localeCompare(b.filename));
+  return { partners: sorted.filter((l) => l.filename.toLowerCase().startsWith('partner-')), clients: sorted.filter((l) => l.filename.toLowerCase().startsWith('client-')) };
+}
+
+export default async function Page() {
+  const hasPartnerPanel = await fs.access(path.join(process.cwd(), 'public/references-partners-panel.jpg')).then(() => true).catch(() => false);
+  const hasClientPanel = await fs.access(path.join(process.cwd(), 'public/references-clients-panel.jpg')).then(() => true).catch(() => false);
+  const hasReferencePanels = hasPartnerPanel && hasClientPanel;
+  const { partners, clients } = await getReferenceLogos();
+  const hasLogoFallback = partners.length > 0 || clients.length > 0;
+
+  return <main><SectionShell><section className="rounded-2xl border border-slate-200 bg-slate-50 p-6"><p className="text-xs font-semibold uppercase tracking-wider text-orange-600">Infrastructure proof</p><h1 className="mt-2 text-3xl font-bold text-slate-900">Field Work &amp; References</h1><p className="mt-3 text-slate-700">Selected field visuals, testing workflows, and reference materials from HILTECH infrastructure delivery.</p></section><section className="mt-8 space-y-5">{fieldGalleryGroups.map((group) => <article key={group.title} className="rounded-xl border border-slate-200 bg-white p-4"><h2 className="text-base font-semibold text-slate-900">{group.title}</h2><div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{group.images.map((image) => <div key={image.src} className="overflow-hidden rounded-lg border border-slate-200 bg-slate-100"><div className={`relative aspect-[4/3] w-full ${group.imageFit === 'contain' ? 'bg-white p-3' : ''}`}><Image src={image.src} alt={image.alt} fill className={group.imageFit === 'contain' ? 'object-contain p-3' : 'object-cover'} sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw" /></div></div>)}</div></article>)}</section><section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 md:p-6"><h2 className="text-2xl font-bold text-slate-900">Partner and client references</h2>{hasReferencePanels ? <div className="mt-5 grid gap-4"><article className="rounded-xl border border-slate-200 bg-slate-50 p-4 sm:p-5"><h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Partners panel</h3><div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-white p-3 sm:p-4"><div className="relative aspect-[16/10] w-full sm:aspect-[21/10]"><Image src="/references-partners-panel.jpg" alt="HILTECH supplied company profile page showing selected partner references." fill className="object-contain" sizes="100vw" /></div></div></article><article className="rounded-xl border border-slate-200 bg-slate-50 p-4 sm:p-5"><h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Client references panel</h3><div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-white p-3 sm:p-4"><div className="relative aspect-[16/10] w-full sm:aspect-[21/10]"><Image src="/references-clients-panel.jpg" alt="HILTECH supplied company profile page showing selected client references." fill className="object-contain" sizes="100vw" /></div></div></article></div> : <p className="mt-3 text-sm text-slate-700">Reference panels are not available yet.</p>}{hasLogoFallback ? <div className="mt-5 grid gap-4 md:grid-cols-2">{partners.length > 0 ? <article className="rounded-xl border border-slate-200 bg-slate-50 p-4"><h3 className="text-sm font-semibold text-slate-900">Partner logos (fallback)</h3><div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4">{partners.map((logo) => <div key={logo.src} className="relative aspect-[3/2] rounded border border-slate-200 bg-white p-2"><Image src={logo.src} alt={logo.alt} fill className="object-contain p-2" sizes="120px" /></div>)}</div></article> : null}{clients.length > 0 ? <article className="rounded-xl border border-slate-200 bg-slate-50 p-4"><h3 className="text-sm font-semibold text-slate-900">Client logos (fallback)</h3><div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4">{clients.map((logo) => <div key={logo.src} className="relative aspect-[3/2] rounded border border-slate-200 bg-white p-2"><Image src={logo.src} alt={logo.alt} fill className="object-contain p-2" sizes="120px" /></div>)}</div></article> : null}</div> : null}</section></SectionShell></main>;
+}
