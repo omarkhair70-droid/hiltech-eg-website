@@ -417,3 +417,13 @@ Do **not** use service-account variables (`GA_CLIENT_EMAIL`, `GA_PRIVATE_KEY`) f
 ### Migration note
 
 - Phase 33E is implemented as code-only changes (no Supabase migration required).
+
+
+## Phase 33F — Admin Insights & Recommendations
+
+- Added protected route: `/admin/insights` (admin session required).
+- Insights are **rule-based** recommendations generated from safe aggregated operational and GA4 data (no external AI APIs).
+- Data sources: dashboard summary, sales dashboard (30d), product analytics (30d), action center, and GA4 advanced analytics (30d when configured).
+- Privacy guardrails: no customer email/phone/message contents/internal notes in insight payloads; no secrets; no raw backend errors in UI.
+- Failure handling: partial source failures still return available insights; full failure shows temporary unavailable state.
+- Database note: **no Supabase migration required** for Phase 33F.
