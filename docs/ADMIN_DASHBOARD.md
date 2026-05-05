@@ -266,3 +266,12 @@ Do **not** use service-account variables (`GA_CLIENT_EMAIL`, `GA_PRIVATE_KEY`) f
 
 ### Migration note
 - No database migration required for Phase 33A.
+
+## Product Demand & Inventory Analytics (Phase 33B)
+- Route: `/admin/products/analytics` (admin-only via `requireAdminSession()`).
+- Data source: Supabase operational tables only (`products`, `rfq_request_items`), no Google Analytics and no GA4 Data API usage.
+- Supports range filters: `?range=7|30|90|365` (default `30`).
+- Shows KPI cards for demand volume, unique items/categories, RFQ demand coverage, quoted value, unmatched demand, and inventory risk counts.
+- Includes top requested items/categories, top quoted demand by value, demand-vs-inventory insights, inventory risk table, and daily demand trend table.
+- Privacy guardrails: only aggregated operational item/product metrics are shown; no customer contact fields, project/internal notes, notification diagnostics, or service-role secrets are exposed in UI.
+- Migration note: no Supabase migration added in this phase; existing schema/fields were used.
