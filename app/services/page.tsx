@@ -167,7 +167,7 @@ export default async function Page() {
   return (
     <main className="section">
       <div className="container">
-        <h1 className="text-3xl font-bold leading-tight sm:text-4xl">Infrastructure Services Designed for Reliable Business Operations.</h1>
+        <h1 className="text-3xl font-bold leading-tight sm:text-4xl">Enterprise Infrastructure Services</h1>
         <p className="mt-3 text-slate-700">HILTECH provides practical, standards-driven network infrastructure services covering site inspection, engineering planning, implementation, and measured delivery support.</p>
       </div>
 
@@ -203,37 +203,6 @@ export default async function Page() {
       <section className="section pt-0">
         <div className="container">
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
-            <h2 className="text-2xl font-bold text-slate-900">Company profile field gallery</h2>
-            <p className="mt-2 text-sm text-slate-700">Selected visuals from HILTECH&apos;s supplied company profile, organized by delivery area.</p>
-            <div className="mt-5 space-y-5">
-              {fieldGalleryGroups.map((group) => (
-                <article key={group.title} className="rounded-xl border border-slate-200 bg-white p-4">
-                  <h3 className="text-base font-semibold text-slate-900">{group.title}</h3>
-                  <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {group.images.map((image) => (
-                      <div key={image.src} className="overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
-                        <div className={`relative aspect-[4/3] w-full ${group.imageFit === 'contain' ? 'bg-white p-3' : ''}`}>
-                          <Image
-                            src={image.src}
-                            alt={image.alt}
-                            fill
-                            className={group.imageFit === 'contain' ? 'object-contain p-3' : 'object-cover'}
-                            sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section pt-0">
-        <div className="container">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
             <h2 className="text-2xl font-bold text-slate-900">Testing tools used across delivery</h2>
             <p className="mt-2 text-sm text-slate-700">Used across inspection, testing, and delivery workflows where applicable.</p>
             <ul className="mt-4 grid gap-2 text-sm text-slate-700 sm:grid-cols-2 lg:grid-cols-3">
@@ -245,55 +214,18 @@ export default async function Page() {
         </div>
       </section>
 
-      {hasReferencePanels ? (
-        <section className="section pt-0">
-          <div className="container">
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-              <h2 className="text-2xl font-bold text-slate-900">Selected partners and client references</h2>
-              <p className="mt-2 text-sm text-slate-700">Displayed based on HILTECH&apos;s supplied company profile.</p>
-
-              {hasReferencePanels ? (
-                <div className="mt-5 grid gap-4">
-                  <article className="rounded-xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-                    <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Partners</h3>
-                    <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-white p-3 sm:p-4">
-                      <div className="relative aspect-[16/10] w-full sm:aspect-[21/10]">
-                        <Image
-                          src="/references-partners-panel.jpg"
-                          alt="HILTECH supplied company profile page showing selected partner references."
-                          fill
-                          className="object-contain"
-                          sizes="100vw"
-                        />
-                      </div>
-                    </div>
-                  </article>
-
-                  <article className="rounded-xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-                    <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Client references</h3>
-                    <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-white p-3 sm:p-4">
-                      <div className="relative aspect-[16/10] w-full sm:aspect-[21/10]">
-                        <Image
-                          src="/references-clients-panel.jpg"
-                          alt="HILTECH supplied company profile page showing selected client references."
-                          fill
-                          className="object-contain"
-                          sizes="100vw"
-                        />
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              ) : (
-                <div className="mt-5 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-700">
-                  Official partner and client reference panels are not available yet. The section will be published once the original panel visuals are provided.
-                  {hasLogoFallback ? ' Extracted individual logos are retained internally as fallback assets.' : ''}
-                </div>
-              )}
+      <section className="section pt-0">
+        <div className="container">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
+            <h2 className="text-2xl font-bold text-slate-900">Field proof and references</h2>
+            <p className="mt-2 text-sm text-slate-700">View selected project visuals and reference materials in our public resources library.</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Link href="/resources/company-profile" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Company Profile Content</Link>
+              <Link href="/resources" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Resources Hub</Link>
             </div>
           </div>
-        </section>
-      ) : null}
+        </div>
+      </section>
 
       <section className="section pt-0">
         <div className="container">
