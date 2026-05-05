@@ -4,14 +4,12 @@ import { requireAdminSession } from '@/lib/server/admin-auth';
 import { getAdminDashboardSummary, isAdminDashboardBackendConfigured } from '@/lib/server/admin-dashboard';
 import { getGoogleAnalyticsDashboardSummary, isGoogleAnalyticsAdminConfigured } from '@/lib/server/google-analytics-admin';
 import AdminShell from '@/components/admin/AdminShell';
-import { getAdminInsightsData } from '@/lib/server/admin-insights';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const metadata: Metadata = { title: 'HILTECH Admin Dashboard', robots: { index: false, follow: false } };
 
 const badgeClass = 'rounded-full px-2 py-1 text-xs font-semibold bg-slate-100 text-slate-700';
-const priorityClass = { high: 'bg-red-100 text-red-800', medium: 'bg-amber-100 text-amber-800', low: 'bg-slate-100 text-slate-700' };
 
 export default async function AdminExecutiveDashboardPage() {
   await requireAdminSession();
@@ -21,7 +19,6 @@ export default async function AdminExecutiveDashboardPage() {
   }
 
   const data = await getAdminDashboardSummary();
-  const insightsPreview = await getAdminInsightsData().catch(() => ({ insights: [], isUnavailable: true }));
 
   const gaConfigured = isGoogleAnalyticsAdminConfigured();
   let analyticsSummary: Awaited<ReturnType<typeof getGoogleAnalyticsDashboardSummary>> | null = null;

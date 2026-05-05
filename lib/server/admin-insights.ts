@@ -1,7 +1,6 @@
 import 'server-only';
 
 import { getAdminActionCenterData } from '@/lib/server/admin-action-center';
-import { getAdminDashboardSummary } from '@/lib/server/admin-dashboard';
 import { getAdminProductAnalyticsData } from '@/lib/server/admin-product-analytics';
 import { getAdminSalesDashboardData } from '@/lib/server/admin-sales-dashboard';
 import { getGoogleAnalyticsAdvancedAnalytics, isGoogleAnalyticsAdminConfigured } from '@/lib/server/google-analytics-admin';
@@ -23,8 +22,7 @@ export async function getAdminInsightsData() {
   const insights: AdminInsight[] = [];
   let loaded = 0;
 
-  const [dashboard, sales, products, actions, ga] = await Promise.all([
-    getAdminDashboardSummary().then((x) => (loaded += 1, x)).catch(() => null),
+  const [sales, products, actions, ga] = await Promise.all([
     getAdminSalesDashboardData(30).then((x) => (loaded += 1, x)).catch(() => null),
     getAdminProductAnalyticsData(30).then((x) => (loaded += 1, x)).catch(() => null),
     getAdminActionCenterData().then((x) => (loaded += 1, x)).catch(() => null),
