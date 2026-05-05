@@ -2,7 +2,7 @@ import { TechnicalDiagramPanel } from './TechnicalDiagramPanel';
 
 type DiagramProps = { compact?: boolean };
 
-const base = 'block h-auto w-full max-w-full';
+const base = 'block h-auto w-[720px] max-w-none md:w-full md:max-w-full';
 
 export function StructuredCablingDiagram({ compact }: DiagramProps) {
   return <svg viewBox="0 0 720 220" preserveAspectRatio="xMidYMid meet" className={base} aria-hidden><rect x="40" y="50" width="120" height="60" rx="8" fill="#1e293b" stroke="#fb923c"/><text x="100" y="85" fill="#e2e8f0" fontSize="12" textAnchor="middle">Endpoints</text><rect x="240" y="50" width="120" height="60" rx="8" fill="#1e293b" stroke="#fb923c"/><text x="300" y="85" fill="#e2e8f0" fontSize="12" textAnchor="middle">Patch Panel</text><rect x="440" y="40" width="120" height="80" rx="8" fill="#0f172a" stroke="#fdba74"/><text x="500" y="80" fill="#e2e8f0" fontSize="12" textAnchor="middle">Network Rack</text><rect x="600" y="50" width="90" height="60" rx="8" fill="#1e293b" stroke="#fb923c"/><text x="645" y="85" fill="#e2e8f0" fontSize="12" textAnchor="middle">Uplink</text><path d="M160 80H240M360 80H440M560 80H600" stroke="#fb923c" strokeWidth="3"/><text x="360" y="170" fill="#cbd5e1" fontSize="12" textAnchor="middle">Structured floor cabling path</text></svg>;
