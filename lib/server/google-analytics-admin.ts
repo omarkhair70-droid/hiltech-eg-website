@@ -34,16 +34,21 @@ const OAUTH_TOKEN_URL = 'https://oauth2.googleapis.com/token';
 const GA4_DATA_API_URL = 'https://analyticsdata.googleapis.com/v1beta';
 
 const PUBLIC_KEY_EVENTS = [
-  'rfq_submit',
-  'rfq_start',
-  'product_view',
-  'product_details_view',
-  'product_list_view',
-  'quote_request_click',
-  'quote_request_submit',
-  'contact_whatsapp_click',
-  'contact_email_click',
-  'contact_phone_click',
+  'product_category_filter',
+  'product_add_to_rfq',
+  'rfq_basket_open',
+  'rfq_basket_review_click',
+  'rfq_whatsapp_click',
+  'rfq_basket_clear',
+  'rfq_submit_attempt',
+  'rfq_submit_success',
+  'rfq_submit_error',
+  'rfq_copy_message',
+  'rfq_clear',
+  'rfq_track_click',
+  'rfq_browse_products_click',
+  'quote_viewed',
+  'quote_response_submitted',
 ];
 
 export function isGoogleAnalyticsAdminConfigured() {
