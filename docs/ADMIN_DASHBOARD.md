@@ -377,3 +377,43 @@ Do **not** use service-account variables (`GA_CLIENT_EMAIL`, `GA_PRIVATE_KEY`) f
 
 ### Future improvement note
 - Optional demand-aware inventory risk section (from `rfq_request_items` joined to risky inventory products) is intentionally deferred to a future phase to keep this release low-risk and migration-free.
+
+## Phase 33E - Admin Reports & Export Center
+
+- Added admin-only route: `/admin/reports` (protected with `requireAdminSession()`).
+- Added `Reports` navigation entry in `AdminShell` and a `Reports` command card in `/admin`.
+- Added server-only report helper: `lib/server/admin-reports.ts`.
+- Added admin-only CSV export API route: `/api/admin/reports/export`.
+
+### Supported reports
+
+- `report=rfqs` (from `rfq_requests`, safe operational fields only).
+- `report=sales` (from `rfq_requests` + `rfq_request_items`, with grand total formula `max(0, subtotal - discount + tax)`).
+- `report=product_demand` (aggregated from `rfq_request_items`, optionally matched to `products`).
+- `report=inventory_attention` (from `products` where `stock_status in (low_stock, out_of_stock, backorder, unknown)`).
+- `report=actions` (safe operational action feed aligned with Action Center logic).
+
+### Export query params and response
+
+- `report=rfqs|sales|product_demand|inventory_attention|actions`
+- `range=7|30|90|365` (defaults to `30`)
+- CSV response headers:
+  - `Content-Type: text/csv; charset=utf-8`
+  - `Content-Disposition: attachment; filename="hiltech-{report}-{range}d.csv"`
+
+### Privacy and security guardrails
+
+- Exports are admin-only via `requireAdminSession()`.
+- No customer emails, phones, project/internal notes, inventory notes, notification/provider error fields, or raw backend errors are exported.
+- Report/export payloads are not sent to Google Analytics.
+- Safe error handling returns friendly messages without leaking raw backend details.
+
+### CSV safety notes
+
+- Header row is always included with stable column ordering.
+- Values are escaped for CSV (`"` escaped as `""`).
+- Formula injection is prevented by prefixing values that start with `=`, `+`, `-`, or `@` with a single quote.
+
+### Migration note
+
+- Phase 33E is implemented as code-only changes (no Supabase migration required).

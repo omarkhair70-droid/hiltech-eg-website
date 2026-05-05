@@ -16,6 +16,7 @@ const navLinks = [
   { label: 'Website Analytics', href: '/admin/analytics' },
   { label: 'Products', href: '/admin/products' },
   { label: 'Product Analytics', href: '/admin/products/analytics' },
+  { label: 'Reports', href: '/admin/reports' },
   { label: 'Import / Export', href: '/admin/products/import-export' },
   { label: 'Add Product', href: '/admin/products/new' },
 ] as const;
