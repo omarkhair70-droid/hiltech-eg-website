@@ -275,3 +275,56 @@ Do **not** use service-account variables (`GA_CLIENT_EMAIL`, `GA_PRIVATE_KEY`) f
 - Includes top requested items/categories, top quoted demand by value, demand-vs-inventory insights, inventory risk table, and daily demand trend table.
 - Privacy guardrails: only aggregated operational item/product metrics are shown; no customer contact fields, project/internal notes, notification diagnostics, or service-role secrets are exposed in UI.
 - Migration note: no Supabase migration added in this phase; existing schema/fields were used.
+
+## Phase 33C - Shopify-style Admin Shell & Unified Dashboard
+
+### Summary
+- Added a reusable Admin shell component for consistent admin header and navigation across core admin dashboards.
+- Applied the shell to:
+  - `/admin`
+  - `/admin/analytics`
+  - `/admin/sales`
+  - `/admin/products/analytics`
+- Enhanced `/admin` as the command center with dedicated **Command Center** and **Today's Actions** sections.
+- No database migration required for this phase.
+
+### Admin shell navigation routes
+- Overview → `/admin`
+- RFQs → `/admin/rfq`
+- Sales → `/admin/sales`
+- Website Analytics → `/admin/analytics`
+- Products → `/admin/products`
+- Product Analytics → `/admin/products/analytics`
+- Import / Export → `/admin/products/import-export`
+- Add Product → `/admin/products/new`
+- Logout → `/api/admin/logout` (POST form button)
+
+### Command Center behavior
+- `/admin` now includes direct action cards to all key admin work areas:
+  - Sales Dashboard
+  - Website Analytics
+  - Product Analytics
+  - RFQ Management
+  - Product Admin
+  - Import / Export
+  - Add Product
+- Cards are navigation-only; they do not expose RFQ/customer details.
+
+### Today's Actions behavior
+- `/admin` now highlights action-oriented counts using existing dashboard summary data:
+  - follow-ups due
+  - quotation ready
+  - urgent RFQs
+  - high-value RFQs
+  - waiting customer
+  - waiting supplier
+  - low stock products
+  - out of stock products
+  - unknown stock products
+- Each metric links to a safe filtered admin route for execution.
+
+### Privacy and security guardrails
+- All pages continue to require `requireAdminSession()`.
+- No changes to public pages or public GA tracking behavior.
+- No service keys, internal notes, inventory notes, customer email/phone, or backend errors are surfaced in command cards.
+- Admin shell links only to existing protected admin routes.

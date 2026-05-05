@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { requireAdminSession } from '@/lib/server/admin-auth';
 import { getAdminSalesDashboardData, isAdminSalesDashboardBackendConfigured, parseSalesRange } from '@/lib/server/admin-sales-dashboard';
+import AdminShell from '@/components/admin/AdminShell';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -22,8 +23,7 @@ export default async function AdminSalesDashboardPage({ searchParams }: { search
   try { data = await getAdminSalesDashboardData(range); } catch (error) { console.error('[admin/sales] Failed to load sales dashboard data.'); if (process.env.NODE_ENV !== 'production') console.error(error); }
   if (!data) return <main className='section'><div className='container'><h1 className='text-2xl font-semibold'>Sales Dashboard</h1><p className='rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-700'>Sales data is temporarily unavailable. Please try again shortly.</p></div></main>;
 
-  return <main className='section'><div className='container space-y-6'>
-    <div className='flex flex-wrap items-center justify-between gap-3'><div><h1 className='text-2xl font-semibold'>Sales Dashboard</h1><p className='text-sm text-slate-600'>Revenue and pipeline analytics from Supabase operational RFQ and quotation data.</p><div className='mt-2'><Link href='/admin/products/analytics' className='text-sm underline'>View Product Analytics</Link></div></div><div className='flex gap-2'>{[7,30,90,365].map((r)=><Link key={r} href={`/admin/sales?range=${r}`} className={`rounded border px-3 py-2 text-sm ${range===r?'bg-navy-900 text-white':'border-slate-300'}`}>{r}d</Link>)}</div></div>
+  return <AdminShell title='Sales Dashboard' description='Revenue and pipeline analytics from Supabase operational RFQ and quotation data.' actions={<Link href='/admin/products/analytics' className='rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold'>View Product Analytics</Link>}><section className='rounded-xl border border-slate-200 bg-white p-4'><div className='flex gap-2'>{[7,30,90,365].map((r)=><Link key={r} href={`/admin/sales?range=${r}`} className={`rounded border px-3 py-2 text-sm ${range===r?'bg-navy-900 text-white':'border-slate-300'}`}>{r}d</Link>)}</div></section>
     <section className='grid grid-cols-2 gap-3 md:grid-cols-5'>{[
       ['Total RFQs', data.kpis.totalRfqs],['Quoted RFQs', data.kpis.quotedRfqs],['Published quotes', data.kpis.publishedQuotes],['Accepted / Won', data.kpis.acceptedWon],['Rejected / Lost', data.kpis.rejectedLost],
       ['Open pipeline', currency.format(data.kpis.openPipelineValue)],['Quoted value', currency.format(data.kpis.quotedValue)],['Won value', currency.format(data.kpis.wonValue)],['Avg quotation', currency.format(data.kpis.avgQuotationValue)],['Acceptance rate', `${data.kpis.acceptanceRate.toFixed(1)}%`],
@@ -40,5 +40,5 @@ export default async function AdminSalesDashboardPage({ searchParams }: { search
     <section className='rounded-xl border bg-white p-4'><h2 className='text-lg font-semibold'>Time trend</h2><div className='mt-3 overflow-x-auto'><table className='min-w-full text-sm'><thead className='bg-slate-50 text-left'><tr><th className='px-3 py-2'>Date</th><th className='px-3 py-2'>RFQs</th><th className='px-3 py-2'>Quoted value</th><th className='px-3 py-2'>Won value</th></tr></thead><tbody>{data.trends.length===0?<tr><td colSpan={4} className='px-3 py-3 text-slate-500'>No trend data in selected range.</td></tr>:data.trends.map((t)=> <tr key={t.date} className='border-t'><td className='px-3 py-2'>{t.date}</td><td className='px-3 py-2'>{t.rfqCount}</td><td className='px-3 py-2'>{currency.format(t.quotedValue)}</td><td className='px-3 py-2'>{currency.format(t.wonValue)}</td></tr>)}</tbody></table></div></section>
 
     <section className='grid gap-4 lg:grid-cols-2'><div className='rounded-xl border bg-white p-4'><h2 className='text-lg font-semibold'>Top requested products/categories</h2>{data.topRequested.length===0?<p className='mt-2 text-sm text-slate-500'>No product/category request data available from RFQ items.</p>:<ul className='mt-2 space-y-1 text-sm'>{data.topRequested.map((row)=> <li key={row.name} className='flex justify-between border-b py-1'><span>{row.name}</span><span className='font-semibold'>{row.count}</span></li>)}</ul>}</div><div className='rounded-xl border bg-white p-4'><h2 className='text-lg font-semibold'>Top quoted products/categories by value</h2>{data.topQuoted.length===0?<p className='mt-2 text-sm text-slate-500'>Quoted item totals are missing for this range. Add quotation item pricing to improve this ranking.</p>:<ul className='mt-2 space-y-1 text-sm'>{data.topQuoted.map((row)=> <li key={row.name} className='flex justify-between border-b py-1'><span>{row.name}</span><span className='font-semibold'>{currency.format(row.value)}</span></li>)}</ul>}</div></section>
-  </div></main>;
+  </AdminShell>;
 }
