@@ -1,8 +1,17 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { requireAdminSession } from '@/lib/server/admin-auth';
 import { getAdminProductAnalyticsData, isAdminProductAnalyticsBackendConfigured, parseProductAnalyticsRange } from '@/lib/server/admin-product-analytics';
 
-function fmtMoney(value: number) { return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(value || 0); }
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const metadata: Metadata = {
+  title: 'HILTECH Product Analytics',
+  robots: { index: false, follow: false },
+};
+
+function fmtMoney(value: number) { return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EGP', maximumFractionDigits: 2 }).format(value || 0); }
 
 export default async function AdminProductAnalyticsPage({ searchParams }: { searchParams: Promise<{ range?: string }> }) {
   await requireAdminSession();
