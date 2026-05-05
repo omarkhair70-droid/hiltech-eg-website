@@ -424,3 +424,11 @@ Visual assets used in Phase 28B:
 - Removed duplicate final CTA blocks and replaced them with a single final RFQ action section to reduce repeated wording and improve decision clarity.
 - Updated solution detail diagram panels to the light surface treatment for stronger title/subtitle/label readability.
 - No admin routes, RFQ API behavior, analytics event names, database schema, or migrations were changed in this phase.
+
+## Phase 35E - Product Intelligence Detail Visual QA Polish (May 2026)
+- Polished Product Intelligence detail/category pages (`/products-partners/[slug]`) for cleaner visual hierarchy and consistency with solution detail styling.
+- Diagram panels were switched to a readable light surface treatment with stronger title/subtitle contrast and improved node-label legibility.
+- Diagram containers were tightened to reduce awkward blank height while preserving responsive behavior and intentional horizontal scroll for wide technical diagrams on mobile.
+- Top CTA hierarchy on category detail pages was cleaned to emphasize: **Add Related Products to RFQ** (primary), **Browse Products** (secondary), and **Review RFQ Basket** (tertiary).
+- RFQ flow behavior, product/category routing, admin area, RFQ/admin APIs, analytics event naming, and Supabase schema were not changed.
+- No migration was introduced in this phase.

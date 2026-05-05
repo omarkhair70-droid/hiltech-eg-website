@@ -38,10 +38,10 @@ export default function CategoryIntelligenceClient({ category, relatedProducts }
       <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
         <h2 className="text-lg font-bold text-slate-900 md:text-xl">Prepare this category for RFQ</h2>
         <p className="mt-2 text-sm text-slate-600">Add product examples, estimate quantities, and include site notes so HILTECH can confirm availability and quotation.</p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Link className="btn-primary" href="/products-partners">Browse matching products</Link>
-          <Link className="inline-flex items-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700" href="/rfq">Review RFQ Basket</Link>
-          <Link className="inline-flex items-center rounded-lg border border-orange-300 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-700" href="/contact">Request Project Quote</Link>
+        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+          <Link className="btn-primary w-full justify-center sm:w-auto" href="/products-partners">Browse matching products</Link>
+          <Link className="inline-flex w-full items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 sm:w-auto" href="/rfq">Review RFQ Basket</Link>
+          <Link className="inline-flex w-full items-center justify-center rounded-lg border border-orange-300 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-700 sm:w-auto" href="/contact">Request Project Quote</Link>
         </div>
         {starterItems.length > 0 ? <div className="mt-4 rounded-xl border border-navy-900/10 bg-navy-50 p-4"><h3 className="text-sm font-semibold text-slate-900">Add category starter items to RFQ</h3><p className="mt-1 text-xs text-slate-600">Adds a starter set of example components. You can edit quantities or remove items later.</p><div className="mt-3 flex flex-wrap gap-2">{starterItems.map((item) => <button key={item.id} type="button" onClick={() => addItem(item)} className="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:border-slate-400">+ {item.name}</button>)}</div></div> : null}
       </section>
@@ -70,7 +70,7 @@ export default function CategoryIntelligenceClient({ category, relatedProducts }
       <section className="mt-10 rounded-2xl border border-navy-900 bg-navy-900 p-6 text-white">
         <h2 className="text-xl font-bold">Move from category planning to finalized request</h2>
         <p className="mt-2 text-sm text-slate-200">Your basket currently includes {basketCount} item(s). Continue with RFQ review or share your request scope directly with HILTECH.</p>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
           <Link className="inline-flex items-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-navy-900" href="/rfq">Build RFQ Basket</Link>
           <Link className="inline-flex items-center rounded-lg border border-white/40 px-4 py-2 text-sm font-semibold text-white" href="/contact">Request Project Quote</Link>
           <a className="inline-flex items-center rounded-lg border border-orange-300 bg-orange-500 px-4 py-2 text-sm font-semibold text-white" href={getRFQWhatsappLink(items)} target="_blank" rel="noreferrer">WhatsApp HILTECH</a>
