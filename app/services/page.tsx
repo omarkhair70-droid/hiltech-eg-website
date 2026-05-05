@@ -104,8 +104,9 @@ export default function Page() {
         <div className="container">
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
             <h2 className="text-2xl font-bold text-slate-900">Field proof and references</h2>
-            <p className="mt-2 text-sm text-slate-700">View selected project visuals and reference materials in our public resources library.</p>
+            <p className="mt-2 text-sm text-slate-700">View selected project visuals and reference materials in our dedicated public proof page.</p>
             <div className="mt-4 flex flex-wrap gap-2">
+              <Link href="/work" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">View Field Work & References</Link>
               <Link href="/resources/company-profile" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Company Profile Content</Link>
               <Link href="/resources" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Resources Hub</Link>
             </div>

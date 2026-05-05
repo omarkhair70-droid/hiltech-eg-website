@@ -56,6 +56,7 @@ export default function Footer() {
             <li><Link className="underline" href="/resources">Resources Hub</Link></li>
             <li><Link className="underline" href="/resources/rfq-guide">RFQ Preparation Guide</Link></li>
             <li><Link className="underline" href="/scope-finder">Scope Finder</Link></li>
+            <li><Link className="underline" href="/work">Field Work & References</Link></li>
             <li><Link className="underline" href="/track">Track RFQ Request</Link></li>
           </ul>
           <h4 className="mt-4 font-semibold">Compliance</h4>
