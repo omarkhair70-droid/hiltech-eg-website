@@ -171,3 +171,36 @@ Notes:
 ### Public vs Admin-only
 - Public: quote summary, quoted prices/totals, terms, validity, public message.
 - Admin-only: internal_notes, inventory notes, stock quantities/thresholds, provider error fields.
+
+## Phase 32D.1 - GA4 Analytics Snapshot (Admin Only)
+
+### What this adds
+- `/admin` now includes a **Website Analytics** section that reads aggregated GA4 metrics server-side.
+- This section is admin-only and read-only.
+- Public GA tracking behavior remains unchanged, including the `/admin` exclusion in `components/GoogleAnalytics.tsx`.
+
+### Required environment variables
+- `GA4_PROPERTY_ID` (numeric GA4 Property ID, e.g. `535802726`)
+- `GA_OAUTH_CLIENT_ID`
+- `GA_OAUTH_CLIENT_SECRET`
+- `GA_OAUTH_REFRESH_TOKEN`
+
+Do **not** use service-account variables (`GA_CLIENT_EMAIL`, `GA_PRIVATE_KEY`) for this phase.
+
+### OAuth setup steps
+1. In Google Cloud Console, enable **Google Analytics Data API**.
+2. Configure the OAuth consent screen for the Google account that already has access to the GA4 property.
+3. Create an OAuth **Client ID** and **Client Secret**.
+4. Open OAuth Playground and generate a refresh token using scope:
+   - `https://www.googleapis.com/auth/analytics.readonly`
+5. Add these env vars in Vercel (Production + Preview):
+   - `GA4_PROPERTY_ID`
+   - `GA_OAUTH_CLIENT_ID`
+   - `GA_OAUTH_CLIENT_SECRET`
+   - `GA_OAUTH_REFRESH_TOKEN`
+6. Redeploy the project.
+
+### Failure behavior
+- If GA env vars are missing, the admin UI shows: **Google Analytics is not configured.**
+- If the GA API is temporarily unavailable, the admin UI shows: **Analytics data is temporarily unavailable.**
+- `/admin` continues loading operational dashboard cards even if analytics data fails.

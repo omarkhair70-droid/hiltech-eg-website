@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { requireAdminSession } from '@/lib/server/admin-auth';
 import { getAdminDashboardSummary, isAdminDashboardBackendConfigured } from '@/lib/server/admin-dashboard';
+import { getGoogleAnalyticsDashboardSummary, isGoogleAnalyticsAdminConfigured } from '@/lib/server/google-analytics-admin';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -18,8 +19,31 @@ export default async function AdminExecutiveDashboardPage() {
 
   const data = await getAdminDashboardSummary();
 
+  const gaConfigured = isGoogleAnalyticsAdminConfigured();
+  let analyticsSummary: Awaited<ReturnType<typeof getGoogleAnalyticsDashboardSummary>> | null = null;
+  let analyticsError = false;
+
+  if (gaConfigured) {
+    try {
+      analyticsSummary = await getGoogleAnalyticsDashboardSummary();
+    } catch (error) {
+      analyticsError = true;
+      console.error('[admin] Failed to load GA4 analytics summary.');
+      if (process.env.NODE_ENV !== 'production') console.error(error);
+    }
+  }
+
   return <main className="section"><div className="container space-y-6">
     <div className="flex flex-wrap items-start justify-between gap-3"><div><h1 className="text-2xl font-semibold text-slate-900">HILTECH Admin Dashboard</h1><p className="mt-1 text-sm text-slate-600">Operational overview for RFQs, quotations, follow-ups, and product inventory.</p></div><div className="flex flex-wrap gap-2"><Link href="/admin/rfq" className="rounded-md bg-navy-900 px-3 py-2 text-sm font-semibold text-white">View RFQs</Link><Link href="/admin/products" className="rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold">Product Admin</Link><Link href="/admin/products/new" className="rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold">Add Product</Link><form action="/api/admin/logout" method="post"><button className="rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold">Logout</button></form></div></div>
+
+
+    <section className='space-y-3'><h2 className='text-lg font-semibold'>Website Analytics</h2>{!gaConfigured?<p className='rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600'>Google Analytics is not configured.</p>:analyticsError||!analyticsSummary?<p className='rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700'>Analytics data is temporarily unavailable.</p>:<div className='space-y-4'>
+      <div className='grid grid-cols-2 gap-3 md:grid-cols-4'>{[['Active users (7d)', analyticsSummary.totalsLast7Days.activeUsers], ['Sessions (7d)', analyticsSummary.totalsLast7Days.sessions], ['Page views (7d)', analyticsSummary.totalsLast7Days.screenPageViews], ['Event count (7d)', analyticsSummary.totalsLast7Days.eventCount]].map(([l,v]) => <div key={String(l)} className='rounded-lg border border-slate-200 bg-white p-3'><p className='text-xs uppercase text-slate-500'>{l}</p><p className='mt-1 text-2xl font-semibold'>{Number(v).toLocaleString()}</p></div>)}</div>
+      <div className='grid gap-4 lg:grid-cols-2'>
+        <div className='overflow-x-auto rounded-xl border border-slate-200 bg-white'><div className='border-b border-slate-100 px-3 py-2 text-sm font-semibold'>Top Pages (30d)</div><table className='min-w-full text-sm'><thead className='bg-slate-50 text-left text-slate-600'><tr><th className='px-3 py-2'>Path</th><th className='px-3 py-2'>Title</th><th className='px-3 py-2'>Views</th><th className='px-3 py-2'>Active users</th></tr></thead><tbody>{analyticsSummary.topPagesLast30Days.length===0?<tr><td className='px-3 py-3 text-slate-500' colSpan={4}>No page analytics data yet.</td></tr>:analyticsSummary.topPagesLast30Days.map((row)=><tr key={`${row.pagePath}-${row.pageTitle}`} className='border-t border-slate-100'><td className='px-3 py-2 font-mono text-xs'>{row.pagePath}</td><td className='px-3 py-2'>{row.pageTitle}</td><td className='px-3 py-2'>{row.views.toLocaleString()}</td><td className='px-3 py-2'>{row.activeUsers.toLocaleString()}</td></tr>)}</tbody></table></div>
+        <div className='overflow-x-auto rounded-xl border border-slate-200 bg-white'><div className='border-b border-slate-100 px-3 py-2 text-sm font-semibold'>Key Events (30d)</div><table className='min-w-full text-sm'><thead className='bg-slate-50 text-left text-slate-600'><tr><th className='px-3 py-2'>Event</th><th className='px-3 py-2'>Count</th></tr></thead><tbody>{analyticsSummary.keyEventsLast30Days.length===0?<tr><td className='px-3 py-3 text-slate-500' colSpan={2}>No key event data yet.</td></tr>:analyticsSummary.keyEventsLast30Days.map((row)=><tr key={row.eventName} className='border-t border-slate-100'><td className='px-3 py-2 font-mono text-xs'>{row.eventName}</td><td className='px-3 py-2'>{row.eventCount.toLocaleString()}</td></tr>)}</tbody></table></div>
+      </div>
+    </div>}</section>
 
     <section><h2 className="mb-2 text-lg font-semibold">RFQ Overview</h2><div className="grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-7">{[['Total RFQs', data.rfqCounts.total], ['New RFQs', data.rfqCounts.new], ['In review', data.rfqCounts.in_review], ['Quoted', data.rfqCounts.quoted], ['Waiting client', data.rfqCounts.waiting_client], ['Won', data.rfqCounts.won], ['Closed / Lost', data.rfqCounts.closed_lost]].map(([l,v]) => <div key={String(l)} className="rounded-lg border border-slate-200 bg-white p-3"><p className="text-xs uppercase text-slate-500">{l}</p><p className="mt-1 text-2xl font-semibold">{v}</p></div>)}</div></section>
 
