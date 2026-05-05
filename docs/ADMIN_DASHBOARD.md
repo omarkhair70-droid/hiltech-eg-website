@@ -204,3 +204,34 @@ Do **not** use service-account variables (`GA_CLIENT_EMAIL`, `GA_PRIVATE_KEY`) f
 - If GA env vars are missing, the admin UI shows: **Google Analytics is not configured.**
 - If the GA API is temporarily unavailable, the admin UI shows: **Analytics data is temporarily unavailable.**
 - `/admin` continues loading operational dashboard cards even if analytics data fails.
+
+## Phase 32D.2 - Admin Analytics Pro
+
+### Route
+- `/admin/analytics`
+
+### Purpose
+- Dedicated analytics dashboard for admin users with aggregated public-site GA4 data.
+- `/admin` remains the executive overview and now links to **Advanced Analytics**.
+
+### What it shows
+- Date ranges via query param: `?range=7`, `?range=30` (default), `?range=90`.
+- KPI cards: active users, sessions, page views, event count, RFQ submit success, quote viewed, quote response submitted.
+- RFQ funnel event progression with simple drop-off percentages and bar visualization.
+- Top pages, traffic sources, audience snapshot (countries and devices), and key event tables.
+- Rule-based insights panel using only aggregated counts.
+
+### Environment variables (reused from Phase 32D.1)
+- `GA4_PROPERTY_ID`
+- `GA_OAUTH_CLIENT_ID`
+- `GA_OAUTH_CLIENT_SECRET`
+- `GA_OAUTH_REFRESH_TOKEN`
+
+### Privacy guardrails
+- OAuth credentials remain server-only.
+- Analytics output is aggregated only (no personal data).
+- No request codes, names, emails, phones, notes, internal notes, or other admin-only operational fields are exposed.
+- Public tracking behavior is unchanged, including `/admin` exclusion in `components/GoogleAnalytics.tsx`.
+
+### Database / migration note
+- No Supabase migration is required for this phase.
