@@ -328,3 +328,52 @@ Do **not** use service-account variables (`GA_CLIENT_EMAIL`, `GA_PRIVATE_KEY`) f
 - No changes to public pages or public GA tracking behavior.
 - No service keys, internal notes, inventory notes, customer email/phone, or backend errors are surfaced in command cards.
 - Admin shell links only to existing protected admin routes.
+
+## Phase 33D - Admin Action Center
+
+### Route
+- `/admin/actions` (admin-only via `requireAdminSession()`).
+
+### Summary
+- Added a dedicated **Action Center** for execution-first daily operations.
+- Added **Action Center** into the shared admin shell navigation.
+- Added **Action Center** card into `/admin` Command Center with description:
+  - `Follow-ups, quotes, inventory, and RFQ actions that need attention.`
+- No database migration required for this phase.
+
+### Data source
+- Supabase operational/admin data only.
+- Tables used:
+  - `rfq_requests`
+  - `rfq_request_items` (reserved for future demand-aware inventory expansion)
+  - `products`
+- Google Analytics is not used for operational action sections.
+
+### Action groups in `/admin/actions`
+- New RFQs to review (`status in new|in_review`, limit 10).
+- Follow-ups overdue (`next_follow_up_at <= now`, limit 10).
+- Quotes ready to publish (`quotation_status=ready` and not customer-visible, limit 10).
+- Published quotes awaiting response (`quote_customer_visible=true` with no response, limit 10).
+- Quote viewed but no response (`quote_customer_last_viewed_at` present with no response, limit 10).
+- High-value / urgent RFQs (`sales_priority in high_value|urgent` and not closed/lost/won, limit 10).
+- Supplier/customer waiting (`sales_priority in waiting_customer|waiting_supplier`, limit 10).
+- Inventory attention (`stock_status in low_stock|out_of_stock|backorder|unknown`, limit 15).
+
+### Privacy guardrails
+- Admin-only route with `requireAdminSession()`.
+- Displays only safe operational fields for actioning:
+  - request code
+  - display/company name
+  - statuses and priorities
+  - timestamps
+  - product stock summary fields
+- Does not expose customer email, phone, internal/project notes, inventory notes, notification internals, service-role keys, or raw backend errors.
+- No action-center data is sent to Google Analytics.
+
+### Error behavior
+- If Supabase admin env vars are missing: `Action Center backend is not configured.`
+- If action queries fail: `Action Center data is temporarily unavailable.`
+- Server logs keep safe diagnostic messages only.
+
+### Future improvement note
+- Optional demand-aware inventory risk section (from `rfq_request_items` joined to risky inventory products) is intentionally deferred to a future phase to keep this release low-risk and migration-free.

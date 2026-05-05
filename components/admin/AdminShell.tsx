@@ -11,6 +11,7 @@ type AdminShellProps = {
 const navLinks = [
   { label: 'Overview', href: '/admin' },
   { label: 'RFQs', href: '/admin/rfq' },
+  { label: 'Action Center', href: '/admin/actions' },
   { label: 'Sales', href: '/admin/sales' },
   { label: 'Website Analytics', href: '/admin/analytics' },
   { label: 'Products', href: '/admin/products' },
