@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { requireAdminSession } from '@/lib/server/admin-auth';
 import { getAdminProductAnalyticsData, isAdminProductAnalyticsBackendConfigured, parseProductAnalyticsRange } from '@/lib/server/admin-product-analytics';
+import AdminShell from '@/components/admin/AdminShell';
 
 
 export const dynamic = 'force-dynamic';
@@ -26,8 +27,7 @@ export default async function AdminProductAnalyticsPage({ searchParams }: { sear
   try { data = await getAdminProductAnalyticsData(range); } catch (error) { console.error('[admin/products/analytics] Failed to load product analytics data.'); if (process.env.NODE_ENV !== 'production') console.error(error); }
   if (!data) return <main className='section'><div className='container'><p className='rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700'>Product analytics data is temporarily unavailable.</p></div></main>;
 
-  return <main className='section'><div className='container space-y-5'>
-    <div className='flex flex-wrap items-center justify-between gap-3'><div><h1 className='text-2xl font-semibold'>Product Analytics</h1><p className='text-sm text-slate-600'>Demand and inventory intelligence from Supabase RFQ and product operational data.</p></div><div className='flex flex-wrap gap-2'>{[7,30,90,365].map((r)=><Link key={r} href={`/admin/products/analytics?range=${r}`} className={`rounded border px-3 py-2 text-sm ${r===range?'bg-navy-900 text-white':'border-slate-300'}`}>{r}d</Link>)}</div></div>
+  return <AdminShell title='Product Analytics' description='Demand and inventory intelligence from Supabase RFQ and product operational data.'><section className='rounded-xl border border-slate-200 bg-white p-4'><div className='flex flex-wrap gap-2'>{[7,30,90,365].map((r)=><Link key={r} href={`/admin/products/analytics?range=${r}`} className={`rounded border px-3 py-2 text-sm ${r===range?'bg-navy-900 text-white':'border-slate-300'}`}>{r}d</Link>)}</div></section>
 
     <section className='grid grid-cols-2 gap-3 lg:grid-cols-3'>
       {[
@@ -48,5 +48,5 @@ export default async function AdminProductAnalyticsPage({ searchParams }: { sear
     <section className='overflow-x-auto rounded-xl border border-slate-200 bg-white'><div className='border-b px-3 py-2 text-sm font-semibold'>Inventory risk for demanded items</div><table className='min-w-full text-sm'><thead className='bg-slate-50 text-left text-slate-600'><tr><th className='px-3 py-2'>Code</th><th className='px-3 py-2'>Name</th><th className='px-3 py-2'>Category</th><th className='px-3 py-2'>Stock status</th><th className='px-3 py-2'>Stock qty</th><th className='px-3 py-2'>Low threshold</th><th className='px-3 py-2'>Demand count</th><th className='px-3 py-2'>Quoted value</th><th className='px-3 py-2'>Action</th></tr></thead><tbody>{data.inventoryRisk.map((r)=><tr key={r.key} className='border-t'><td className='px-3 py-2'>{r.productCode || '—'}</td><td className='px-3 py-2'>{r.name}</td><td className='px-3 py-2'>{r.category}</td><td className='px-3 py-2'>{r.stockStatus}</td><td className='px-3 py-2'>{r.stockQuantity ?? '—'}</td><td className='px-3 py-2'>{r.lowStockThreshold ?? '—'}</td><td className='px-3 py-2'>{r.requestCount}</td><td className='px-3 py-2'>{fmtMoney(r.quotedValue)}</td><td className='px-3 py-2'>{r.matched ? <Link className='underline font-semibold' href={`/admin/products/${r.productId}`}>Edit product</Link> : '—'}</td></tr>)}</tbody></table></section>
 
     <section className='overflow-x-auto rounded-xl border border-slate-200 bg-white'><div className='border-b px-3 py-2 text-sm font-semibold'>Demand trend by day</div><table className='min-w-full text-sm'><thead className='bg-slate-50 text-left text-slate-600'><tr><th className='px-3 py-2'>Date</th><th className='px-3 py-2'>Requested items</th><th className='px-3 py-2'>RFQ count</th><th className='px-3 py-2'>Quoted value</th></tr></thead><tbody>{data.trends.map((t)=><tr key={t.date} className='border-t'><td className='px-3 py-2'>{t.date}</td><td className='px-3 py-2'>{t.requestedItemCount}</td><td className='px-3 py-2'>{t.rfqCount}</td><td className='px-3 py-2'>{fmtMoney(t.quotedValue)}</td></tr>)}</tbody></table></section>
-  </div></main>;
+  </AdminShell>;
 }
