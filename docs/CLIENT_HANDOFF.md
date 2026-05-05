@@ -418,3 +418,9 @@ Visual assets used in Phase 28B:
 - Primary customer journey: Home -> Solutions/Products -> Start RFQ -> Track RFQ.
 - Primary CTA across public pages: **Start RFQ** (`/rfq`).
 - RFQ path safety: Contact page now clearly routes quotation requests to `/rfq`; mailto kept as secondary non-RFQ inquiry path; WhatsApp fallback remains available.
+
+## Phase 35B - Public Solution Detail QA Polish (May 2026)
+- Solution detail pages (`/solutions/[slug]`) now follow the public CTA hierarchy: **Start RFQ** (primary), **Browse Products** (secondary), and contextual support actions only when needed.
+- Removed duplicate final CTA blocks and replaced them with a single final RFQ action section to reduce repeated wording and improve decision clarity.
+- Updated solution detail diagram panels to the light surface treatment for stronger title/subtitle/label readability.
+- No admin routes, RFQ API behavior, analytics event names, database schema, or migrations were changed in this phase.
