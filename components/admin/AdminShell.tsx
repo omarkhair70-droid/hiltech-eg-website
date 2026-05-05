@@ -14,6 +14,7 @@ const navLinks = [
   { label: 'Action Center', href: '/admin/actions' },
   { label: 'Sales', href: '/admin/sales' },
   { label: 'Website Analytics', href: '/admin/analytics' },
+  { label: 'Insights', href: '/admin/insights' },
   { label: 'Products', href: '/admin/products' },
   { label: 'Product Analytics', href: '/admin/products/analytics' },
   { label: 'Reports', href: '/admin/reports' },
