@@ -235,3 +235,34 @@ Do **not** use service-account variables (`GA_CLIENT_EMAIL`, `GA_PRIVATE_KEY`) f
 
 ### Database / migration note
 - No Supabase migration is required for this phase.
+
+## Phase 33A - Sales & Revenue Dashboard (Admin Only)
+
+### Route
+- `/admin/sales`
+
+### Data source
+- Sales/revenue and pipeline metrics are computed from Supabase operational RFQ + quotation data (`rfq_requests`, `rfq_request_items`).
+- Google Analytics is **not** used for revenue numbers in this route.
+
+### Range filters
+- `?range=7`
+- `?range=30` (default)
+- `?range=90`
+- `?range=365`
+
+### What is shown
+- KPI cards: total RFQs, quoted RFQs, published quotes, accepted/won, rejected/lost, open pipeline value, quoted value, won value, average quotation value, quote acceptance rate.
+- Pipeline by stage: new/in review, quotation draft/ready/sent, customer viewed/accepted/rejected-changes, won, lost/closed.
+- Recent high-value opportunities with request code, display name/company, statuses, totals, priority, follow-up, and RFQ detail link.
+- Follow-up and attention counters: overdue follow-ups, waiting customer/supplier, published-no-response, viewed-no-response.
+- Time trend table: RFQ count, quoted value, won value.
+- Top requested/quoted products/categories from RFQ item-level data, with safe fallback message when data is missing.
+
+### Privacy guardrails
+- Route is admin-only and protected with `requireAdminSession()`.
+- No customer email/phone, internal notes, inventory notes, or service-role keys are exposed on this dashboard.
+- No sales/admin data is sent to GA from this route.
+
+### Migration note
+- No database migration required for Phase 33A.
