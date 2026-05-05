@@ -38,7 +38,14 @@ async function supabaseFetch(path: string) {
 }
 
 function asMoney(n: number) { return Number.isFinite(n) ? n : 0; }
-function itemGrandTotal(items: Array<{ quoted_line_total: number | null }>) { return items.reduce((sum, i) => sum + asMoney(Number(i.quoted_line_total || 0)), 0); }
+function itemSubtotal(items: Array<{ quoted_line_total: number | null }>) { return items.reduce((sum, i) => sum + asMoney(Number(i.quoted_line_total || 0)), 0); }
+
+function rfqGrandTotal(row: { rfq_request_items: Array<{ quoted_line_total: number | null }>; quotation_discount_amount: number | null; quotation_tax_amount: number | null }) {
+  const subtotal = itemSubtotal(Array.isArray(row.rfq_request_items) ? row.rfq_request_items : []);
+  const discount = asMoney(Number(row.quotation_discount_amount || 0));
+  const tax = asMoney(Number(row.quotation_tax_amount || 0));
+  return Math.max(0, subtotal - discount + tax);
+}
 
 export async function getAdminSalesDashboardData(range: SalesRange) {
   const now = new Date();
@@ -47,15 +54,11 @@ export async function getAdminSalesDashboardData(range: SalesRange) {
   const startIso = start.toISOString();
   const nowIso = now.toISOString();
 
-  const [rfqRes, followupRes] = await Promise.all([
-    supabaseFetch(`rfq_requests?select=id,request_code,full_name,company_name,status,sales_priority,next_follow_up_at,quotation_status,quote_customer_visible,quote_customer_response_status,quote_customer_last_viewed_at,created_at,rfq_request_items(quoted_line_total,name,category)&created_at=gte.${encodeURIComponent(startIso)}&created_at=lte.${encodeURIComponent(nowIso)}&order=created_at.desc&limit=1000`),
-    supabaseFetch(`rfq_requests?select=id,quote_customer_visible,quote_customer_response_status,quote_customer_last_viewed_at,sales_priority,next_follow_up_at&next_follow_up_at=not.is.null&next_follow_up_at=lte.${encodeURIComponent(nowIso)}&order=next_follow_up_at.asc&limit=1000`),
-  ]);
+  const rfqRes = await supabaseFetch(`rfq_requests?select=id,request_code,full_name,company_name,status,sales_priority,next_follow_up_at,quotation_status,quotation_discount_amount,quotation_tax_amount,quotation_currency,quote_customer_visible,quote_customer_response_status,quote_customer_last_viewed_at,created_at,rfq_request_items(quoted_line_total,name,category)&created_at=gte.${encodeURIComponent(startIso)}&created_at=lte.${encodeURIComponent(nowIso)}&order=created_at.desc&limit=1000`);
 
   const rows = await rfqRes.json() as Array<any>;
-  const followupRows = await followupRes.json() as Array<any>;
 
-  const enriched = rows.map((row) => ({ ...row, grand_total: itemGrandTotal(Array.isArray(row.rfq_request_items) ? row.rfq_request_items : []) }));
+  const enriched = rows.map((row) => ({ ...row, grand_total: rfqGrandTotal(row) }));
   const quotedRows = enriched.filter((r) => ['draft', 'ready', 'sent', 'revised'].includes(r.quotation_status || ''));
   const publishedRows = enriched.filter((r) => r.quote_customer_visible || r.quotation_status === 'sent');
   const wonRows = enriched.filter((r) => r.status === 'won' || r.quote_customer_response_status === 'accepted');
@@ -82,8 +85,11 @@ export async function getAdminSalesDashboardData(range: SalesRange) {
       const key = item.category || item.name || 'Uncategorized';
       topByRequestCount.set(key, (topByRequestCount.get(key) || 0) + 1);
       if (['draft', 'ready', 'sent', 'revised'].includes(r.quotation_status || '')) {
+        const rowSubtotal = itemSubtotal(Array.isArray(r.rfq_request_items) ? r.rfq_request_items : []);
+        const itemSubtotalValue = asMoney(Number(item.quoted_line_total || 0));
+        const allocatedValue = rowSubtotal > 0 ? (itemSubtotalValue / rowSubtotal) * r.grand_total : 0;
         const current = topByQuotedValue.get(key) || 0;
-        topByQuotedValue.set(key, current + asMoney(Number(item.quoted_line_total || 0)));
+        topByQuotedValue.set(key, current + allocatedValue);
       }
     }
   }
@@ -115,11 +121,11 @@ export async function getAdminSalesDashboardData(range: SalesRange) {
     },
     highValue: [...enriched].sort((a, b) => b.grand_total - a.grand_total).slice(0, 10),
     followup: {
-      overdueFollowups: followupRows.filter((r) => r.next_follow_up_at).length,
-      waitingCustomer: followupRows.filter((r) => r.sales_priority === 'waiting_customer').length,
-      waitingSupplier: followupRows.filter((r) => r.sales_priority === 'waiting_supplier').length,
-      publishedNoResponse: followupRows.filter((r) => r.quote_customer_visible && (r.quote_customer_response_status || 'no_response') === 'no_response').length,
-      viewedNoResponse: followupRows.filter((r) => r.quote_customer_last_viewed_at && (r.quote_customer_response_status || 'no_response') === 'no_response').length,
+      overdueFollowups: enriched.filter((r) => r.next_follow_up_at && new Date(r.next_follow_up_at).getTime() <= now.getTime()).length,
+      waitingCustomer: enriched.filter((r) => r.sales_priority === 'waiting_customer').length,
+      waitingSupplier: enriched.filter((r) => r.sales_priority === 'waiting_supplier').length,
+      publishedNoResponse: enriched.filter((r) => r.quote_customer_visible && (r.quote_customer_response_status || 'no_response') === 'no_response').length,
+      viewedNoResponse: enriched.filter((r) => r.quote_customer_last_viewed_at && (r.quote_customer_response_status || 'no_response') === 'no_response').length,
     },
     trends: [...trendBuckets.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([date, data]) => ({ date, ...data })),
     topRequested: [...topByRequestCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8).map(([name, count]) => ({ name, count })),
