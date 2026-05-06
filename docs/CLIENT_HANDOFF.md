@@ -472,3 +472,19 @@ Visual assets used in Phase 28B:
 - Product cards now include stable anchor IDs (`product-<id>`) to support reliable deep linking.
 - Search results continue to run fully on the existing client-side index (no backend search service).
 - This phase did **not** change admin routes, RFQ APIs, Supabase schema, auth, or GA event naming.
+
+## Phase 37D - Products Page Live Search & Filter Polish (May 2026)
+- Added a client-side live catalog search input inside `/products-partners` with placeholder: `Search products by name, brand, specs...`.
+- Search now filters by product name, brand, category, short specs, and use-case text.
+- Added lightweight Arabic alias expansion for common procurement terms (`كابلات`, `فايبر`, `راكات`, `كاميرات`, `ألياف`, `شبكة`) mapped to safe matching keywords.
+- Category filter and search now work together (All categories + category-specific query filtering).
+- Added query param support for `q` while preserving existing Phase 37C behavior for:
+  - `?product=<id>` deep-link highlight/scroll
+  - `?category=<category>` catalog filter
+- Products page now lightly updates URL params (`q`, `category`) via client navigation without full reload.
+- Added conditional **Clear filters** control when search/category/product deep link is active.
+- Added dynamic results messaging and empty state with actions:
+  - clear filters
+  - start RFQ (`/rfq`)
+- Filtering remains fully static client-side; no backend search service is used.
+- No changes were made to admin routes, RFQ APIs, Supabase schema, auth, RFQ submit logic, or existing GA event names.
