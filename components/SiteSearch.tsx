@@ -98,7 +98,10 @@ export default function SiteSearch({ onNavigate, className }: SiteSearchProps) {
                             <span className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${typeStyles[item.type]}`}>{item.type}</span>
                           </div>
                           <p className="mt-1 text-xs text-slate-600">{item.description}</p>
-                          <p className="mt-2 text-xs font-medium text-slate-500">{item.href}</p>
+                          <div className="mt-2 flex items-center justify-between gap-2"> 
+                            <p className="truncate text-xs font-medium text-slate-500">{item.href}</p>
+                            {item.type === 'Products' ? <span className="text-[11px] font-semibold text-orange-700">Open in Products</span> : null}
+                          </div>
                         </Link>
                       ))}
                     </div>

@@ -48,9 +48,9 @@ const guideLinks: SearchEntry[] = productIntelligenceCategories.map((category) =
 
 const productLinks: SearchEntry[] = products.map((product) => ({
   title: product.name,
-  description: `${product.category} • ${product.shortSpecs}`,
+  description: `${product.category} • ${product.brand} • ${product.shortSpecs}`,
   type: 'Products',
-  href: '/products-partners',
+  href: `/products-partners?product=${product.id}`,
   keywords: [product.brand, product.category, product.useCase, 'products', 'catalog', 'منتجات'],
 }));
 
