@@ -38,7 +38,7 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-          <Link href="/contact" className="mt-3 inline-flex rounded-md border border-orange-300/40 px-3 py-1.5 text-sm font-semibold text-orange-300 hover:bg-white/10">Start RFQ</Link>
+          <Link href="/rfq" className="mt-3 inline-flex rounded-md border border-orange-300/40 px-3 py-1.5 text-sm font-semibold text-orange-300 hover:bg-white/10">Start RFQ</Link>
         </div>
 
         <div>
