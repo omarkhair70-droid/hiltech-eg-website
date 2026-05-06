@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ReferenceLogosSection } from '@/components/ReferenceLogos';
 import { FieldWorkPreview, FinalCTA, Hero, ProductsRFQPreview, SolutionsPreview, TrustPreview, WhatHiltechDoes } from '@/components/Sections';
 import { site } from '@/content/site';
 
@@ -17,11 +18,12 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', images: [site.ogImage] },
 };
 
-export default function Home() {
+export default async function Home() {
   return (
     <main>
       <Hero />
       <WhatHiltechDoes />
+      <ReferenceLogosSection />
       <FieldWorkPreview />
       <SolutionsPreview />
       <ProductsRFQPreview />
