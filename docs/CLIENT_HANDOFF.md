@@ -509,3 +509,14 @@ Visual assets used in Phase 28B:
   - No Supabase/schema changes
   - No GA event name changes
 - No migration required in this phase.
+
+## Phase 37F - Premium Homepage Hero + References Placement (May 6, 2026)
+- Homepage hero was refreshed with a premium, compact **Quick Project Access** panel replacing the previous text-heavy right card.
+- Homepage CTA hierarchy is now focused on:
+  - Primary: Browse Products (`/products-partners`)
+  - Secondary: View Field Work (`/work`)
+  - Support: Track RFQ (`/track`)
+- Added a new homepage **Partners & Client References** section (before products/RFQ workflow) with refined logo tiles and compliance note.
+- Removed unpolished fallback logo blocks from `/work` UI; `/work` remains focused on field visuals, testing workflows, and reference panel materials.
+- Safety scope confirmed: no admin route changes, no RFQ/API behavior changes, no GA event name changes, no database/schema/auth updates.
+- No migration required in this phase.
