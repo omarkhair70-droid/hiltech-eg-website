@@ -440,3 +440,26 @@ Visual assets used in Phase 28B:
 - Standardized public CTA wording around: Start RFQ, Browse Products, Contact HILTECH, and Track RFQ, with Arabic helper text where layout-safe.
 - No changes were made to admin dashboards, RFQ/admin APIs, Supabase schema, authentication flows, or GA tracking/event names.
 - No migration was added in this phase.
+
+## Phase 37B - Global Public Site Search in Header (May 2026)
+- Added a global public search entry in `components/Header.tsx` so search is reachable from desktop and mobile header experiences.
+- Implemented client-side command-style search UI in `components/SiteSearch.tsx` with:
+  - instant filtering as users type,
+  - grouped result types (`Products`, `Solutions`, `Services`, `Resources`, `Guides`, `Pages`),
+  - keyboard accessibility (focus-on-open, Escape to close, keyboard-reachable links),
+  - no external dependencies.
+- Added static local search index in `lib/site-search.ts` with searchable fields (`title`, `description`, `keywords`, `type`, `href`) and ranking based on title/keyword/description matches.
+- Search index includes:
+  - main public pages (Home, Products, Solutions, Services, Resources, Field Work & References, Contact, Start RFQ, Track RFQ, Scope Finder),
+  - products from static product content,
+  - product intelligence guide pages,
+  - solution pages,
+  - core service/resource entries,
+  - Arabic aliases for common terms (e.g., منتجات, عرض سعر, تتبع الطلب, فايبر, كابلات, راكات, كاميرات, تواصل).
+- Empty query shows popular shortcuts: Browse Products, Start RFQ, Track RFQ, Solutions, Contact.
+- Safety scope confirmation for this phase:
+  - no admin changes,
+  - no API changes,
+  - no Supabase schema/migration changes,
+  - no RFQ submit/track logic changes,
+  - no GA event name changes.
