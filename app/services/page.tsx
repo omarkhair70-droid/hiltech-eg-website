@@ -53,8 +53,8 @@ export default function Page() {
   return (
     <main className="section">
       <div className="container">
-        <h1 className="text-3xl font-bold leading-tight sm:text-4xl">Enterprise Infrastructure Services</h1>
-        <p className="mt-3 text-slate-700">HILTECH provides practical, standards-driven network infrastructure services covering site inspection, engineering planning, implementation, and measured delivery support.</p>
+        <h1 className="text-3xl font-bold leading-tight sm:text-4xl">Infrastructure Services</h1>
+        <p className="mt-3 text-slate-700">Installation, testing, and delivery support services for infrastructure projects across Egypt.</p>
       </div>
 
       <ServicesGrid />
@@ -107,8 +107,8 @@ export default function Page() {
             <p className="mt-2 text-sm text-slate-700">View selected project visuals and reference materials in our dedicated public proof page.</p>
             <div className="mt-4 flex flex-wrap gap-2">
               <Link href="/work" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">View Field Work & References</Link>
-              <Link href="/resources/company-profile" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Company Profile Content</Link>
-              <Link href="/resources" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Resources Hub</Link>
+              <Link href="/resources/company-profile" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Resources</Link>
+              <Link href="/resources" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Explore Solutions</Link>
             </div>
           </div>
         </div>

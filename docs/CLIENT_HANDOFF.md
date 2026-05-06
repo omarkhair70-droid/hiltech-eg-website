@@ -440,3 +440,13 @@ Visual assets used in Phase 28B:
 - Standardized public CTA wording around: Start RFQ, Browse Products, Contact HILTECH, and Track RFQ, with Arabic helper text where layout-safe.
 - No changes were made to admin dashboards, RFQ/admin APIs, Supabase schema, authentication flows, or GA tracking/event names.
 - No migration was added in this phase.
+
+## Phase 37A - Public Simplified B2B RFQ Catalog Repositioning (May 2026)
+- Repositioned public website messaging toward a simplified **B2B Product Catalog + RFQ** experience.
+- Homepage was simplified with clearer practical copy and reduced CTA competition; primary path is now Browse Products and Start RFQ.
+- Products page experience was streamlined so category browsing/filtering and product-to-RFQ actions appear faster with less preface copy.
+- Solutions and Services public copy were tightened to reduce heavy marketing language while keeping useful guidance pages.
+- Header/footer navigation and CTA structure were simplified around Products, Solutions, Services, Work, Contact, Start RFQ, and Track RFQ support path.
+- Product Intelligence pages/routes remain available but are positioned as optional guidance secondary to product browsing and RFQ.
+- No changes were made to admin routes, RFQ APIs, Supabase schema, auth, GA event names, or RFQ basket data structure/behavior.
+- No migration required.

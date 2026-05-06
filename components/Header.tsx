@@ -6,12 +6,12 @@ import { useEffect, useState } from 'react';
 import { readRFQItems } from '@/lib/rfq';
 
 const nav = [
-  ['Solutions', '/solutions'],
   ['Products', '/products-partners'],
+  ['Solutions', '/solutions'],
   ['Services', '/services'],
-  ['Resources', '/resources'],
-  ['Track RFQ', '/track'],
+  ['Work', '/work'],
   ['Contact', '/contact'],
+  ['Track RFQ', '/track'],
 ] as const;
 
 export default function Header() {
@@ -61,7 +61,6 @@ export default function Header() {
       {open ? (
         <div id="mobile-nav" className="border-t border-slate-200 bg-white md:hidden">
           <div className="container py-3">
-            <p className="mb-2 px-3 text-xs text-slate-500" dir="rtl">تنقل سريع لخدمات وحلول HILTECH.</p>
             <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
               <Link href="/" translate="no" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-navy-900">Home</Link>
               {nav.map(([label, href]) => (
@@ -70,9 +69,8 @@ export default function Header() {
                 </Link>
               ))}
               <Link href="/rfq" className="mt-2 inline-flex w-full justify-center rounded-md border border-slate-300 px-5 py-2.5 font-semibold text-slate-700" onClick={() => setOpen(false)}>RFQ Basket ({rfqCount})</Link>
-              <Link href="/rfq" className="mt-2 inline-flex w-full flex-col items-center justify-center rounded-md bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600" onClick={() => setOpen(false)}>
-                <span>Start RFQ</span>
-                <span className="text-[11px] font-medium text-orange-100" dir="rtl">ابدأ طلب عرض سعر</span>
+              <Link href="/rfq" className="mt-2 inline-flex w-full justify-center rounded-md bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600" onClick={() => setOpen(false)}>
+                Start RFQ
               </Link>
             </div>
           </div>
