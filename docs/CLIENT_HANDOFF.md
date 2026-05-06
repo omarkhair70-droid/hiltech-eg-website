@@ -259,6 +259,15 @@ All core brand assets are in `/public`:
 
 ## Phase 25C.2 - Internal Product Admin (May 2026)
 
+## Phase 37G - Products Page Catalog-First Cleanup (May 2026)
+- `/products-partners` was restructured to prioritize practical catalog browsing first: heading → search/filter controls → product grid → RFQ actions.
+- Removed top marketing-heavy blocks from the Products page entry flow (including the top visual scope panel and project supply highlights cards) so users reach the searchable catalog faster.
+- Simplified pre-catalog guidance in the products client area by removing duplicated helper messaging above the filters; Scope Finder remains available as a compact helper below the first catalog grid area.
+- Primary product-page action remains **Add to RFQ** with **Product Intelligence** preserved as secondary on product cards.
+- Product disclaimer and catalog clarity notices remain in place lower on the page and no longer block initial product discovery.
+- No changes were made to admin, API, database schema, auth, RFQ submit logic, RFQ tracking logic, or GA event names in this phase.
+- No migration required.
+
 - Internal admins can now manage Supabase product rows from `/admin/products` after admin login.
 - Admins can add products (`/admin/products/new`) and edit/status-manage products (`/admin/products/[id]`).
 - Status workflow supports `active`, `hidden`, and `archived` without hard delete.
