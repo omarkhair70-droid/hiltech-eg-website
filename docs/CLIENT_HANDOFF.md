@@ -463,3 +463,12 @@ Visual assets used in Phase 28B:
   - no Supabase schema/migration changes,
   - no RFQ submit/track logic changes,
   - no GA event name changes.
+
+## Phase 37C - Search Deep Linking & Smart Product Results (May 2026)
+- Global header search product results now deep-link to product-specific catalog URLs using query params: `/products-partners?product=<product-id>`.
+- Products page now supports query param behavior:
+  - `?product=<id>` opens the product category context, ensures the target product is visible in the grid, scrolls to it, and highlights the card.
+  - `?category=<category>` activates a valid category filter and scrolls users into the catalog grid.
+- Product cards now include stable anchor IDs (`product-<id>`) to support reliable deep linking.
+- Search results continue to run fully on the existing client-side index (no backend search service).
+- This phase did **not** change admin routes, RFQ APIs, Supabase schema, auth, or GA event naming.
