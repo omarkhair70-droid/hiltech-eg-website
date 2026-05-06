@@ -258,6 +258,7 @@ All core brand assets are in `/public`:
 - Internal Product Admin UI is planned for Phase 25C.2.
 
 ## Phase 25C.2 - Internal Product Admin (May 2026)
+
 - Internal admins can now manage Supabase product rows from `/admin/products` after admin login.
 - Admins can add products (`/admin/products/new`) and edit/status-manage products (`/admin/products/[id]`).
 - Status workflow supports `active`, `hidden`, and `archived` without hard delete.
@@ -488,3 +489,23 @@ Visual assets used in Phase 28B:
   - start RFQ (`/rfq`)
 - Filtering remains fully static client-side; no backend search service is used.
 - No changes were made to admin routes, RFQ APIs, Supabase schema, auth, RFQ submit logic, or existing GA event names.
+
+## Phase 37E - Homepage CTA De-duplication + Field Work Preview (May 2026)
+- Reduced repeated homepage `Start RFQ` wording and simplified CTA hierarchy on homepage sections.
+- Hero CTA set is now:
+  - **Browse Products** (`/products-partners`) as primary
+  - **Explore Solutions** (`/solutions`) as secondary
+  - **Track RFQ** (`/track`) as support action
+- Replaced the hero right-side **Executive Overview** panel with a concise **Project Supply Paths** panel focused on practical project actions.
+- Added a new homepage **Field Work & References** preview section with three cards:
+  - Fiber Installation
+  - Rack Installation
+  - Testing & Measurement
+  - Plus CTA to `/work`.
+- Mobile QA target for this phase: cleaner stacked hero CTAs, no clipped headings, clean card stacking, and no added CTA clutter.
+- Safety scope confirmation:
+  - No admin changes
+  - No API changes
+  - No Supabase/schema changes
+  - No GA event name changes
+- No migration required in this phase.
