@@ -432,3 +432,11 @@ Visual assets used in Phase 28B:
 - Top CTA hierarchy on category detail pages was cleaned to emphasize: **Add Related Products to RFQ** (primary), **Browse Products** (secondary), and **Review RFQ Basket** (tertiary).
 - RFQ flow behavior, product/category routing, admin area, RFQ/admin APIs, analytics event naming, and Supabase schema were not changed.
 - No migration was introduced in this phase.
+
+## Phase 36A - Hybrid Arabic/English Public Copy Polish (May 2026)
+- Applied a public-facing hybrid copy layer where English remains the primary site structure and technical language.
+- Added selective Arabic support lines for local clarity on high-intent public pages and shared sections (hero, CTAs, contact, RFQ, tracking, and footer helper copy).
+- Kept navigation labels and core technical terms in English (e.g., RFQ, Structured Cabling, Fiber Backbone, Data Room, CCTV) to preserve enterprise readability.
+- Standardized public CTA wording around: Start RFQ, Browse Products, Contact HILTECH, and Track RFQ, with Arabic helper text where layout-safe.
+- No changes were made to admin dashboards, RFQ/admin APIs, Supabase schema, authentication flows, or GA tracking/event names.
+- No migration was added in this phase.
