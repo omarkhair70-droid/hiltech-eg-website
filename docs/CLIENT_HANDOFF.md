@@ -529,3 +529,16 @@ Visual assets used in Phase 28B:
 - Removed unpolished fallback logo blocks from `/work` UI; `/work` remains focused on field visuals, testing workflows, and reference panel materials.
 - Safety scope confirmed: no admin route changes, no RFQ/API behavior changes, no GA event name changes, no database/schema/auth updates.
 - No migration required in this phase.
+
+## Emergency Public Visual QA Cleanup (Post Phase 37F/37G)
+- Homepage hero was simplified to reduce visual clutter and restore a premium enterprise presentation.
+- Removed the cluttered Quick Project Access panel pattern and replaced it with a minimal proof-oriented support card.
+- Hero CTA hierarchy was reduced to:
+  - Primary: Browse Products
+  - Secondary: Start RFQ
+  - Support text link: Track RFQ
+- Partners/client references on homepage were compacted into a calmer trust strip with limited visible logos for cleaner scanning, especially on mobile.
+- Homepage section order was rebalanced so references appear after core explanation and field work preview, preventing trust logos from dominating early page flow.
+- Products page catalog-first cleanup from Phase 37G is preserved (heading → search/filter → products).
+- No changes were made to admin, RFQ/API endpoints, authentication, database schema/migrations, analytics event names, or RFQ logic behavior.
+- No migration is required for this cleanup.

@@ -23,8 +23,8 @@ export default async function Home() {
     <main>
       <Hero />
       <WhatHiltechDoes />
-      <ReferenceLogosSection />
       <FieldWorkPreview />
+      <ReferenceLogosSection />
       <SolutionsPreview />
       <ProductsRFQPreview />
       <TrustPreview />
