@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { ReferenceLogosSection } from '@/components/ReferenceLogos';
 import { FieldWorkPreview, FinalCTA, Hero, ProductsRFQPreview, SolutionsPreview, TrustPreview, WhatHiltechDoes } from '@/components/Sections';
 import { site } from '@/content/site';
 
@@ -23,7 +22,6 @@ export default async function Home() {
     <main>
       <Hero />
       <WhatHiltechDoes />
-      <ReferenceLogosSection />
       <FieldWorkPreview />
       <SolutionsPreview />
       <ProductsRFQPreview />
