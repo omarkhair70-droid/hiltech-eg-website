@@ -529,3 +529,14 @@ Visual assets used in Phase 28B:
 - Removed unpolished fallback logo blocks from `/work` UI; `/work` remains focused on field visuals, testing workflows, and reference panel materials.
 - Safety scope confirmed: no admin route changes, no RFQ/API behavior changes, no GA event name changes, no database/schema/auth updates.
 - No migration required in this phase.
+
+## HILTECH Public UX Reset (May 2026)
+- Simplified homepage hero into a single practical block and removed the right-side proof/access panel.
+- Removed the homepage reference logo grid section to reduce visual noise.
+- Reduced repeated RFQ CTAs across homepage sections and kept alternative CTA wording aligned with the public flow.
+- Cleaned Products & RFQ Workflow section to a 3-step sequence with focused actions (Browse Products, Track RFQ, Scope Finder link).
+- Updated final homepage CTA to avoid repeating “Start RFQ” and keep compact navigation/support actions.
+- Verified and refined `/work` field galleries so image cards remain visible with clear aspect ratios and cleaner card surfaces.
+- Preserved Products catalog-first behavior (`heading -> search/filter -> products`) from Phase 37G.
+- No admin/API/schema/auth/GA event name changes.
+- No migration required.
