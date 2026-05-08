@@ -233,7 +233,7 @@ export default function ScopeFinderClient() {
               <ul className="mt-2 space-y-1 text-sm">
                 {result.productSlugs.map((slug) => (
                   <li key={slug}>
-                    <Link href={`/products-partners/${slug}`} className="font-medium text-navy-900 underline">/products-partners/{slug}</Link>
+                    <Link href={`/products-partners/intelligence/${slug}`} className="font-medium text-navy-900 underline">/products-partners/{slug}</Link>
                   </li>
                 ))}
               </ul>
