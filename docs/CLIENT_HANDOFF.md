@@ -693,3 +693,11 @@ Visual assets used in Phase 28B:
 - no migration
 - no automatic database import
 - next step: admin dry run with Create missing products OFF
+
+## Phase P4A — Product Detail Page System
+- added dedicated public product detail pages
+- linked catalog cards to product detail pages
+- preserved Product Intelligence as secondary support
+- preserved RFQ logic and optional price reference behavior
+- no admin/API/RFQ backend/schema/migration changes
+- QA needed across desktop/mobile and products with/without priceNote

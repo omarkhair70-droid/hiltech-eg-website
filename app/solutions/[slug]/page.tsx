@@ -201,7 +201,7 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
             {solution.relatedProductIntelligenceSlugs.map((slug) => (
               <Link
                 key={slug}
-                href={`/products-partners/${slug}`}
+                href={`/products-partners/intelligence/${slug}`}
                 className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
               >
                 {productIntelligenceBySlug[slug]?.shortTitle ?? slug}

@@ -42,7 +42,7 @@ const guideLinks: SearchEntry[] = productIntelligenceCategories.map((category) =
   title: `${category.shortTitle} Guide`,
   description: category.intro,
   type: 'Guides',
-  href: `/products-partners/${category.slug}`,
+  href: `/products-partners/intelligence/${category.slug}`,
   keywords: [...category.relatedCapabilityTags, category.title, 'product intelligence', 'guide'],
 }));
 
