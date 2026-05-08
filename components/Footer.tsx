@@ -57,9 +57,11 @@ export default function Footer() {
           <ul className="mt-3 space-y-1 text-sm text-slate-200">
             <li><Link className="underline decoration-slate-500 underline-offset-4" href="/resources">Resources Hub</Link></li>
             <li><Link className="underline decoration-slate-500 underline-offset-4" href="/resources/rfq-guide">RFQ Preparation Guide</Link></li>
-            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/scope-finder">Scope Finder</Link></li>
-            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/work">Field Work & References</Link></li>
+            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/company">Company</Link></li>
+            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/work">Work</Link></li>
+            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/resources">Resources</Link></li>
             <li><Link className="underline decoration-slate-500 underline-offset-4" href="/track">Track RFQ</Link></li>
+            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/scope-finder">Scope Finder</Link></li>
           </ul>
           <h4 className="mt-4 font-semibold">Compliance</h4>
           <p className="mt-2 text-xs text-slate-400" dir="rtl">جميع الإشارات التجارية والفنية لأغراض توضيح النطاق فقط.</p>

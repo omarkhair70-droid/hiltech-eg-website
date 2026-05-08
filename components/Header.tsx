@@ -6,13 +6,19 @@ import { useEffect, useState } from 'react';
 import { readRFQItems } from '@/lib/rfq';
 import SiteSearch from '@/components/SiteSearch';
 
-const nav = [
+const desktopNav = [
   ['Solutions', '/solutions'],
   ['Products', '/products-partners'],
+  ['Work', '/work'],
   ['Services', '/services'],
-  ['Resources', '/resources'],
-  ['Track RFQ', '/track'],
+  ['Company', '/company'],
   ['Contact', '/contact'],
+] as const;
+
+const mobileResourceLinks = [
+  ['Resources Hub', '/resources'],
+  ['RFQ Preparation Guide', '/resources/rfq-guide'],
+  ['Company Profile', '/resources/company-profile'],
 ] as const;
 
 export default function Header() {
@@ -41,9 +47,9 @@ export default function Header() {
           <span translate="no" className={showLogoImage ? 'sr-only' : ''}>HILTECH</span>
         </Link>
 
-        <nav className="hidden items-center gap-5 md:flex lg:gap-6">
-          {nav.map(([label, href]) => (
-            <Link key={href} href={href} translate="no" className="text-sm font-semibold text-slate-700 transition hover:text-navy-900">
+        <nav className="hidden items-center gap-1 rounded-full border border-slate-200 bg-slate-50/70 px-2 py-1 md:flex lg:gap-1.5" aria-label="Primary">
+          {desktopNav.map(([label, href]) => (
+            <Link key={href} href={href} translate="no" className="rounded-full px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-white hover:text-navy-900">
               {label}
             </Link>
           ))}
@@ -51,34 +57,54 @@ export default function Header() {
 
         <div className="hidden items-center gap-2 md:flex">
           <SiteSearch className="inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" />
-          <Link href="/rfq" className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-700">RFQ Basket ({rfqCount})</Link>
+          <Link href="/rfq" className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50">RFQ Basket ({rfqCount})</Link>
           <Link href="/rfq" className="inline-flex items-center rounded-md bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-orange-600">Start RFQ</Link>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
           <SiteSearch className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" onNavigate={() => setOpen(false)} />
           <button className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="mobile-nav">
-          <span translate="no">Menu</span>
-        </button>
+            <span translate="no">Menu</span>
+          </button>
         </div>
       </div>
 
       {open ? (
         <div id="mobile-nav" className="border-t border-slate-200 bg-white md:hidden">
-          <div className="container py-3">
-            <p className="mb-2 px-3 text-xs text-slate-500" dir="rtl">تنقل سريع لخدمات وحلول HILTECH.</p>
+          <div className="container py-4">
             <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-              <Link href="/" translate="no" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-navy-900">Home</Link>
-              {nav.map(([label, href]) => (
-                <Link key={href} href={href} translate="no" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-navy-900">
-                  {label}
-                </Link>
-              ))}
-              <Link href="/rfq" className="mt-2 inline-flex w-full justify-center rounded-md border border-slate-300 px-5 py-2.5 font-semibold text-slate-700" onClick={() => setOpen(false)}>RFQ Basket ({rfqCount})</Link>
-              <Link href="/rfq" className="mt-2 inline-flex w-full flex-col items-center justify-center rounded-md bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600" onClick={() => setOpen(false)}>
-                <span>Start RFQ</span>
-                <span className="text-[11px] font-medium text-orange-100" dir="rtl">ابدأ طلب عرض سعر</span>
-              </Link>
+              <div className="space-y-5">
+                <section>
+                  <p className="px-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Main</p>
+                  <div className="mt-2 grid gap-1">
+                    {desktopNav.map(([label, href]) => (
+                      <Link key={href} href={href} translate="no" onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-navy-900">
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+
+                <section>
+                  <p className="px-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">RFQ Tools</p>
+                  <div className="mt-2 grid gap-2">
+                    <Link href="/rfq" className="inline-flex w-full justify-center rounded-md bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white hover:bg-orange-600" onClick={() => setOpen(false)}>Start RFQ</Link>
+                    <Link href="/rfq" className="inline-flex w-full justify-center rounded-md border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700" onClick={() => setOpen(false)}>RFQ Basket ({rfqCount})</Link>
+                    <Link href="/track" className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-navy-900" onClick={() => setOpen(false)}>Track RFQ</Link>
+                  </div>
+                </section>
+
+                <section>
+                  <p className="px-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Resources</p>
+                  <div className="mt-2 grid gap-1">
+                    {mobileResourceLinks.map(([label, href]) => (
+                      <Link key={href} href={href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-navy-900">
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
         </div>

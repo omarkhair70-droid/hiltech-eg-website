@@ -587,3 +587,13 @@ Visual assets used in Phase 28B:
 - Admin/API/RFQ/product/search/backend logic remains untouched in this phase.
 - No migration required.
 - Screenshots are required before merge.
+
+## Phase C1 — Header IA + Mobile Menu + Company Page
+- Main navigation updated to: Solutions / Products / Work / Services / Company / Contact.
+- Track RFQ and Resources were moved out of primary desktop navigation and remain accessible via mobile utility/resources sections and footer links.
+- Added a new Company page at `/company` focused on infrastructure delivery support, operational process, delivery model, and RFQ journey continuity.
+- Mobile menu reorganized into three sections: Main / RFQ Tools / Resources.
+- Footer links aligned to keep Company, Work, Resources, and Track RFQ easy to find.
+- No admin/API/RFQ backend/product model/filter/search/backend logic changes.
+- No database or migration changes.
+- Screenshots are required before merge.
