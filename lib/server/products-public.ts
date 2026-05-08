@@ -38,6 +38,9 @@ function mapDbRowToProduct(row: ProductRow): ProductItem {
     shortSpecs: row.short_specs ?? 'Specifications available upon request.',
     useCase: row.use_case ?? 'Project supply support.',
     image: row.image_path ?? fallbackVisual?.imagePath ?? '',
+    priceNote: row.price_note,
+    availabilityNote: row.availability_note,
+    technicalNotes: row.technical_notes,
   };
 }
 
@@ -45,7 +48,7 @@ async function listPublicDbProducts(): Promise<ProductItem[]> {
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) throw new Error('Supabase env vars are not configured for public products mode.');
 
   const params = new URLSearchParams({
-    select: 'product_code,name,category,brand,short_specs,use_case,image_path,status,sort_order',
+    select: 'product_code,name,category,brand,short_specs,use_case,image_path,price_note,availability_note,technical_notes,status,sort_order',
     status: 'eq.active',
     order: 'sort_order.asc.nullslast,name.asc,product_code.asc',
     limit: '500',

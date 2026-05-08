@@ -13,6 +13,7 @@ export interface RFQItem {
   unit: string;
   notes: string;
   urgency?: RFQUrgency;
+  priceNote?: string | null;
 }
 
 export interface RFQProjectDetails {
@@ -29,6 +30,8 @@ export function canUseStorage() {
 }
 
 export function normalizeRFQItem(item: Partial<RFQItem> & { id: string; name: string }): RFQItem {
+  const normalizedPriceNote = item.priceNote?.trim();
+
   return {
     id: item.id,
     name: item.name,
@@ -39,6 +42,7 @@ export function normalizeRFQItem(item: Partial<RFQItem> & { id: string; name: st
     unit: item.unit?.trim() || 'pcs',
     notes: item.notes ?? '',
     urgency: item.urgency,
+    priceNote: normalizedPriceNote ? normalizedPriceNote : null,
   };
 }
 
