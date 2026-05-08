@@ -576,3 +576,14 @@ Visual assets used in Phase 28B:
 - No admin/API/Supabase/RFQ backend/product/search logic changes were made.
 - No routes, analytics, database/schema, or migrations were changed.
 - Screenshots are required before merge (desktop/mobile coverage across homepage, products, work, solutions, and contact/RFQ flows).
+
+## Phase H1 — Public Identity & Creative System Upgrade
+- Identity direction updated to a **Field-Ready Infrastructure System** expression: technical, practical, and enterprise-oriented rather than generic corporate styling.
+- Homepage public narrative was reframed with sharper infrastructure language (delivery capabilities, field proof, procurement flow, delivery discipline, and scope-focused final CTA).
+- Color balance was refined around deep navy/slate authority with controlled orange as signal/accent only; borders/surfaces were tightened for cleaner operational contrast.
+- Typography and rhythm were tuned for clearer section hierarchy, tighter copy pacing, and more deliberate scan flow on mobile and desktop.
+- Shared public primitives were polished (section header spacing, card signal treatment, visual panel grid subtlety, calmer card hover/shadow behavior) for a consistent technical UI system.
+- Services and products public surfaces were aligned to the same identity tone with execution-oriented copy and subtle visual consistency updates (no logic changes).
+- Admin/API/RFQ/product/search/backend logic remains untouched in this phase.
+- No migration required.
+- Screenshots are required before merge.

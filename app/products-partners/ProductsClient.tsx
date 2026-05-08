@@ -37,7 +37,7 @@ function ProductVisual({ item }: { item: ProductItem }) {
     return <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-700/60 bg-gradient-to-br from-slate-950 via-navy-900 to-slate-900 p-4"><div className="flex h-full items-center justify-center rounded-xl border border-white/10 bg-white/5 text-center"><div><p className="text-xs font-semibold uppercase tracking-wide text-slate-300">Illustrative visual</p><p className="mt-1 px-4 text-sm font-medium text-slate-100">{item.name}</p></div></div></div>;
   }
 
-  return <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-700/60 bg-gradient-to-br from-slate-950 via-navy-900 to-slate-900 p-4"><div className="relative h-full w-full overflow-hidden rounded-xl border border-white/10 bg-white/5"><Image src={imagePath} alt={alt} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-contain p-3" onError={() => setBroken(true)} /></div></div>;
+  return <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-700/60 bg-gradient-to-br from-slate-950 via-navy-900 to-slate-900 p-4"><div className="relative h-full w-full overflow-hidden rounded-xl border border-white/10 bg-white/5"><div className="absolute left-3 top-3 z-10 h-0.5 w-6 rounded-full bg-orange-400/80" /><Image src={imagePath} alt={alt} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-contain p-3" onError={() => setBroken(true)} /></div></div>;
 }
 
 function expandQuery(rawQuery: string) {

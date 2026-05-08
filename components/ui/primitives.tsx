@@ -10,7 +10,7 @@ export function SectionShell({ children, className, compact = false }: { childre
 }
 
 export function SectionHeader({ eyebrow, title, description, className }: { eyebrow?: string; title: string; description?: string; className?: string }) {
-  return <div className={cx('max-w-4xl', className)}>{eyebrow ? <p className={cx(design.label, 'text-orange-600')}>{eyebrow}</p> : null}<h2 className={cx(design.headingSection, eyebrow ? 'mt-2' : '')}>{title}</h2>{description ? <p className="public-copy mt-3">{description}</p> : null}</div>;
+  return <div className={cx('max-w-4xl', className)}>{eyebrow ? <p className={cx(design.label, 'text-orange-600')}>{eyebrow}</p> : null}<h2 className={cx(design.headingSection, eyebrow ? 'mt-2.5' : '')}>{title}</h2>{description ? <p className="public-copy mt-3.5">{description}</p> : null}</div>;
 }
 
 export function PremiumCard({ children, className, accent = false }: { children: ReactNode; className?: string; accent?: boolean }) {
@@ -46,5 +46,5 @@ export function NoticeBox({ children, tone = 'info' }: { children: ReactNode; to
 }
 
 export function VisualPanel({ title, description, imageSrc = '/og-image.png', labels }: { title: string; description: string; imageSrc?: string; labels?: string[] }) {
-  return <div className="relative overflow-hidden rounded-2xl border border-slate-700 bg-gradient-to-br from-navy-800 to-navy-900 p-5 text-white lg:p-7"><Image src={imageSrc} alt={title} fill className="object-cover opacity-25" sizes="(max-width: 1024px) 100vw, 50vw" /><div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.12)_1px,transparent_1px)] bg-[size:32px_32px]" /><div className="absolute inset-0 bg-gradient-to-br from-navy-900/80 via-navy-900/55 to-navy-900/90" /><div className="relative z-10"><h3 className="text-lg font-semibold">{title}</h3><p className="mt-2 max-w-xl text-sm text-slate-200">{description}</p>{labels?.length ? <div className="mt-4 flex flex-wrap gap-2">{labels.map((label) => <BadgePill key={label} tone="navy">{label}</BadgePill>)}</div> : null}</div><div className="absolute left-6 top-12 h-1 w-24 rounded bg-orange-500" /></div>;
+  return <div className="relative overflow-hidden rounded-2xl border border-slate-700 bg-gradient-to-br from-navy-800 to-navy-900 p-5 text-white lg:p-7"><Image src={imageSrc} alt={title} fill className="object-cover opacity-25" sizes="(max-width: 1024px) 100vw, 50vw" /><div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.1)_1px,transparent_1px)] bg-[size:32px_32px]" /><div className="absolute inset-0 bg-gradient-to-br from-navy-900/80 via-navy-900/55 to-navy-900/90" /><div className="relative z-10"><h3 className="text-lg font-semibold">{title}</h3><p className="mt-2 max-w-xl text-sm text-slate-200">{description}</p>{labels?.length ? <div className="mt-4 flex flex-wrap gap-2">{labels.map((label) => <BadgePill key={label} tone="navy">{label}</BadgePill>)}</div> : null}</div><div className="absolute left-6 top-12 h-1 w-24 rounded bg-orange-500" /></div>;
 }
