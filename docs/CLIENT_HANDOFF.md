@@ -19,6 +19,24 @@
 - Added **About** (`/about`) and **Services** (`/services`) to the public header/mobile navigation for easier discovery.
 - No backend behavior changed in this phase (navigation-only update).
 
+
+## Phase A — Homepage Redesign Only
+- Simplified homepage hero with a cleaner B2B infrastructure message and reduced visual competition.
+- Removed repeated homepage CTA emphasis around **Start RFQ** while preserving header CTA behavior.
+- Added a compact field proof snapshot section using existing project imagery.
+- Simplified homepage catalog/RFQ journey into a practical 3-step flow.
+- Kept products, RFQ logic, admin, API, and backend behavior unchanged.
+- No migration required in this phase.
+- Screenshots are required before merge (desktop/mobile top, middle, bottom coverage).
+
+
+## Phase A.1 — Homepage Mobile & Density Polish
+- Tightened homepage hero density on mobile (reduced vertical rhythm and headline scale) while keeping desktop direction intact.
+- Kept CTA stack clean/full-width and reduced visual competition by hiding the hero proof visual on small screens.
+- Compacted “What HILTECH Delivers” and “Field Proof Snapshot” card spacing/padding for cleaner mobile scanability.
+- Compacted Trust & Delivery Principles into a grouped premium strip for better desktop balance and mobile efficiency.
+- No admin/API/RFQ logic/product/search/backend changes in this polish phase.
+
 ## Official contact details
 
 - Email: `info@hiltech-eg.com`
