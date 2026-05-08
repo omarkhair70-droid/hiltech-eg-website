@@ -660,3 +660,14 @@ Visual assets used in Phase 28B:
 - Product `price_note` values still require CSV import/admin update to appear in production data.
 - Existing RFQ baskets remain safe because `priceNote` is optional.
 - CSV import/export support for `price_note` required no additional admin-side changes in this phase.
+
+## Phase P3 — Catalog Expansion Preparation
+- Audited the 44 missing old-site candidate products.
+- Mapped available repository images for candidate rows.
+- Created a ready-to-import CSV for safe products only.
+- Created a needs-review CSV for products requiring image/confirmation.
+- No fake prices were added.
+- No products were imported automatically.
+- No UI/RFQ/search/backend changes were made.
+- No migration was added.
+- Next step: admin dry-run import with **Create missing products** enabled for READY file only.
