@@ -619,3 +619,16 @@ Visual assets used in Phase 28B:
 - Admin/API/RFQ/product/search/backend behavior untouched.
 - No migration required in this phase.
 - Screenshots are required before merge.
+
+## Phase R1 — References System
+- Added a compact **Selected References** section to homepage (`/`) after Field Proof and before Procurement Flow.
+- Split homepage references into **Technology & Supply References** and **Client / Project References**.
+- Normalized reference/logo presentation using consistent compact tiles (no stretching/cropping, controlled sizing).
+- Added disclaimer text to avoid implying formal partnerships:
+  - Brand and client references are shown for context and do not imply formal partnership unless explicitly stated.
+  - مراجع تجارية وفنية لأغراض التوضيح والسياق فقط.
+- Avoided restoring the old fallback/grid logo style on homepage.
+- Preserved Work page references behavior and layout from previous phase.
+- Admin/API/RFQ/product/search/backend were not changed in this phase.
+- No database migration required.
+- Screenshots are required before merge.
