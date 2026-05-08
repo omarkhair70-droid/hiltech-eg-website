@@ -597,3 +597,14 @@ Visual assets used in Phase 28B:
 - No admin/API/RFQ backend/product model/filter/search/backend logic changes.
 - No database or migration changes.
 - Screenshots are required before merge.
+
+## Phase C2 — Solution Detail Scope Flow Rebuild
+- Solution detail pages were rebuilt into scope-clarity pages with a tighter, operational layout.
+- Large conceptual diagram emphasis was removed in favor of responsive, compact approach-flow steps.
+- Hero CTA hierarchy was simplified to product/work discovery first, with RFQ conversion moved to final CTA.
+- Delivery scope, components, outcomes, and RFQ readiness were restructured to reduce repeated card-grid density.
+- Added a dedicated field proof link section before final RFQ conversion.
+- Mobile-first readability was improved with stacked flow/list patterns and lighter section density.
+- Admin/API/RFQ backend/product/search logic remains untouched in this phase.
+- No migration required.
+- Screenshots are required before merge.
