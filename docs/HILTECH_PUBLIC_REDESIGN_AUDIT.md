@@ -113,7 +113,7 @@ Homepage target: short, premium, conversion-focused, and clearly B2B infrastruct
 ### Section 1 — Hero
 - **Purpose:** establish HILTECH positioning and primary conversion path.
 - **Content direction:** infrastructure delivery + procurement readiness in Egypt.
-- **CTA rule:** 1 primary (`Start RFQ`) + 1 secondary (`Browse Products` or `View Solutions`).
+- **CTA rule:** Primary `Browse Products`, secondary `View Field Work`, and supportive low-emphasis `Track RFQ` text link. Do **not** use `Start RFQ` inside hero when `Start RFQ` is already visible in the header.
 - **Must NOT include:** fake terminal/search panel, crowded badges, large multi-CTA clusters.
 
 ### Section 2 — What HILTECH Delivers (3–4 pillars)
@@ -143,7 +143,7 @@ Homepage target: short, premium, conversion-focused, and clearly B2B infrastruct
 ### Section 6 — Final CTA Band
 - **Purpose:** close page with one decisive action.
 - **Content direction:** “Ready to request quotation?” short supporting line.
-- **CTA rule:** single high-emphasis `Start RFQ`; optional low-emphasis `Contact` text link.
+- **CTA rule:** Primary `Send Project Requirements`; secondary/text link `Contact HILTECH` or `Track RFQ`. Avoid repeating exact `Start RFQ` wording if it is already visible in the header.
 - **Must NOT include:** multiple equal-priority buttons.
 
 ---
@@ -154,8 +154,8 @@ Homepage target: short, premium, conversion-focused, and clearly B2B infrastruct
 - **Headline:** `Infrastructure Supply & Delivery for Enterprise Projects in Egypt.`
 - **Subcopy:** `From product selection to structured RFQ submission, HILTECH supports practical project procurement with technical clarity.`
 - **Arabic support line:** `حلول بنية تحتية عملية للمشروعات مع مسار RFQ واضح وسريع.`
-- **Primary CTA:** `Start RFQ`
-- **Secondary CTA:** `Browse Products`
+- **Primary CTA:** `Browse Products`
+- **Secondary CTA:** `Start RFQ` (only if needed)
 - **Visual direction:** premium field photo with subtle overlay + minimal KPI strip.
 
 ## Concept B — Capability-first
@@ -163,7 +163,7 @@ Homepage target: short, premium, conversion-focused, and clearly B2B infrastruct
 - **Subcopy:** `Structured cabling, fiber backbone, data room readiness, and project supply managed through one clear delivery approach.`
 - **Arabic support line:** optional single line below subcopy.
 - **Primary CTA:** `View Solutions`
-- **Secondary CTA:** `Start RFQ`
+- **Secondary CTA:** `Browse Products`
 - **Visual direction:** editorial split layout (copy left, curated infrastructure image right).
 
 ## Concept C — Proof-first
@@ -171,7 +171,7 @@ Homepage target: short, premium, conversion-focused, and clearly B2B infrastruct
 - **Subcopy:** `See field proof, align scope, and submit a requirements-based RFQ for your project timeline.`
 - **Arabic support line:** `أعمال ميدانية فعلية ومسار واضح من النطاق إلى طلب السعر.`
 - **Primary CTA:** `View Field Work`
-- **Secondary CTA:** `Start RFQ`
+- **Secondary CTA:** `Browse Products`
 - **Visual direction:** collage of 2–3 real work images with disciplined spacing.
 
 ---
@@ -305,11 +305,11 @@ Resources should support conversion, not distract from it.
 ## 14) CTA System (Strict Map)
 
 ### CTA roles
-- **Primary CTA:** `Start RFQ`
-- **Secondary CTA:** `Browse Products` or `View Solutions` (contextual)
-- **Text link CTA:** `View Work`, `Read RFQ Guide`, `Track RFQ`
+- **Primary CTA (page/section level):** `Browse Products`, `View Field Work`, or `View Solutions` (contextual to page intent)
+- **Secondary CTA:** `Send Project Requirements` (used where formal RFQ conversion is expected)
+- **Text link CTA:** `View Work`, `Read RFQ Guide`, `Track RFQ`, `Contact HILTECH`
 - **Header CTA:** only `Start RFQ` as high-emphasis button
-- **Final CTA (homepage footer band):** `Start RFQ`
+- **Final CTA (homepage footer band):** Primary `Send Project Requirements`; secondary/text link `Contact HILTECH` or `Track RFQ`
 
 ### When NOT to show “Start RFQ”
 - Repeated in every card within same section.
@@ -319,6 +319,7 @@ Resources should support conversion, not distract from it.
 ### Frequency control
 - Max one high-emphasis RFQ CTA per section.
 - Prefer text links for secondary branching.
+- **Do not show more than one high-emphasis Start RFQ CTA in the same viewport.**
 
 ---
 
