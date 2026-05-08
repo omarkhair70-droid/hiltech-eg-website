@@ -25,6 +25,7 @@ export default function Footer() {
           </div>
           <p className="mt-2.5 text-slate-100">{site.officialName}</p>
           <p className="text-orange-300">{site.slogan}</p>
+          <p className="mt-1 text-sm text-slate-300">Reliable Network Infrastructure, Delivered with Precision.</p>
           <p className="mt-3 text-sm text-slate-300">© HILTECH. All rights reserved.
             <span className="block text-xs text-slate-400" dir="rtl">حلول البنية التحتية التقنية للمشروعات داخل مصر.</span></p>
         </div>

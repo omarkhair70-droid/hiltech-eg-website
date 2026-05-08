@@ -32,7 +32,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 shadow-[0_4px_14px_rgba(15,23,42,0.05)] backdrop-blur-md">
       <div className="container flex h-14 items-center justify-between gap-3 md:h-16 md:gap-4">
         <Link href="/" translate="no" className="flex items-center gap-2 text-lg font-extrabold tracking-[0.12em] text-navy-900 md:text-xl">
           {showLogoImage ? (

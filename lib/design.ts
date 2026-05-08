@@ -8,5 +8,5 @@ export const design = {
   body: 'public-copy',
   label: 'public-eyebrow',
   cardBase:
-    'public-card p-4 text-slate-900 transition duration-300 sm:p-5 hover:-translate-y-0.5 hover:border-orange-200 hover:shadow-[0_12px_26px_rgba(15,23,42,0.08)]',
+    'public-card p-4 text-slate-900 transition duration-200 sm:p-5 hover:-translate-y-0.5 hover:border-orange-200 hover:shadow-[0_10px_22px_rgba(15,23,42,0.08)]',
 };

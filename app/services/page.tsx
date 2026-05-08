@@ -53,8 +53,8 @@ export default function Page() {
   return (
     <main className="section">
       <div className="container">
-        <h1 className="text-3xl font-bold leading-tight sm:text-4xl">Enterprise Infrastructure Services</h1>
-        <p className="mt-3 text-slate-700">HILTECH provides practical, standards-driven network infrastructure services covering site inspection, engineering planning, implementation, and measured delivery support.</p>
+        <h1 className="text-3xl font-bold leading-tight sm:text-4xl">Project-Ready Infrastructure Services</h1>
+        <p className="mt-3 text-slate-700">HILTECH supports routing, racks, fiber, copper, and testing workflows across planning, execution readiness, and handover support.</p>
       </div>
 
       <ServicesGrid />

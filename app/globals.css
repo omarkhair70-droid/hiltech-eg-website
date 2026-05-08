@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --surface-navy-950: #081426;
+  --surface-navy-950: #071526;
   --surface-navy-900: #0f172a;
   --surface-light: #f8fafc;
   --surface-white: #ffffff;
   --text-strong: #0f172a;
   --text-muted: #475569;
   --text-soft: #64748b;
-  --border-soft: #dbe4ef;
+  --border-soft: #d9e2ec;
   --accent-orange: #f97316;
   --accent-orange-strong: #ea580c;
   --radius-card: 0.875rem;
@@ -72,6 +72,19 @@ body {
   border-color: var(--border-soft);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.public-card::before {
+  content: '';
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  width: 1.25rem;
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-orange) 68%, white);
+  opacity: 0.85;
 }
 
 .public-proof-image {
