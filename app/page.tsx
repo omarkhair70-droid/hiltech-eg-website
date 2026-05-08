@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { FieldWorkPreview, FinalCTA, Hero, ProductsRFQPreview, SelectedReferences, TrustPreview, WhatHiltechDoes } from '@/components/Sections';
+import { FieldWorkPreview, FinalCTA, Hero, ProductsRFQPreview, WhatHiltechDoes } from '@/components/Sections';
 import { site } from '@/content/site';
 
 export const metadata: Metadata = {
@@ -23,9 +23,7 @@ export default async function Home() {
       <Hero />
       <WhatHiltechDoes />
       <FieldWorkPreview />
-      <SelectedReferences />
       <ProductsRFQPreview />
-      <TrustPreview />
       <FinalCTA />
     </main>
   );

@@ -6,20 +6,20 @@ import { CTAButton, PremiumCard, SectionHeader, SectionShell } from '@/component
 
 const deliveryPillars = [
   {
-    title: 'Structured Cabling & Fiber Infrastructure',
-    description: 'Backbone and horizontal connectivity delivery for enterprise environments.',
+    title: 'Enterprise Facilities',
+    description: 'Business sites, offices, and technical spaces with practical infrastructure scope.',
   },
   {
-    title: 'Data Room & Rack Readiness',
-    description: 'Rack setup, cable routing, and cabinet preparation for cleaner operations.',
+    title: 'Field Execution',
+    description: 'Fiber, rack, and cabling tasks prepared for deployment and handover.',
   },
   {
-    title: 'Project Supply & RFQ Coordination',
-    description: 'Scope-aligned product preparation before submitting project requirements.',
+    title: 'Project Supply',
+    description: 'Catalog-led item selection with one RFQ path for requirements.',
   },
   {
-    title: 'Testing & Validation Support',
-    description: 'Validation-oriented checks to support reliable handover outcomes.',
+    title: 'Validation Discipline',
+    description: 'Structured checks before final project handover.',
   },
 ];
 
@@ -88,8 +88,8 @@ export function WhatHiltechDoes() {
     <SectionShell compact>
       <SectionHeader
         eyebrow="Delivery Capabilities"
-        title="Infrastructure support from site scope to handover"
-        description="From routing decisions to racks, fiber, copper, and validation workflows — HILTECH supports the infrastructure layer that keeps facilities connected."
+        title="Who we support and how delivery is handled"
+        description="Compact project support for infrastructure-heavy facilities."
       />
       <div className="mt-5 grid gap-2.5 sm:mt-7 sm:gap-4 sm:grid-cols-2">
         {deliveryPillars.map((card) => (
@@ -99,11 +99,6 @@ export function WhatHiltechDoes() {
           </PremiumCard>
         ))}
       </div>
-      <p className="mt-5 text-sm text-slate-700 sm:mt-6">
-        <Link href="/solutions" className="font-medium underline underline-offset-4 hover:text-slate-900">
-          Explore Solutions
-        </Link>
-      </p>
     </SectionShell>
   );
 }
@@ -136,11 +131,52 @@ export function ProductsRFQPreview() {
 
 export function FieldWorkPreview() {
   const previews = [
-    { title: 'Fiber Termination Readiness', description: 'Backbone distribution, termination order, and clean routing execution.', image: '/fiber-distribution-panel.jpg' },
-    { title: 'Rack & Data Room Preparation', description: 'Structured cabinet setup and patching discipline for deployment teams.', image: '/rack-data-room.jpg' },
-    { title: 'Testing Workflow Evidence', description: 'Validation-focused workstreams supporting handover readiness.', image: '/copper-patch-panel.jpg' },
+    {
+      title: 'Fiber Installation',
+      description: 'Fiber extension, splicing, termination, and testing-readiness support.',
+      image: '/fiber-splicing-workbench.jpg',
+    },
+    {
+      title: 'Rack Installation',
+      description: 'Rack preparation, patching, routing, and cabinet readiness.',
+      image: '/rack-front-cabling.jpg',
+    },
+    {
+      title: 'Structured Cabling',
+      description: 'Organized copper cabling routes for business facilities.',
+      image: '/copper-cable-tray.jpg',
+    },
+    {
+      title: 'Testing & Validation',
+      description: 'Field checks and validation support before handover.',
+      image: '/testing-otdr-device.jpg',
+    },
   ];
-  return <SectionShell className="bg-slate-50"><SectionHeader eyebrow="Field Proof" title="Real work from racks, fiber, copper, and testing workflows" description="Selected implementation visuals showing the practical details behind HILTECH delivery." /><div className="mt-5 grid gap-3 md:mt-6 md:grid-cols-3 md:gap-4">{previews.map((item, index) => <PremiumCard key={item.title} className={`overflow-hidden bg-white p-0 ${index === 2 ? 'hidden md:block' : ''}`}><div className="relative h-36 w-full sm:h-44 md:h-48"><Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" /></div><div className="p-3 sm:p-3.5"><h3 className="font-semibold text-slate-900">{item.title}</h3><p className="mt-1 text-sm text-slate-700">{item.description}</p></div></PremiumCard>)}</div><div className="mt-5 md:mt-6"><CTAButton href="/work" variant="secondary">View Field Work</CTAButton></div></SectionShell>;
+  return (
+    <SectionShell className="bg-slate-50">
+      <SectionHeader
+        eyebrow="Field Delivery"
+        title="Infrastructure work prepared for handover"
+        description="Practical support across fiber, racks, cabling, and testing workflows — shown through selected field visuals."
+      />
+      <div className="mt-5 grid gap-3 sm:grid-cols-2 md:mt-6 md:gap-4">
+        {previews.map((item) => (
+          <PremiumCard key={item.title} className="overflow-hidden bg-white p-0">
+            <div className="relative h-32 w-full sm:h-36 md:h-40">
+              <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
+            </div>
+            <div className="p-3 sm:p-3.5">
+              <h3 className="font-semibold text-slate-900">{item.title}</h3>
+              <p className="mt-1 text-sm text-slate-700">{item.description}</p>
+            </div>
+          </PremiumCard>
+        ))}
+      </div>
+      <div className="mt-5 md:mt-6">
+        <CTAButton href="/work" variant="secondary" className="w-full justify-center sm:w-auto">View Field Work</CTAButton>
+      </div>
+    </SectionShell>
+  );
 }
 
 
