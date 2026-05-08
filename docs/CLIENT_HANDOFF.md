@@ -671,3 +671,16 @@ Visual assets used in Phase 28B:
 - No UI/RFQ/search/backend changes were made.
 - No migration was added.
 - Next step: admin dry-run import with **Create missing products** enabled for READY file only.
+
+## Phase P3.1 — Catalog QA & Duplicate Cleanup Audit
+- Completed as an **audit-only** phase with **no product/runtime behavior changes**.
+- Reviewed the expected post-expansion catalog baseline (original + imported P3 ready rows).
+- Identified duplicate/near-duplicate and variant overlap risks.
+- Identified generic-vs-specific SKU conflicts (including HPE-style parent/child listing overlaps).
+- Identified repeated image usage clusters and confidence risks.
+- Produced cleanup recommendation package:
+  - `docs/PRODUCT_CATALOG_QA_DUPLICATE_AUDIT.md`
+  - `docs/PRODUCT_CATALOG_CLEANUP_RECOMMENDATIONS.csv`
+  - `docs/PRODUCT_CATALOG_DUPLICATE_GROUPS.csv`
+- No admin/API/RFQ/search/backend/schema changes were made.
+- Next step: user reviews recommendations before any cleanup CSV update/import is attempted.
