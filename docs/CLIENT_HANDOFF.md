@@ -640,3 +640,13 @@ Visual assets used in Phase 28B:
 - No fake prices were added.
 - No RFQ/product/search/backend behavior changes were made in this phase.
 - No migration was added in this phase.
+
+## Phase P2A — Old Site Product Price Source + Catalog Match Matrix
+- Captured product names and RFQ-context prices from user-provided old HILTECH site screenshots.
+- Created `docs/OLD_SITE_PRODUCT_PRICE_SOURCE.csv` as source-of-truth capture file.
+- Updated `docs/PRODUCT_PRICE_IMPORT_TEMPLATE.csv` with matched `price_note` values for confident existing matches and appended candidate new product rows for specific old-site SKUs/variants.
+- No fake prices were added; all prices are directly captured from provided screenshot source list.
+- No UI changes were made in this phase.
+- No RFQ, search/filter, admin auth, API behavior, analytics, middleware, or backend logic changes were made.
+- No Supabase schema changes or migrations were made.
+- Next phase should display `price_note` on public product cards and support admin import/review workflow.
