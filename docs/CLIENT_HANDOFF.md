@@ -608,3 +608,14 @@ Visual assets used in Phase 28B:
 - Admin/API/RFQ backend/product/search logic remains untouched in this phase.
 - No migration required.
 - Screenshots are required before merge.
+
+## Phase C3 — Work Proof Page Rebuild
+- `/work` rebuilt from gallery dump into a field proof page.
+- Added a dark proof hero with direct route actions to products, RFQ, and solutions.
+- Added a featured field proof section before detailed discipline evidence.
+- Reorganized gallery groups into proof disciplines (fiber/ODF, rack/data room, copper, testing) using lead visuals plus supporting thumbnails.
+- Kept references as secondary context with explicit non-partnership disclaimer language.
+- Improved mobile proof layout to reduce repetitive equal-grid fatigue and improve scanability.
+- Admin/API/RFQ/product/search/backend behavior untouched.
+- No migration required in this phase.
+- Screenshots are required before merge.
