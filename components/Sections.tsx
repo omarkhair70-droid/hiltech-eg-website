@@ -49,11 +49,20 @@ export function Hero() {
               View Field Work
             </CTAButton>
           </div>
-          <p className="mt-2.5 pb-8 text-sm text-slate-200 sm:mt-3 sm:pb-0">
+          <p className="mt-2.5 text-sm text-slate-200 sm:mt-3">
             <Link href="/track" className="underline underline-offset-4 hover:text-white">
               Track RFQ
             </Link>
           </p>
+          <div className="relative mt-3 h-32 w-full overflow-hidden rounded-xl border border-white/15 sm:hidden">
+            <Image
+              src="/rack-data-room.jpg"
+              alt="Data room rack preparation"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
         </div>
 
         <PremiumCard className="hidden overflow-hidden border-white/10 bg-white/5 p-0 backdrop-blur-sm sm:block">
