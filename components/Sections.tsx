@@ -157,42 +157,20 @@ export function FieldWorkPreview() {
       <SectionHeader
         eyebrow="Field Delivery"
         title="Infrastructure work prepared for handover"
-        description="Practical support across fiber, racks, cabling, and testing workflows."
+        description="Practical support across fiber, racks, cabling, and testing workflows — shown through selected field visuals."
       />
-      <div className="mt-5 grid gap-3 md:mt-6 md:grid-cols-12 md:gap-4">
-        <PremiumCard className="overflow-hidden bg-white p-0 md:col-span-7">
-          <div className="relative h-40 w-full sm:h-48 md:h-64">
-            <Image src={previews[0].image} alt={previews[0].title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 58vw" />
-          </div>
-          <div className="p-3.5 sm:p-4">
-            <h3 className="font-semibold text-slate-900">{previews[0].title}</h3>
-            <p className="mt-1 text-sm text-slate-700">{previews[0].description}</p>
-          </div>
-        </PremiumCard>
-        <div className="grid gap-3 md:col-span-5 md:grid-rows-2 md:gap-4">
-          {previews.slice(1, 3).map((item) => (
-            <PremiumCard key={item.title} className="overflow-hidden bg-white p-0">
-              <div className="relative h-28 w-full sm:h-32 md:h-28">
-                <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 35vw" />
-              </div>
-              <div className="p-3">
-                <h3 className="font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-1 text-sm text-slate-700">{item.description}</p>
-              </div>
-            </PremiumCard>
-          ))}
-        </div>
-        <PremiumCard className="overflow-hidden bg-white p-0 md:col-span-12">
-          <div className="grid items-center gap-3 sm:grid-cols-[160px_1fr]">
-            <div className="relative h-24 w-full sm:h-full">
-              <Image src={previews[3].image} alt={previews[3].title} fill className="object-cover" sizes="(max-width: 640px) 100vw, 160px" />
+      <div className="mt-5 grid gap-3 sm:grid-cols-2 md:mt-6 md:gap-4">
+        {previews.map((item) => (
+          <PremiumCard key={item.title} className="overflow-hidden bg-white p-0">
+            <div className="relative h-32 w-full sm:h-36 md:h-40">
+              <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
             </div>
-            <div className="p-3 sm:p-4">
-              <h3 className="font-semibold text-slate-900">{previews[3].title}</h3>
-              <p className="mt-1 text-sm text-slate-700">{previews[3].description}</p>
+            <div className="p-3 sm:p-3.5">
+              <h3 className="font-semibold text-slate-900">{item.title}</h3>
+              <p className="mt-1 text-sm text-slate-700">{item.description}</p>
             </div>
-          </div>
-        </PremiumCard>
+          </PremiumCard>
+        ))}
       </div>
       <div className="mt-5 md:mt-6">
         <CTAButton href="/work" variant="secondary" className="w-full justify-center sm:w-auto">View Field Work</CTAButton>

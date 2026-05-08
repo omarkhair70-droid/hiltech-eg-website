@@ -45,6 +45,8 @@
   - Testing & Validation (`/testing-otdr-device.jpg`)
 - Used existing in-repo images only (no external assets).
 - Reduced repetitive homepage copy and removed repeated homepage-only blocks to keep a shorter, cleaner scan path.
+- Removed the old 3-card **Field Proof** homepage treatment in favor of one unified Field Delivery strip.
+- Tightened Field Delivery into a balanced 2x2 visual card layout with consistent media heights to avoid awkward leftover rows/cards.
 - Preserved core journeys to Products, Work, RFQ, and Contact.
 - No admin/API/RFQ backend/search/product data/schema changes in this phase.
 - Mobile density and section height were checked to avoid oversized stacked media cards.
