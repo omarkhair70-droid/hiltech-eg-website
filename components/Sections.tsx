@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { services as siteServices } from '@/content/site';
+import { selectedReferenceGroups, selectedReferencesDisclaimer, selectedReferencesDisclaimerAr } from '@/content/references';
 import { CTAButton, PremiumCard, SectionHeader, SectionShell } from '@/components/ui/primitives';
 
 const deliveryPillars = [
@@ -140,6 +141,70 @@ export function FieldWorkPreview() {
     { title: 'Testing Workflow Evidence', description: 'Validation-focused workstreams supporting handover readiness.', image: '/copper-patch-panel.jpg' },
   ];
   return <SectionShell className="bg-slate-50"><SectionHeader eyebrow="Field Proof" title="Real work from racks, fiber, copper, and testing workflows" description="Selected implementation visuals showing the practical details behind HILTECH delivery." /><div className="mt-5 grid gap-3 md:mt-6 md:grid-cols-3 md:gap-4">{previews.map((item, index) => <PremiumCard key={item.title} className={`overflow-hidden bg-white p-0 ${index === 2 ? 'hidden md:block' : ''}`}><div className="relative h-36 w-full sm:h-44 md:h-48"><Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" /></div><div className="p-3 sm:p-3.5"><h3 className="font-semibold text-slate-900">{item.title}</h3><p className="mt-1 text-sm text-slate-700">{item.description}</p></div></PremiumCard>)}</div><div className="mt-5 md:mt-6"><CTAButton href="/work" variant="secondary">View Field Work</CTAButton></div></SectionShell>;
+}
+
+
+
+type ReferenceTileProps = {
+  name: string;
+  subtitle?: string;
+  logoSrc?: string;
+  logoAlt?: string;
+};
+
+function ReferenceTile({ name, subtitle, logoSrc, logoAlt }: ReferenceTileProps) {
+  return (
+    <div className="group flex h-20 w-44 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-3 py-2 transition hover:border-slate-300 hover:bg-slate-50">
+      {logoSrc ? (
+        <div className="relative h-10 w-full">
+          <Image src={logoSrc} alt={logoAlt ?? `${name} reference logo`} fill className="object-contain" sizes="176px" />
+        </div>
+      ) : (
+        <div className="text-center">
+          <p className="text-sm font-semibold text-slate-900">{name}</p>
+          {subtitle ? <p className="text-xs text-slate-600">{subtitle}</p> : null}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function SelectedReferences() {
+  return (
+    <SectionShell compact>
+      <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5 md:p-6">
+        <SectionHeader
+          eyebrow="Selected References"
+          title="Recognized references across project supply and infrastructure delivery"
+          description="Brand ecosystems and client-side references connected to HILTECH project and supply context."
+        />
+
+        <div className="mt-5 space-y-4">
+          {selectedReferenceGroups.map((group) => (
+            <article key={group.title}>
+              <h3 className="text-sm font-semibold text-slate-700">{group.title}</h3>
+              <div className="mt-2.5 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:thin]">
+                {group.items.map((item) => (
+                  <ReferenceTile key={item.name} {...item} />
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-4 space-y-1">
+          <p className="text-xs text-slate-500">{selectedReferencesDisclaimer}</p>
+          <p className="text-[11px] text-slate-500" dir="rtl" lang="ar">{selectedReferencesDisclaimerAr}</p>
+        </div>
+
+        <p className="mt-4 text-sm text-slate-700">
+          <Link href="/work" className="font-medium underline underline-offset-4 hover:text-slate-900">
+            View Field Work
+          </Link>
+        </p>
+      </section>
+    </SectionShell>
+  );
 }
 
 export function TrustPreview() {
