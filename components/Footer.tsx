@@ -11,7 +11,16 @@ const footerServices = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-900 text-white">
+    <footer className="bg-navy-950 text-white">
+      <div className="border-b border-slate-700/80 bg-gradient-to-r from-navy-900 via-slate-900 to-navy-900">
+        <div className="container flex flex-col items-start justify-between gap-3 py-5 sm:flex-row sm:items-center">
+          <p className="text-sm text-slate-100">Need structured scope and project supply alignment?</p>
+          <div className="flex gap-2">
+            <Link href="/rfq" className="inline-flex rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600">Start RFQ</Link>
+            <Link href="/products-partners" className="inline-flex rounded-lg border border-slate-500 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 hover:bg-white/10">Browse Products</Link>
+          </div>
+        </div>
+      </div>
       <div className="container grid gap-8 py-12 md:grid-cols-4 md:py-16">
         <div>
           <div translate="no" className="inline-flex rounded-xl border border-slate-700/80 bg-white/5 px-3 py-2 shadow-sm">

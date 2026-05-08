@@ -13,6 +13,11 @@ export function SectionHeader({ eyebrow, title, description, className }: { eyeb
   return <div className={cx('max-w-4xl', className)}>{eyebrow ? <p className={cx(design.label, 'text-orange-600')}>{eyebrow}</p> : null}<h2 className={cx(design.headingSection, eyebrow ? 'mt-2.5' : '')}>{title}</h2>{description ? <p className="public-copy mt-3.5">{description}</p> : null}</div>;
 }
 
+
+export function PublicPageHero({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
+  return <section className="rounded-2xl border border-slate-700/30 bg-gradient-to-br from-navy-900 via-slate-900 to-navy-900 p-6 text-white shadow-[0_18px_48px_rgba(2,6,23,0.35)] md:p-8"><p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-300">{eyebrow}</p><h1 className="mt-2 text-3xl font-bold md:text-4xl">{title}</h1><p className="mt-3 max-w-4xl text-sm text-slate-200 md:text-base">{description}</p></section>;
+}
+
 export function PremiumCard({ children, className, accent = false }: { children: ReactNode; className?: string; accent?: boolean }) {
   return <article className={cx(design.cardBase, 'text-slate-900 [&_a]:text-navy-900 [&_a]:decoration-navy-700 [&_a:hover]:text-navy-800', className)}>{accent ? <div className="mb-3 h-1.5 w-12 rounded bg-orange-500" /> : null}{children}</article>;
 }

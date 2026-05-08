@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { productDisclaimer } from '@/content/products';
 import { site } from '@/content/site';
-import { NoticeBox, SectionHeader, SectionShell } from '@/components/ui/primitives';
+import { NoticeBox, PublicPageHero, SectionHeader, SectionShell } from '@/components/ui/primitives';
 import { getPublicProducts } from '@/lib/server/products-public';
 import ProductsClient from './ProductsClient';
 
@@ -20,5 +20,5 @@ export const revalidate = 0;
 export default async function Page() {
   const { products } = await getPublicProducts();
 
-  return <main><SectionShell><SectionHeader title="Products & Project Supply" description="Search products, filter by category, and add items to your RFQ basket for one structured request." /><ProductsClient initialProducts={products} /><div className="mt-6 space-y-4"><NoticeBox>Product visuals are provided for catalog clarity. Final specifications, availability, and quotation are confirmed through HILTECH.</NoticeBox><NoticeBox tone="highlight">{productDisclaimer}</NoticeBox></div></SectionShell></main>;
+  return <main><SectionShell><PublicPageHero eyebrow="Project supply hub" title="Products & Project Supply" description="Search products, filter by category, and add items to your RFQ basket for one structured request." /><ProductsClient initialProducts={products} /><div className="mt-6 space-y-4"><NoticeBox>Product visuals are provided for catalog clarity. Final specifications, availability, and quotation are confirmed through HILTECH.</NoticeBox><NoticeBox tone="highlight">{productDisclaimer}</NoticeBox></div></SectionShell></main>;
 }
