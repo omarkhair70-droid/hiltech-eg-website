@@ -576,3 +576,13 @@ Visual assets used in Phase 28B:
 - No admin/API/Supabase/RFQ backend/product/search logic changes were made.
 - No routes, analytics, database/schema, or migrations were changed.
 - Screenshots are required before merge (desktop/mobile coverage across homepage, products, work, solutions, and contact/RFQ flows).
+
+
+## Phase B2 — Public Page Templates Visual Rebuild
+- Real public template rebuild in progress with visible presentation upgrades on key utility/proof templates.
+- Products catalog visual rebuild and Product Intelligence readability improvements planned/iterated.
+- Work proof page rebuilt around discipline-based proof modules.
+- Solutions/services/resources/contact/RFQ/track alignment underway with mobile-first spacing.
+- Admin/API/RFQ/product/search/backend behavior untouched.
+- No migration.
+- Screenshots required before merge.
