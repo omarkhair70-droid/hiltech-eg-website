@@ -558,3 +558,12 @@ Visual assets used in Phase 28B:
 - Preserved Products catalog-first behavior (`heading -> search/filter -> products`) from Phase 37G.
 - No admin/API/schema/auth/GA event name changes.
 - No migration required.
+
+## Phase A.2 — Homepage Final UX Pass
+- Final homepage mobile density polish implemented with tighter hero vertical rhythm and lighter mobile headline scale.
+- Homepage copy tightened across hero, capabilities, proof snapshot, journey, trust strip, and final CTA.
+- Field Proof Snapshot, Catalog-to-RFQ Journey, and Trust Principles sections compacted for cleaner mobile scanability.
+- Desktop hero direction preserved while applying only light spacing refinements.
+- Start RFQ repetition removed from homepage hero and final CTA language (header behavior preserved).
+- No admin/API/RFQ/product/search/backend changes were made in this phase.
+- No migration required in this phase.
