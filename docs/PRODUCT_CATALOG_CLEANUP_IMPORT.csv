@@ -1,0 +1,5 @@
+product_code,name,brand,category,status,price_note,availability_note,datasheet_url,technical_notes,image_url,sort_order,stock_status,stock_quantity,low_stock_threshold,inventory_notes,last_stock_checked_at
+patch-hpe-flex-om4,HPE Premier Flex LC/LC OM4 (Length/Model on Request),HPE,Patch Cords & Connectivity,active,,Confirm availability before quotation,,,/products/patch-hpe-flex-om4.png,12,unknown,,,,
+fiber-enclosure-24-core-china,Fiber Enclosure 24 Core (China),Generic / China,Fiber Optic Systems,active,"EGP 1,250",Confirm availability before quotation,,Imported from old site screenshot source; image requires confirmation,,40,unknown,,,,
+copper-cat6-patch,CAT6 UTP Patch Cord (Fixed Lengths),Generic / Multi-brand,Copper / CAT6 Cabling,active,,Confirm availability before quotation,,,/products/copper-cat6-patch.png,19,unknown,,,,
+fiber-lc-sc-connectors,Fiber Connectors LC/SC (Model on Request),Generic / Multi-brand,Fiber Optic Systems,active,,Confirm availability before quotation,,,/products/fiber-lc-sc-connectors.png,7,unknown,,,,

@@ -684,3 +684,12 @@ Visual assets used in Phase 28B:
   - `docs/PRODUCT_CATALOG_DUPLICATE_GROUPS.csv`
 - No admin/API/RFQ/search/backend/schema changes were made.
 - Next step: user reviews recommendations before any cleanup CSV update/import is attempted.
+
+## Phase P3.2 — Controlled Catalog Cleanup Import
+- prepared rename-only cleanup CSV for high-confidence product naming fixes
+- included only approved rename_only rows
+- excluded human_review / category_review / better image / archive-draft rows
+- no runtime/UI/admin/API/RFQ/search/backend/schema changes
+- no migration
+- no automatic database import
+- next step: admin dry run with Create missing products OFF
