@@ -12,7 +12,7 @@ const footerServices = [
 export default function Footer() {
   return (
     <footer className="bg-navy-900 text-white">
-      <div className="container grid gap-8 py-12 md:grid-cols-4 md:py-14">
+      <div className="container grid gap-8 py-12 md:grid-cols-4 md:py-16">
         <div>
           <div translate="no" className="inline-flex rounded-xl border border-slate-700/80 bg-white/5 px-3 py-2 shadow-sm">
             <Image
@@ -30,11 +30,11 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-semibold">Services</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-200">Services</h4>
           <ul className="mt-3 space-y-1 text-sm text-slate-200">
             {footerServices.map((service) => (
               <li key={service.label}>
-                <Link className="underline hover:text-white" href={service.href}>{service.label}</Link>
+                <Link className="underline decoration-slate-500 underline-offset-4 hover:text-white" href={service.href}>{service.label}</Link>
               </li>
             ))}
           </ul>
@@ -42,23 +42,23 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-semibold">Contact</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-200">Contact</h4>
           <ul className="mt-3 space-y-1 text-sm text-slate-200">
-            <li><a className="underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
-            <li><a className="underline" href={`tel:${site.contact.phone}`}>{site.contact.phone}</a></li>
-            <li><a className="underline" href={site.contact.whatsappGeneralLink}>{site.contact.whatsappIntl}</a></li>
+            <li><a className="underline decoration-slate-500 underline-offset-4" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
+            <li><a className="underline decoration-slate-500 underline-offset-4" href={`tel:${site.contact.phone}`}>{site.contact.phone}</a></li>
+            <li><a className="underline decoration-slate-500 underline-offset-4" href={site.contact.whatsappGeneralLink}>{site.contact.whatsappIntl}</a></li>
             <li>{site.contact.addressEn}</li>
           </ul>
         </div>
 
         <div>
-          <h4 className="font-semibold">Resources</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-200">Resources</h4>
           <ul className="mt-3 space-y-1 text-sm text-slate-200">
-            <li><Link className="underline" href="/resources">Resources Hub</Link></li>
-            <li><Link className="underline" href="/resources/rfq-guide">RFQ Preparation Guide</Link></li>
-            <li><Link className="underline" href="/scope-finder">Scope Finder</Link></li>
-            <li><Link className="underline" href="/work">Field Work & References</Link></li>
-            <li><Link className="underline" href="/track">Track RFQ</Link></li>
+            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/resources">Resources Hub</Link></li>
+            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/resources/rfq-guide">RFQ Preparation Guide</Link></li>
+            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/scope-finder">Scope Finder</Link></li>
+            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/work">Field Work & References</Link></li>
+            <li><Link className="underline decoration-slate-500 underline-offset-4" href="/track">Track RFQ</Link></li>
           </ul>
           <h4 className="mt-4 font-semibold">Compliance</h4>
           <p className="mt-2 text-xs text-slate-400" dir="rtl">جميع الإشارات التجارية والفنية لأغراض توضيح النطاق فقط.</p>

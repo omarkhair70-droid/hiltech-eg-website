@@ -567,3 +567,12 @@ Visual assets used in Phase 28B:
 - Start RFQ repetition removed from homepage hero and final CTA language (header behavior preserved).
 - No admin/API/RFQ/product/search/backend changes were made in this phase.
 - No migration required in this phase.
+
+## Phase B1 - Public Design Tokens + Section Rhythm Reset (May 2026)
+- Established shared public visual rhythm through centralized tokens for navy/light surfaces, text hierarchy, borders, section spacing, card radius/shadow, button radius, and container width.
+- Refined shared typography rhythm for section headers/body copy and standardized eyebrow label treatment for consistent uppercase micro-label usage.
+- Updated shared card/button/link/image treatment to reduce dense “boxed” feeling while preserving all existing public page structures and routes.
+- Homepage structure and sequence were preserved (no rebuild, no section reorder, no CTA relabeling).
+- No admin/API/Supabase/RFQ backend/product/search logic changes were made.
+- No routes, analytics, database/schema, or migrations were changed.
+- Screenshots are required before merge (desktop/mobile coverage across homepage, products, work, solutions, and contact/RFQ flows).

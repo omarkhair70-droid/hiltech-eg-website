@@ -10,7 +10,7 @@ export function SectionShell({ children, className, compact = false }: { childre
 }
 
 export function SectionHeader({ eyebrow, title, description, className }: { eyebrow?: string; title: string; description?: string; className?: string }) {
-  return <div className={cx('max-w-4xl', className)}>{eyebrow ? <p className={cx(design.label, 'text-orange-600')}>{eyebrow}</p> : null}<h2 className={cx(design.headingSection, eyebrow ? 'mt-2' : '')}>{title}</h2>{description ? <p className="mt-3 text-slate-700">{description}</p> : null}</div>;
+  return <div className={cx('max-w-4xl', className)}>{eyebrow ? <p className={cx(design.label, 'text-orange-600')}>{eyebrow}</p> : null}<h2 className={cx(design.headingSection, eyebrow ? 'mt-2' : '')}>{title}</h2>{description ? <p className="public-copy mt-3">{description}</p> : null}</div>;
 }
 
 export function PremiumCard({ children, className, accent = false }: { children: ReactNode; className?: string; accent?: boolean }) {
@@ -19,13 +19,13 @@ export function PremiumCard({ children, className, accent = false }: { children:
 
 export function CTAButton({ href, children, variant = 'primary', className }: { href: string; children: ReactNode; variant?: 'primary' | 'secondary' | 'ghost' | 'link'; className?: string }) {
   const styles = {
-    primary: 'inline-flex items-center justify-center rounded-md bg-orange-500 px-5 py-2.5 font-semibold text-white hover:bg-orange-600',
-    secondary: 'inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-2.5 font-semibold text-slate-900 hover:bg-slate-100',
-    ghost: 'inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-2.5 font-semibold text-slate-900 hover:border-slate-400 hover:bg-slate-50',
-    link: 'inline-flex items-center gap-1 font-semibold text-navy-900 underline-offset-4 hover:underline',
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+    ghost: 'inline-flex items-center justify-center rounded-[var(--radius-button)] border border-slate-300 bg-white px-5 py-2.5 font-semibold text-slate-900 hover:border-slate-400 hover:bg-slate-50',
+    link: 'inline-flex items-center gap-1 font-semibold text-navy-900 underline underline-offset-4 hover:text-navy-800',
   };
-  if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return <a href={href} className={cx(styles[variant], className)}>{children}</a>;
-  return <Link href={href} className={cx(styles[variant], className)}>{children}</Link>;
+  if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return <a href={href} className={cx(styles[variant], 'gap-2', className)}>{children}</a>;
+  return <Link href={href} className={cx(styles[variant], 'gap-2', className)}>{children}</Link>;
 }
 
 export function BadgePill({ children, tone = 'orange' }: { children: ReactNode; tone?: 'orange' | 'slate' | 'navy' }) {
