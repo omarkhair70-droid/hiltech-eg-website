@@ -15,6 +15,9 @@ export interface ProductItem {
   shortSpecs: string;
   useCase: string;
   image?: string;
+  priceNote?: string | null;
+  availabilityNote?: string | null;
+  technicalNotes?: string | null;
 }
 
 export const productCategories: ProductCategory[] = [

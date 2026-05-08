@@ -650,3 +650,13 @@ Visual assets used in Phase 28B:
 - No RFQ, search/filter, admin auth, API behavior, analytics, middleware, or backend logic changes were made.
 - No Supabase schema changes or migrations were made.
 - Next phase should display `price_note` on public product cards and support admin import/review workflow.
+
+## Phase P2B — Product Price Display + RFQ Price Reference
+- Public product cards now support `price_note` display using procurement-safe wording.
+- RFQ basket now shows optional price reference metadata only.
+- No price totals or checkout behavior were added.
+- No schema or migration changes were made.
+- No fake prices were added.
+- Product `price_note` values still require CSV import/admin update to appear in production data.
+- Existing RFQ baskets remain safe because `priceNote` is optional.
+- CSV import/export support for `price_note` required no additional admin-side changes in this phase.
