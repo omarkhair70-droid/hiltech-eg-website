@@ -41,7 +41,7 @@ export function Hero() {
           <p className="mt-2.5 text-sm text-slate-100 sm:mt-3 sm:text-base" dir="rtl">
             توريد وتنفيذ ودعم فني لمشروعات البنية التحتية للشبكات داخل مصر.
           </p>
-          <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3">
+          <div className="mt-4 flex flex-col gap-2 pr-14 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3 sm:pr-0">
             <CTAButton href="/products-partners" className="w-full justify-center sm:w-auto">
               Browse Products
             </CTAButton>
