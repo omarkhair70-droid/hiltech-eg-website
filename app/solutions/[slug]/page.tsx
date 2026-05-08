@@ -117,12 +117,7 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
           <p className="mt-3 max-w-4xl text-sm text-slate-200 md:text-base">{solution.intro}</p>
           <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             <CTAButton href="/rfq">Start RFQ</CTAButton>
-            <CTAButton href="/products-partners" variant="secondary">
-              Browse Products
-            </CTAButton>
-            <CTAButton href="/contact" variant="ghost">
-              Contact HILTECH
-            </CTAButton>
+            <CTAButton href="/products-partners" variant="secondary">Browse Products</CTAButton>
           </div>
         </section>
 
@@ -152,7 +147,7 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
         </section>
 
         <section className="mt-8">
-          <h2 className="text-xl font-bold text-slate-900">Key outcomes</h2>
+          <h2 className="text-xl font-bold text-slate-900">Expected outcomes</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             {solution.keyOutcomes.map((item) => (
               <PremiumCard key={item} className="bg-slate-50 text-sm text-slate-700">
@@ -182,7 +177,7 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
         </section>
 
         <section className="mt-8">
-          <h2 className="text-xl font-bold text-slate-900">Implementation flow</h2>
+          <h2 className="text-xl font-bold text-slate-900">Approach flow</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {solution.implementationFlow.map((step, i) => (
               <PremiumCard key={step}>
