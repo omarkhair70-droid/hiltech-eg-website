@@ -71,7 +71,7 @@ export default function Header() {
 
       {open ? (
         <div id="mobile-nav" className="border-t border-slate-200 bg-white md:hidden">
-          <div className="container py-4">
+          <div className="container py-4 pb-28">
             <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
               <div className="space-y-5">
                 <section>
