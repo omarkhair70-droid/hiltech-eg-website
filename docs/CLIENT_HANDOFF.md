@@ -715,3 +715,10 @@ Visual assets used in Phase 28B:
 - preserved RFQ logic and optional price reference behavior
 - no admin/API/RFQ backend/schema/migration changes
 - QA needed across desktop/mobile and products with/without priceNote
+
+## H3 — Homepage Product References Panel
+- Replaced scattered/old homepage logo reference presentation with one compact references panel.
+- Used uploaded public asset `/ch-product-references.jpeg`.
+- Added a disclaimer that references do not imply formal partnership unless explicitly stated.
+- No admin/API/RFQ/search/product data/schema changes were made in this phase.
+- Mobile containment was checked to keep the references image readable without horizontal overflow.

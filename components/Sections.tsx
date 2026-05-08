@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { services as siteServices } from '@/content/site';
-import { selectedReferenceGroups, selectedReferencesDisclaimer, selectedReferencesDisclaimerAr } from '@/content/references';
 import { CTAButton, PremiumCard, SectionHeader, SectionShell } from '@/components/ui/primitives';
 
 const deliveryPillars = [
@@ -181,61 +180,34 @@ export function FieldWorkPreview() {
 
 
 
-type ReferenceTileProps = {
-  name: string;
-  subtitle?: string;
-  logoSrc?: string;
-  logoAlt?: string;
-};
 
-function ReferenceTile({ name, subtitle, logoSrc, logoAlt }: ReferenceTileProps) {
-  return (
-    <div className="group flex h-20 w-44 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-3 py-2 transition hover:border-slate-300 hover:bg-slate-50">
-      {logoSrc ? (
-        <div className="relative h-10 w-full">
-          <Image src={logoSrc} alt={logoAlt ?? `${name} reference logo`} fill className="object-contain" sizes="176px" />
-        </div>
-      ) : (
-        <div className="text-center">
-          <p className="text-sm font-semibold text-slate-900">{name}</p>
-          {subtitle ? <p className="text-xs text-slate-600">{subtitle}</p> : null}
-        </div>
-      )}
-    </div>
-  );
-}
 
-export function SelectedReferences() {
+export function ProductReferencesPanel() {
   return (
     <SectionShell compact>
-      <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5 md:p-6">
+      <section className="mx-auto max-w-5xl rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6">
         <SectionHeader
-          eyebrow="Selected References"
-          title="Recognized references across project supply and infrastructure delivery"
-          description="Brand ecosystems and client-side references connected to HILTECH project and supply context."
+          eyebrow="Product References"
+          title="Product ecosystems HILTECH can coordinate around"
+          description="Selected brand and product references help frame compatible infrastructure requirements across cabling, racks, connectivity, and testing workflows."
         />
-
-        <div className="mt-5 space-y-4">
-          {selectedReferenceGroups.map((group) => (
-            <article key={group.title}>
-              <h3 className="text-sm font-semibold text-slate-700">{group.title}</h3>
-              <div className="mt-2.5 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:thin]">
-                {group.items.map((item) => (
-                  <ReferenceTile key={item.name} {...item} />
-                ))}
-              </div>
-            </article>
-          ))}
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 sm:mt-5 sm:p-4">
+          <div className="relative mx-auto h-36 w-full max-w-4xl sm:h-44 md:h-52">
+            <Image
+              src="/ch-product-references.jpeg"
+              alt="Product and brand references panel"
+              fill
+              className="object-contain"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 896px"
+            />
+          </div>
         </div>
-
-        <div className="mt-4 space-y-1">
-          <p className="text-xs text-slate-500">{selectedReferencesDisclaimer}</p>
-          <p className="text-[11px] text-slate-500" dir="rtl" lang="ar">{selectedReferencesDisclaimerAr}</p>
-        </div>
-
-        <p className="mt-4 text-sm text-slate-700">
-          <Link href="/work" className="font-medium underline underline-offset-4 hover:text-slate-900">
-            View Field Work
+        <p className="mt-3 text-xs text-slate-500 sm:mt-4">
+          Brand and product references are shown for catalog/context purposes only and do not imply formal partnership unless explicitly stated.
+        </p>
+        <p className="mt-2 text-sm text-slate-700">
+          <Link href="/products-partners" className="underline underline-offset-4 hover:text-slate-900">
+            Browse Products
           </Link>
         </p>
       </section>
