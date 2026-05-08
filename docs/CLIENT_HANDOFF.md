@@ -37,6 +37,18 @@
 - Compacted Trust & Delivery Principles into a grouped premium strip for better desktop balance and mobile efficiency.
 - No admin/API/RFQ logic/product/search/backend changes in this polish phase.
 
+## H2 — Homepage Field Delivery Visual Strip + Copy Cleanup
+- Added a compact **Field Delivery** visual proof section on homepage with four service visuals:
+  - Fiber Installation (`/fiber-splicing-workbench.jpg`)
+  - Rack Installation (`/rack-front-cabling.jpg`)
+  - Structured Cabling (`/copper-cable-tray.jpg`)
+  - Testing & Validation (`/testing-otdr-device.jpg`)
+- Used existing in-repo images only (no external assets).
+- Reduced repetitive homepage copy and removed repeated homepage-only blocks to keep a shorter, cleaner scan path.
+- Preserved core journeys to Products, Work, RFQ, and Contact.
+- No admin/API/RFQ backend/search/product data/schema changes in this phase.
+- Mobile density and section height were checked to avoid oversized stacked media cards.
+
 ## Official contact details
 
 - Email: `info@hiltech-eg.com`
