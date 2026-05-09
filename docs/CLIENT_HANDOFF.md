@@ -57,7 +57,7 @@
 - Mobile density and section height were checked to avoid oversized stacked media cards.
 
 ## Final delivery domain reminder
-- Final client walkthrough and delivery should use `https://hiltech-eg.com`, not Vercel preview URLs.
+- Final client walkthrough and delivery must use `https://hiltech-eg.com`, not Vercel preview URLs, to preserve brand trust and conversion credibility.
 - Vercel preview URLs are for internal QA/previews only and should not be used in final client-facing walkthrough videos or handoff.
 
 ## Official contact details
