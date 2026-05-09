@@ -42,6 +42,12 @@ const en = {
   browseProducts: 'Browse Products',
   contactHelper: 'Need help preparing your request?',
   contactHiltech: 'Contact HILTECH',
+  emptyStateTitle: 'Your RFQ basket is empty',
+  emptyStateBody: 'Add products to submit an itemized RFQ, or send a project-only request below.',
+  projectOnlyTitle: 'No product list yet?',
+  projectOnlyBody: 'You can still send your project scope manually and our team will help build the BOQ with you.',
+  sendProjectOnly: 'Send Project-Only Request',
+  addItemsToSubmit: 'Add at least one product to enable RFQ submission.',
   quantity: 'Quantity',
   remove: 'Remove',
   reference: 'Reference',
@@ -60,7 +66,8 @@ const en = {
   emailRequired: 'Email address is required.',
   invalidEmail: 'Enter a valid email address.',
   quantityError: 'Quantity must be between 1 and 9999.',
-  submitError: 'We couldn’t save your RFQ right now. You can still send it via WhatsApp.',
+  submitError: "We couldn’t save your RFQ right now. You can still send it via WhatsApp.",
+  serverValidationPrefix: 'Please review:',
   prepareHint:
     'For faster quotation, include site location, quantities, rack/fiber/CCTV scope, and any BOQ or project notes.',
   nextTitle: 'What happens after submission?',
@@ -96,6 +103,7 @@ export default function RFQReviewClient({
   useEffect(() => setItems(readRFQItems()), []);
   useEffect(() => writeRFQItems(items), [items]);
   const count = useMemo(() => items.reduce((s, i) => s + normalizeRFQQuantity(i.quantity), 0), [items]);
+  const isBasketEmpty = items.length === 0;
 
   const updateItem = (id: string, patch: Partial<RFQItem>) => {
     setItems((prev) => prev.map((entry) => (entry.id === id ? normalizeRFQItem({ ...entry, ...patch }) : entry)));
@@ -116,6 +124,10 @@ export default function RFQReviewClient({
   };
 
   const submit = async () => {
+    if (isBasketEmpty) {
+      setSubmitState({ status: 'error', message: t.addItemsToSubmit });
+      return;
+    }
     if (!validate()) return;
     const normalizedItems = items.map((item) => normalizeRFQItem(item));
     if (normalizedItems.some((i) => i.quantity < MIN_RFQ_QUANTITY || i.quantity > MAX_RFQ_QUANTITY)) {
@@ -153,11 +165,18 @@ export default function RFQReviewClient({
         }),
       });
       const data = await response.json();
-      if (!response.ok || !data.ok || !data.requestCode) throw new Error();
+      if (!response.ok || !data.ok || !data.requestCode) {
+        const details = Array.isArray(data?.issues)
+          ? data.issues
+              .map((issue: { path?: string[]; message?: string }) => issue?.message)
+              .filter((message: string | undefined): message is string => Boolean(message))
+          : [];
+        throw new Error(details.length ? `${t.serverValidationPrefix} ${details.join(' ')}` : t.submitError);
+      }
       setSubmitState({ status: 'success', requestCode: data.requestCode });
       trackEvent('rfq_submit_success', { item_count: items.length, total_units: count, source: 'rfq_page' });
-    } catch {
-      setSubmitState({ status: 'error', message: t.submitError });
+    } catch (error) {
+      setSubmitState({ status: 'error', message: error instanceof Error && error.message ? error.message : t.submitError });
     }
   };
 
@@ -193,7 +212,7 @@ export default function RFQReviewClient({
           <div className="space-y-6">
             <section className="public-card rounded-2xl border border-slate-200 bg-white p-5">
               <h2 className="text-xl font-semibold text-slate-900">{t.itemsCardTitle}</h2>
-              {items.length === 0 ? (
+              {isBasketEmpty ? (
                 <div className="mt-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-700">
                   <p>{t.emptyBasket}</p>
                   <Link className="btn-secondary mt-3 inline-flex" href={productsHref}>{t.browseProducts}</Link>
@@ -257,13 +276,30 @@ export default function RFQReviewClient({
 
             <section className="public-card rounded-2xl border border-slate-200 bg-white p-5">
               <h2 className="text-xl font-semibold text-slate-900">{t.submitSectionTitle}</h2>
-              <p className="mt-2 text-sm text-slate-600">{t.finalQuotationNote}</p>
-              <div className="mt-4 flex flex-col gap-3">
-                <button type="button" className="btn-primary w-full" onClick={submit} disabled={submitState.status === 'submitting'}>
-                  {submitState.status === 'submitting' ? t.submitting : t.submitRFQ}
-                </button>
-                <a className="btn-secondary w-full text-center" href={getRFQWhatsappLink(items, project)} target="_blank" rel="noopener noreferrer">{t.sendViaWhatsapp}</a>
-              </div>
+              {isBasketEmpty ? (
+                <div className="mt-3 space-y-4">
+                  <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4">
+                    <h3 className="text-base font-semibold text-slate-900">{t.emptyStateTitle}</h3>
+                    <p className="mt-1 text-sm text-slate-700">{t.emptyStateBody}</p>
+                    <Link className="btn-primary mt-4 inline-flex" href={productsHref}>{t.browseProducts}</Link>
+                  </div>
+                  <div className="rounded-xl border border-slate-200 bg-white p-4">
+                    <h3 className="text-base font-semibold text-slate-900">{t.projectOnlyTitle}</h3>
+                    <p className="mt-1 text-sm text-slate-700">{t.projectOnlyBody}</p>
+                    <a className="btn-secondary mt-4 inline-flex" href={getRFQWhatsappLink(items, project)} target="_blank" rel="noopener noreferrer">{t.sendProjectOnly}</a>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <p className="mt-2 text-sm text-slate-600">{t.finalQuotationNote}</p>
+                  <div className="mt-4 flex flex-col gap-3">
+                    <button type="button" className="btn-primary w-full" onClick={submit} disabled={submitState.status === 'submitting'}>
+                      {submitState.status === 'submitting' ? t.submitting : t.submitRFQ}
+                    </button>
+                    <a className="btn-secondary w-full text-center" href={getRFQWhatsappLink(items, project)} target="_blank" rel="noopener noreferrer">{t.sendViaWhatsapp}</a>
+                  </div>
+                </>
+              )}
               {submitState.status === 'error' ? <p className="mt-3 text-sm text-red-600">{submitState.message}</p> : null}
               <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
                 <span>{t.contactHelper} </span>
