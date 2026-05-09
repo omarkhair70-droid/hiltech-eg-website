@@ -61,7 +61,8 @@ export default function Header() {
           <Link href={localizeHref('/rfq')} className="inline-flex items-center rounded-md bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-orange-600">{isArabic ? arNavigation.requestProjectQuote : 'Request Project Quote'}</Link>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-1 md:hidden">
+          <LanguageSwitcher className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" />
           <SiteSearch className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" onNavigate={() => setOpen(false)} />
           <button className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="mobile-nav">
             <span translate="no">{isArabic ? 'القائمة' : 'Menu'}</span>

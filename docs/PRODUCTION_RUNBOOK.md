@@ -326,3 +326,14 @@ If email is **not** configured:
 - Arabic mobile 360/390/430 check
 - RFQ/email/phone LTR readability
 - language switcher query preservation
+
+## Final Arabic parity QA checklist (BIL7)
+- Verify `/ar/solutions` route loads (no 404).
+- Verify Arabic header Solutions link works on desktop/mobile.
+- Verify mobile language switcher is visible without opening menu.
+- Verify Arabic products UI strings (filters/cards/basket/actions) are localized.
+- Verify Arabic product detail/technical note routing is intentional and non-broken.
+- Verify Arabic search labels and result links map to Arabic routes where supported.
+- Verify Arabic footer address uses Arabic value.
+- Verify Arabic routes on 360/390/430 and laptop widths.
+- Verify RFQ/Tracking regression behavior.

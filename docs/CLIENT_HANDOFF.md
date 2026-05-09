@@ -1003,3 +1003,14 @@ Visual assets used in Phase 28B:
 - Admin remains English.
 - English routes unchanged.
 - RFQ/Tracking backend unchanged.
+
+## BIL7 — Arabic Full Parity Strict QA Fix
+- Arabic `/ar/solutions` page added to resolve header 404 parity blocker.
+- Mobile language switcher made visible directly in mobile header.
+- Arabic products UI strings fully localized for filters, cards, technical notes, and RFQ basket actions.
+- Arabic product detail and technical-note navigation made Arabic-safe with explicit English labels where route reuse is intentional.
+- Arabic search result labels improved for core page entries and Arabic-safe route mapping.
+- Arabic footer address localized with Arabic-first fallback behavior.
+- Arabic mobile (360/390/430) and laptop QA checklist completed.
+- Admin remains English and untouched.
+- RFQ/Tracking APIs unchanged.

@@ -97,7 +97,7 @@ export default function SiteSearch({ onNavigate, className }: SiteSearchProps) {
                       {group.items.map((item) => (
                         <Link key={`${group.type}-${item.title}-${item.href}`} href={getLocalizedHref(item.href, Boolean(isArabic))} onClick={closeSearch} className="block rounded-lg border border-slate-200 bg-white p-3 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-orange-500/40">
                           <div className="flex flex-wrap items-center gap-2">
-                            <p className="text-sm font-semibold text-slate-900">{item.title}</p>
+                            <p className="text-sm font-semibold text-slate-900">{Boolean(isArabic) ? getArabicPageTitle(item.title) : item.title}</p>
                             <span className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${typeStyles[item.type]}`}>{item.type}</span>
                           </div>
                           <p className="mt-1 text-xs text-slate-600">{item.description}</p>
@@ -145,7 +145,9 @@ const arabicTypeLabels: Record<SearchType, string> = {
 };
 
 const arabicRouteMap: Record<string, string> = {
+  '/': '/ar',
   '/products-partners': '/ar/products-partners',
+  '/solutions': '/ar/solutions',
   '/rfq': '/ar/rfq',
   '/track': '/ar/track',
   '/company': '/ar/company',
@@ -153,6 +155,7 @@ const arabicRouteMap: Record<string, string> = {
   '/work': '/ar/work',
   '/services': '/ar/services',
 };
+const arabicPageTitleMap: Record<string, string> = { Home: 'الرئيسية', 'Products & Partners': 'المنتجات', 'Start RFQ': 'طلب عرض سعر', 'Track RFQ': 'تتبع طلب العرض', Company: 'الشركة', Contact: 'تواصل معنا', 'Field Work & References': 'أعمالنا', Services: 'الخدمات', Solutions: 'الحلول', 'Browse Products': 'المنتجات' };
 
 function getTypeLabel(type: SearchType, isArabic: boolean): string {
   return isArabic ? arabicTypeLabels[type] : type;
@@ -164,4 +167,8 @@ function getLocalizedHref(href: string, isArabic: boolean): string {
   const localizedBase = arabicRouteMap[path];
   if (!localizedBase) return href;
   return query ? `${localizedBase}?${query}` : localizedBase;
+}
+
+function getArabicPageTitle(title: string): string {
+  return arabicPageTitleMap[title] || title;
 }
