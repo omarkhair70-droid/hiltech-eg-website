@@ -6,6 +6,8 @@ import {
   Hero,
   ProductCategoriesPreview,
   ProductReferencesPanel,
+  ProofMetricsStrip,
+  ProjectScopeSection,
   RFQProcessSection,
   TrustStrip,
   WhatHiltechDoes,
@@ -35,11 +37,13 @@ export default async function Home() {
   return (
     <main>
       <Hero />
+      <ProofMetricsStrip />
       <TrustStrip />
       <WhatHiltechDoes />
+      <ProjectScopeSection />
+      <ProductCategoriesPreview />
       <FieldWorkPreview />
       <RFQProcessSection />
-      <ProductCategoriesPreview />
       <WhyChooseHiltechSection />
       <ProductReferencesPanel />
       <ContactConfidenceSection />
