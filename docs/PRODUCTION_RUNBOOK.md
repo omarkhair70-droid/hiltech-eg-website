@@ -347,3 +347,14 @@ If email is **not** configured:
 - Arabic search labels/descriptions checked
 - English product flow regression checked
 - Mobile 360/390/430 checked
+
+## PR 5 Final Visual QA Checklist
+- [ ] English public page visual pass
+- [ ] Arabic public page visual pass
+- [ ] Mobile 360/390/430 pass
+- [ ] CTA hierarchy pass
+- [ ] Header/footer pass
+- [ ] RFQ/Product/Tracking regression pass
+- [ ] Arabic typography pass
+- [ ] Official domain check
+- [ ] No fake claims check

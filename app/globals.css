@@ -16,8 +16,8 @@
   --radius-card: 0.875rem;
   --radius-button: 0.625rem;
   --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.06);
-  --section-y-mobile: 2.75rem;
-  --section-y-desktop: 4.75rem;
+  --section-y-mobile: 2.875rem;
+  --section-y-desktop: 5rem;
   --container-max: 72rem;
 }
 
@@ -37,7 +37,7 @@ body {
 
 .section { padding-block: var(--section-y-mobile); }
 
-.section-compact { @apply py-10 md:py-14; }
+.section-compact { @apply py-10 md:py-[4.5rem]; }
 
 .public-eyebrow {
   @apply text-[11px] font-semibold uppercase;
@@ -83,6 +83,7 @@ body {
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   position: relative;
+  overflow: hidden;
 }
 
 .public-card::before {

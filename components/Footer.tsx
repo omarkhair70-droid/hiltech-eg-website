@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-200">{servicesHeading}</h4>
+          <h4 className={`text-sm font-semibold text-slate-200 ${isArabic ? '' : 'uppercase tracking-[0.12em]'}`}>{servicesHeading}</h4>
           <ul className="mt-3 space-y-1 text-sm text-slate-200">
             {servicesLinks.map((service) => (
               <li key={service.label}>
@@ -75,7 +75,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-200">{contactHeading}</h4>
+          <h4 className={`text-sm font-semibold text-slate-200 ${isArabic ? '' : 'uppercase tracking-[0.12em]'}`}>{contactHeading}</h4>
           <ul className="mt-3 space-y-1 text-sm text-slate-200">
             <li dir="ltr"><a className="underline decoration-slate-500 underline-offset-4" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
             <li dir="ltr"><a className="underline decoration-slate-500 underline-offset-4" href={`tel:${site.contact.phone}`}>{site.contact.phone}</a></li>
@@ -85,7 +85,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-200">{resourcesHeading}</h4>
+          <h4 className={`text-sm font-semibold text-slate-200 ${isArabic ? '' : 'uppercase tracking-[0.12em]'}`}>{resourcesHeading}</h4>
           <ul className="mt-3 space-y-1 text-sm text-slate-200">
             {resourcesLinks.map((resource) => (
               <li key={`${resource.label}-${resource.href}`}>
