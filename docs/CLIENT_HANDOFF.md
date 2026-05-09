@@ -758,3 +758,12 @@ Visual assets used in Phase 28B:
   - Reference displayed.
   - Copy button works if added.
   - Track Request link works.
+
+## L3 — Production Docs & Launch Runbook
+- README updated to match current Supabase-backed RFQ/admin production system (not static-only/mailto-only).
+- Added `docs/PRODUCTION_RUNBOOK.md` with deployment, verification, and operations procedures.
+- Environment variable requirements documented by category without exposing secrets.
+- Deployment checklist and production smoke test checklist added.
+- RFQ submission/tracking/admin verification steps documented for launch QA.
+- Rollback guidance and common failure-case troubleshooting added.
+- This phase is documentation-only; no runtime/code behavior changes.
