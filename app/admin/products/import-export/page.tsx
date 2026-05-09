@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { requirePermission } from '@/lib/server/admin-session';
+import { requirePermissionOrRedirect } from '@/lib/server/admin-page-guard';
 import { PRODUCT_CSV_COLUMNS } from '@/lib/server/products-csv';
 import { CsvImportForm } from './upload-form';
 
 export default async function ProductsImportExportPage() {
-  await requirePermission('product:import');
+  const adminAccess = await requirePermissionOrRedirect('product:import'); if (!adminAccess) return <main className='section'><div className='container'><p className='rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-700'>Not authorized.</p></div></main>;
   return <main className='section'><div className='container space-y-6'>
     <div><h1 className='text-2xl font-semibold'>Product CSV Import / Export</h1><p className='text-sm text-slate-600 mt-1'>Bulk manage product catalog and inventory with Excel or Google Sheets.</p></div>
     <div className='flex gap-2 flex-wrap'><Link href='/admin/products/export' className='rounded-md bg-navy-900 px-3 py-2 text-sm font-semibold text-white'>Export products CSV</Link><Link href='/admin/products/template' className='rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold'>Download template CSV</Link><Link href='/admin/products' className='rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold'>Back to Product Admin</Link></div>

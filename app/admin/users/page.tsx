@@ -4,6 +4,9 @@ import { requirePermissionOrRedirect } from '@/lib/server/admin-page-guard';
 import { logAdminAction } from '@/lib/server/admin-audit';
 import { createAdminProfileForExistingAuthUser, listAdminProfiles, updateAdminProfileActive, updateAdminProfileRole } from '@/lib/server/admin-users';
 import { ADMIN_ROLES, type AdminRole } from '@/lib/server/admin-permissions';
+import { isSupabaseAuthConfigured } from '@/lib/server/supabase-auth';
+import { isRFQAdminBackendConfigured } from '@/lib/server/rfq-admin';
+import { isAdminConfigured } from '@/lib/server/admin-auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -53,6 +56,14 @@ export default async function AdminUsersPage() {
       <p><span className='font-semibold'>Current auth mode:</span> ADMIN_AUTH_MODE={authMode}</p>
       {authMode === 'legacy' ? <p className='rounded border border-amber-200 bg-amber-50 p-2 text-amber-800'>Legacy shared-password auth is still active. Supabase admin users are prepared for migration and should be enabled only after first-owner verification.</p> : null}
       <p className='rounded border border-slate-200 bg-slate-50 p-2'>MFA status: Not implemented in this release (planned Phase 2B using Supabase Auth MFA).</p>
+      <ul className='rounded border border-slate-200 bg-slate-50 p-2 space-y-1'>
+        <li>Supabase URL configured: {String(Boolean(process.env.SUPABASE_URL?.trim()))}</li>
+        <li>Supabase anon key configured: {String(Boolean(process.env.SUPABASE_ANON_KEY?.trim() || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim()))}</li>
+        <li>Supabase service role configured: {String(Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()))}</li>
+        <li>Legacy fallback configured: {String(isAdminConfigured())}</li>
+        <li>Supabase auth fully configured: {String(isSupabaseAuthConfigured())}</li>
+        <li>RFQ admin backend configured: {String(isRFQAdminBackendConfigured())}</li>
+      </ul>
     </section>
     {error ? <section className='rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-800 text-sm'>{error}</section> : null}
     <section className='rounded-xl border border-slate-200 bg-white p-4 overflow-x-auto'>

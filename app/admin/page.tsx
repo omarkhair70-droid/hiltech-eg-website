@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { requirePermission } from '@/lib/server/admin-session';
+import { requirePermissionOrRedirect } from '@/lib/server/admin-page-guard';
 import { getAdminDashboardSummary, isAdminDashboardBackendConfigured } from '@/lib/server/admin-dashboard';
 import { getGoogleAnalyticsDashboardSummary, isGoogleAnalyticsAdminConfigured } from '@/lib/server/google-analytics-admin';
 import AdminShell from '@/components/admin/AdminShell';
@@ -12,7 +13,7 @@ export const metadata: Metadata = { title: 'HILTECH Admin Dashboard', robots: { 
 const badgeClass = 'rounded-full px-2 py-1 text-xs font-semibold bg-slate-100 text-slate-700';
 
 export default async function AdminExecutiveDashboardPage() {
-  await requirePermission('reports:view');
+  const adminAccess = await requirePermissionOrRedirect('reports:view'); if (!adminAccess) return <main className='section'><div className='container'><p className='rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-700'>Not authorized.</p></div></main>;
 
   if (!isAdminDashboardBackendConfigured()) {
     return <main className="section"><div className="container"><h1 className="text-2xl font-semibold">HILTECH Admin Dashboard</h1><p className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-red-700">Admin backend not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.</p></div></main>;

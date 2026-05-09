@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { requirePermission } from '@/lib/server/admin-session';
+import { requirePermissionOrRedirect } from '@/lib/server/admin-page-guard';
 import AdminShell from '@/components/admin/AdminShell';
 import { getGoogleAnalyticsAdvancedAnalytics, isGoogleAnalyticsAdminConfigured } from '@/lib/server/google-analytics-admin';
 
@@ -10,7 +11,7 @@ export const metadata: Metadata = { title: 'HILTECH Admin Analytics', robots: { 
 const pctDrop = (p:number,c:number)=> p<=0?null:Math.max(0,((p-c)/p)*100);
 
 export default async function Page({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
-  await requirePermission('reports:view');
+  const adminAccess = await requirePermissionOrRedirect('reports:view'); if (!adminAccess) return <main className='section'><div className='container'><p className='rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-700'>Not authorized.</p></div></main>;
   const params = await searchParams;
   const r = Array.isArray(params?.range) ? params?.range[0] : params?.range;
   const range = r === '7' || r === '90' ? Number(r) as 7 | 90 : 30;

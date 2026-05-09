@@ -55,9 +55,20 @@ async function getCurrentLegacyAdmin(): Promise<CurrentAdmin | null> {
 }
 
 async function getCurrentSupabaseAdmin(): Promise<CurrentAdmin | null> {
+  let accessToken: string | null = null;
+  let refreshToken: string | null = null;
   try {
-    const { accessToken } = await getSupabaseAdminCookies();
-    if (!accessToken) return null;
+    const cookies = await getSupabaseAdminCookies();
+    accessToken = cookies.accessToken;
+    refreshToken = cookies.refreshToken;
+  } catch (error) {
+    console.warn('[admin-auth] failed', { area: 'cookies', auth_mode: 'supabase', error: error instanceof Error ? error.message : 'unknown' });
+    return null;
+  }
+
+  if (!accessToken) return null;
+
+  try {
     const user = await getSupabaseUser(accessToken);
     const profile = await loadAdminProfile(user.id);
 
@@ -72,9 +83,12 @@ async function getCurrentSupabaseAdmin(): Promise<CurrentAdmin | null> {
       isLegacy: false,
     };
   } catch (error) {
-    console.warn('[admin-auth] failed area=auth auth_mode=supabase', {
-      error: error instanceof Error ? error.message : 'unknown',
-    });
+    const msg = error instanceof Error ? error.message : 'unknown';
+    if (msg === 'invalid_token' && refreshToken) {
+      console.warn('[admin-auth] failed', { area: 'session', auth_mode: 'supabase', error: 'invalid_token' });
+      return null;
+    }
+    console.warn('[admin-auth] failed', { area: 'profile', auth_mode: 'supabase', error: msg });
     return null;
   }
 }

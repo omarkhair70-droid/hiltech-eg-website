@@ -78,3 +78,12 @@
 - Permission/role denials now render friendly "Not authorized" states on admin pages.
 - `/admin/rfq` shows a non-sensitive configuration/log guidance message when RFQ query loading fails.
 - No schema changes; legacy mode remains preserved.
+
+
+## EAA5.2 Production Supabase hardening
+- Production Supabase hardening added.
+- Admin error boundary added (`/app/admin/error.tsx`).
+- Safe diagnostics endpoint added (`/api/admin/diagnostics`) with boolean-only config checks.
+- Production can stay on `ADMIN_AUTH_MODE=legacy` while Preview tests `supabase`.
+- Do not enable Production supabase until `/admin/login`, `/admin/rfq`, `/admin/users`, `/admin/audit` work and `/api/admin/diagnostics` returns expected booleans.
+- Rollback remains `ADMIN_AUTH_MODE=legacy`.
