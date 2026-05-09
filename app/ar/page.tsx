@@ -33,6 +33,10 @@ export default function ArabicHomePage() {
         </div>
       </section>
 
+
+
+      <section className="container section"><div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4"><div className="grid grid-cols-2 gap-2 sm:grid-cols-4">{[['24/7','دعم فني'],['+1000','منتج تم توريده'],['+500','مشروع تم تنفيذه'],['+10','سنوات خبرة']].map(([value,label])=><article key={String(label)} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-center"><p className="text-lg font-bold text-navy-900" dir="ltr">{value}</p><p className="text-xs font-semibold text-slate-600">{label}</p></article>)}</div></div></section>
+
       <section className="container section"><div className="rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm sm:p-4"><ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">{trustStrip.map((item)=><li key={item} className="public-marker justify-center text-center sm:text-sm">{item}</li>)}</ul></div></section>
 
       <section className="container section space-y-5"><h2 className="text-2xl font-bold text-navy-900">ما الذي تقدمه HILTECH؟</h2><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[['كابلات الشبكات المنظمة','تنفيذ وتنظيم كابلات الشبكات ونقاط الاتصال والباتش بانل بما يدعم التشغيل والصيانة.'],['البنية التحتية للفايبر','تجهيز مسارات الفايبر وODF والباتش كورد والملحقات المطلوبة حسب نطاق المشروع.'],['الراك وغرف البيانات','تجهيز الراك وتنظيم المكونات ومسارات الكابلات داخل غرف البيانات والمواقع الفنية.'],['الاختبار والتسليم','اختبار التوصيلات وتنظيم التسليم الفني لتقليل الأخطاء قبل التشغيل الفعلي.']].map(([title,text]) => <article key={String(title)} className="public-card p-4"><h3 className="font-semibold text-slate-900">{title}</h3><p className="mt-1 text-sm text-slate-700">{text}</p></article>)}</div></section>
