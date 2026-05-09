@@ -819,3 +819,25 @@ Visual assets used in Phase 28B:
 - Homepage final polish completed with compact trust-first order and without extending page length with duplicate sections.
 - No backend/admin/RFQ schema/product data/import-export changes were made in this phase.
 - No fake claims were added; remaining real asset needs are documented for client handoff.
+
+## B3C — Final QA + Smoke Test + Handoff Docs
+
+- Created `docs/MOBILE_QA_REPORT.md` covering required public pages and 360px/390px/430px breakpoints.
+- Created `docs/PRODUCTION_SMOKE_TEST_RESULTS.md` with explicit verified vs not-verified production checks.
+- Updated `docs/PRODUCTION_RUNBOOK.md` to include final verification references and production-risk notes.
+- Final handoff documentation is now consolidated with explicit manual production follow-up tasks.
+- Remaining production/manual verification is clearly documented (live domain, admin credentials, Supabase production data, email provider).
+- Real asset gaps remain documented in `docs/REAL_ASSETS_NEEDED.md`; no fake proof statements were added.
+- Confirmed this B3C pass made no schema/admin feature/product data/import-export architecture changes.
+- Lint/build status for this pass: `npm run lint` and `npm run build` both pass, with one known non-blocking Next.js lint warning in admin image preview.
+
+## Final Launch Status
+
+- Public website: ready pending production domain and manual smoke verification.
+- RFQ flow: implemented and documented for production testing; full submit verification requires production env/data.
+- Tracking: implemented and documented for production testing; result-state checks require live RFQ records.
+- Admin: implemented; production access/security/rate-limit behavior must be manually verified with real credentials.
+- Assets: illustrative vs approved status is documented; real field assets are still recommended before stronger proof wording.
+- Company profile PDF: should remain linked only when approved PDF asset is present; otherwise remains pending client asset.
+- SEO: metadata/sitemap/robots reviewed in repo; Google Search Console/domain ownership/SSL final verification remains manual.
+- Security: rate limiting exists; distributed limiter (Redis/Upstash-style) is recommended if current deployment uses in-memory limiter behavior.
