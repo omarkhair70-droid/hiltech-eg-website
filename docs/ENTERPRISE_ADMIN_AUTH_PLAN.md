@@ -464,3 +464,8 @@ Example production rollback steps:
 ### Build
 - [ ] `npm run lint`
 - [ ] `npm run build`
+
+## EAA2 Foundation Status (May 9, 2026)
+- EAA2 foundation implementation is now added in code/docs as a non-breaking legacy-first step.
+- Reference implementation docs: `docs/ENTERPRISE_ADMIN_AUTH.md`.
+- Full permissions enforcement and critical audit instrumentation remain scheduled for EAA3.
