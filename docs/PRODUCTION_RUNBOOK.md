@@ -242,3 +242,13 @@ If email is **not** configured:
 - Production can stay on `ADMIN_AUTH_MODE=legacy` while Preview tests `supabase`.
 - Do not enable Production supabase until `/admin/login`, `/admin/rfq`, `/admin/users`, `/admin/audit` work and `/api/admin/diagnostics` returns expected booleans.
 - Rollback remains `ADMIN_AUTH_MODE=legacy`.
+
+## BIL3 QA
+- Verify /ar/track with request_code query.
+- Verify tracking with email.
+- Verify tracking with phone.
+- Verify /ar/company PDF link.
+- Verify /ar/contact official contact details.
+- Verify /ar/work visual/copy check.
+- Verify /ar/services CTA links.
+- Verify language switcher for each page.
