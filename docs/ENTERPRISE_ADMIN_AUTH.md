@@ -120,3 +120,30 @@ MFA is **not** implemented in EAA2. MFA will be evaluated in EAA4 / Phase 2B.
 - See `docs/ENTERPRISE_ADMIN_AUTH_QA.md` for full QA checklist and manual activation runbook.
 - Production activation must remain manual: first-owner setup, preview verification, then controlled switch to `ADMIN_AUTH_MODE=supabase`.
 - Rollback reminder: set `ADMIN_AUTH_MODE=legacy` if any auth regression is detected.
+
+## EAA5 — Supabase Admin Login Activation
+
+- Supabase admin login activation is implemented behind `ADMIN_AUTH_MODE=supabase`.
+- Legacy password login fallback remains available and unchanged when mode is `legacy`.
+- The first owner must exist in both `auth.users` and `public.admin_profiles` before enabling Supabase mode.
+
+### Required Environment Variables
+
+- `ADMIN_AUTH_MODE`
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY` or `NEXT_PUBLIC_SUPABASE_ANON_KEY` (used server-side by auth helper)
+- `SUPABASE_SERVICE_ROLE_KEY` (server-side only for admin profile lookup and audit)
+- Legacy auth environment variables are retained for rollback.
+
+### Preview Activation Steps
+
+1. Create owner Auth user.
+2. Insert owner row in `admin_profiles`.
+3. Set `ADMIN_AUTH_MODE=supabase` in Preview only.
+4. Redeploy preview.
+5. Test login and role access.
+6. Switch production only after successful preview validation.
+
+### Rollback
+
+Set `ADMIN_AUTH_MODE=legacy` and redeploy.
