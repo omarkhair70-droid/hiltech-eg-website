@@ -797,3 +797,13 @@ Visual assets used in Phase 28B:
 - asset gaps documented
 - final smoke test checklist added
 - no schema/admin/product data/import-export changes
+
+## B3A — Tracking Portal + Product/RFQ Critical Runtime Polish
+- Tracking page upgraded into a customer RFQ portal with request summary, next-step guidance, item summary, quote details (when visible), and customer quote response actions.
+- Tracking API response was reviewed and kept limited to customer-safe fields only; admin/internal notes, raw internals, and non-customer diagnostics are intentionally excluded.
+- Product category deep links were completed using valid product categories, with safe fallback routing for categories not represented directly.
+- RFQ runtime UX was polished for empty basket guidance and post-submit customer action flow.
+- Company profile PDF handling was verified. Public download is deferred until a real approved company profile PDF is provided.
+- No schema changes, admin workflow changes, product data changes, or import/export changes were introduced.
+- No fake claims or synthetic proof content were added.
+- Remaining real-asset requirements are documented in `docs/REAL_ASSETS_NEEDED.md`.
