@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${site.siteUrl}/ar`, languages: { en: `${site.siteUrl}/`, ar: `${site.siteUrl}/ar`, 'x-default': `${site.siteUrl}/` } },
 };
 
-const trustStrip = ['تنفيذ داخل مصر', 'فايبر • راك • كابلات شبكات', 'اختبار قبل التسليم', 'تتبع طلبات عروض الأسعار', 'متابعة عبر واتساب'];
+const trustStrip = ['تنفيذ داخل مصر', 'كابلات شبكات منظمة', 'حلول فايبر', 'تجهيز الراك', 'اختبار قبل التسليم', 'تتبع طلب العرض', 'متابعة عبر واتساب'];
 
 const deliverables = [
   ['كابلات الشبكات المنظمة', 'تنفيذ وتنظيم كابلات الشبكات ونقاط الاتصال والباتش بانل بما يدعم التشغيل والصيانة.'],
@@ -24,12 +24,12 @@ export default function ArabicHomePage() {
       <section className="grid gap-5 overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-lg sm:p-6 md:grid-cols-2 md:gap-6 md:p-10">
         <div>
           <p className="public-eyebrow text-orange-600 text-xs">حلول البنية التحتية للشبكات في مصر</p>
-          <h1 className="mt-3 text-2xl font-bold leading-tight text-navy-900 sm:text-3xl md:text-4xl">توريد وتنفيذ حلول الشبكات والفايبر والراك للشركات</h1>
-          <p className="public-copy mt-3 text-sm leading-7 sm:mt-4">تدعم HILTECH الشركات في تخطيط وتوريد وتنفيذ واختبار حلول كابلات الشبكات، الفايبر، الراك، غرف البيانات، وتجهيزات البنية التحتية للكاميرات، مع طلب عرض سعر منظم وتتبع حالة الطلب.</p>
+          <h1 className="mt-3 text-2xl font-bold leading-tight text-navy-900 sm:text-3xl md:text-4xl">حلول شبكات وفايبر وراك للشركات في مصر</h1>
+          <p className="public-copy mt-3 text-sm leading-7 sm:mt-4">تساعد HILTECH الشركات في تجهيز البنية التحتية للشبكات، من تحديد النطاق واختيار المنتجات إلى التنفيذ والاختبار وطلب عرض السعر.</p>
           <div className="mt-5 flex flex-wrap gap-2.5 sm:gap-3">
             <Link href="/ar/rfq" className="btn-primary">اطلب عرض سعر</Link>
-            <Link href="/ar/work" className="btn-secondary">شاهد أعمالنا</Link>
-            <Link href="/ar/track" className="btn-secondary w-full sm:w-auto">تتبع طلب عرض السعر</Link>
+            <Link href="/ar/work" className="btn-secondary">شاهد الأعمال الميدانية</Link>
+            <Link href="/ar/track" className="btn-secondary w-full sm:w-auto">تتبع طلبك</Link>
           </div>
         </div>
         <div className="relative min-h-56 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 sm:min-h-64">
@@ -37,8 +37,8 @@ export default function ArabicHomePage() {
         </div>
       </section>
 
-      <section className="grid gap-3 md:grid-cols-5">
-        {trustStrip.map((item) => <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-semibold">{item}</div>)}
+      <section className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+        {trustStrip.map((item) => <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-semibold">{item}</div>)}
       </section>
 
       <section className="space-y-5">

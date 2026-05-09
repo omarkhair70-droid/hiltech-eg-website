@@ -7,9 +7,11 @@ import { trackEvent } from '@/lib/client/analytics';
 
 const trustStripItems = [
   'Egypt-based delivery',
-  'Fiber • Racks • Structured Cabling',
+  'Structured cabling',
+  'Fiber optics',
+  'Rack preparation',
   'Testing before handover',
-  'RFQ tracking available',
+  'RFQ tracking',
   'WhatsApp coordination',
 ];
 
@@ -49,14 +51,13 @@ export function Hero() {
       <div className="grid items-center gap-5 lg:grid-cols-[1.2fr_1fr] lg:gap-8">
         <div className="max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-orange-300 sm:text-sm">NETWORK INFRASTRUCTURE IN EGYPT</p>
-          <h1 className="mt-2.5 text-[1.62rem] font-bold leading-[1.16] sm:mt-3 sm:text-4xl md:text-5xl">Network Infrastructure Supply & Installation for Business Facilities</h1>
-          <p className="mt-3 text-sm text-slate-100 sm:text-base">HILTECH supports companies with fiber optic cabling, structured data networks, racks, patch panels, CCTV infrastructure, testing, and project-ready RFQ coordination.</p>
-          <p className="mt-2.5 text-sm text-slate-100 sm:text-base" dir="rtl" lang="ar">توريد وتنفيذ واختبار حلول الشبكات والفايبر والراك للشركات داخل مصر.</p>
+          <h1 className="mt-2.5 text-[1.62rem] font-bold leading-[1.16] sm:mt-3 sm:text-4xl md:text-5xl">Reliable Network Infrastructure for Offices, Data Rooms & Business Sites in Egypt</h1>
+          <p className="mt-3 text-sm text-slate-100 sm:text-base">HILTECH helps companies plan, source, install, and test structured cabling, fiber optics, racks, CCTV infrastructure, and project-ready RFQ packages.</p>
           <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3">
             <CTAButton href="/rfq" className="w-full justify-center sm:w-auto" onClick={() => trackEvent('hero_rfq_click', { source: 'home_hero' })}>Request Project Quote</CTAButton>
-            <CTAButton href="/work" variant="secondary" className="w-full justify-center sm:w-auto">View Field Work</CTAButton>
+            <CTAButton href="/work" variant="secondary" className="w-full justify-center sm:w-auto">View Real Field Work</CTAButton>
           </div>
-          <p className="mt-3 text-sm text-slate-200"><Link href="/track" onClick={() => trackEvent('rfq_track_click', { source: 'home_hero' })} className="underline underline-offset-4 hover:text-white">Track RFQ</Link></p>
+          <p className="mt-3 text-sm text-slate-200"><Link href="/track" onClick={() => trackEvent('rfq_track_click', { source: 'home_hero' })} className="underline underline-offset-4 hover:text-white">Track Existing RFQ</Link></p>
           <div className="relative mt-3 h-32 w-full overflow-hidden rounded-xl border border-white/15 sm:hidden">
             <Image src="/rack-data-room.jpg" alt="Network rack and data room preparation for business facility handover" fill className="object-cover" sizes="100vw" />
           </div>
@@ -76,7 +77,7 @@ export function TrustStrip() {
   return (
     <SectionShell compact>
       <div className="mx-auto max-w-5xl rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm sm:p-4">
-        <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+        <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {trustStripItems.map((item) => (
             <li key={item} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center text-xs font-semibold text-slate-700 sm:text-sm">{item}</li>
           ))}
@@ -101,10 +102,10 @@ export function FieldWorkPreview() {
     { title: 'Structured Cabling', description: 'Structured cable pathways across facilities and technical rooms.', image: '/copper-cable-tray.jpg' },
     { title: 'Testing Before Handover', description: 'Measurement and validation checks before final delivery.', image: '/testing-otdr-device.jpg' },
   ];
-  return <SectionShell className="bg-slate-50"><SectionHeader eyebrow="Field Work" title="Field Work Prepared for Handover" description="Selected visual examples across fiber, racks, cabling, and testing workflows." /><p className="mt-2 text-sm text-slate-600">Selected field visuals representing HILTECH service areas.</p><div className="mt-5 grid gap-3 sm:grid-cols-2 md:gap-4">{previews.map((item)=><PremiumCard key={item.title} className="overflow-hidden bg-white p-0"><div className="relative aspect-[16/10] w-full"><Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" /></div><div className="p-3.5"><h3 className="font-semibold text-slate-900">{item.title}</h3><p className="mt-1 text-sm text-slate-700">{item.description}</p></div></PremiumCard>)}</div><div className="mt-5 md:mt-6"><CTAButton href="/work" variant="secondary" className="w-full justify-center sm:w-auto">View Field Work</CTAButton></div></SectionShell>;
+  return <SectionShell className="bg-slate-50"><SectionHeader eyebrow="Field Work" title="Field Work Prepared for Handover" description="Selected visual examples across fiber, racks, cabling, and testing workflows." /><p className="mt-2 text-sm text-slate-600">Selected field visuals representing HILTECH service areas.</p><div className="mt-5 grid gap-3 sm:grid-cols-2 md:gap-4">{previews.map((item)=><PremiumCard key={item.title} className="overflow-hidden bg-white p-0"><div className="relative aspect-[16/10] w-full"><Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" /></div><div className="p-3.5"><h3 className="font-semibold text-slate-900">{item.title}</h3><p className="mt-1 text-sm text-slate-700">{item.description}</p></div></PremiumCard>)}</div><div className="mt-5 md:mt-6"><CTAButton href="/work" variant="secondary" className="w-full justify-center sm:w-auto">View Real Field Work</CTAButton></div></SectionShell>;
 }
 
-export function RFQProcessSection() { return <SectionShell compact><SectionHeader eyebrow="RFQ Process" title="Clear request flow from scope to quote" description="Keep technical scope, item needs, and contact details in one request." /><div className="mt-5 grid gap-2.5 md:grid-cols-3 md:gap-4">{['Define network scope','Add required product references','Submit RFQ and track response'].map((step,index)=><PremiumCard key={step} className="bg-slate-50 p-3.5"><p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Step {index+1}</p><p className="mt-1.5 font-semibold text-slate-900">{step}</p></PremiumCard>)}</div><div className="mt-5 flex flex-col gap-2.5 sm:flex-row"><CTAButton href="/rfq" className="w-full justify-center sm:w-auto">Request Project Quote</CTAButton><CTAButton href="/track" variant="secondary" className="w-full justify-center sm:w-auto">Track RFQ</CTAButton></div></SectionShell>; }
+export function RFQProcessSection() { return <SectionShell compact><SectionHeader eyebrow="RFQ Process" title="Clear request flow from scope to quote" description="Keep technical scope, item needs, and contact details in one request." /><div className="mt-5 grid gap-2.5 md:grid-cols-3 md:gap-4">{['Define network scope','Add required product references','Submit RFQ and track response'].map((step,index)=><PremiumCard key={step} className="bg-slate-50 p-3.5"><p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Step {index+1}</p><p className="mt-1.5 font-semibold text-slate-900">{step}</p></PremiumCard>)}</div><div className="mt-5 flex flex-col gap-2.5 sm:flex-row"><CTAButton href="/rfq" className="w-full justify-center sm:w-auto">Request Project Quote</CTAButton><CTAButton href="/track" variant="secondary" className="w-full justify-center sm:w-auto">Track Existing RFQ</CTAButton></div></SectionShell>; }
 
 export function ProductCategoriesPreview() { const cats=[['Fiber Optics','Fiber cables, ODFs, connectors, and accessories for backbone projects.','Fiber Optic Systems'],['Structured Cabling','CAT6/CAT6A infrastructure components for office and facility networks.','Copper / CAT6 Cabling'],['Racks & Cabinets','Cabinets, rack accessories, cable management, and power preparation.','Cabinets / Racks / PDU'],['Patch Panels & Connectivity','Patch panels, keystones, couplers, and connectivity accessories.','Patch Cords & Connectivity'],['CCTV Infrastructure','Camera cabling, network accessories, and control-room readiness items.','CCTV & Security'],['Testing Tools','Field testing references for fiber and copper validation workflows.',null],['Power & Accessories','PDU, UPS references, and structured power accessories for racks.','Cabinets / Racks / PDU'],['Project Supply','Project-based product supply across coordinated network requirements.','/rfq']] as const; return <SectionShell compact><SectionHeader title="Product Categories" description="Category-level references to help prepare technical scope before RFQ." /><div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{cats.map(([title,description,mappedCategory])=><PremiumCard key={title} className="bg-white p-4"><h3 className="text-sm font-semibold text-slate-900">{title}</h3><p className="mt-1 text-sm text-slate-700">{description}</p><Link href={mappedCategory === '/rfq' ? '/rfq' : mappedCategory ? `/products-partners?category=${encodeURIComponent(mappedCategory)}` : title === 'Testing Tools' ? '/work' : '/products-partners?q=cctv'} className="mt-2 inline-block text-sm font-semibold text-orange-700 underline-offset-4 hover:underline">View Category</Link></PremiumCard>)}</div></SectionShell>; }
 
