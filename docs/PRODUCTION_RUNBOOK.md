@@ -219,3 +219,9 @@ If email is **not** configured:
 - `docs/PRODUCTION_SMOKE_TEST_RESULTS.md`
 - `docs/REAL_ASSETS_NEEDED.md`
 - `docs/PERFORMANCE_AUDIT.md`
+
+## Bilingual QA (BIL1)
+- Verify `/` and `/ar` both load correctly.
+- Verify language switcher keeps same page when toggling languages.
+- Verify `/ar/rfq` and `/ar/track` do not 404.
+- Verify Admin remains English (`/admin/login`).

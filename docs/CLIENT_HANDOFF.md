@@ -935,3 +935,13 @@ Visual assets used in Phase 28B:
 - Added typed admin auth errors and server-side guard handling so unauthorized sessions redirect to `/admin/login` and forbidden states render friendly UI.
 - Hardened `/admin/rfq` to fail gracefully with a safe message when backend RFQ queries fail.
 - Preserved legacy auth fallback/default and avoided schema changes.
+
+## BIL1 — Arabic / English Public Website Foundation
+- English remains default at `/`.
+- Arabic foundation added under `/ar`.
+- Header language switcher added.
+- Arabic homepage added.
+- Initial Arabic public route coverage added to prevent dead ends.
+- Admin remains English and untouched.
+- RFQ/Tracking full Arabic UI deferred to BIL2/BIL3.
+- SEO/hreflang/sitemap full pass deferred to BIL4.
