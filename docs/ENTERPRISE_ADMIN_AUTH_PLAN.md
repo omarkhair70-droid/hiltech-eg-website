@@ -474,3 +474,10 @@ Example production rollback steps:
 
 - ✅ Enforcement and audit phase completed.
 - See implementation notes in `docs/ENTERPRISE_ADMIN_AUTH.md` (EAA3 section).
+
+## EAA4 Status
+- Admin Users UI added: `/admin/users`.
+- Audit Trail UI added: `/admin/audit`.
+- MFA status documented and explicitly deferred (no fake implementation).
+- Final QA document created: `docs/ENTERPRISE_ADMIN_AUTH_QA.md`.
+- Enterprise auth implementation phase is complete except manual production Supabase activation and MFA Phase 2B.

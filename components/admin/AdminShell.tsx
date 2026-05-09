@@ -18,6 +18,8 @@ const navLinks = [
   { label: 'Products', href: '/admin/products' },
   { label: 'Product Analytics', href: '/admin/products/analytics' },
   { label: 'Reports', href: '/admin/reports' },
+  { label: 'Audit Trail', href: '/admin/audit' },
+  { label: 'Admin Users', href: '/admin/users' },
   { label: 'Import / Export', href: '/admin/products/import-export' },
   { label: 'Add Product', href: '/admin/products/new' },
 ] as const;
