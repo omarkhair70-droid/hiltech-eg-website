@@ -1,11 +1,8 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import { arWorkContent } from '@/content/ar/work';
+import { site } from '@/content/site';
 
-export default function Page() {
-  return (
-    <main className="container section">
-      <h1 className="text-3xl font-bold text-navy-900">work (AR)</h1>
-      <p className="public-copy mt-3">هذه صفحة انتقالية ضمن المرحلة الأولى (BIL1) لتوفير تغطية مسارات عربية بدون كسر التدفق الحالي.</p>
-      <div className="mt-5"><Link href="/work" className="btn-secondary">فتح النسخة الإنجليزية الحالية</Link></div>
-    </main>
-  );
-}
+export const metadata: Metadata = { title: 'أعمال HILTECH الميدانية | تجهيزات الشبكات والفايبر', description: 'استعرض صورًا حقيقية معتمدة من أعمال HILTECH في تجهيز وتنفيذ البنية التحتية للشبكات والفايبر والراك.', alternates: { canonical: `${site.siteUrl}/ar/work` } };
+
+export default function Page() { return <main className="section" dir="rtl"><div className="container"><h1 className="text-3xl font-bold">{arWorkContent.title}</h1><p className="mt-3 text-slate-700">{arWorkContent.intro}</p><p className="mt-2 text-slate-700">{arWorkContent.supporting}</p><p className="mt-2 text-sm text-slate-600">الصور المعروضة هي Approved real HILTECH visuals للاستخدام التعريفي العام.</p><div className="mt-5 flex gap-3"><Link href="/work" className="btn-secondary">استعراض المعرض</Link><Link href="/ar/rfq" className="btn-primary">اطلب عرض سعر</Link></div></div></main>; }

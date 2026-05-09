@@ -1,11 +1,8 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import { arContactContent } from '@/content/ar/contact';
+import { site } from '@/content/site';
 
-export default function Page() {
-  return (
-    <main className="container section">
-      <h1 className="text-3xl font-bold text-navy-900">contact (AR)</h1>
-      <p className="public-copy mt-3">هذه صفحة انتقالية ضمن المرحلة الأولى (BIL1) لتوفير تغطية مسارات عربية بدون كسر التدفق الحالي.</p>
-      <div className="mt-5"><Link href="/contact" className="btn-secondary">فتح النسخة الإنجليزية الحالية</Link></div>
-    </main>
-  );
-}
+export const metadata: Metadata = { title: 'تواصل مع HILTECH | طلب عرض سعر للشبكات والفايبر', description: 'تواصل مع HILTECH لطلبات عروض الأسعار والاستفسارات الخاصة بحلول الشبكات والفايبر والراك والبنية التحتية.', alternates: { canonical: `${site.siteUrl}/ar/contact` } };
+
+export default function Page() { return <main className="section" dir="rtl"><div className="container"><h1 className="text-3xl font-bold">{arContactContent.title}</h1><p className="mt-3 text-slate-700">{arContactContent.intro}</p><div className="mt-6 grid gap-4 md:grid-cols-2"><article className="rounded-xl border border-slate-200 bg-white p-4"><ul className="space-y-2 text-sm"><li><b>{arContactContent.whatsapp}:</b> <a dir="ltr" className="underline" href={site.contact.whatsappGeneralLink}>{site.contact.whatsappLocal}</a></li><li><b>{arContactContent.email}:</b> <a dir="ltr" className="underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li><li><b>{arContactContent.address}:</b> {site.contact.addressAr}</li></ul><div className="mt-4 flex flex-wrap gap-2"><Link href="/ar/rfq" className="text-orange-700 underline">اطلب عرض سعر</Link><Link href="/ar/track" className="text-orange-700 underline">تتبع طلب عرض السعر</Link><a href="/hiltech-company-profile.pdf" target="_blank" rel="noreferrer" className="text-orange-700 underline">تحميل ملف الشركة</a></div></article><article className="rounded-xl border border-slate-200 bg-slate-50 p-4"><h2 className="text-xl font-bold">{arContactContent.checklistTitle}</h2><ul className="mt-3 space-y-2 text-sm text-slate-700">{arContactContent.checklist.map((item) => <li key={item}>• {item}</li>)}</ul></article></div></div></main>; }
