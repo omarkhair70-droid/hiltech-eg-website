@@ -228,6 +228,20 @@ export default function ProductsClient({ initialProducts = staticProducts, local
 
   const updateItem = (id: string, patch: Partial<RFQItem>) => setItems((prev) => prev.map((entry) => (entry.id === id ? normalizeRFQItem({ ...entry, ...patch }) : entry)));
 
+  const scopeKits = isArabic
+    ? [
+        { title: 'تجهيز شبكة مكتب', items: ['كابلات CAT6', 'باتش بانل', 'فيس بليت', 'ملحقات الراك', 'الاختبار'], href: '/ar/rfq' },
+        { title: 'تجهيز راك وغرفة بيانات', items: ['راك', 'PDU', 'تنظيم الكابلات', 'باتش بانل', 'التسمية والاختبار'], href: '/ar/rfq' },
+        { title: 'نطاق فايبر وODF', items: ['كابل فايبر', 'ODF', 'باتش كورد', 'اللحام والاختبار'], href: '/ar/rfq' },
+        { title: 'بنية تحتية للكاميرات', items: ['نقاط شبكة', 'كابلات', 'راك', 'تجهيزات الطاقة والشبكة'], href: '/ar/rfq' },
+      ]
+    : [
+        { title: 'Office Network Setup', items: ['CAT6 cabling', 'patch panel', 'faceplates', 'rack accessories', 'testing'], href: '/rfq' },
+        { title: 'Rack Room Preparation', items: ['racks', 'PDU', 'cable management', 'patch panels', 'labeling/testing'], href: '/rfq' },
+        { title: 'Fiber Backbone Scope', items: ['fiber cable', 'ODF', 'patch cords', 'splicing/testing'], href: '/rfq' },
+        { title: 'CCTV Infrastructure Scope', items: ['network points', 'cabling', 'racks', 'power/network preparation'], href: '/rfq' },
+      ];
+
   const displayBundles = projectBundles.map((bundle) => ({
     id: bundle.id,
     title: isArabic ? bundle.titleAr : bundle.titleEn,
