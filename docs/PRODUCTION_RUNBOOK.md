@@ -201,3 +201,21 @@ If email is **not** configured:
 - Analytics environment variables are optional; site conversion events fail safely/no-op when GA is not configured.
 - Real assets must be explicitly approved before any "real project" wording is published.
 - Revisit `docs/PERFORMANCE_AUDIT.md` after approved client assets are delivered and re-run performance checks.
+
+## B3C final QA and production verification notes
+
+- Final mobile QA output is documented in `docs/MOBILE_QA_REPORT.md`.
+- Final production smoke record is documented in `docs/PRODUCTION_SMOKE_TEST_RESULTS.md`.
+- Rate limiting is present for sensitive flows, but if the deployed limiter is in-memory (single-instance MVP behavior), it is not a distributed guarantee under horizontal scaling.
+- For production-grade abuse protection, migrate rate limiting to a shared/distributed backend (e.g., Redis/Upstash) before high-traffic scaling.
+- Real asset/public-proof wording must remain approval-gated; keep illustrative disclaimers until rights-cleared client assets are delivered.
+- Company profile PDF must only be linked when the approved file is present in production assets.
+- Email notification checks (Resend or other provider) require live provider credentials and manual confirmation.
+- Post-launch SEO operations still require manual checks: Google Search Console ownership, sitemap submission, canonical verification, domain redirect consistency, and SSL status validation.
+
+## Final handoff verification files
+
+- `docs/MOBILE_QA_REPORT.md`
+- `docs/PRODUCTION_SMOKE_TEST_RESULTS.md`
+- `docs/REAL_ASSETS_NEEDED.md`
+- `docs/PERFORMANCE_AUDIT.md`
