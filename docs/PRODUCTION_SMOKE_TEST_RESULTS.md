@@ -74,8 +74,8 @@
 - Production verification was confirmed manually by project owner after B3C. Codex/local environment could not perform credentialed checks directly.
 
 ## Result
-- Overall result: **Partially verified locally; production manual smoke test still required.**
-- Issues found: No new launch-blocking issue introduced in B3C doc pass.
-- Fixes applied: Documentation finalized for transparent verification/handoff status.
-- Remaining risks: Production credentials/domain/admin/data-dependent flows not executable in this environment.
-- Manual production verification required: Domain checks, RFQ submit/track end-to-end, admin auth/rate-limiting/export, email provider behavior, and real-device QA.
+- Overall result: Critical RFQ/Admin/Email/Tracking flows were verified manually on production by the project owner. Codex/local checks verified build, routing, metadata, and non-credentialed UI paths. Remaining manual follow-ups are limited to optional real-device/domain rechecks, export/rate-limit edge cases, and approved real assets/PDF if not supplied.
+- Issues found: No new launch-blocking issue introduced in this micro-polish pass.
+- Fixes applied: RFQ quantity clamping and production smoke result wording were aligned for final delivery-gate consistency.
+- Remaining risks: Optional live-domain/device comfort rechecks, admin export/rate-limit edge-case retests, and approved real assets/PDF handoff if not yet supplied.
+- Still-unverified items remain explicitly marked in the checklist tables above.
