@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdminShell from '@/components/admin/AdminShell';
 import { requirePermission } from '@/lib/server/admin-session';
+import { requirePermissionOrRedirect } from '@/lib/server/admin-page-guard';
 import { getAdminActionCenterData, isAdminActionCenterConfigured } from '@/lib/server/admin-action-center';
 
 export const dynamic = 'force-dynamic';
@@ -26,7 +27,7 @@ type ActionListSection = {
 };
 
 export default async function AdminActionCenterPage() {
-  await requirePermission('reports:view');
+  const adminAccess = await requirePermissionOrRedirect('reports:view'); if (!adminAccess) return <main className='section'><div className='container'><p className='rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-700'>Not authorized.</p></div></main>;
 
   if (!isAdminActionCenterConfigured()) {
     return <main className="section"><div className="container"><p className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-700">Action Center backend is not configured.</p></div></main>;

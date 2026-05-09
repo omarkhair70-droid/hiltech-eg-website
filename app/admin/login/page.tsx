@@ -21,7 +21,7 @@ const ERROR_MESSAGES: Record<string, string> = {
 };
 
 export default async function AdminLoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
-  if (await getCurrentAdmin()) redirect('/admin/rfq');
+  try { if (await getCurrentAdmin()) redirect('/admin/rfq'); } catch {}
 
   const params = await searchParams;
   const mode = getAdminAuthMode();

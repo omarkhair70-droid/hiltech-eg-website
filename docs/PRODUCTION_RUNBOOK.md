@@ -233,3 +233,12 @@ If email is **not** configured:
 - Confirm success state Arabic.
 - Confirm `/ar/track` link from RFQ success.
 - Confirm English `/products-partners` and `/rfq` still work.
+
+
+## EAA5.2 Production Supabase hardening
+- Production Supabase hardening added.
+- Admin error boundary added (`/app/admin/error.tsx`).
+- Safe diagnostics endpoint added (`/api/admin/diagnostics`) with boolean-only config checks.
+- Production can stay on `ADMIN_AUTH_MODE=legacy` while Preview tests `supabase`.
+- Do not enable Production supabase until `/admin/login`, `/admin/rfq`, `/admin/users`, `/admin/audit` work and `/api/admin/diagnostics` returns expected booleans.
+- Rollback remains `ADMIN_AUTH_MODE=legacy`.

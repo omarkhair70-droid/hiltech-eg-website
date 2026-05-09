@@ -17,7 +17,12 @@ export async function POST(request: Request) {
     return response;
   }
 
-  const formData = await request.formData();
+  let formData: FormData;
+  try {
+    formData = await request.formData();
+  } catch {
+    return NextResponse.redirect(new URL('/admin/login?error=invalid', request.url));
+  }
 
   if (authMode === 'legacy') {
     if (!isAdminConfigured()) {
@@ -37,7 +42,7 @@ export async function POST(request: Request) {
   }
 
   if (!isSupabaseAuthConfigured()) {
-    console.warn('[admin-auth] failed area=auth auth_mode=supabase', { missing_config_keys: getSupabaseMissingConfigKeys() });
+    console.warn('[admin-auth] failed', { area: 'auth', auth_mode: 'supabase', error: 'config' });
     void logAdminAction({ action: ADMIN_AUDIT_ACTIONS.ADMIN_LOGIN_FAILED, entityType: 'auth', entityId: 'admin-login', metadata: { auth_mode: 'supabase', reason: 'config' } });
     return NextResponse.redirect(new URL('/admin/login?error=config', request.url));
   }

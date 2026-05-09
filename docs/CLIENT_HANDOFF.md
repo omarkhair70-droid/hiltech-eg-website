@@ -954,3 +954,12 @@ Visual assets used in Phase 28B:
 - Product names/model names remain original where appropriate.
 - Arabic product detail pages are deferred (Arabic listing links still route safely).
 - No Admin/Supabase/Tracking/backend/schema changes.
+
+
+## EAA5.2 Production Supabase hardening
+- Production Supabase hardening added.
+- Admin error boundary added (`/app/admin/error.tsx`).
+- Safe diagnostics endpoint added (`/api/admin/diagnostics`) with boolean-only config checks.
+- Production can stay on `ADMIN_AUTH_MODE=legacy` while Preview tests `supabase`.
+- Do not enable Production supabase until `/admin/login`, `/admin/rfq`, `/admin/users`, `/admin/audit` work and `/api/admin/diagnostics` returns expected booleans.
+- Rollback remains `ADMIN_AUTH_MODE=legacy`.
