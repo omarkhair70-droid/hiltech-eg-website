@@ -18,9 +18,9 @@ export default async function ArabicProductsPartnersPage() {
   const { products } = await getPublicProducts();
 
   return (
-    <main className="section" dir="rtl">
+    <main className="bg-slate-950" dir="rtl">
       <SectionShell>
-        <SectionHeader title={arProductsMessages.pageTitle} description={arProductsMessages.pageIntro} />
+        <SectionHeader title={arProductsMessages.pageTitle} description={arProductsMessages.pageIntro} className="[&>h2]:text-white [&>p]:text-slate-300" />
         <NoticeBox>{arProductsMessages.confirmAvailability}</NoticeBox>
         <ProductsClient initialProducts={products} locale="ar" rfqHref="/ar/rfq" productsHref="/ar/products-partners" messages={arProductsMessages} />
       </SectionShell>

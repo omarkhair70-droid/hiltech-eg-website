@@ -9,66 +9,362 @@ export const metadata: Metadata = {
   alternates: { canonical: `${site.siteUrl}/ar`, languages: { en: `${site.siteUrl}/`, ar: `${site.siteUrl}/ar`, 'x-default': `${site.siteUrl}/` } },
 };
 
-const trustStrip = ['تنفيذ داخل مصر', 'كابلات شبكات منظمة', 'حلول فايبر', 'تجهيز الراك', 'اختبار قبل التسليم', 'تتبع طلب العرض', 'متابعة عبر واتساب'];
+const capabilities = ['فايبر أوبتك', 'كابلات منظمة', 'تجهيز الراك', 'اختبار قبل التسليم'];
+const services = ['تمديد ولحام الفايبر', 'تركيب وتنظيم الراك', 'تمديد الكابلات النحاسية', 'تصميم ومعاينة الموقع', 'اختبارات الشبكات', 'إدارة مشاريع الشبكات'];
+const productCategories = ['فايبر أوبتك', 'كابلات CAT6', 'باتش كورد وربط', 'راك وكبائن', 'CCTV والبنية الأمنية', 'ملحقات الشبكات'];
+const scopeStarters = [
+  { title: 'تجهيز شبكة مكتب', items: ['كابلات CAT6', 'باتش بانل', 'فيس بليت', 'ملحقات الراك', 'الاختبار'] },
+  { title: 'تجهيز راك وغرفة بيانات', items: ['راك', 'PDU', 'تنظيم الكابلات', 'باتش بانل', 'التسمية والاختبار'] },
+  { title: 'نطاق فايبر وODF', items: ['كابل فايبر', 'ODF', 'باتش كورد', 'اللحام والاختبار'] },
+  { title: 'بنية تحتية للكاميرات', items: ['نقاط شبكة', 'كابلات', 'تجهيز الراك', 'جاهزية الطاقة والشبكة'] },
+];
+const metrics = [
+  { value: '10+', label: 'سنوات خبرة' },
+  { value: '500+', label: 'مشروع تم تنفيذه' },
+  { value: '1000+', label: 'منتج تم توريده' },
+  { value: '24/7', label: 'دعم فني' },
+];
 
 export default function ArabicHomePage() {
   return (
-    <main>
-      <section className="bg-gradient-to-br from-navy-900 via-navy-900 to-slate-900 py-10 text-white sm:py-14 md:py-20">
-        <div className="container grid items-center gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <p className="public-eyebrow text-orange-300">حلول البنية التحتية للشبكات في مصر</p>
-            <h1 className="mt-3 text-3xl font-bold leading-tight md:text-5xl">حلول شبكات وفايبر وراك جاهزة للتنفيذ والتسعير</h1>
-            <p className="mt-4 text-sm text-slate-100 sm:text-base">تساعد HILTECH الشركات في مصر على تجهيز البنية التحتية للشبكات، من تحديد النطاق واختيار المنتجات إلى التنفيذ والاختبار وطلب عرض السعر.</p>
-            <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
-              <Link href="/ar/rfq" className="btn-primary w-full justify-center sm:w-auto">اطلب عرض سعر</Link>
-              <Link href="/ar/products-partners" className="btn-secondary w-full justify-center sm:w-auto">تصفح المنتجات</Link>
+    <main className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      {/* HERO SECTION */}
+      <section className="relative min-h-screen py-12 text-white sm:py-16 md:py-20 overflow-hidden">
+        {/* Background grid and glows */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <svg className="absolute inset-0 w-full h-full opacity-10" preserveAspectRatio="none">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+          
+          {/* Orange glow */}
+          <div className="absolute top-1/3 right-0 w-96 h-96 bg-orange-500/20 blur-3xl rounded-full filter opacity-40" />
+          
+          {/* Blue glow */}
+          <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-blue-500/15 blur-3xl rounded-full filter opacity-30" />
+        </div>
+
+        <div className="container relative z-10">
+          <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+            {/* Left: Main Content */}
+            <div className="space-y-8">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-orange-400 mb-3">حلول البنية التحتية للشبكات في مصر</p>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight text-balance">
+                  حلول شبكات وفايبر وراك جاهزة للتنفيذ والتسعير
+                </h1>
+              </div>
+              <p className="text-sm sm:text-base text-slate-300 max-w-lg leading-relaxed">
+                تساعد HILTECH الشركات في مصر على تجهيز البنية التحتية للشبكات، من تحديد النطاق واختيار المنتجات إلى التنفيذ والاختبار وطلب عرض السعر.
+              </p>
+
+              {/* Primary CTAs */}
+              <div className="flex flex-col gap-3 sm:flex-row pt-2">
+                <Link href="/ar/rfq" className="btn-primary w-full sm:w-auto justify-center">اطلب عرض سعر</Link>
+                <Link href="/ar/products-partners" className="inline-flex items-center justify-center px-5 py-2.5 font-semibold text-white transition-colors border border-white/30 rounded-md hover:bg-white/10">تصفح المنتجات</Link>
+              </div>
+
+              {/* Capability chips */}
+              <div className="flex flex-wrap gap-2 pt-4">
+                {capabilities.map((cap) => (
+                  <span key={cap} className="inline-flex items-center px-3 py-1.5 rounded-full border border-orange-500/40 bg-orange-500/10 text-xs font-semibold text-orange-200">
+                    {cap}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Premium Visual Card */}
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-6 space-y-6">
+                {/* Metric Cards */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm p-4 text-center">
+                    <p className="text-2xl font-bold text-orange-300">99.9%</p>
+                    <p className="text-xs font-semibold text-slate-300 mt-1">استقرار الإشارة</p>
+                  </div>
+                  <div className="rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm p-4 text-center">
+                    <p className="text-2xl font-bold text-orange-300">24/7</p>
+                    <p className="text-xs font-semibold text-slate-300 mt-1">متابعة فنية</p>
+                  </div>
+                </div>
+
+                {/* Main visual area */}
+                <div className="relative rounded-xl overflow-hidden">
+                  <div className="relative aspect-[16/10] w-full">
+                    <Image
+                      src="/rack-data-room.jpg"
+                      alt="أنظمة شبكات للمؤسسات"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <p className="font-semibold text-white">أنظمة شبكات للمؤسسات</p>
+                    <p className="text-xs text-slate-300 mt-1">تصميم • تنفيذ • اختبار • تسليم</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <article className="overflow-hidden rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm">
-            <div className="relative aspect-[4/3] w-full"><Image src="/rack-data-room.jpg" alt="إثبات أعمال ميدانية" fill className="object-cover" /></div>
-            <div className="p-4"><p className="public-eyebrow text-orange-200">إثبات ميداني</p><div className="mt-2 flex flex-wrap gap-2">{['كابلات منظمة', 'فايبر / ODF', 'تجهيز الراك', 'اختبار قبل التسليم'].map((tag)=><span key={tag} className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs font-semibold">{tag}</span>)}</div></div>
-          </article>
         </div>
       </section>
 
+      {/* FLOATING QUICK BROWSE PANEL */}
+      <section className="relative -mt-16 z-20">
+        <div className="container">
+          <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-6 sm:p-8 space-y-6">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-orange-400">تصفح سريع للمنتجات</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mt-2">اختار التصنيف وابدأ طلب عرض السعر</h2>
+            </div>
 
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              {productCategories.map((category) => (
+                <Link
+                  key={category}
+                  href="/ar/products-partners"
+                  className="group relative rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 hover:border-orange-500/50 p-3 text-center transition-all"
+                >
+                  <p className="text-xs sm:text-sm font-semibold text-slate-200 group-hover:text-orange-300 transition-colors">
+                    {category}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section className="container section"><div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4"><div className="grid grid-cols-2 gap-2 sm:grid-cols-4">{[['24/7','دعم فني'],['+1000','منتج تم توريده'],['+500','مشروع تم تنفيذه'],['+10','سنوات خبرة']].map(([value,label])=><article key={String(label)} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-center"><p className="text-lg font-bold text-navy-900" dir="ltr">{value}</p><p className="text-xs font-semibold text-slate-600">{label}</p></article>)}</div></div></section>
+      {/* TRUST STRIP */}
+      <section className="py-12 mt-12">
+        <div className="container">
+          <div className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-6">
+            <p className="text-xs font-semibold text-slate-400 mb-4">منظومات ومراجع منتجات ضمن الكتالوج الفني</p>
+            <div className="flex flex-wrap gap-2">
+              {['Fluke', 'Corning', 'CommScope', 'Siemon', 'Panduit', 'OTDR'].map((partner) => (
+                <span key={partner} className="text-xs font-semibold text-slate-300 px-3 py-1.5 rounded border border-white/15 bg-white/5">
+                  {partner}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section className="container section"><div className="rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm sm:p-4"><ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">{trustStrip.map((item)=><li key={item} className="public-marker justify-center text-center sm:text-sm">{item}</li>)}</ul></div></section>
+      {/* SERVICES SECTION */}
+      <section className="py-16">
+        <div className="container space-y-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-orange-400 mb-3">الخدمات</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">خدمات وحلول HILTECH</h2>
+          </div>
 
-      <section className="container section space-y-5"><h2 className="text-2xl font-bold text-navy-900">ما الذي تقدمه HILTECH؟</h2><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[['كابلات الشبكات المنظمة','تنفيذ وتنظيم كابلات الشبكات ونقاط الاتصال والباتش بانل بما يدعم التشغيل والصيانة.'],['البنية التحتية للفايبر','تجهيز مسارات الفايبر وODF والباتش كورد والملحقات المطلوبة حسب نطاق المشروع.'],['الراك وغرف البيانات','تجهيز الراك وتنظيم المكونات ومسارات الكابلات داخل غرف البيانات والمواقع الفنية.'],['الاختبار والتسليم','اختبار التوصيلات وتنظيم التسليم الفني لتقليل الأخطاء قبل التشغيل الفعلي.']].map(([title,text]) => <article key={String(title)} className="public-card p-4"><h3 className="font-semibold text-slate-900">{title}</h3><p className="mt-1 text-sm text-slate-700">{text}</p></article>)}</div></section>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <div key={service} className="rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-6 hover:border-orange-500/50 transition-colors">
+                <div className="inline-flex w-3 h-3 rounded-full bg-orange-500 mb-4" />
+                <h3 className="font-semibold text-white text-sm">{service}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      {/* PROJECT SCOPE SECTION */}
+      <section className="py-16">
+        <div className="container space-y-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-orange-400 mb-3">النطاقات</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">جهّز نطاق مشروع كامل</h2>
+          </div>
 
-      <section className="container section space-y-5"><h2 className="text-2xl font-bold text-navy-900">جهّز نطاق مشروع كامل</h2><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[
-        ['تجهيز شبكة مكتب', ['كابلات CAT6', 'باتش بانل', 'فيس بليت', 'ملحقات الراك', 'الاختبار']],
-        ['تجهيز راك وغرفة بيانات', ['راك', 'PDU', 'تنظيم الكابلات', 'باتش بانل', 'التسمية والاختبار']],
-        ['نطاق فايبر وODF', ['كابل فايبر', 'ODF', 'باتش كورد', 'اللحام والاختبار']],
-        ['بنية تحتية للكاميرات', ['نقاط شبكة', 'كابلات', 'تجهيز الراك', 'جاهزية الطاقة والشبكة']],
-      ].map(([title,items]) => <article key={String(title)} className="public-card p-4"><h3 className="font-semibold text-slate-900">{title}</h3><ul className="mt-2 space-y-1 text-sm text-slate-700">{(items as string[]).map((line)=><li key={line}>• {line}</li>)}</ul></article>)}</div></section>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {scopeStarters.map((scope) => (
+              <div key={scope.title} className="rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-5 space-y-4">
+                <h3 className="font-semibold text-white">{scope.title}</h3>
+                <ul className="space-y-2">
+                  {scope.items.map((item) => (
+                    <li key={item} className="text-xs text-slate-300 flex items-start gap-2">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-orange-500 mt-1.5 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <section className="bg-slate-50"><div className="container section space-y-5"><h2 className="text-2xl font-bold text-navy-900">أعمال ميدانية قابلة للتسليم والصيانة</h2><div className="grid gap-3 sm:grid-cols-3">{[
-        ['تجهيز الراك وغرف البيانات', '/rack-front-cabling.jpg', 'نطاق العمل: تنظيم الراك ومسارات الكابلات.'],
-        ['أعمال الفايبر / ODF', '/fiber-splicing-workbench.jpg', 'نطاق العمل: تجهيز المسار والـ ODF للتسليم.'],
-        ['الكابلات المنظمة والاختبار', '/testing-otdr-device.jpg', 'ملاحظة ثقة: اختبار قبل التسليم والتشغيل.'],
-      ].map(([title,src,note])=><article key={String(title)} className="overflow-hidden rounded-2xl border border-slate-200 bg-white"><div className="relative aspect-[16/10] w-full"><Image src={String(src)} alt={String(title)} fill className="object-cover" /></div><div className="p-3.5"><h3 className="font-semibold text-slate-900">{title}</h3><p className="mt-1 text-sm text-slate-700">{note}</p><Link href="/ar/work" className="mt-2 inline-block text-sm font-semibold text-orange-700">عرض الأعمال</Link></div></article>)}</div></div></section>
+      {/* FIELD WORK SECTION */}
+      <section className="py-16">
+        <div className="container space-y-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-orange-400 mb-3">الإثبات الميداني</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">أعمال قابلة للتسليم والصيانة</h2>
+          </div>
 
-      <section className="container section"><article className="public-card p-6"><h2 className="text-2xl font-bold text-navy-900">تصفح المنتجات وأضف عناصر المشروع إلى سلة طلب عرض سعر واحدة.</h2><div className="mt-5 flex flex-col gap-2.5 sm:flex-row"><Link href="/ar/products-partners" className="btn-secondary w-full justify-center sm:w-auto">تصفح المنتجات</Link></div></article></section>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {[
+              { title: 'تجهيز الراك وغرف البيانات', src: '/rack-front-cabling.jpg', desc: 'تنظيم الراك ومسارات الكابلات بمعايير احترافية' },
+              { title: 'أعمال الفايبر / ODF', src: '/fiber-splicing-workbench.jpg', desc: 'تجهيز المسار والـ ODF للتسليم والتشغيل' },
+              { title: 'الاختبار والتحقق', src: '/testing-otdr-device.jpg', desc: 'اختبار قبل التسليم والتشغيل الفعلي' },
+            ].map((item) => (
+              <Link key={item.title} href="/ar/work" className="group relative rounded-xl overflow-hidden border border-white/15 bg-white/5 hover:border-orange-500/50 transition-all">
+                <div className="relative aspect-[16/10] w-full">
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 space-y-1">
+                  <h3 className="font-semibold text-white text-sm">{item.title}</h3>
+                  <p className="text-xs text-slate-300">{item.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      {/* PRODUCT PREVIEW SECTION */}
+      <section className="py-16">
+        <div className="container">
+          <div className="rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-8 sm:p-12 space-y-6">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">تصفح المنتجات والحلول</h2>
+              <p className="text-slate-300 max-w-2xl">تصفح المنتجات وأضف عناصر المشروع إلى سلة طلب عرض سعر واحدة. نظام متكامل لإدارة احتياجات مشروعك.</p>
+            </div>
+            <Link href="/ar/products-partners" className="inline-flex items-center justify-center px-6 py-3 font-semibold text-white bg-orange-600 hover:bg-orange-700 rounded-md transition-colors">
+              تصفح المنتجات
+            </Link>
+          </div>
+        </div>
+      </section>
 
+      {/* RFQ PROCESS SECTION */}
+      <section className="py-16">
+        <div className="container space-y-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-orange-400 mb-3">العملية</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">من اختيار المنتجات إلى عرض السعر</h2>
+          </div>
 
-      <section className="container section space-y-5"><h2 className="text-2xl font-bold text-navy-900">تصنيفات المنتجات والحلول</h2><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[['أنظمة الفايبر','حلول الفايبر وODF والباتش كورد وملحقات الربط.'],['كابلات الشبكات CAT6','كابلات الشبكات والباتش كورد ومكونات الربط المنظمة.'],['الراك والكبائن وPDU','راك وكبائن وPDU وتجهيزات غرف البيانات.'],['الباتش بانل والربط','تنظيم نقاط الربط والتوزيع داخل الراك والمواقع الفنية.']].map(([title,desc])=><article key={String(title)} className="public-card p-4"><h3 className="font-semibold text-slate-900">{title}</h3><p className="mt-1 text-sm text-slate-700">{desc}</p><Link href="/ar/products-partners" className="mt-2 inline-block text-sm font-semibold text-orange-700">عرض المنتجات</Link></article>)}</div></section>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            {['اختر المنتجات', 'أضف الكميات', 'أرسل وتابع الطلب'].map((step, idx) => (
+              <div key={step} className="relative">
+                <div className="rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-6 text-center space-y-3">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-orange-600 text-white font-bold">
+                    {idx + 1}
+                  </div>
+                  <p className="font-semibold text-white">{step}</p>
+                </div>
+                {idx < 2 && <div className="hidden sm:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-orange-500 to-transparent" />}
+              </div>
+            ))}
+          </div>
 
-      <section className="container section"><article className="public-card p-6"><h2 className="text-2xl font-bold text-navy-900">من اختيار المنتجات إلى طلب عرض سعر منظم</h2><ol className="mt-4 grid gap-3 sm:grid-cols-3">{['اختر المنتجات','أضف الكميات','أرسل وتابع الطلب'].map((step, index) => <li key={step} className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm font-semibold"><span className="ml-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-orange-600 text-white">{index + 1}</span>{step}</li>)}</ol><div className="mt-5 flex flex-col gap-2.5 sm:flex-row"><Link href="/ar/rfq" className="btn-primary w-full justify-center sm:w-auto">اطلب عرض سعر</Link><Link href="/ar/track" className="btn-secondary w-full justify-center sm:w-auto">تتبع طلب العرض</Link></div></article></section>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link href="/ar/rfq" className="inline-flex items-center justify-center px-6 py-3 font-semibold text-white bg-orange-600 hover:bg-orange-700 rounded-md transition-colors flex-1 sm:flex-none">
+              اطلب عرض سعر
+            </Link>
+            <Link href="/ar/track" className="inline-flex items-center justify-center px-6 py-3 font-semibold text-white border border-white/30 hover:bg-white/10 rounded-md transition-colors flex-1 sm:flex-none">
+              تتبع الطلب
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      <section className="container section"><article className="public-card p-6"><h2 className="text-2xl font-bold text-navy-900">لماذا تختار HILTECH؟</h2><div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[['طلب عرض سعر منظم','أرسل المنتجات والكميات وملاحظات المشروع في طلب واحد واضح.'],['تنفيذ ميداني عملي','التخطيط يراعي المسارات والراك والاختبار والتسليم.'],['متابعة واضحة','تابع الطلب من خلال رقم مرجعي أو عبر الهاتف وواتساب.'],['اختيار مكونات مناسب','يتم ربط مراجع المنتجات باحتياج المشروع قبل عرض السعر.']].map(([title,text]) => <article key={String(title)} className="rounded-xl border border-slate-200 bg-slate-50 p-4"><h3 className="font-semibold text-slate-900">{title}</h3><p className="mt-1 text-sm text-slate-700">{text}</p></article>)}</div></article></section>
+      {/* WHY CHOOSE SECTION */}
+      <section className="py-16">
+        <div className="container space-y-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-orange-400 mb-3">الأسباب</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">لماذا تختار HILTECH؟</h2>
+          </div>
 
-      <section className="container section"><article className="public-card p-6"><h2 className="text-2xl font-bold text-navy-900">مراجع المنتجات والسياق الفني</h2><p className="mt-3 text-slate-700">تُعرض مراجع المنتجات والعلامات التجارية لأغراض الكتالوج والسياق الفني فقط، ولا تعني شراكة رسمية إلا إذا تم ذكر ذلك صراحة.</p><Link href="/ar/products-partners" className="mt-3 inline-flex text-sm font-semibold text-orange-700 underline">تصفح المنتجات</Link></article></section>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: 'طلب عرض سعر منظم', desc: 'أرسل المنتجات والكميات في طلب واحد واضح' },
+              { title: 'تنفيذ ميداني عملي', desc: 'التخطيط يراعي المسارات والراك والاختبار' },
+              { title: 'متابعة واضحة', desc: 'تابع الطلب عبر الهاتف أو واتساب' },
+              { title: 'اختيار مكونات مناسب', desc: 'ربط مراجع المنتجات باحتياج المشروع' },
+            ].map((item) => (
+              <div key={item.title} className="rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-5 space-y-2">
+                <h3 className="font-semibold text-white text-sm">{item.title}</h3>
+                <p className="text-xs text-slate-300">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <section className="container section"><article className="public-card p-6"><h2 className="text-2xl font-bold text-navy-900">جاهز لمناقشة مشروعك؟</h2><div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm font-semibold"><a href={site.contact.whatsappGeneralLink} className="btn-secondary">واتساب / طلب عرض سعر</a><a href={`mailto:${site.contact.email}`} className="btn-secondary" dir="ltr">{site.contact.email}</a><a href={`tel:${site.contact.phone}`} className="btn-secondary" dir="ltr">{site.contact.phone}</a><a href="/hiltech-company-profile.pdf" target="_blank" rel="noreferrer" className="btn-secondary">تحميل ملف الشركة</a><Link href="/ar/track" className="btn-secondary">تتبع طلب عرض السعر</Link></div></article></section>
+      {/* TESTING SECTION */}
+      <section className="py-16">
+        <div className="container space-y-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-orange-400 mb-3">الجودة</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">معايير الاختبار والتحقق</h2>
+          </div>
 
-      <section className="bg-navy-800 py-10 text-white"><div className="container"><h2 className="text-3xl font-bold">جاهز لتسعير مشروع البنية التحتية؟</h2><p className="mt-3 max-w-3xl text-slate-100">أرسل المنتجات والكميات أو BOQ أو متطلبات الموقع، وسيقوم فريق HILTECH بمراجعة النطاق ومتابعة عرض السعر.</p><div className="mt-5 flex flex-col gap-2.5 sm:flex-row"><Link href="/ar/rfq" className="btn-primary w-full justify-center sm:w-auto">اطلب عرض سعر</Link><a href={site.contact.whatsappGeneralLink} className="inline-flex w-full items-center justify-center rounded-md border border-white/35 px-4 py-2.5 text-sm font-semibold text-white sm:w-auto">تواصل عبر واتساب</a></div></div></section>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {['Fluke Test', 'OTDR', 'Power Meter', 'Digital Copper Tester'].map((tool) => (
+              <div key={tool} className="rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-6 text-center space-y-3">
+                <div className="inline-flex w-2 h-8 rounded bg-orange-500" />
+                <p className="font-semibold text-white text-sm">{tool}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* METRICS SECTION */}
+      <section className="py-16">
+        <div className="container">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {metrics.map((metric) => (
+              <div key={metric.label} className="rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-8 text-center space-y-3">
+                <p className="text-4xl sm:text-5xl font-black text-orange-400">{metric.value}</p>
+                <p className="font-semibold text-slate-300 text-sm">{metric.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA SECTION */}
+      <section className="py-16">
+        <div className="container">
+          <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-gradient-to-r from-orange-600/20 to-orange-500/10 backdrop-blur-sm p-8 sm:p-12 space-y-6">
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-orange-600/40 blur-3xl rounded-full" />
+            </div>
+            
+            <div className="relative z-10 space-y-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white">جاهز لتسعير مشروع البنية التحتية؟</h2>
+              <p className="text-slate-200 max-w-2xl">أرسل المنتجات والكميات أو BOQ أو متطلبات الموقع، وسيقوم فريق HILTECH بمراجعة النطاق ومتابعة عرض السعر.</p>
+            </div>
+
+            <div className="relative z-10 flex flex-col gap-3 sm:flex-row pt-4">
+              <Link href="/ar/rfq" className="inline-flex items-center justify-center px-6 py-3 font-semibold text-white bg-orange-600 hover:bg-orange-700 rounded-md transition-colors">
+                اطلب عرض سعر
+              </Link>
+              <a href={site.contact.whatsappGeneralLink} className="inline-flex items-center justify-center px-6 py-3 font-semibold text-white border border-white/40 hover:bg-white/10 rounded-md transition-colors">
+                تواصل عبر واتساب
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

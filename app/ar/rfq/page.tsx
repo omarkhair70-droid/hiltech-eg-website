@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ArabicRFQPage() {
   return (
-    <main className="section" dir="rtl">
+    <main className="section bg-slate-950" dir="rtl">
       <div className="container">
         <RFQReviewClient locale="ar" messages={arRFQMessages} productsHref="/ar/products-partners" trackHrefBase="/ar/track" contactHref="/ar/contact" />
       </div>

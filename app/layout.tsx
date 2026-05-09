@@ -36,5 +36,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({children}:{children:React.ReactNode}){
-  return <html lang="en"><body><Header />{children}<Footer /><GoogleAnalytics /></body></html>;
+  return <html lang="en" className="bg-slate-950"><body className="bg-slate-950"><Header />{children}<Footer /><GoogleAnalytics /></body></html>;
 }
