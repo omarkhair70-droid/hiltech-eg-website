@@ -4,7 +4,7 @@ import { onePagers } from '@/content/sales-materials';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://hiltech-eg.com';
-  const coreRoutes = ['', '/services', '/about', '/solutions', '/products-partners', '/scope-finder', '/rfq', '/contact', '/resources', '/resources/company-profile', '/resources/rfq-guide', '/resources/launch-copy'];
+  const coreRoutes = ['', '/services', '/company', '/solutions', '/products-partners', '/scope-finder', '/rfq', '/track', '/work', '/contact', '/resources', '/resources/company-profile', '/resources/rfq-guide', '/resources/launch-copy'];
   const intelligenceRoutes = productIntelligenceCategories.map((category) => `/products-partners/intelligence/${category.slug}`);
 
   const solutionRoutes = ['/solutions/structured-cabling', '/solutions/fiber-backbone', '/solutions/data-rooms', '/solutions/cctv-infrastructure', '/solutions/network-testing', '/solutions/project-supply-rfq'];

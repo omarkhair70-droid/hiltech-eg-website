@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { CTAButton, PremiumCard, SectionShell } from '@/components/ui/primitives';
 import { site } from '@/content/site';
 
-export const metadata: Metadata = { title: 'Contact HILTECH | RFQ for Infrastructure Projects', description: 'Request quotations for structured cabling, fiber optics, data room infrastructure, CCTV connectivity, testing, and project supply in Egypt.', alternates: { canonical: `${site.siteUrl}/contact` } };
+export const metadata: Metadata = { title: 'Contact HILTECH | RFQ, WhatsApp & Network Infrastructure Support', description: 'Request quotations for structured cabling, fiber optics, data room infrastructure, CCTV connectivity, testing, and project supply in Egypt.', alternates: { canonical: `${site.siteUrl}/contact` } };
 
 export default function Page() {
   return (

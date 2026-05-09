@@ -6,7 +6,7 @@ import { getPublicProducts } from '@/lib/server/products-public';
 import ProductsClient from './ProductsClient';
 
 export const metadata: Metadata = {
-  title: 'Products & Partners | Project Supply in Egypt',
+  title: 'Network Infrastructure Products & RFQ References | HILTECH',
   description:
     'Browse project supply categories for structured cabling, fiber optics, racks, power systems, and CCTV infrastructure with RFQ support in Egypt.',
   alternates: { canonical: `${site.siteUrl}/products-partners` },

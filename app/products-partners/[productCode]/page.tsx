@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { product } = await getProduct(params.productCode);
   if (!product) return {};
   return {
-    title: `${product.name} | HILTECH`,
+    title: `${product.name} | Network Infrastructure Product Reference | HILTECH`,
     description: [product.shortSpecs, product.useCase, product.category].filter(Boolean).join(' ').slice(0, 160),
     alternates: { canonical: `${site.siteUrl}/products-partners/${product.id}` },
   };

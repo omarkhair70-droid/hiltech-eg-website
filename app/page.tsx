@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import {
   ContactConfidenceSection,
-  CoreServicesSection,
   FieldWorkPreview,
   FinalCTA,
   Hero,
@@ -10,13 +9,14 @@ import {
   RFQProcessSection,
   TrustStrip,
   WhatHiltechDoes,
+  WhyChooseHiltechSection,
 } from '@/components/Sections';
 import { site } from '@/content/site';
 
 export const metadata: Metadata = {
-  title: 'HILTECH | Enterprise Network Infrastructure & Project Supply in Egypt',
+  title: 'HILTECH | Network Infrastructure, Fiber Optics & RFQ in Egypt',
   description:
-    'Premium network infrastructure delivery in Egypt: structured cabling, fiber optics, data room infrastructure, CCTV connectivity, and project supply support.',
+    'HILTECH supports network infrastructure delivery in Egypt with fiber optics, structured cabling, data room readiness, testing before handover, and RFQ coordination.',
   alternates: { canonical: `${site.siteUrl}/` },
   openGraph: {
     title: 'HILTECH | Enterprise Network Infrastructure & Project Supply',
@@ -34,10 +34,10 @@ export default async function Home() {
       <Hero />
       <TrustStrip />
       <WhatHiltechDoes />
-      <CoreServicesSection />
       <FieldWorkPreview />
       <RFQProcessSection />
       <ProductCategoriesPreview />
+      <WhyChooseHiltechSection />
       <ProductReferencesPanel />
       <ContactConfidenceSection />
       <FinalCTA />

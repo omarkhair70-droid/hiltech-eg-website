@@ -7,7 +7,6 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: 'Track Your RFQ | HILTECH',
   description: 'Track the current status of your RFQ request using your request reference and contact details.',
-  robots: { index: false, follow: false },
   alternates: { canonical: `${site.siteUrl}/track` },
 };
 

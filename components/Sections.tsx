@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { CTAButton, PremiumCard, SectionHeader, SectionShell } from '@/components/ui/primitives';
+import { trackEvent } from '@/lib/client/analytics';
 
 const trustStripItems = [
   'Egypt-based delivery',
@@ -50,10 +53,10 @@ export function Hero() {
           <p className="mt-3 text-sm text-slate-100 sm:text-base">HILTECH supports companies with fiber optic cabling, structured data networks, racks, patch panels, CCTV infrastructure, testing, and project-ready RFQ coordination.</p>
           <p className="mt-2.5 text-sm text-slate-100 sm:text-base" dir="rtl" lang="ar">توريد وتنفيذ واختبار حلول الشبكات والفايبر والراك للشركات داخل مصر.</p>
           <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3">
-            <CTAButton href="/rfq" className="w-full justify-center sm:w-auto">Request Project Quote</CTAButton>
+            <CTAButton href="/rfq" className="w-full justify-center sm:w-auto" onClick={() => trackEvent('hero_rfq_click', { source: 'home_hero' })}>Request Project Quote</CTAButton>
             <CTAButton href="/work" variant="secondary" className="w-full justify-center sm:w-auto">View Field Work</CTAButton>
           </div>
-          <p className="mt-3 text-sm text-slate-200"><Link href="/track" className="underline underline-offset-4 hover:text-white">Track RFQ</Link></p>
+          <p className="mt-3 text-sm text-slate-200"><Link href="/track" onClick={() => trackEvent('rfq_track_click', { source: 'home_hero' })} className="underline underline-offset-4 hover:text-white">Track RFQ</Link></p>
           <div className="relative mt-3 h-32 w-full overflow-hidden rounded-xl border border-white/15 sm:hidden">
             <Image src="/rack-data-room.jpg" alt="Network rack and data room preparation for business facility handover" fill className="object-cover" sizes="100vw" />
           </div>
@@ -104,6 +107,18 @@ export function FieldWorkPreview() {
 export function RFQProcessSection() { return <SectionShell compact><SectionHeader eyebrow="RFQ Process" title="Clear request flow from scope to quote" description="Keep technical scope, item needs, and contact details in one request." /><div className="mt-5 grid gap-2.5 md:grid-cols-3 md:gap-4">{['Define network scope','Add required product references','Submit RFQ and track response'].map((step,index)=><PremiumCard key={step} className="bg-slate-50 p-3.5"><p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Step {index+1}</p><p className="mt-1.5 font-semibold text-slate-900">{step}</p></PremiumCard>)}</div><div className="mt-5 flex flex-col gap-2.5 sm:flex-row"><CTAButton href="/rfq" className="w-full justify-center sm:w-auto">Request Project Quote</CTAButton><CTAButton href="/track" variant="secondary" className="w-full justify-center sm:w-auto">Track RFQ</CTAButton></div></SectionShell>; }
 
 export function ProductCategoriesPreview() { const cats=[['Fiber Optics','Fiber cables, ODFs, connectors, and accessories for backbone projects.','Fiber Optic Systems'],['Structured Cabling','CAT6/CAT6A infrastructure components for office and facility networks.','Copper / CAT6 Cabling'],['Racks & Cabinets','Cabinets, rack accessories, cable management, and power preparation.','Cabinets / Racks / PDU'],['Patch Panels & Connectivity','Patch panels, keystones, couplers, and connectivity accessories.','Patch Cords & Connectivity'],['CCTV Infrastructure','Camera cabling, network accessories, and control-room readiness items.','CCTV & Security'],['Testing Tools','Field testing references for fiber and copper validation workflows.',null],['Power & Accessories','PDU, UPS references, and structured power accessories for racks.','Cabinets / Racks / PDU'],['Project Supply','Project-based product supply across coordinated network requirements.','/rfq']] as const; return <SectionShell compact><SectionHeader title="Product Categories" description="Category-level references to help prepare technical scope before RFQ." /><div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{cats.map(([title,description,mappedCategory])=><PremiumCard key={title} className="bg-white p-4"><h3 className="text-sm font-semibold text-slate-900">{title}</h3><p className="mt-1 text-sm text-slate-700">{description}</p><Link href={mappedCategory === '/rfq' ? '/rfq' : mappedCategory ? `/products-partners?category=${encodeURIComponent(mappedCategory)}` : title === 'Testing Tools' ? '/work' : '/products-partners?q=cctv'} className="mt-2 inline-block text-sm font-semibold text-orange-700 underline-offset-4 hover:underline">View Category</Link></PremiumCard>)}</div></SectionShell>; }
+
+
+
+export function WhyChooseHiltechSection() {
+  const cards = [
+    { title: 'RFQ-first workflow', description: 'Submit products and scope in one structured request.' },
+    { title: 'Field-aware delivery', description: 'Infrastructure planning considers routing, racks, testing, and handover.' },
+    { title: 'Clear communication', description: 'Follow up by phone, WhatsApp, or RFQ tracking reference.' },
+    { title: 'Practical product alignment', description: 'Product references are aligned with real project requirements before quotation.' },
+  ];
+  return <SectionShell compact><SectionHeader eyebrow="Why companies choose HILTECH" title="Built for practical project delivery" description="A compact operating model focused on RFQ clarity, field execution, and aligned product references." /><div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{cards.map((card)=><PremiumCard key={card.title} className="bg-white p-4"><h3 className="text-sm font-semibold text-slate-900">{card.title}</h3><p className="mt-1.5 text-sm text-slate-700">{card.description}</p></PremiumCard>)}</div></SectionShell>;
+}
 
 export function ProductReferencesPanel() { return <SectionShell compact><section className="mx-auto max-w-5xl rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6"><SectionHeader eyebrow="Product References" title="Compatible Product References" description="Brand and product references used for project catalog context." /><div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 sm:mt-5 sm:p-4"><div className="relative mx-auto h-32 w-full max-w-4xl sm:h-40 md:h-44"><Image src="/ch-product-references.jpeg" alt="Compatible product references panel" fill className="object-contain" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 896px" /></div></div><p className="mt-3 text-xs text-slate-500 sm:mt-4">Product references are shown for catalog/context purposes only and do not imply formal partnership unless explicitly stated.</p></section></SectionShell>; }
 

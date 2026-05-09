@@ -807,3 +807,15 @@ Visual assets used in Phase 28B:
 - No schema changes, admin workflow changes, product data changes, or import/export changes were introduced.
 - No fake claims or synthetic proof content were added.
 - Remaining real-asset requirements are documented in `docs/REAL_ASSETS_NEEDED.md`.
+
+## B3B — Trust / SEO / Performance / Analytics / Homepage Polish
+- Added/updated `docs/REAL_ASSETS_NEEDED.md` with a concrete asset replacement map and approval-safe guidance.
+- Upgraded homepage trust flow with a compact **Why companies choose HILTECH** section aligned to RFQ-first conversion.
+- Reviewed and refined key page metadata (home, services, products, RFQ, track, work, company, contact) and ensured canonical usage stays on `https://hiltech-eg.com`.
+- Verified robots/sitemap public route safety and maintained `/admin` + `/api` blocking.
+- Created `docs/PERFORMANCE_AUDIT.md` documenting current image/performance risks and post-asset optimization recommendations.
+- Reviewed conversion analytics events and added homepage conversion-safe tracking without sending personal data.
+- Completed legacy wording cleanup in key public surfaces (no fake partnership wording in product references context).
+- Homepage final polish completed with compact trust-first order and without extending page length with duplicate sections.
+- No backend/admin/RFQ schema/product data/import-export changes were made in this phase.
+- No fake claims were added; remaining real asset needs are documented for client handoff.
