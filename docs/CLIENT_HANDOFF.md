@@ -786,3 +786,14 @@ Visual assets used in Phase 28B:
 - Brand/contact/domain readiness checked for HILTECH consistency and public SEO metadata routes.
 - Final mobile QA checklist documented (360px, 390px, 430px, overflow and fixed control overlap checks).
 - No schema/admin/product data/import-export logic changes in this phase.
+
+## B2 — Final Hardening QA + Fix Pass
+- rate limiting verified/added
+- tracking page upgraded or verified
+- company page upgraded or verified
+- work CTA hierarchy corrected or verified
+- product category deep links added or verified
+- RFQ empty/success UX polished or verified
+- asset gaps documented
+- final smoke test checklist added
+- no schema/admin/product data/import-export changes

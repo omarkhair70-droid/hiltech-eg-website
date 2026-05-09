@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { sendNewRFQInternalNotification } from '@/lib/server/rfq-notifications';
 import { insertRFQItems, insertRFQRequest, isSupabaseConfigured, updateRFQNotificationAudit } from '@/lib/server/supabase-admin';
 import { validateRFQPayload } from '@/lib/validators/rfq';
+import { checkRateLimit, getClientIp } from '@/lib/server/rate-limit';
 
 function generateRequestCode(now = new Date()) {
   const year = now.getUTCFullYear();
@@ -16,6 +17,13 @@ function generateRequestCode(now = new Date()) {
 }
 
 export async function POST(request: Request) {
+
+  const ip = getClientIp(request);
+  const rate = checkRateLimit({ key: `rfq-submit:${ip}`, windowMs: 60 * 60 * 1000, maxRequests: 10 });
+  if (!rate.allowed) {
+    return NextResponse.json({ ok: false, error: 'Too many RFQ submissions. Please wait and try again.' }, { status: 429, headers: { 'Retry-After': String(rate.retryAfter) } });
+  }
+
   if (!isSupabaseConfigured()) {
     return NextResponse.json({ ok: false, error: 'RFQ backend is temporarily unavailable. Please use WhatsApp to continue.' }, { status: 503 });
   }

@@ -91,9 +91,9 @@ export default async function Page() {
           <p className="mt-4 max-w-3xl text-sm text-slate-200 md:text-base">Selected field visuals representing HILTECH service areas across installation and testing workflows.</p>
           <p className="mt-3 text-sm text-slate-300" dir="rtl" lang="ar">لقطات من تجهيزات وأعمال ميدانية لمشروعات البنية التحتية للشبكات.</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/products-partners" className="rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-400">Browse Products</Link>
-            <Link href="/rfq" className="rounded-lg border border-slate-400 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:bg-slate-900">Send Project Requirements</Link>
-            <Link href="/solutions" className="self-center text-sm font-medium text-slate-200 underline-offset-4 hover:underline">View Solutions</Link>
+            <Link href="/rfq" className="rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-400">Request Project Quote</Link>
+            <Link href="/products-partners" className="rounded-lg border border-slate-400 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:bg-slate-900">Browse Products</Link>
+            <Link href="/contact" className="self-center text-sm font-medium text-slate-200 underline-offset-4 hover:underline">Contact HILTECH</Link>
           </div>
         </section>
 
@@ -168,8 +168,8 @@ export default async function Page() {
           <h2 className="text-2xl font-bold text-slate-900">Ready to connect field scope with product requirements?</h2>
           <p className="mt-2 max-w-3xl text-slate-700">Browse relevant products, then send a structured RFQ with the items and scope your project needs.</p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link href="/products-partners" className="rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-500">Browse Products</Link>
-            <Link href="/rfq" className="rounded-lg border border-orange-300 px-4 py-2 text-sm font-semibold text-orange-800 hover:bg-orange-100">Send Project Requirements</Link>
+            <Link href="/rfq" className="rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-500">Request Project Quote</Link>
+            <Link href="/products-partners" className="rounded-lg border border-orange-300 px-4 py-2 text-sm font-semibold text-orange-800 hover:bg-orange-100">Browse Products</Link>
             <Link href="/contact" className="self-center text-sm font-medium text-orange-800 underline-offset-4 hover:underline">Contact HILTECH</Link>
           </div>
         </section>
