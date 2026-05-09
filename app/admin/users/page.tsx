@@ -1,5 +1,6 @@
 import AdminShell from '@/components/admin/AdminShell';
 import { getAdminAuthMode, requirePermission } from '@/lib/server/admin-session';
+import { requirePermissionOrRedirect } from '@/lib/server/admin-page-guard';
 import { logAdminAction } from '@/lib/server/admin-audit';
 import { createAdminProfileForExistingAuthUser, listAdminProfiles, updateAdminProfileActive, updateAdminProfileRole } from '@/lib/server/admin-users';
 import { ADMIN_ROLES, type AdminRole } from '@/lib/server/admin-permissions';
@@ -40,7 +41,8 @@ async function toggleActiveAction(formData: FormData) {
 }
 
 export default async function AdminUsersPage() {
-  await requirePermission('admin_users:manage');
+  const adminAccess = await requirePermissionOrRedirect('admin_users:manage');
+  if (!adminAccess) return <AdminShell title='Admin Users' description='Manage admin profiles, roles, and active status for Enterprise Admin Auth.'><section className='rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-800 text-sm'>Not authorized to manage admin users.</section></AdminShell>;
   const authMode = getAdminAuthMode();
   let profiles = [] as Awaited<ReturnType<typeof listAdminProfiles>>;
   let error: string | null = null;

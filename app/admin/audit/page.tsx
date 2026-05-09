@@ -1,11 +1,12 @@
 import AdminShell from '@/components/admin/AdminShell';
-import { requireRole } from '@/lib/server/admin-session';
+import { requireRoleOrRedirect } from '@/lib/server/admin-page-guard';
 import { listAuditLogs } from '@/lib/server/admin-audit-log';
 
 export const dynamic = 'force-dynamic';
 
 export default async function AdminAuditPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  await requireRole(['owner', 'manager']);
+  const admin = await requireRoleOrRedirect(['owner', 'manager']);
+  if (!admin) return <AdminShell title='Audit Trail' description='Review critical admin actions recorded for RFQ, quotes, products, reports, and auth.'><section className='rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-800 text-sm'>Not authorized to view audit logs.</section></AdminShell>;
   const params = await searchParams;
   const action = typeof params.action === 'string' ? params.action : '';
   const entityType = typeof params.entity_type === 'string' ? params.entity_type : '';

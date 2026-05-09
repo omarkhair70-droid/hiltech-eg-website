@@ -3,7 +3,7 @@ import { getAdminCookie, isAdminConfigured, validateAdminPassword } from '@/lib/
 import { checkRateLimit, getClientIp } from '@/lib/server/rate-limit';
 import { ADMIN_AUDIT_ACTIONS, logAdminAction } from '@/lib/server/admin-audit';
 import { getAdminAuthMode } from '@/lib/server/admin-session';
-import { isSupabaseAuthConfigured, loadAdminProfile, setSupabaseAdminCookies, signInAdminWithPassword } from '@/lib/server/supabase-auth';
+import { getSupabaseMissingConfigKeys, isSupabaseAuthConfigured, loadAdminProfile, setSupabaseAdminCookies, signInAdminWithPassword } from '@/lib/server/supabase-auth';
 
 export async function POST(request: Request) {
   const ip = getClientIp(request);
@@ -37,6 +37,7 @@ export async function POST(request: Request) {
   }
 
   if (!isSupabaseAuthConfigured()) {
+    console.warn('[admin-auth] failed area=auth auth_mode=supabase', { missing_config_keys: getSupabaseMissingConfigKeys() });
     void logAdminAction({ action: ADMIN_AUDIT_ACTIONS.ADMIN_LOGIN_FAILED, entityType: 'auth', entityId: 'admin-login', metadata: { auth_mode: 'supabase', reason: 'config' } });
     return NextResponse.redirect(new URL('/admin/login?error=config', request.url));
   }
@@ -83,6 +84,7 @@ export async function POST(request: Request) {
       }
     }
 
+    console.warn('[admin-auth] failed area=profile auth_mode=supabase', { reason });
     void logAdminAction({ action: ADMIN_AUDIT_ACTIONS.ADMIN_LOGIN_FAILED, entityType: 'auth', entityId: 'admin-login', metadata: { auth_mode: 'supabase', reason } });
     return NextResponse.redirect(new URL(`/admin/login?error=${code}`, request.url));
   }
