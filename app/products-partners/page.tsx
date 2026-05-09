@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Network Infrastructure Products & RFQ References | HILTECH',
   description:
     'Browse project supply categories for structured cabling, fiber optics, racks, power systems, and CCTV infrastructure with RFQ support in Egypt.',
-  alternates: { canonical: `${site.siteUrl}/products-partners` },
+  alternates: { canonical: `${site.siteUrl}/products-partners`, languages: { en: `${site.siteUrl}/products-partners`, ar: `${site.siteUrl}/ar/products-partners`, 'x-default': `${site.siteUrl}/` } },
   openGraph: { title: 'HILTECH Products & Partners | Project Supply', description: 'Category-based project supply support across network infrastructure, fiber optics, data room equipment, and CCTV connectivity in Egypt.', url: `${site.siteUrl}/products-partners`, images: [site.ogImage] },
   twitter: { card: 'summary_large_image', images: [site.ogImage] },
 };

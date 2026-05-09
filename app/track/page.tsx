@@ -7,7 +7,7 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: 'Track Your RFQ | HILTECH',
   description: 'Track the current status of your RFQ request using your request reference and contact details.',
-  alternates: { canonical: `${site.siteUrl}/track` },
+  alternates: { canonical: `${site.siteUrl}/track`, languages: { en: `${site.siteUrl}/track`, ar: `${site.siteUrl}/ar/track`, 'x-default': `${site.siteUrl}/` } },
 };
 
 interface TrackPageProps {

@@ -8,7 +8,7 @@ import ProductsClient from '@/app/products-partners/ProductsClient';
 export const metadata: Metadata = {
   title: 'منتجات وحلول البنية التحتية | HILTECH',
   description: 'منتجات ومراجع للشبكات والفايبر والراك وتجهيزات البنية التحتية، مع إمكانية إضافتها إلى طلب عرض سعر منظم.',
-  alternates: { canonical: `${site.siteUrl}/ar/products-partners` },
+  alternates: { canonical: `${site.siteUrl}/ar/products-partners`, languages: { en: `${site.siteUrl}/products-partners`, ar: `${site.siteUrl}/ar/products-partners`, 'x-default': `${site.siteUrl}/` } },
 };
 
 export const dynamic = 'force-dynamic';

@@ -252,3 +252,58 @@ If email is **not** configured:
 - Verify /ar/work visual/copy check.
 - Verify /ar/services CTA links.
 - Verify language switcher for each page.
+
+## BIL4 — Bilingual Final QA Checklist
+
+### English routes
+- `/`
+- `/products-partners`
+- `/rfq`
+- `/track`
+- `/company`
+- `/contact`
+- `/work`
+- `/services`
+
+### Arabic routes
+- `/ar`
+- `/ar/products-partners`
+- `/ar/rfq`
+- `/ar/track`
+- `/ar/company`
+- `/ar/contact`
+- `/ar/work`
+- `/ar/services`
+
+### Language switcher
+- English → Arabic same page
+- Arabic → English same page
+- `/track?request_code=TEST` query preserved
+- `/ar/track?request_code=TEST` query preserved
+
+### RFQ
+- Add product from English
+- Open `/ar/rfq` and verify shared basket
+- Add product from Arabic
+- Open `/rfq` and verify shared basket
+- Arabic validation
+- Arabic success state
+- Arabic track link
+
+### Tracking
+- `/ar/track?request_code=...`
+- Email verification
+- Local phone verification
+- International phone verification
+
+### Mobile
+- 360px
+- 390px
+- 430px
+- No RTL overflow
+
+### SEO
+- Sitemap includes `/ar` routes
+- Canonical/hreflang correct
+- No admin/api in sitemap
+- No vercel.app canonical

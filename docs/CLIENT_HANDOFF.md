@@ -972,3 +972,14 @@ Visual assets used in Phase 28B:
 - English routes remain unchanged.
 - Admin remains English and untouched.
 - No schema/backend/auth changes.
+
+## BIL4 — Bilingual SEO / hreflang / RTL Final QA
+- English remains default at `/`.
+- Arabic is available under `/ar`.
+- hreflang/canonical metadata is added for key public pages.
+- Sitemap includes Arabic public pages.
+- Admin remains English and untouched.
+- RFQ/Tracking backend logic is unchanged.
+- Arabic product detail pages and long technical notes may remain deferred if not implemented.
+- Company Profile PDF remains available at `/hiltech-company-profile.pdf`.
+- No `/en` route was introduced.
