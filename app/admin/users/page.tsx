@@ -55,13 +55,13 @@ export default async function AdminUsersPage() {
     {error ? <section className='rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-800 text-sm'>{error}</section> : null}
     <section className='rounded-xl border border-slate-200 bg-white p-4 overflow-x-auto'>
       <table className='min-w-full text-sm'><thead><tr className='text-left border-b'><th>Email</th><th>Name</th><th>Role</th><th>Status</th><th>Created</th><th>Updated</th><th>Last login</th><th>Actions</th></tr></thead><tbody>
-        {profiles.map((p) => <tr key={p.user_id} className='border-b align-top'><td>{p.email}</td><td>{p.full_name || '—'}</td><td>{p.role}</td><td>{p.is_active ? 'Active' : 'Inactive'}</td><td>{new Date(p.created_at).toLocaleString()}</td><td>{p.updated_at ? new Date(p.updated_at).toLocaleString() : '—'}</td><td>{p.last_login_at ? new Date(p.last_login_at).toLocaleString() : 'Not tracked yet'}</td><td className='space-y-2 py-2'>
+        {profiles.map((p) => <tr key={p.id} className='border-b align-top'><td>{p.email}</td><td>{p.full_name || '—'}</td><td>{p.role}</td><td>{p.is_active ? 'Active' : 'Inactive'}</td><td>{new Date(p.created_at).toLocaleString()}</td><td>{p.updated_at ? new Date(p.updated_at).toLocaleString() : '—'}</td><td>{'Not tracked yet'}</td><td className='space-y-2 py-2'>
           <form action={updateRoleAction} className='flex gap-2'>
-            <input type='hidden' name='user_id' value={p.user_id} /><input type='hidden' name='old_role' value={p.role} />
+            <input type='hidden' name='user_id' value={p.id} /><input type='hidden' name='old_role' value={p.role} />
             <select name='new_role' defaultValue={p.role} className='border rounded px-2 py-1'>{ADMIN_ROLES.map((r) => <option key={r} value={r}>{r}</option>)}</select>
             <button className='border rounded px-2 py-1'>Change role</button>
           </form>
-          <form action={toggleActiveAction}><input type='hidden' name='user_id' value={p.user_id} /><input type='hidden' name='email' value={p.email} /><input type='hidden' name='old_active' value={String(p.is_active)} /><button className='border rounded px-2 py-1'>{p.is_active ? 'Deactivate' : 'Activate'}</button></form>
+          <form action={toggleActiveAction}><input type='hidden' name='user_id' value={p.id} /><input type='hidden' name='email' value={p.email} /><input type='hidden' name='old_active' value={String(p.is_active)} /><button className='border rounded px-2 py-1'>{p.is_active ? 'Deactivate' : 'Activate'}</button></form>
         </td></tr>)}
       </tbody></table>
     </section>

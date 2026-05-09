@@ -923,3 +923,10 @@ Visual assets used in Phase 28B:
 - Production activation remains manual after preview verification.
 - No public RFQ/tracking/product behavior changes.
 - No fake MFA is included in this phase.
+
+
+## EAA4.1 — Admin Users Schema Compatibility Fix
+- Fixed `/admin/users` helper to match `admin_profiles.id` column from EAA2 migration.
+- No schema change.
+- No auth mode change.
+- Legacy fallback preserved.

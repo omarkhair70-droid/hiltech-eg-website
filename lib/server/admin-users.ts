@@ -7,14 +7,13 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 export type AdminProfileRow = {
-  user_id: string;
+  id: string;
   email: string;
   full_name: string | null;
   role: AdminRole;
   is_active: boolean;
   created_at: string;
   updated_at: string;
-  last_login_at: string | null;
 };
 
 function baseUrl() {
@@ -31,7 +30,7 @@ export function canUseSupabaseAdminApi() { return isSupabaseConfigured(); }
 
 export async function listAdminProfiles(): Promise<AdminProfileRow[]> {
   if (!canUseSupabaseAdminApi()) return [];
-  const res = await fetch(`${baseUrl()}/rest/v1/admin_profiles?select=user_id,email,full_name,role,is_active,created_at,updated_at,last_login_at&order=created_at.desc`, { headers: headers(), cache: 'no-store' });
+  const res = await fetch(`${baseUrl()}/rest/v1/admin_profiles?select=id,email,full_name,role,is_active,created_at,updated_at&order=created_at.desc`, { headers: headers(), cache: 'no-store' });
   if (!res.ok) throw new Error('Admin profiles table is unavailable.');
   const rows = (await res.json()) as AdminProfileRow[];
   return rows.filter((r) => isAdminRole(r.role));
@@ -39,15 +38,15 @@ export async function listAdminProfiles(): Promise<AdminProfileRow[]> {
 
 export async function getActiveOwnerCount() {
   if (!canUseSupabaseAdminApi()) return 0;
-  const res = await fetch(`${baseUrl()}/rest/v1/admin_profiles?select=user_id&role=eq.owner&is_active=eq.true`, { headers: headers(), cache: 'no-store' });
+  const res = await fetch(`${baseUrl()}/rest/v1/admin_profiles?select=id&role=eq.owner&is_active=eq.true`, { headers: headers(), cache: 'no-store' });
   if (!res.ok) throw new Error('Failed to validate owner safeguards.');
-  const rows = (await res.json()) as Array<{ user_id: string }>;
+  const rows = (await res.json()) as Array<{ id: string }>;
   return rows.length;
 }
 
 export async function preventLastOwnerRemoval(targetUserId: string, next: { role?: AdminRole; isActive?: boolean }) {
   const profiles = await listAdminProfiles();
-  const target = profiles.find((p) => p.user_id === targetUserId);
+  const target = profiles.find((p) => p.id === targetUserId);
   if (!target) throw new Error('Admin profile not found.');
   const nextRole = next.role ?? target.role;
   const nextActive = next.isActive ?? target.is_active;
@@ -61,7 +60,7 @@ export async function createAdminProfileForExistingAuthUser(payload: { userId: s
   if (!ADMIN_ROLES.includes(payload.role)) throw new Error('Invalid role.');
   const res = await fetch(`${baseUrl()}/rest/v1/admin_profiles`, {
     method: 'POST', headers: { ...headers(), Prefer: 'resolution=merge-duplicates,return=representation' }, cache: 'no-store',
-    body: JSON.stringify({ user_id: payload.userId, email: payload.email.toLowerCase(), full_name: payload.fullName || null, role: payload.role, is_active: true }),
+    body: JSON.stringify({ id: payload.userId, email: payload.email.toLowerCase(), full_name: payload.fullName || null, role: payload.role, is_active: true }),
   });
   if (!res.ok) throw new Error('Failed to create admin profile. Ensure the auth user exists first.');
 }
@@ -69,7 +68,7 @@ export async function createAdminProfileForExistingAuthUser(payload: { userId: s
 export async function updateAdminProfileRole(userId: string, role: AdminRole) {
   if (!ADMIN_ROLES.includes(role)) throw new Error('Invalid role.');
   await preventLastOwnerRemoval(userId, { role });
-  const res = await fetch(`${baseUrl()}/rest/v1/admin_profiles?user_id=eq.${encodeURIComponent(userId)}`, {
+  const res = await fetch(`${baseUrl()}/rest/v1/admin_profiles?id=eq.${encodeURIComponent(userId)}`, {
     method: 'PATCH', headers: { ...headers(), Prefer: 'return=minimal' }, cache: 'no-store', body: JSON.stringify({ role }),
   });
   if (!res.ok) throw new Error('Failed to update admin role.');
@@ -77,7 +76,7 @@ export async function updateAdminProfileRole(userId: string, role: AdminRole) {
 
 export async function updateAdminProfileActive(userId: string, isActive: boolean) {
   await preventLastOwnerRemoval(userId, { isActive });
-  const res = await fetch(`${baseUrl()}/rest/v1/admin_profiles?user_id=eq.${encodeURIComponent(userId)}`, {
+  const res = await fetch(`${baseUrl()}/rest/v1/admin_profiles?id=eq.${encodeURIComponent(userId)}`, {
     method: 'PATCH', headers: { ...headers(), Prefer: 'return=minimal' }, cache: 'no-store', body: JSON.stringify({ is_active: isActive }),
   });
   if (!res.ok) throw new Error('Failed to update admin status.');
