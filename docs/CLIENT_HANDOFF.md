@@ -776,3 +776,13 @@ Visual assets used in Phase 28B:
 - Company, Work, and Contact pages polished for clearer contact paths and project messaging.
 - Visual system and mobile density reviewed to keep cards/images compact and avoid oversized sections.
 - No backend/admin/RFQ schema/product data/import-export changes in this phase.
+
+
+## G2 — Product, RFQ, Tracking & Final Launch QA Polish
+- Product cards simplified for faster mobile scanning while preserving Add to RFQ and View Details actions.
+- RFQ page and RFQ success state visually polished with clearer labels, validation, and post-submit actions.
+- Track page copy and result readability improved for mobile and clearer error guidance.
+- Floating RFQ basket behavior reviewed for mobile safe-area spacing and reduced overlap risk.
+- Brand/contact/domain readiness checked for HILTECH consistency and public SEO metadata routes.
+- Final mobile QA checklist documented (360px, 390px, 430px, overflow and fixed control overlap checks).
+- No schema/admin/product data/import-export logic changes in this phase.
