@@ -903,3 +903,15 @@ Visual assets used in Phase 28B:
 - No MFA yet (EAA4).
 - No public RFQ/tracking/product behavior changes.
 - No schema changes introduced in this phase.
+
+## EAA4 — Admin Users, Audit UI, MFA Status & Final QA
+- Added `/admin/users` for owner/admin user management.
+- Added `/admin/audit` for audit trail review.
+- Admin user role/status/profile changes are audited.
+- Audit metadata now has compact, redacted display in admin UI.
+- MFA status is documented honestly (not implemented in this release).
+- Final enterprise auth QA doc added: `docs/ENTERPRISE_ADMIN_AUTH_QA.md`.
+- Legacy shared-password fallback remains available.
+- `ADMIN_AUTH_MODE` remains `legacy` by default unless manually changed.
+- No public RFQ/tracking/product behavior changes.
+- Production Supabase auth activation requires first-owner setup and manual verification.

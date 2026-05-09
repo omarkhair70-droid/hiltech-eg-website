@@ -103,3 +103,20 @@ MFA is **not** implemented in EAA2. MFA will be evaluated in EAA4 / Phase 2B.
 - Supabase mode is still not fully activated end-to-end in this phase.
 - Admin users management UI and audit log UI remain deferred to EAA4.
 - MFA remains deferred to EAA4.
+
+## EAA4: Admin Users, Audit Trail, MFA Status
+- Added `/admin/users` (owner-only via `admin_users:manage`) for safe admin profile management.
+- Added `/admin/audit` (owner/manager) for read-only audit review with filtering and metadata redaction.
+- `ADMIN_AUTH_MODE` remains `legacy` by default; legacy shared-password fallback remains active.
+- No custom password storage is implemented. Admin profile creation uses existing Supabase Auth users only.
+
+### MFA Status (Honest State)
+- MFA is **not implemented** in this release.
+- No fake MFA flags, custom TOTP, OTP-by-email, or stored recovery codes were added.
+- Target policy for final enterprise rollout: owner/manager require real Supabase MFA; other roles optional.
+- Future phase (2B): Supabase Auth MFA enrollment/challenge/recovery flow.
+
+### QA and Activation
+- See `docs/ENTERPRISE_ADMIN_AUTH_QA.md` for full QA checklist and manual activation runbook.
+- Production activation must remain manual: first-owner setup, preview verification, then controlled switch to `ADMIN_AUTH_MODE=supabase`.
+- Rollback reminder: set `ADMIN_AUTH_MODE=legacy` if any auth regression is detected.
