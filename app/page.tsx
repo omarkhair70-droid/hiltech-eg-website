@@ -1,5 +1,16 @@
 import type { Metadata } from 'next';
-import { FieldWorkPreview, FinalCTA, Hero, ProductReferencesPanel, ProductsRFQPreview, WhatHiltechDoes } from '@/components/Sections';
+import {
+  ContactConfidenceSection,
+  CoreServicesSection,
+  FieldWorkPreview,
+  FinalCTA,
+  Hero,
+  ProductCategoriesPreview,
+  ProductReferencesPanel,
+  RFQProcessSection,
+  TrustStrip,
+  WhatHiltechDoes,
+} from '@/components/Sections';
 import { site } from '@/content/site';
 
 export const metadata: Metadata = {
@@ -21,10 +32,14 @@ export default async function Home() {
   return (
     <main>
       <Hero />
+      <TrustStrip />
       <WhatHiltechDoes />
+      <CoreServicesSection />
       <FieldWorkPreview />
-      <ProductsRFQPreview />
+      <RFQProcessSection />
+      <ProductCategoriesPreview />
       <ProductReferencesPanel />
+      <ContactConfidenceSection />
       <FinalCTA />
     </main>
   );

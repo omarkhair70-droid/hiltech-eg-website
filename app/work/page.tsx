@@ -7,10 +7,10 @@ import { SectionShell } from '@/components/ui/primitives';
 import { site } from '@/content/site';
 
 export const metadata: Metadata = {
-  title: 'Field Work & References | HILTECH',
+  title: 'Field Work | HILTECH',
   description: 'Selected field visuals, testing workflows, and reference materials for HILTECH infrastructure delivery.',
   alternates: { canonical: `${site.siteUrl}/work` },
-  openGraph: { title: 'Field Work & References | HILTECH', description: 'Selected field visuals, testing workflows, and reference materials for HILTECH infrastructure delivery.', url: `${site.siteUrl}/work`, images: [site.ogImage] },
+  openGraph: { title: 'Field Work | HILTECH', description: 'Selected field visuals, testing workflows, and reference materials for HILTECH infrastructure delivery.', url: `${site.siteUrl}/work`, images: [site.ogImage] },
   twitter: { card: 'summary_large_image', images: [site.ogImage] },
 };
 
@@ -87,8 +87,8 @@ export default async function Page() {
       <SectionShell>
         <section className="rounded-2xl border border-slate-700 bg-slate-950 p-6 text-white md:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">Field Work &amp; Implementation Proof</p>
-          <h1 className="mt-3 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">Real infrastructure work from fiber, racks, cabling, and testing workflows</h1>
-          <p className="mt-4 max-w-3xl text-sm text-slate-200 md:text-base">Selected field visuals showing practical delivery details across network infrastructure preparation, routing, rack readiness, and validation support.</p>
+          <h1 className="mt-3 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">Field visuals across fiber, racks, cabling, and testing workflows</h1>
+          <p className="mt-4 max-w-3xl text-sm text-slate-200 md:text-base">Selected field visuals representing HILTECH service areas across installation and testing workflows.</p>
           <p className="mt-3 text-sm text-slate-300" dir="rtl" lang="ar">لقطات من تجهيزات وأعمال ميدانية لمشروعات البنية التحتية للشبكات.</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/products-partners" className="rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-400">Browse Products</Link>
@@ -141,12 +141,12 @@ export default async function Page() {
 
         {(hasPartnerPanel || hasClientPanel) && (
           <section className="mt-12 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-            <h2 className="text-2xl font-bold text-slate-900">Selected references</h2>
-            <p className="mt-2 text-sm text-slate-600">Brand and client references are shown for context and do not imply formal partnership unless explicitly stated.</p>
+            <h2 className="text-2xl font-bold text-slate-900">Product references</h2>
+            <p className="mt-2 text-sm text-slate-600">Product references are shown for catalog/context purposes only and do not imply formal partnership unless explicitly stated.</p>
             <div className="mt-5 grid gap-4">
               {hasPartnerPanel && (
                 <article className="rounded-xl border border-slate-200 bg-slate-50 p-3 sm:p-4">
-                  <h3 className="text-sm font-semibold text-slate-700">Partner references panel</h3>
+                  <h3 className="text-sm font-semibold text-slate-700">Compatible product references</h3>
                   <div className="mt-3 relative aspect-[16/10] overflow-hidden rounded-lg border border-slate-200 bg-white p-2 sm:aspect-[21/10]">
                     <Image src="/references-partners-panel.jpg" alt="Company profile panel showing selected partner references for project context." fill className="object-contain p-2" sizes="100vw" />
                   </div>
@@ -154,7 +154,7 @@ export default async function Page() {
               )}
               {hasClientPanel && (
                 <article className="rounded-xl border border-slate-200 bg-slate-50 p-3 sm:p-4">
-                  <h3 className="text-sm font-semibold text-slate-700">Client references panel</h3>
+                  <h3 className="text-sm font-semibold text-slate-700">Client references</h3>
                   <div className="mt-3 relative aspect-[16/10] overflow-hidden rounded-lg border border-slate-200 bg-white p-2 sm:aspect-[21/10]">
                     <Image src="/references-clients-panel.jpg" alt="Company profile panel showing selected client references for project context." fill className="object-contain p-2" sizes="100vw" />
                   </div>
