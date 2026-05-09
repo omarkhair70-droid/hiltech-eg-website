@@ -23,7 +23,6 @@ export default function ArabicHomePage() {
             <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
               <Link href="/ar/rfq" className="btn-primary w-full justify-center sm:w-auto">اطلب عرض سعر</Link>
               <Link href="/ar/products-partners" className="btn-secondary w-full justify-center sm:w-auto">تصفح المنتجات</Link>
-              <Link href="/ar/work" className="btn-secondary w-full justify-center sm:w-auto">شاهد الأعمال الميدانية</Link>
             </div>
           </div>
           <article className="overflow-hidden rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm">
@@ -47,7 +46,7 @@ export default function ArabicHomePage() {
         ['تجهيز راك وغرفة بيانات', ['راك', 'PDU', 'تنظيم الكابلات', 'باتش بانل', 'التسمية والاختبار']],
         ['نطاق فايبر وODF', ['كابل فايبر', 'ODF', 'باتش كورد', 'اللحام والاختبار']],
         ['بنية تحتية للكاميرات', ['نقاط شبكة', 'كابلات', 'تجهيز الراك', 'جاهزية الطاقة والشبكة']],
-      ].map(([title,items]) => <article key={String(title)} className="public-card p-4"><h3 className="font-semibold text-slate-900">{title}</h3><ul className="mt-2 space-y-1 text-sm text-slate-700">{(items as string[]).map((line)=><li key={line}>• {line}</li>)}</ul><Link href="/ar/rfq" className="mt-3 inline-block text-sm font-semibold text-orange-700">ابدأ طلب عرض بهذا النطاق</Link></article>)}</div></section>
+      ].map(([title,items]) => <article key={String(title)} className="public-card p-4"><h3 className="font-semibold text-slate-900">{title}</h3><ul className="mt-2 space-y-1 text-sm text-slate-700">{(items as string[]).map((line)=><li key={line}>• {line}</li>)}</ul></article>)}</div></section>
 
       <section className="bg-slate-50"><div className="container section space-y-5"><h2 className="text-2xl font-bold text-navy-900">أعمال ميدانية قابلة للتسليم والصيانة</h2><div className="grid gap-3 sm:grid-cols-3">{[
         ['تجهيز الراك وغرف البيانات', '/rack-front-cabling.jpg', 'نطاق العمل: تنظيم الراك ومسارات الكابلات.'],
@@ -55,7 +54,7 @@ export default function ArabicHomePage() {
         ['الكابلات المنظمة والاختبار', '/testing-otdr-device.jpg', 'ملاحظة ثقة: اختبار قبل التسليم والتشغيل.'],
       ].map(([title,src,note])=><article key={String(title)} className="overflow-hidden rounded-2xl border border-slate-200 bg-white"><div className="relative aspect-[16/10] w-full"><Image src={String(src)} alt={String(title)} fill className="object-cover" /></div><div className="p-3.5"><h3 className="font-semibold text-slate-900">{title}</h3><p className="mt-1 text-sm text-slate-700">{note}</p><Link href="/ar/work" className="mt-2 inline-block text-sm font-semibold text-orange-700">عرض الأعمال</Link></div></article>)}</div></div></section>
 
-      <section className="container section"><article className="public-card p-6"><h2 className="text-2xl font-bold text-navy-900">تصفح المنتجات وأضف عناصر المشروع إلى سلة طلب عرض سعر واحدة.</h2><div className="mt-5 flex flex-col gap-2.5 sm:flex-row"><Link href="/ar/products-partners" className="btn-secondary w-full justify-center sm:w-auto">تصفح المنتجات</Link><Link href="/ar/rfq" className="btn-primary w-full justify-center sm:w-auto">اطلب عرض سعر</Link></div></article></section>
+      <section className="container section"><article className="public-card p-6"><h2 className="text-2xl font-bold text-navy-900">تصفح المنتجات وأضف عناصر المشروع إلى سلة طلب عرض سعر واحدة.</h2><div className="mt-5 flex flex-col gap-2.5 sm:flex-row"><Link href="/ar/products-partners" className="btn-secondary w-full justify-center sm:w-auto">تصفح المنتجات</Link></div></article></section>
 
 
 
