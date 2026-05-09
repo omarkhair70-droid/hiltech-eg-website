@@ -4,11 +4,11 @@
 
 | Current asset | Used in | Replacement needed | Priority | Notes |
 | ------------- | ------- | ------------------ | -------- | ----- |
-| `/rack-data-room.jpg` | Home hero, Work intro visual | Real rack/data room installation photo | P0 | Current image is illustrative/reference. |
-| `/fiber-splicing-workbench.jpg` | Home field work card, Work fiber section | Real field fiber installation photo | P0 | Current image is illustrative/reference. |
-| `/rack-front-cabling.jpg` | Home field work card, Work rack section | Real rack front cabling photo from HILTECH delivery | P0 | Current image is illustrative/reference. |
-| `/copper-cable-tray.jpg` | Home field work card, Work copper section | Real copper cable routing photo | P1 | Current image is illustrative/reference. |
-| `/testing-otdr-device.jpg` | Home field work card, Work testing section | Real OTDR/testing workflow photo | P1 | Current image is illustrative/reference. |
+| `/rack-data-room.jpg` | Home hero, Work intro visual | Approved real rack/data room installation visual | P0 | Approved for current public use. |
+| `/fiber-splicing-workbench.jpg` | Home field work card, Work fiber section | Approved real field fiber visual | P0 | Approved for current public use. |
+| `/rack-front-cabling.jpg` | Home field work card, Work rack section | Approved real rack front cabling visual | P0 | Approved for current public use. |
+| `/copper-cable-tray.jpg` | Home field work card, Work copper section | Approved real copper cable routing visual | P1 | Approved for current public use. |
+| `/testing-otdr-device.jpg` | Home field work card, Work testing section | Approved real OTDR/testing workflow visual | P1 | Approved for current public use. |
 | `/ch-product-references.jpeg` | Home product references panel | Approved product reference panel (public-safe) | P1 | Keep disclaimer until final approved version is received. |
 | `/references-partners-panel.jpg` | Work product references (if file exists) | Approved product references panel with neutral wording | P1 | Rename presentation to avoid partnership implication unless verified. |
 | `/references-clients-panel.jpg` | Work client references (if file exists) | Approved client reference panel (rights-cleared) | P2 | Use only if client confirms public sharing rights. |
@@ -41,11 +41,11 @@ No image should be described as a real project photo until approved by HILTECH f
 - Images must be rights-cleared.
 - Images should be approved for public website use.
 - Real project claims should only be used after confirmation.
-- Illustrative visuals should be labeled neutrally until approvals are complete.
+- Public visuals already approved by HILTECH can be presented as real field work without client/project naming.
 
 
 ## Current status (Final video polish)
-- Public visuals remain illustrative unless explicitly approved as real HILTECH project photos.
+- Current public field visuals are approved real HILTECH visuals for public website use.
 - Company profile PDF: supplied / added.
 - Path: `/hiltech-company-profile.pdf`.
 - Do not publish real-project claims until approvals are provided.
