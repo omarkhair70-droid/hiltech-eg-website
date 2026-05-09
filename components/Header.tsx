@@ -40,9 +40,9 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 shadow-[0_4px_14px_rgba(15,23,42,0.05)] backdrop-blur-md">
-      <div className="container flex h-14 items-center justify-between gap-3 md:h-16 md:gap-4">
-        <Link href={isArabic ? '/ar' : '/'} translate="no" className="flex items-center gap-2 text-lg font-extrabold tracking-[0.12em] text-navy-900 md:text-xl">
-          {showLogoImage ? <Image src="/logo.png" alt="HILTECH logo" width={132} height={38} className="h-7 w-auto max-w-[128px] object-contain md:h-8" onError={() => setShowLogoImage(false)} priority /> : null}
+      <div className="container flex h-14 items-center justify-between gap-2 md:h-16 md:gap-4">
+        <Link href={isArabic ? '/ar' : '/'} translate="no" className="flex min-w-0 items-center gap-2 text-lg font-extrabold tracking-[0.12em] text-navy-900 md:text-xl">
+          {showLogoImage ? <Image src="/logo.png" alt="HILTECH logo" width={132} height={38} className="h-7 w-auto max-w-[112px] object-contain sm:max-w-[118px] md:h-8 md:max-w-[128px]" onError={() => setShowLogoImage(false)} priority /> : null}
           <span translate="no" className={showLogoImage ? 'sr-only' : ''}>HILTECH</span>
         </Link>
 
@@ -61,10 +61,10 @@ export default function Header() {
           <Link href={localizeHref('/rfq')} className="inline-flex items-center rounded-md bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-orange-600">{isArabic ? arNavigation.requestProjectQuote : 'Request Project Quote'}</Link>
         </div>
 
-        <div className="flex items-center gap-1 md:hidden">
-          <LanguageSwitcher className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" />
-          <SiteSearch className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" onNavigate={() => setOpen(false)} />
-          <button className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="mobile-nav">
+        <div className="flex shrink-0 items-center gap-1 md:hidden">
+          <LanguageSwitcher className="inline-flex min-h-10 items-center rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" />
+          <SiteSearch className="inline-flex min-h-10 items-center rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" onNavigate={() => setOpen(false)} />
+          <button className="inline-flex min-h-10 items-center rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="mobile-nav">
             <span translate="no">{isArabic ? 'القائمة' : 'Menu'}</span>
           </button>
         </div>
