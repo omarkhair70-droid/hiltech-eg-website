@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { normalizeRFQItem, readRFQItems, writeRFQItems } from '@/lib/rfq';
+import { normalizeRFQItem, normalizeRFQQuantity, readRFQItems, writeRFQItems } from '@/lib/rfq';
 
 interface Props {
   product: {
@@ -23,7 +23,7 @@ export default function ProductDetailActions({ product, intelligenceHref }: Prop
     const existing = readRFQItems();
     const found = existing.find((item) => item.id === product.id);
     const next = found
-      ? existing.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item))
+      ? existing.map((item) => (item.id === product.id ? { ...item, quantity: normalizeRFQQuantity(item.quantity + 1) } : item))
       : [
           ...existing,
           normalizeRFQItem({

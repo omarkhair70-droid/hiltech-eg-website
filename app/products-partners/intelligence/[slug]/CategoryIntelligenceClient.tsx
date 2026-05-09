@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { ProductIntelligenceCategory } from '@/content/product-intelligence';
 import type { ProductItem } from '@/content/products';
 import { site } from '@/content/site';
-import { getRFQWhatsappLink, normalizeRFQItem, readRFQItems, type RFQItem, writeRFQItems } from '@/lib/rfq';
+import { getRFQWhatsappLink, normalizeRFQItem, normalizeRFQQuantity, readRFQItems, type RFQItem, writeRFQItems } from '@/lib/rfq';
 
 interface Props {
   category: ProductIntelligenceCategory;
@@ -23,14 +23,14 @@ export default function CategoryIntelligenceClient({ category, relatedProducts }
     const normalized = normalizeRFQItem({ id: item.id, name: item.name, brand: item.brand, category: item.category, specs: item.shortSpecs, quantity: 1 });
     setItems((prev) => {
       const found = prev.find((entry) => entry.id === item.id);
-      if (found) return prev.map((entry) => (entry.id === item.id ? { ...entry, quantity: entry.quantity + 1 } : entry));
+      if (found) return prev.map((entry) => (entry.id === item.id ? { ...entry, quantity: normalizeRFQQuantity(entry.quantity + 1) } : entry));
       return [...prev, normalized];
     });
     setJustAdded(item.id);
     setTimeout(() => setJustAdded((curr) => (curr === item.id ? null : curr)), 1500);
   };
 
-  const basketCount = useMemo(() => items.reduce((total, entry) => total + entry.quantity, 0), [items]);
+  const basketCount = useMemo(() => items.reduce((total, entry) => total + normalizeRFQQuantity(entry.quantity), 0), [items]);
   const starterItems = relatedProducts.slice(0, 3);
 
   return (
@@ -73,7 +73,7 @@ export default function CategoryIntelligenceClient({ category, relatedProducts }
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
           <Link className="inline-flex items-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-navy-900" href="/rfq">Build RFQ Basket</Link>
           <Link className="inline-flex items-center rounded-lg border border-white/40 px-4 py-2 text-sm font-semibold text-white" href="/contact">Request Project Quote</Link>
-          <a className="inline-flex items-center rounded-lg border border-orange-300 bg-orange-500 px-4 py-2 text-sm font-semibold text-white" href={getRFQWhatsappLink(items)} target="_blank" rel="noreferrer">WhatsApp HILTECH</a>
+          <a className="inline-flex items-center rounded-lg border border-orange-300 bg-orange-500 px-4 py-2 text-sm font-semibold text-white" href={getRFQWhatsappLink(items.map((item) => normalizeRFQItem(item)))} target="_blank" rel="noreferrer">WhatsApp HILTECH</a>
         </div>
       </section>
     </>
