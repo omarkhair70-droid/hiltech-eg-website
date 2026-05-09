@@ -1031,3 +1031,11 @@ Visual assets used in Phase 28B:
 ## Delivery notes
 
 - Final client walkthrough and delivery should use the official domain https://hiltech-eg.com, not Vercel preview URLs, to preserve brand trust and conversion credibility.
+
+## PR 5 — Telco-grade Visual System Polish
+- Public visual system tightened for section rhythm, card consistency, CTA hierarchy, and mobile polish.
+- English and Arabic public pages reviewed for visual parity.
+- Arabic typography and RTL wrapping rechecked.
+- RFQ/Product/Tracking flows preserved.
+- Admin remains untouched.
+- Final delivery should continue to use https://hiltech-eg.com.
