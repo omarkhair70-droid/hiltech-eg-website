@@ -732,3 +732,29 @@ Visual assets used in Phase 28B:
 - Clarified public product guidance labels (e.g., **Technical Notes**) while preserving existing routes/behavior.
 - Preserved product, RFQ backend, admin, search, and API behavior with no schema, migration, or product data changes.
 - Mobile trust/density QA is required for first-viewport clarity, CTA hierarchy, card compactness, and no overflow regressions.
+
+## L2 — RFQ Launch Hardening
+- Added client-side RFQ required-field validation for Full Name, Phone, and Email with inline field-level errors before submit.
+- Added Egyptian phone normalization for tracking comparison (`015...`, `+201...`, `201...`, `00201...` normalize to one canonical comparison format).
+- Improved RFQ success state with clearer reference guidance and a copy reference action.
+- Preserved RFQ backend submission model and preserved admin RFQ review behavior.
+- No schema/migration/product/admin changes were made in this phase.
+
+### Manual QA cases
+- RFQ form validation:
+  - Submit with empty name/phone/email → inline errors.
+  - Invalid email → inline error.
+  - Invalid short phone → inline error.
+  - Valid local phone `01555357807` → allowed.
+  - Valid international phone `+201555357807` → allowed.
+  - Existing valid RFQ submit still works.
+- Tracking:
+  - Submit RFQ with `01555357807`, track with `+201555357807`.
+  - Submit RFQ with `+201555357807`, track with `01555357807`.
+  - Submit RFQ with `201555357807`, track with `01555357807`.
+  - Wrong phone/email still fails.
+  - Wrong RFQ code still fails safely.
+- Success:
+  - Reference displayed.
+  - Copy button works if added.
+  - Track Request link works.

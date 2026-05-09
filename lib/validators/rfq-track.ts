@@ -1,3 +1,5 @@
+import { normalizeEgyptPhone } from '@/lib/phone';
+
 export type RFQTrackInputKind = 'email' | 'phone';
 
 export interface ValidatedRFQTrackInput {
@@ -21,8 +23,9 @@ export function normalizeEmail(value: string) {
   return value.trim().toLowerCase();
 }
 
+
 export function normalizePhoneDigits(value: string) {
-  return value.replace(/\D/g, '');
+  return normalizeEgyptPhone(value).replace(/\D/g, '');
 }
 
 export function validateRFQTrackPayload(payload: unknown): ValidatedRFQTrackInput {
