@@ -152,8 +152,6 @@ const arabicRouteMap: Record<string, string> = {
   '/contact': '/ar/contact',
   '/work': '/ar/work',
   '/services': '/ar/services',
-  '/resources': '/ar/resources',
-  '/resources/rfq-guide': '/ar/resources/rfq-guide',
 };
 
 function getTypeLabel(type: SearchType, isArabic: boolean): string {

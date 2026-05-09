@@ -315,3 +315,14 @@ If email is **not** configured:
 - mobile RTL checked at 360/390/430
 - RFQ codes/email/phone readable
 - language switcher query preservation checked
+
+## Arabic final QA checklist (BIL6)
+- /ar visual parity check
+- field visuals check
+- product category cards check
+- contact confidence check
+- footer/search no broken Arabic links
+- sitemap no broken Arabic routes
+- Arabic mobile 360/390/430 check
+- RFQ/email/phone LTR readability
+- language switcher query preservation

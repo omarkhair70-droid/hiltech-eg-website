@@ -31,9 +31,11 @@ export default function Footer() {
 
   const resourcesLinks = isArabic
     ? [
-        { label: 'الموارد', href: '/ar/resources' },
-        { label: 'دليل طلب عرض السعر', href: '/ar/resources/rfq-guide' },
+        { label: 'الصفحة الرئيسية', href: '/ar' },
+        { label: 'المنتجات', href: '/ar/products-partners' },
+        { label: 'اطلب عرض سعر', href: '/ar/rfq' },
         { label: 'تتبع طلب العرض', href: '/ar/track' },
+        { label: 'اتصل بنا', href: '/ar/contact' },
         { label: 'تحميل ملف الشركة', href: '/hiltech-company-profile.pdf' },
       ]
     : [

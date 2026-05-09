@@ -992,3 +992,14 @@ Visual assets used in Phase 28B:
 - English routes unchanged.
 - Admin/RFQ API/Supabase/schema unchanged.
 - Arabic product detail pages/long technical notes remain optional future polish if not implemented.
+
+## BIL6 — Arabic Premium Visual Parity Final Pass
+- Arabic homepage upgraded to visual parity with English.
+- Field visuals added/refined on Arabic home.
+- Product category visual cards added/refined.
+- Arabic contact confidence improved.
+- Footer/search route safety checked.
+- Broken Arabic routes avoided.
+- Admin remains English.
+- English routes unchanged.
+- RFQ/Tracking backend unchanged.
