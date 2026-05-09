@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { popularSearchShortcuts, siteSearchIndex, type SearchEntry, type SearchType } from '@/lib/site-search';
+import { getLocalizedPath } from '@/lib/i18n/routes';
 
 interface SiteSearchProps {
   onNavigate?: () => void;
@@ -144,17 +145,6 @@ const arabicTypeLabels: Record<SearchType, string> = {
   Pages: 'الصفحات',
 };
 
-const arabicRouteMap: Record<string, string> = {
-  '/': '/ar',
-  '/products-partners': '/ar/products-partners',
-  '/solutions': '/ar/solutions',
-  '/rfq': '/ar/rfq',
-  '/track': '/ar/track',
-  '/company': '/ar/company',
-  '/contact': '/ar/contact',
-  '/work': '/ar/work',
-  '/services': '/ar/services',
-};
 const arabicPageTitleMap: Record<string, string> = { Home: 'الرئيسية', 'Products & Partners': 'المنتجات', 'Start RFQ': 'طلب عرض سعر', 'Track RFQ': 'تتبع طلب العرض', Company: 'الشركة', Contact: 'تواصل معنا', 'Field Work & References': 'أعمالنا', Services: 'الخدمات', Solutions: 'الحلول', 'Browse Products': 'المنتجات' };
 const arabicPageDescriptionMap: Record<string, string> = {
   Home: 'الصفحة الرئيسية مع نبذة عن قدرات هيلتك وروابط سريعة.',
@@ -173,11 +163,7 @@ function getTypeLabel(type: SearchType, isArabic: boolean): string {
 }
 
 function getLocalizedHref(href: string, isArabic: boolean): string {
-  if (!isArabic || href.startsWith('/ar/') || href === '/ar') return href;
-  const [path, query = ''] = href.split('?');
-  const localizedBase = arabicRouteMap[path];
-  if (!localizedBase) return href;
-  return query ? `${localizedBase}?${query}` : localizedBase;
+  return isArabic ? getLocalizedPath(href, 'ar') : getLocalizedPath(href, 'en');
 }
 
 function getArabicPageTitle(title: string): string {
