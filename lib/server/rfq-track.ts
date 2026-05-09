@@ -15,7 +15,7 @@ const STATUS_EXPLANATIONS: Record<string, string> = {
   closed: 'Closed',
 };
 
-const TRACK_FAILURE_MESSAGE = 'We couldn’t verify this request. Please check the reference code and contact details.';
+const TRACK_FAILURE_MESSAGE = 'We could not match this RFQ reference with the provided phone/email. Check the reference and contact details.';
 
 function getHeaders() {
   if (!SUPABASE_SERVICE_ROLE_KEY) throw new Error('SUPABASE_SERVICE_ROLE_KEY is not configured');
