@@ -307,3 +307,11 @@ If email is **not** configured:
 - Canonical/hreflang correct
 - No admin/api in sitemap
 - No vercel.app canonical
+
+## BIL5 QA
+- /ar homepage sections visible
+- Arabic footer links route to /ar equivalents
+- Arabic search labels/results checked
+- mobile RTL checked at 360/390/430
+- RFQ codes/email/phone readable
+- language switcher query preservation checked
