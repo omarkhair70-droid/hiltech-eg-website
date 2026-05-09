@@ -1014,3 +1014,12 @@ Visual assets used in Phase 28B:
 - Arabic mobile (360/390/430) and laptop QA checklist completed.
 - Admin remains English and untouched.
 - RFQ/Tracking APIs unchanged.
+
+## BIL8 — Final Arabic Product Parity & Clickable Product UX
+- Product cards now open product details when clicked (image/title/main content area).
+- Arabic product detail route added at `/ar/products-partners/[productCode]`.
+- Arabic product categories localized across product UI.
+- Arabic search page labels/descriptions improved for core routes.
+- Arabic product journey verified on mobile/laptop viewports.
+- Admin/RFQ APIs unchanged.
+- Optional full Arabic translation of deep technical/product long-form content remains future work.

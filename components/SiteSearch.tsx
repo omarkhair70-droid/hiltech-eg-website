@@ -98,9 +98,9 @@ export default function SiteSearch({ onNavigate, className }: SiteSearchProps) {
                         <Link key={`${group.type}-${item.title}-${item.href}`} href={getLocalizedHref(item.href, Boolean(isArabic))} onClick={closeSearch} className="block rounded-lg border border-slate-200 bg-white p-3 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-orange-500/40">
                           <div className="flex flex-wrap items-center gap-2">
                             <p className="text-sm font-semibold text-slate-900">{Boolean(isArabic) ? getArabicPageTitle(item.title) : item.title}</p>
-                            <span className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${typeStyles[item.type]}`}>{item.type}</span>
+                            <span className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${typeStyles[item.type]}`}>{getTypeLabel(item.type, Boolean(isArabic))}</span>
                           </div>
-                          <p className="mt-1 text-xs text-slate-600">{item.description}</p>
+                          <p className="mt-1 text-xs text-slate-600">{Boolean(isArabic) ? getArabicPageDescription(item) : item.description}</p>
                           <div className="mt-2 flex items-center justify-between gap-2"> 
                             <p className="truncate text-xs font-medium text-slate-500">{getLocalizedHref(item.href, Boolean(isArabic))}</p>
                             {item.type === 'Products' ? <span className="text-[11px] font-semibold text-orange-700">فتح ضمن المنتجات</span> : null}
@@ -156,6 +156,17 @@ const arabicRouteMap: Record<string, string> = {
   '/services': '/ar/services',
 };
 const arabicPageTitleMap: Record<string, string> = { Home: 'الرئيسية', 'Products & Partners': 'المنتجات', 'Start RFQ': 'طلب عرض سعر', 'Track RFQ': 'تتبع طلب العرض', Company: 'الشركة', Contact: 'تواصل معنا', 'Field Work & References': 'أعمالنا', Services: 'الخدمات', Solutions: 'الحلول', 'Browse Products': 'المنتجات' };
+const arabicPageDescriptionMap: Record<string, string> = {
+  Home: 'الصفحة الرئيسية مع نبذة عن قدرات هيلتك وروابط سريعة.',
+  'Products & Partners': 'تصفح المنتجات والعلامات التجارية وأضف العناصر إلى سلة طلب عرض السعر.',
+  Solutions: 'حلول بنية تحتية موجهة لنتائج الأعمال.',
+  Services: 'خدمات التنفيذ والتركيب والاختبار الميداني للبنية التحتية.',
+  'Field Work & References': 'مراجع أعمال ميدانية وصور تنفيذ المشاريع.',
+  Company: 'تعرف على الشركة وخبراتها ومجالات العمل.',
+  Contact: 'تواصل معنا للتخطيط للمشروعات والدعم.',
+  'Start RFQ': 'ابدأ طلب عرض السعر وأرسل متطلبات المشروع.',
+  'Track RFQ': 'تابع حالة طلب عرض السعر المرسل.',
+};
 
 function getTypeLabel(type: SearchType, isArabic: boolean): string {
   return isArabic ? arabicTypeLabels[type] : type;
@@ -172,3 +183,5 @@ function getLocalizedHref(href: string, isArabic: boolean): string {
 function getArabicPageTitle(title: string): string {
   return arabicPageTitleMap[title] || title;
 }
+
+function getArabicPageDescription(item: SearchEntry): string { return arabicPageDescriptionMap[item.title] || item.description; }

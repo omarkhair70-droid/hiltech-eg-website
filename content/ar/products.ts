@@ -46,6 +46,7 @@ export type ArProductsMessages = {
   clearBasket: string;
   reviewRfqBasket: string;
   noProductsFound: string;
+  basketEmptyHint: string;
   categoryLabels: Record<string, string>;
 };
 
@@ -97,6 +98,7 @@ export const arProductsMessages: ArProductsMessages = {
   clearBasket: 'تفريغ السلة',
   reviewRfqBasket: 'مراجعة سلة طلب العرض',
   noProductsFound: 'لا توجد منتجات مطابقة للبحث الحالي.',
+  basketEmptyHint: 'أضف منتجات لتجهيز طلب عرض السعر بشكل أسرع.',
   categoryLabels: {
     'Fiber Optic Systems': 'أنظمة الفايبر',
     'Copper / CAT6 Cabling': 'كابلات النحاس / CAT6',
