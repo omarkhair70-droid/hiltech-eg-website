@@ -876,3 +876,17 @@ Visual assets used in Phase 28B:
 - Real assets/company profile PDF status verified and documented as pending where not supplied.
 - RFQ/Tracking/Admin safety verified (no schema, product data, or import/export changes).
 - Lint/build status: pass (`npm run lint`, `npm run build`).
+
+## EAA2 — Enterprise Admin Auth Foundation
+- Added migration for `admin_profiles` and `admin_audit_log`.
+- Added centralized admin roles/permissions model.
+- Added admin session abstraction with legacy-first behavior.
+- Added admin audit logging abstraction.
+- Preserved legacy shared-password fallback mode.
+- Documented `ADMIN_AUTH_MODE` and first-owner setup.
+- MFA is not implemented yet.
+- No broad admin permission enforcement yet.
+- No admin users UI yet.
+- No admin audit UI yet.
+- No RFQ/Product/Tracking public behavior changes.
+
