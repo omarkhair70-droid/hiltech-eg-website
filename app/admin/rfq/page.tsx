@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { requirePermission } from '@/lib/server/admin-session';
+import { requirePermissionOrRedirect } from '@/lib/server/admin-page-guard';
 import { getQuoteCustomerResponseSummary, getRFQSummaryCounts, isRFQAdminBackendConfigured, listRFQRequests } from '@/lib/server/rfq-admin';
 
 const quotationClass=(s:string)=>({draft:'bg-amber-100 text-amber-700',ready:'bg-emerald-100 text-emerald-700'}[s]||'bg-slate-100 text-slate-700');
@@ -22,14 +22,25 @@ function statusClass(status: string) {
 }
 
 export default async function AdminRFQPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
-  await requirePermission('rfq:view');
+  const admin = await requirePermissionOrRedirect('rfq:view');
+  if (!admin) return <main className="section"><div className="container"><h1 className="text-2xl font-semibold">RFQ Admin Dashboard</h1><p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-800">Not authorized to view RFQ dashboard.</p></div></main>;
   const query = await searchParams;
 
   if (!isRFQAdminBackendConfigured()) {
     return <main className="section"><div className="container"><h1 className="text-2xl font-semibold">RFQ Admin Dashboard</h1><p className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-red-700">Supabase admin backend is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.</p></div></main>;
   }
 
-  const [summary, rows, quoteSummary] = await Promise.all([getRFQSummaryCounts(), listRFQRequests(query), getQuoteCustomerResponseSummary()]);
+  let summary;
+  let rows;
+  let quoteSummary;
+  try {
+    [summary, rows, quoteSummary] = await Promise.all([getRFQSummaryCounts(), listRFQRequests(query), getQuoteCustomerResponseSummary()]);
+  } catch (error) {
+    console.warn('[admin-auth] failed area=rfq_query auth_mode=' + admin.authMode, {
+      error: error instanceof Error ? error.message : 'unknown',
+    });
+    return <main className="section"><div className="container"><h1 className="text-2xl font-semibold">RFQ Admin Dashboard</h1><p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-800">Unable to load RFQ dashboard. Check Supabase backend configuration and logs.</p></div></main>;
+  }
 
   return <main className="section"><div className="container space-y-5"><div className="flex flex-wrap items-center justify-between gap-3"><div><h1 className="text-2xl font-semibold text-slate-900">RFQ Admin Dashboard</h1><Link href="/admin/products" className="text-sm underline">Go to Product Admin</Link></div><form action="/api/admin/logout" method="post"><button className="rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold">Logout</button></form></div>
     <div className="grid grid-cols-2 gap-3 md:grid-cols-4">{[['New', summary.new], ['In review', summary.in_review], ['Quoted', summary.quoted], ['Total', summary.total], ['Quotes awaiting', quoteSummary.awaiting_response], ['Quotes accepted', quoteSummary.accepted], ['Quotes rejected', quoteSummary.rejected], ['Changes requested', quoteSummary.changes_requested]].map(([label, value]) => <div key={String(label)} className="rounded-lg border border-slate-200 bg-white p-3"><p className="text-xs uppercase text-slate-500">{label}</p><p className="mt-1 text-2xl font-semibold">{value}</p></div>)}</div>

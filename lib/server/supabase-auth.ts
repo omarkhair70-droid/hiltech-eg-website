@@ -40,6 +40,14 @@ export function isSupabaseAuthConfigured() {
   return Boolean(getSupabaseUrl() && getSupabaseAnonKey() && getServiceRoleKey());
 }
 
+export function getSupabaseMissingConfigKeys() {
+  const missing: string[] = [];
+  if (!getSupabaseUrl()) missing.push('SUPABASE_URL');
+  if (!getSupabaseAnonKey()) missing.push('SUPABASE_ANON_KEY|NEXT_PUBLIC_SUPABASE_ANON_KEY');
+  if (!getServiceRoleKey()) missing.push('SUPABASE_SERVICE_ROLE_KEY');
+  return missing;
+}
+
 async function supabaseFetch(path: string, init: RequestInit = {}) {
   const baseUrl = getSupabaseUrl();
   if (!baseUrl) throw new Error('config');
@@ -151,7 +159,7 @@ export function setSupabaseAdminCookies(response: NextResponse, session: { acces
     httpOnly: true,
     sameSite: 'lax',
     secure,
-    path: '/admin',
+    path: '/',
     maxAge: accessTtl,
   });
 
@@ -159,13 +167,15 @@ export function setSupabaseAdminCookies(response: NextResponse, session: { acces
     httpOnly: true,
     sameSite: 'lax',
     secure,
-    path: '/admin',
+    path: '/',
     maxAge: REFRESH_COOKIE_TTL_SECONDS,
   });
 }
 
 export function clearSupabaseAdminCookies(response: NextResponse) {
   const secure = process.env.NODE_ENV === 'production';
+  response.cookies.set(SUPABASE_ACCESS_COOKIE, '', { httpOnly: true, sameSite: 'lax', secure, path: '/', maxAge: 0 });
+  response.cookies.set(SUPABASE_REFRESH_COOKIE, '', { httpOnly: true, sameSite: 'lax', secure, path: '/', maxAge: 0 });
   response.cookies.set(SUPABASE_ACCESS_COOKIE, '', { httpOnly: true, sameSite: 'lax', secure, path: '/admin', maxAge: 0 });
   response.cookies.set(SUPABASE_REFRESH_COOKIE, '', { httpOnly: true, sameSite: 'lax', secure, path: '/admin', maxAge: 0 });
 }

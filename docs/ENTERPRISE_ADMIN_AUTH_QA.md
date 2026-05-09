@@ -72,3 +72,9 @@
 - [ ] Logout clears session.
 - [ ] Role permissions work after login.
 - [ ] Rollback to `ADMIN_AUTH_MODE=legacy` is tested.
+
+## EAA5.1 Runtime hardening update (May 2026)
+- Supabase admin session failures now redirect safely to `/admin/login` instead of surfacing raw Next.js server exceptions.
+- Permission/role denials now render friendly "Not authorized" states on admin pages.
+- `/admin/rfq` shows a non-sensitive configuration/log guidance message when RFQ query loading fails.
+- No schema changes; legacy mode remains preserved.

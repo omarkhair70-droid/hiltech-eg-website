@@ -17,6 +17,24 @@ export type CurrentAdmin = {
   isLegacy: boolean;
 };
 
+export class AdminUnauthorizedError extends Error {
+  constructor(message = 'Unauthorized') {
+    super(message);
+    this.name = 'AdminUnauthorizedError';
+  }
+}
+
+export class AdminForbiddenError extends Error {
+  constructor(message = 'Forbidden') {
+    super(message);
+    this.name = 'AdminForbiddenError';
+  }
+}
+
+export function isAdminAuthError(error: unknown): error is AdminUnauthorizedError | AdminForbiddenError {
+  return error instanceof AdminUnauthorizedError || error instanceof AdminForbiddenError;
+}
+
 export function getAdminAuthMode(): AdminAuthMode {
   return process.env.ADMIN_AUTH_MODE === 'supabase' ? 'supabase' : 'legacy';
 }
@@ -53,7 +71,10 @@ async function getCurrentSupabaseAdmin(): Promise<CurrentAdmin | null> {
       authMode: 'supabase',
       isLegacy: false,
     };
-  } catch {
+  } catch (error) {
+    console.warn('[admin-auth] failed area=auth auth_mode=supabase', {
+      error: error instanceof Error ? error.message : 'unknown',
+    });
     return null;
   }
 }
@@ -66,7 +87,7 @@ export async function getCurrentAdmin(): Promise<CurrentAdmin | null> {
 export async function requireAdmin(): Promise<CurrentAdmin> {
   const admin = await getCurrentAdmin();
   if (!admin) {
-    throw new Error('Unauthorized');
+    throw new AdminUnauthorizedError();
   }
   return admin;
 }
@@ -74,13 +95,13 @@ export async function requireAdmin(): Promise<CurrentAdmin> {
 export async function requireRole(roles: AdminRole | AdminRole[]): Promise<CurrentAdmin> {
   const admin = await requireAdmin();
   const allowed = Array.isArray(roles) ? roles : [roles];
-  if (!allowed.includes(admin.role)) throw new Error('Forbidden');
+  if (!allowed.includes(admin.role)) throw new AdminForbiddenError();
   return admin;
 }
 
 export async function requirePermission(permission: AdminPermission): Promise<CurrentAdmin> {
   const admin = await requireAdmin();
-  if (!canAdmin(admin.role, permission)) throw new Error('Forbidden');
+  if (!canAdmin(admin.role, permission)) throw new AdminForbiddenError();
   return admin;
 }
 

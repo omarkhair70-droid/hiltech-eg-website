@@ -930,3 +930,8 @@ Visual assets used in Phase 28B:
 - No schema change.
 - No auth mode change.
 - Legacy fallback preserved.
+
+## EAA5.1 Supabase runtime hardening (May 2026)
+- Added typed admin auth errors and server-side guard handling so unauthorized sessions redirect to `/admin/login` and forbidden states render friendly UI.
+- Hardened `/admin/rfq` to fail gracefully with a safe message when backend RFQ queries fail.
+- Preserved legacy auth fallback/default and avoided schema changes.
