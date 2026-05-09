@@ -1023,3 +1023,7 @@ Visual assets used in Phase 28B:
 - Arabic product journey verified on mobile/laptop viewports.
 - Admin/RFQ APIs unchanged.
 - Optional full Arabic translation of deep technical/product long-form content remains future work.
+
+## Delivery notes
+
+- Final client walkthrough and delivery should use the official domain https://hiltech-eg.com, not Vercel preview URLs, to preserve brand trust and conversion credibility.

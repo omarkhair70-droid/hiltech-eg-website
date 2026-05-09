@@ -47,6 +47,7 @@ export type ArProductsMessages = {
   reviewRfqBasket: string;
   noProductsFound: string;
   basketEmptyHint: string;
+  basketScopeHint: string;
   categoryLabels: Record<string, string>;
 };
 
@@ -99,6 +100,7 @@ export const arProductsMessages: ArProductsMessages = {
   reviewRfqBasket: 'مراجعة سلة طلب العرض',
   noProductsFound: 'لا توجد منتجات مطابقة للبحث الحالي.',
   basketEmptyHint: 'أضف منتجات لتجهيز طلب عرض السعر بشكل أسرع.',
+  basketScopeHint: 'أضف كل العناصر المطلوبة قبل الإرسال حتى يتمكن فريق HILTECH من تسعير نطاق المشروع بالكامل.',
   categoryLabels: {
     'Fiber Optic Systems': 'أنظمة الفايبر',
     'Copper / CAT6 Cabling': 'كابلات النحاس / CAT6',
