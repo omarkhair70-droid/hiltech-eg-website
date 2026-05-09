@@ -6,6 +6,7 @@ import {
   Hero,
   ProductCategoriesPreview,
   ProductReferencesPanel,
+  ProjectScopeSection,
   RFQProcessSection,
   TrustStrip,
   WhatHiltechDoes,
@@ -37,9 +38,10 @@ export default async function Home() {
       <Hero />
       <TrustStrip />
       <WhatHiltechDoes />
+      <ProjectScopeSection />
+      <ProductCategoriesPreview />
       <FieldWorkPreview />
       <RFQProcessSection />
-      <ProductCategoriesPreview />
       <WhyChooseHiltechSection />
       <ProductReferencesPanel />
       <ContactConfidenceSection />
