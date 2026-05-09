@@ -225,3 +225,11 @@ If email is **not** configured:
 - Verify language switcher keeps same page when toggling languages.
 - Verify `/ar/rfq` and `/ar/track` do not 404.
 - Verify Admin remains English (`/admin/login`).
+
+## BIL2 QA
+- Add product from `/ar/products-partners`.
+- Open `/ar/rfq` and confirm basket appears.
+- Validate required fields in Arabic.
+- Confirm success state Arabic.
+- Confirm `/ar/track` link from RFQ success.
+- Confirm English `/products-partners` and `/rfq` still work.
