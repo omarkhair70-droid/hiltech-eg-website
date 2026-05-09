@@ -17,7 +17,7 @@ export default function CompanyPage() {
           <p className="text-sm uppercase tracking-[0.14em] text-orange-200">About HILTECH</p>
           <h1 className="mt-3 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">Network Infrastructure Delivery for Business Facilities in Egypt</h1>
           <p className="mt-5 max-w-4xl text-base text-slate-100 md:text-lg">HILTECH supports companies with structured cabling, fiber optics, racks, data rooms, CCTV infrastructure readiness, testing, and RFQ coordination.</p>
-          <div className="mt-7 flex flex-wrap gap-3"><Link href="/rfq" className="inline-flex rounded-md bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-orange-600">Request Project Quote</Link><Link href="/contact" className="inline-flex rounded-md border border-slate-300/80 px-5 py-2.5 text-sm font-semibold text-slate-100 hover:bg-white/10">Contact HILTECH</Link></div>
+          <div className="mt-7 flex flex-wrap gap-3"><Link href="/rfq" className="inline-flex rounded-md bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-orange-600">Request Project Quote</Link><a href="/hiltech-company-profile.pdf" target="_blank" rel="noreferrer" className="inline-flex rounded-md border border-slate-300/80 px-5 py-2.5 text-sm font-semibold text-slate-100 hover:bg-white/10">Download Company Profile</a><Link href="/contact" className="inline-flex rounded-md border border-slate-300/80 px-5 py-2.5 text-sm font-semibold text-slate-100 hover:bg-white/10">Contact HILTECH</Link></div>
         </div>
       </section>
 

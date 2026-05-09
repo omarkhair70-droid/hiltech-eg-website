@@ -21,7 +21,7 @@
 - 2 fiber/testing photos
 - 1 team/site visit photo
 - 1 office/company photo (if available)
-- Company profile PDF
+- Company profile PDF (supplied / added at `/hiltech-company-profile.pdf`)
 - Approved logo / favicon / OG image (if current files are missing approval)
 
 ## Naming Convention
@@ -46,5 +46,6 @@ No image should be described as a real project photo until approved by HILTECH f
 
 ## Current status (Final video polish)
 - Public visuals remain illustrative unless explicitly approved as real HILTECH project photos.
-- Company profile PDF required from client.
+- Company profile PDF: supplied / added.
+- Path: `/hiltech-company-profile.pdf`.
 - Do not publish real-project claims until approvals are provided.
