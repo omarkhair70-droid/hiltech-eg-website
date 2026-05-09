@@ -43,7 +43,7 @@ const guideLinks: SearchEntry[] = productIntelligenceCategories.map((category) =
   description: category.intro,
   type: 'Guides',
   href: `/products-partners/intelligence/${category.slug}`,
-  keywords: [...category.relatedCapabilityTags, category.title, 'product intelligence', 'guide'],
+  keywords: [...category.relatedCapabilityTags, category.title, 'technical notes', 'guide'],
 }));
 
 const productLinks: SearchEntry[] = products.map((product) => ({
@@ -72,7 +72,7 @@ export const siteSearchIndex: SearchEntry[] = [
 ];
 
 export const popularSearchShortcuts: SearchEntry[] = [
-  { title: 'Browse Products', description: 'Open product catalog and product intelligence pathways.', type: 'Pages', href: '/products-partners', keywords: ['products', 'catalog'] },
+  { title: 'Browse Products', description: 'Open product catalog and technical notes pathways.', type: 'Pages', href: '/products-partners', keywords: ['products', 'catalog'] },
   { title: 'Start RFQ', description: 'Begin quotation request workflow.', type: 'Pages', href: '/rfq', keywords: ['rfq', 'quote'] },
   { title: 'Track RFQ', description: 'Check RFQ progress and updates.', type: 'Pages', href: '/track', keywords: ['track', 'status'] },
   { title: 'Solutions', description: 'Open solution pages by business outcome.', type: 'Pages', href: '/solutions', keywords: ['solutions'] },

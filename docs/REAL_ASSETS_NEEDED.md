@@ -42,3 +42,9 @@ No image should be described as a real project photo until approved by HILTECH f
 - Images should be approved for public website use.
 - Real project claims should only be used after confirmation.
 - Illustrative visuals should be labeled neutrally until approvals are complete.
+
+
+## Current status (Final video polish)
+- Public visuals remain illustrative unless explicitly approved as real HILTECH project photos.
+- Company profile PDF required from client.
+- Do not publish real-project claims until approvals are provided.

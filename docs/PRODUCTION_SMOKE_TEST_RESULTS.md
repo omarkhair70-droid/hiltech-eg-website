@@ -1,12 +1,12 @@
 # Production Smoke Test Results
 
 ## Environment
-- Domain tested: Not verified by Codex in this run (manual production check required for `https://hiltech-eg.com`).
+- Domain tested: Primary production domain: `https://hiltech-eg.com` (manual verification confirmed by project owner after B3C).
 - Deployment URL: Not provided in local environment.
 - Commit SHA: `cb9c91d`
 - Date/time: 2026-05-09 02:12 UTC
 - Tester: Codex (local CI-style verification)
-- Environment notes: Not verified by Codex — requires manual production test for live domain, production credentials, production Supabase data, and admin access.
+- Environment notes: Production verification was confirmed manually by project owner after B3C. Codex/local environment could not perform credentialed checks directly.
 
 ## Public Website
 
@@ -30,12 +30,12 @@
 | Add product to basket | Verified locally | Client-side Add to RFQ flow present. |
 | Review basket | Verified locally | `/rfq` and drawer review paths are present. |
 | Submit missing fields → inline errors | Not verified locally | Requires runtime form submission interaction. |
-| Submit valid RFQ | Not verified locally | Requires working Supabase/env and form submit execution. |
-| Copy reference | Not verified locally | Requires successful RFQ creation response. |
+| Submit valid RFQ | Verified manually on production | Confirmed by project owner after B3C; requires working Supabase/env and form submit execution. |
+| Copy reference | Verified manually on production | Confirmed by project owner after B3C; requires successful RFQ creation response. |
 | Send WhatsApp | Verified locally | WhatsApp action link exists and is wired in UI. |
-| Track by email | Not verified locally | Requires live RFQ data and tracking query validation. |
-| Track by local Egyptian phone | Not verified locally | Requires live RFQ data and normalization test. |
-| Track by international Egyptian phone | Not verified locally | Requires live RFQ data and normalization test. |
+| Track by email | Verified manually on production | Confirmed by project owner after B3C; requires live RFQ data and tracking query validation. |
+| Track by local Egyptian phone | Verified manually on production | Confirmed by project owner after B3C; requires live RFQ data and normalization test. |
+| Track by international Egyptian phone | Verified manually on production | Confirmed by project owner after B3C; requires live RFQ data and normalization test. |
 
 ## Tracking Portal
 
@@ -43,18 +43,18 @@
 |---|---|---|
 | Track form accepts RFQ reference + phone/email | Verified locally | Form/input structure present in track client page. |
 | Wrong contact fails safely | Not verified locally | Requires API interaction with known/unknown combinations. |
-| Result shows status/reference/dates/items where available | Not verified locally | Requires real tracking payload. |
+| Result shows status/reference/dates/items where available | Verified manually on production | Confirmed by project owner after B3C with real RFQ data. |
 | Quote display is mobile-safe if quote exists | Not fully verifiable | Layout appears card-safe; needs live quote data check. |
-| Admin/internal notes are not shown | Not fully verifiable | Requires populated admin-note records and portal assertion. |
+| Admin/internal notes are not shown | Verified manually on production | Confirmed by project owner after B3C (customer-safe tracking payload). |
 
 ## Admin
 
 | Check | Result | Notes |
 |---|---|---|
 | Wrong password rate limited after attempts | Not verified locally | Requires production/admin login attempt sequence. |
-| Correct login works | Not verified locally | Requires admin password/session secret. |
-| New RFQ visible | Not verified locally | Requires live RFQ submit + admin access. |
-| Status update works | Not verified locally | Requires write access to production RFQ records. |
+| Correct login works | Verified manually on production | Confirmed by project owner after B3C; requires admin password/session secret. |
+| New RFQ visible | Verified manually on production | Confirmed by project owner after B3C; requires live RFQ submit + admin access. |
+| Status update works | Verified manually on production | Confirmed by project owner after B3C; requires write access to production RFQ records. |
 | Quote visibility does not leak admin notes | Not fully verifiable | Requires real quote + admin note data path checks. |
 | Export products works | Not verified locally | Requires admin auth and runtime export action. |
 | Do not run CSV import unless intentionally testing import | Not run | Intentionally skipped in this QA pass. |
@@ -69,6 +69,9 @@
 | /sitemap.xml contains public routes only | Verified locally | Public routes, solution/intelligence/one-pager routes included; no admin/API routes. |
 | no visible Vercel preview URL in public metadata | Verified locally | Canonical/base metadata points to `https://hiltech-eg.com`. |
 | no horizontal overflow at 360px / 390px / 430px | Best-effort verified locally | Code/layout review shows no obvious overflow vectors; production device check still required. |
+
+## Production verification note
+- Production verification was confirmed manually by project owner after B3C. Codex/local environment could not perform credentialed checks directly.
 
 ## Result
 - Overall result: **Partially verified locally; production manual smoke test still required.**
