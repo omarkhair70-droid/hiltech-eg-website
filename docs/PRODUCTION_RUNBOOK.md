@@ -337,3 +337,13 @@ If email is **not** configured:
 - Verify Arabic footer address uses Arabic value.
 - Verify Arabic routes on 360/390/430 and laptop widths.
 - Verify RFQ/Tracking regression behavior.
+
+## BIL8 final Arabic product QA checklist
+- Arabic product cards clickable
+- Arabic product detail route works
+- Arabic Add to RFQ from detail works
+- Arabic RFQ basket shared
+- Arabic technical notes route/label safe
+- Arabic search labels/descriptions checked
+- English product flow regression checked
+- Mobile 360/390/430 checked
