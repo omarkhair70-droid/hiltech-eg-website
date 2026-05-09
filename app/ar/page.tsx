@@ -9,122 +9,18 @@ export const metadata: Metadata = {
   alternates: { canonical: `${site.siteUrl}/ar`, languages: { en: `${site.siteUrl}/`, ar: `${site.siteUrl}/ar`, 'x-default': `${site.siteUrl}/` } },
 };
 
-const trustStrip = ['تنفيذ داخل مصر', 'كابلات شبكات منظمة', 'حلول فايبر', 'تجهيز الراك', 'اختبار قبل التسليم', 'تتبع طلب العرض', 'متابعة عبر واتساب'];
-
-const deliverables = [
-  ['كابلات الشبكات المنظمة', 'تنفيذ وتنظيم كابلات الشبكات ونقاط الاتصال والباتش بانل بما يدعم التشغيل والصيانة.'],
-  ['البنية التحتية للفايبر', 'تجهيز مسارات الفايبر وODF والباتش كورد والملحقات المطلوبة حسب نطاق المشروع.'],
-  ['الراك وغرف البيانات', 'تجهيز الراك وتنظيم المكونات ومسارات الكابلات داخل غرف البيانات والمواقع الفنية.'],
-  ['الاختبار والتسليم', 'اختبار التوصيلات وتنظيم التسليم الفني لتقليل الأخطاء قبل التشغيل الفعلي.'],
-];
+const trustStrip = ['تنفيذ داخل مصر','كابلات شبكات منظمة','حلول فايبر','تجهيز الراك','اختبار قبل التسليم','تتبع طلب العرض','متابعة عبر واتساب'];
 
 export default function ArabicHomePage() {
+  const tags=['كابلات منظمة','فايبر / ODF','تجهيز الراك','اختبار قبل التسليم'];
   return (
-    <main className="container section space-y-12">
-      <section className="grid gap-5 overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-lg sm:p-6 md:grid-cols-2 md:gap-6 md:p-10">
-        <div>
-          <p className="public-eyebrow text-orange-600 text-xs">حلول البنية التحتية للشبكات في مصر</p>
-          <h1 className="mt-3 text-2xl font-bold leading-tight text-navy-900 sm:text-3xl md:text-4xl">حلول شبكات وفايبر وراك للشركات في مصر</h1>
-          <p className="public-copy mt-3 text-sm leading-7 sm:mt-4">تساعد HILTECH الشركات في تجهيز البنية التحتية للشبكات، من تحديد النطاق واختيار المنتجات إلى التنفيذ والاختبار وطلب عرض السعر.</p>
-          <div className="mt-5 flex flex-wrap gap-2.5 sm:gap-3">
-            <Link href="/ar/rfq" className="btn-primary">اطلب عرض سعر</Link>
-            <Link href="/ar/work" className="btn-secondary">شاهد الأعمال الميدانية</Link>
-            <Link href="/ar/track" className="btn-secondary w-full sm:w-auto">تتبع طلبك</Link>
-          </div>
-        </div>
-        <div className="relative min-h-56 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 sm:min-h-64">
-          <Image src="/infrastructure-network-detail.jpg" alt="تنفيذ بنية تحتية للشبكات" fill className="object-cover" />
-        </div>
-      </section>
-
-      <section className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
-        {trustStrip.map((item) => <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-semibold">{item}</div>)}
-      </section>
-
-      <section className="space-y-5">
-        <h2 className="text-2xl font-bold text-navy-900">ما الذي تقدمه HILTECH؟</h2>
-        <div className="grid gap-4 md:grid-cols-2">
-          {deliverables.map(([title, text]) => <article key={title} className="public-card p-5"><h3 className="text-lg font-semibold text-navy-900">{title}</h3><p className="mt-2 text-sm text-slate-700">{text}</p></article>)}
-        </div>
-      </section>
-
-      <section className="space-y-5">
-        <h2 className="text-2xl font-bold text-navy-900">أعمال ميدانية من HILTECH</h2>
-        <p className="text-slate-700">صور حقيقية معتمدة من أعمال HILTECH في تجهيز وتنفيذ البنية التحتية للشبكات، مع التركيز على التنظيم، جودة التوصيلات، الاختبار، وتجهيز المواقع للتشغيل.</p>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            ['الفايبر وODF', '/fiber-patch-panel-closeup.jpg'],
-            ['الراك وغرف البيانات', '/rack-data-room.jpg'],
-            ['الكابلات المنظمة', '/copper-patch-panel.jpg'],
-            ['الاختبار والتسليم', '/testing-fluke-meter.jpg'],
-          ].map(([label, src]) => (
-            <article key={label} className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-              <div className="relative h-40"><Image src={src} alt={label} fill className="object-cover" /></div>
-              <p className="p-3 text-sm font-semibold text-slate-800">{label}</p>
-            </article>
-          ))}
-        </div>
-        <Link href="/ar/work" className="inline-flex text-sm font-semibold text-orange-600 underline">شاهد أعمالنا</Link>
-      </section>
-
-      <section className="public-card p-6">
-        <h2 className="text-2xl font-bold text-navy-900">من اختيار المنتجات إلى طلب عرض سعر منظم</h2>
-        <ol className="mt-4 grid gap-3 sm:grid-cols-3">
-          {['اختر المنتجات أو نطاق العمل', 'أضف الكميات وملاحظات المشروع', 'أرسل الطلب وتابع حالته برقم الطلب'].map((step, index) => <li key={step} className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm font-semibold"><span className="ml-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-orange-600 text-white">{index + 1}</span>{step}</li>)}
-        </ol>
-        <div className="mt-5 flex flex-wrap gap-3"><Link href="/ar/rfq" className="btn-primary">ابدأ طلب عرض السعر</Link><Link href="/ar/track" className="btn-secondary">تتبع طلب العرض</Link></div>
-      </section>
-
-      <section className="space-y-5">
-        <h2 className="text-2xl font-bold text-navy-900">تصنيفات المنتجات والحلول</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            ['أنظمة الفايبر', 'حلول الفايبر وODF والباتش كورد وملحقات الربط.'],
-            ['كابلات الشبكات CAT6', 'كابلات الشبكات والباتش كورد ومكونات الربط المنظمة.'],
-            ['الراك والكبائن وPDU', 'راك وكبائن وPDU وتجهيزات غرف البيانات.'],
-            ['الباتش بانل وODF', 'تنظيم نقاط الربط والتوزيع داخل الراك والمواقع الفنية.'],
-            ['CCTV والبنية التحتية الأمنية', 'تجهيزات البنية التحتية الداعمة لأنظمة الكاميرات.'],
-            ['أدوات الاختبار والتنظيم', 'أدوات ومستلزمات تساعد على الاختبار والتنظيم والتسليم.'],
-          ].map(([title, description]) => (
-            <article key={title} className="public-card p-5"><h3 className="text-base font-semibold text-navy-900">{title}</h3><p className="mt-2 text-sm text-slate-700">{description}</p><Link href="/ar/products-partners" className="mt-3 inline-flex text-sm font-semibold text-orange-600">عرض المنتجات</Link></article>
-          ))}
-        </div>
-      </section>
-
-      <section className="public-card p-6">
-        <h2 className="text-2xl font-bold text-navy-900">لماذا تختار HILTECH؟</h2>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          {[
-            ['طلب عرض سعر منظم', 'أرسل المنتجات والكميات وملاحظات المشروع في طلب واحد واضح.'],
-            ['تنفيذ ميداني عملي', 'التخطيط يراعي المسارات، الراك، الاختبار، والتسليم.'],
-            ['متابعة واضحة', 'تابع الطلب من خلال رقم مرجعي، أو تواصل عبر الهاتف وواتساب.'],
-            ['اختيار مكونات مناسب', 'يتم ربط مراجع المنتجات باحتياج المشروع قبل عرض السعر.'],
-          ].map(([title, text]) => <article key={title} className="rounded-xl border border-slate-200 bg-slate-50 p-4"><h3 className="font-semibold text-slate-900">{title}</h3><p className="mt-1 text-sm text-slate-700">{text}</p></article>)}
-        </div>
-      </section>
-
-      <section className="public-card p-6">
-        <h2 className="text-2xl font-bold text-navy-900">مراجع المنتجات والسياق الفني</h2>
-        <p className="mt-4 text-slate-700">تُعرض مراجع المنتجات والعلامات التجارية لأغراض الكتالوج والسياق الفني فقط، ولا تعني شراكة رسمية إلا إذا تم ذكر ذلك صراحة.</p>
-        <Link href="/ar/products-partners" className="mt-4 inline-flex text-sm font-semibold text-orange-600 underline">تصفح المنتجات</Link>
-      </section>
-
-      <section className="public-card p-6">
-        <h2 className="text-2xl font-bold text-navy-900">جاهز لمناقشة مشروعك؟</h2>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm font-semibold">
-          <a href={site.contact.whatsappGeneralLink} className="btn-secondary">واتساب / طلب عرض سعر</a>
-          <a href={`mailto:${site.contact.email}`} className="btn-secondary" dir="ltr">{site.contact.email}</a>
-          <a href={`tel:${site.contact.phone}`} className="btn-secondary" dir="ltr">{site.contact.phone}</a>
-          <a href="/hiltech-company-profile.pdf" target="_blank" rel="noreferrer" className="btn-secondary">تحميل ملف الشركة</a>
-          <Link href="/ar/track" className="btn-secondary">تتبع طلب عرض السعر</Link>
-        </div>
-      </section>
-
-      <section className="public-card p-6">
-        <h2 className="text-2xl font-bold text-navy-900">ابدأ طلب عرض السعر الآن</h2>
-        <p className="mt-4 text-slate-700">أضف المنتجات أو اكتب نطاق العمل، وسيقوم فريق HILTECH بمراجعة الطلب والتواصل معك للخطوة التالية.</p>
-        <div className="mt-5 flex flex-wrap gap-3"><Link href="/ar/rfq" className="btn-primary">اطلب عرض سعر</Link><Link href="/ar/track" className="btn-secondary">تتبع طلب العرض</Link><Link href="/ar/contact" className="btn-secondary">تواصل معنا</Link></div>
-      </section>
+    <main>
+      <section className="section bg-gradient-to-br from-navy-900 via-[#0c1d33] to-slate-900 text-white"><div className="container grid gap-6 lg:grid-cols-[1.2fr_1fr]"><div><p className="public-eyebrow text-orange-300">حلول البنية التحتية للشبكات في مصر</p><h1 className="mt-3 text-3xl font-bold leading-tight md:text-5xl">حلول شبكات وفايبر وراك جاهزة للتنفيذ والتسعير</h1><p className="mt-4 text-sm text-slate-100 sm:text-base">تساعد HILTECH الشركات في مصر على تجهيز البنية التحتية للشبكات، من تحديد النطاق واختيار المنتجات إلى التنفيذ والاختبار وطلب عرض السعر.</p><div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap"><Link href="/ar/rfq" className="btn-primary w-full justify-center sm:w-auto">اطلب عرض سعر</Link><Link href="/ar/products-partners" className="btn-secondary w-full justify-center sm:w-auto">تصفح المنتجات</Link><Link href="/ar/work" className="btn-secondary w-full justify-center sm:w-auto">شاهد الأعمال الميدانية</Link></div></div><article className="public-card overflow-hidden border-white/15 bg-white/5 p-0"><div className="relative aspect-[16/10] w-full"><Image src="/rack-data-room.jpg" alt="إثبات ميداني" fill className="object-cover"/></div><div className="p-4"><p className="public-eyebrow text-orange-300">إثبات ميداني</p><ul className="mt-3 grid grid-cols-2 gap-2">{tags.map((tag)=><li key={tag} className="public-marker justify-center border-white/20 bg-white/10 text-white">{tag}</li>)}</ul></div></article></div></section>
+      <section className="section-compact"><div className="container"><div className="rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm"><ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">{trustStrip.map((item)=><li key={item} className="public-marker justify-center text-center">{item}</li>)}</ul></div></div></section>
+      <section className="section-compact"><div className="container"><h2 className="text-2xl font-bold text-navy-900">جهّز نطاق مشروع كامل</h2><div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[['تجهيز شبكة مكتب',['كابلات CAT6','باتش بانل','فيس بليت','ملحقات الراك','الاختبار']],['تجهيز راك وغرفة بيانات',['راك','PDU','تنظيم الكابلات','باتش بانل','التسمية والاختبار']],['نطاق فايبر وODF',['كابل فايبر','ODF','باتش كورد','اللحام والاختبار']],['بنية تحتية للكاميرات',['نقاط شبكة','كابلات','تجهيز الراك','جاهزية الطاقة والشبكة']]].map(([title,items])=><article key={title as string} className="public-card p-4"><h3 className="font-semibold text-slate-900">{title as string}</h3><ul className="mt-2 space-y-1 text-sm text-slate-700">{(items as string[]).map((it)=><li key={it}>• {it}</li>)}</ul><Link href="/ar/rfq" className="mt-3 inline-flex text-sm font-semibold text-orange-700">ابدأ طلب عرض بهذا النطاق</Link></article>)}</div></div></section>
+      <section className="section-compact"><div className="container"><article className="public-card bg-slate-50 p-5"><h2 className="text-2xl font-bold text-navy-900">مدخل المنتجات وطلب العرض</h2><p className="mt-2 text-slate-700">تصفح المنتجات وأضف عناصر المشروع إلى سلة طلب عرض سعر واحدة.</p><div className="mt-4 flex flex-col gap-2.5 sm:flex-row"><Link href="/ar/products-partners" className="btn-secondary w-full justify-center sm:w-auto">تصفح المنتجات</Link><Link href="/ar/rfq" className="btn-primary w-full justify-center sm:w-auto">اطلب عرض سعر</Link></div></article></div></section>
+      <section className="section bg-slate-50"><div className="container"><h2 className="text-2xl font-bold text-navy-900">أعمال ميدانية قابلة للتسليم والصيانة</h2><div className="mt-5 grid gap-3 md:grid-cols-3">{[['تجهيز الراك وغرف البيانات','تنظيم المسارات والتجهيز للتسليم','/rack-front-cabling.jpg'],['أعمال الفايبر / ODF','تنفيذ ضمن نطاق واضح قبل التسعير','/fiber-splicing-workbench.jpg'],['الكابلات المنظمة والاختبار','اختبار قبل التسليم ودعم الصيانة','/testing-otdr-device.jpg']].map(([title,note,img])=><article key={title as string} className="public-card overflow-hidden p-0"><div className="relative aspect-[16/10] w-full"><Image src={img as string} alt={title as string} fill className="object-cover"/></div><div className="p-4"><h3 className="font-semibold text-slate-900">{title as string}</h3><p className="mt-1 text-sm text-slate-700">{note as string}</p><Link href="/ar/work" className="mt-3 inline-flex text-sm font-semibold text-orange-700">شاهد نطاق الأعمال</Link></div></article>)}</div></div></section>
+      <section className="section bg-navy-800 text-white"><div className="container"><h2 className="text-3xl font-bold">جاهز لتسعير مشروع البنية التحتية؟</h2><p className="mt-3 text-slate-100">أرسل المنتجات والكميات أو BOQ أو متطلبات الموقع، وسيقوم فريق HILTECH بمراجعة النطاق ومتابعة عرض السعر.</p><div className="mt-5 flex flex-col gap-2.5 sm:flex-row"><Link href="/ar/rfq" className="btn-primary w-full justify-center sm:w-auto">اطلب عرض سعر</Link><a href={site.contact.whatsappGeneralLink} className="btn-secondary w-full justify-center border-white/20 bg-white/10 text-white hover:bg-white/20 sm:w-auto">تواصل عبر واتساب</a></div></div></section>
     </main>
   );
 }

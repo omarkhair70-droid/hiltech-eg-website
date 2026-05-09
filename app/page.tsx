@@ -1,15 +1,11 @@
 import type { Metadata } from 'next';
 import {
-  ContactConfidenceSection,
-  FieldWorkPreview,
   FinalCTA,
   Hero,
-  ProductCategoriesPreview,
-  ProductReferencesPanel,
-  RFQProcessSection,
+  ProductEntrySection,
+  ProjectScopeSection,
   TrustStrip,
-  WhatHiltechDoes,
-  WhyChooseHiltechSection,
+  WorkProofSection,
 } from '@/components/Sections';
 import { site } from '@/content/site';
 
@@ -36,13 +32,9 @@ export default async function Home() {
     <main>
       <Hero />
       <TrustStrip />
-      <WhatHiltechDoes />
-      <FieldWorkPreview />
-      <RFQProcessSection />
-      <ProductCategoriesPreview />
-      <WhyChooseHiltechSection />
-      <ProductReferencesPanel />
-      <ContactConfidenceSection />
+      <ProjectScopeSection />
+      <ProductEntrySection />
+      <WorkProofSection />
       <FinalCTA />
     </main>
   );
