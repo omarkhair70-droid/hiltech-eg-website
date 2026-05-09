@@ -104,8 +104,8 @@ All core brand assets are in `/public`:
 - No backend/database is storing RFQ submissions in this phase; data remains only in the user browser until sent.
 - Future enhancement option: backend form/email workflow with persistence and status tracking.
 
-## Phase 15: Product Intelligence Pages
-- Added static Product Intelligence category data model in `content/product-intelligence.ts` with procurement-focused fields: strategic summary, typical components, use cases, RFQ checklist, compatibility notes, handover notes, and advisory disclaimers.
+## Phase 15: Technical Notes Pages
+- Added static Technical Notes category data model in `content/product-intelligence.ts` with procurement-focused fields: strategic summary, typical components, use cases, RFQ checklist, compatibility notes, handover notes, and advisory disclaimers.
 - Added seven category intelligence guide pages under `/products-partners/[slug]`:
   - `/products-partners/fiber-optic-systems`
   - `/products-partners/copper-cat6-cabling`
@@ -115,7 +115,7 @@ All core brand assets are in `/public`:
   - `/products-partners/cable-management-duct-systems`
   - `/products-partners/cctv-security`
 - Each guide is designed as a technical procurement assistant page (not a blog): stack fit, component matrix, use-case guidance, RFQ checklist, compatibility/handover notes, and related product examples.
-- `/products-partners` now includes **Explore Product Intelligence by Category** cards linking to each category guide.
+- `/products-partners` now includes **Explore Technical Notes by Category** cards linking to each category guide.
 - Product categories and product card badges now link to their category intelligence guide to support contextual planning.
 - Each category guide includes RFQ preparation controls to:
   - browse products,
@@ -145,12 +145,12 @@ All core brand assets are in `/public`:
   - `/solutions/project-supply-rfq`
 - Added a new landing page at `/solutions` to frame HILTECH around business/infrastructure outcomes (not only product/service lists).
 - Solution content is fully editable from `content/solutions.ts` (titles, intros, outcomes, delivery scope, implementation flow, related intelligence links, RFQ checklist, assurance notes, disclaimer).
-- Solutions connect directly to Product Intelligence guides via related links and route users into RFQ actions (`/rfq`, `/products-partners`, `/contact`).
-- Product Intelligence category pages now include subtle “Related solutions” links where relevant.
+- Solutions connect directly to Technical Notes guides via related links and route users into RFQ actions (`/rfq`, `/products-partners`, `/contact`).
+- Technical Notes category pages now include subtle “Related solutions” links where relevant.
 - Scope/pricing/availability note remains explicit: final technical scope, product availability, and quotation are confirmed per project and RFQ review.
 
 ## Phase 17 technical diagrams note
-- New diagram panels across Solutions, RFQ, Products Intelligence, and Homepage are **conceptual visual aids** to explain telecom/infrastructure architecture and workflow.
+- New diagram panels across Solutions, RFQ, Products Technical Notes, and Homepage are **conceptual visual aids** to explain telecom/infrastructure architecture and workflow.
 - These visuals are not real project photos, not as-built drawings, and not client-specific documentation.
 - Future upgrades can include:
   - verified topology diagrams from real delivered projects,
@@ -237,7 +237,7 @@ All core brand assets are in `/public`:
 - Missing images now use an in-card premium fallback placeholder to avoid broken image icons.
 - Product visuals remain illustrative/non-official and should not be represented as official manufacturer photos.
 - Product catalog browsing now uses category filtering with progressive **Load More** behavior to reduce page fatigue.
-- RFQ basket flow, Add to RFQ behavior, Product Intelligence routing, and Scope Finder routing remain unchanged.
+- RFQ basket flow, Add to RFQ behavior, Technical Notes routing, and Scope Finder routing remain unchanged.
 
 - **Phase 22B.1 (May 1, 2026):** Adjusted product image presentation in `/products-partners` to use contained image frames (`object-contain`) with padded premium dark backgrounds for less cropping on mobile and desktop.
 - Product visuals remain illustrative/non-official references and existing missing-image fallback now matches the updated premium frame styling.
@@ -295,7 +295,7 @@ All core brand assets are in `/public`:
 - `/products-partners` was restructured to prioritize practical catalog browsing first: heading → search/filter controls → product grid → RFQ actions.
 - Removed top marketing-heavy blocks from the Products page entry flow (including the top visual scope panel and project supply highlights cards) so users reach the searchable catalog faster.
 - Simplified pre-catalog guidance in the products client area by removing duplicated helper messaging above the filters; Scope Finder remains available as a compact helper below the first catalog grid area.
-- Primary product-page action remains **Add to RFQ** with **Product Intelligence** preserved as secondary on product cards.
+- Primary product-page action remains **Add to RFQ** with **Technical Notes** preserved as secondary on product cards.
 - Product disclaimer and catalog clarity notices remain in place lower on the page and no longer block initial product discovery.
 - No changes were made to admin, API, database schema, auth, RFQ submit logic, RFQ tracking logic, or GA event names in this phase.
 - No migration required.
@@ -467,8 +467,8 @@ Visual assets used in Phase 28B:
 - Updated solution detail diagram panels to the light surface treatment for stronger title/subtitle/label readability.
 - No admin routes, RFQ API behavior, analytics event names, database schema, or migrations were changed in this phase.
 
-## Phase 35E - Product Intelligence Detail Visual QA Polish (May 2026)
-- Polished Product Intelligence detail/category pages (`/products-partners/[slug]`) for cleaner visual hierarchy and consistency with solution detail styling.
+## Phase 35E - Technical Notes Detail Visual QA Polish (May 2026)
+- Polished Technical Notes detail/category pages (`/products-partners/[slug]`) for cleaner visual hierarchy and consistency with solution detail styling.
 - Diagram panels were switched to a readable light surface treatment with stronger title/subtitle contrast and improved node-label legibility.
 - Diagram containers were tightened to reduce awkward blank height while preserving responsive behavior and intentional horizontal scroll for wide technical diagrams on mobile.
 - Top CTA hierarchy on category detail pages was cleaned to emphasize: **Add Related Products to RFQ** (primary), **Browse Products** (secondary), and **Review RFQ Basket** (tertiary).
@@ -494,7 +494,7 @@ Visual assets used in Phase 28B:
 - Search index includes:
   - main public pages (Home, Products, Solutions, Services, Resources, Field Work & References, Contact, Start RFQ, Track RFQ, Scope Finder),
   - products from static product content,
-  - product intelligence guide pages,
+  - technical notes guide pages,
   - solution pages,
   - core service/resource entries,
   - Arabic aliases for common terms (e.g., منتجات, عرض سعر, تتبع الطلب, فايبر, كابلات, راكات, كاميرات, تواصل).
@@ -711,7 +711,7 @@ Visual assets used in Phase 28B:
 ## Phase P4A — Product Detail Page System
 - added dedicated public product detail pages
 - linked catalog cards to product detail pages
-- preserved Product Intelligence as secondary support
+- preserved Technical Notes as secondary support
 - preserved RFQ logic and optional price reference behavior
 - no admin/API/RFQ backend/schema/migration changes
 - QA needed across desktop/mobile and products with/without priceNote
@@ -861,3 +861,13 @@ Visual assets used in Phase 28B:
 - Email notifications: manually verified on production by project owner.
 - Tracking: manually verified on production by project owner.
 - Assets/PDF: pending only if approved assets are not supplied.
+
+
+## FVP2 — Final Strict Verification Pass
+- RFQ quantity safety verified (clamping/normalization across UI, localStorage, submit payload, WhatsApp, and analytics totals).
+- Public Product Intelligence wording verified removed from public UI/docs in favor of Technical Notes wording.
+- Official domain and metadata verified on `https://hiltech-eg.com` with no public preview URL leakage.
+- Production smoke/handoff wording verified honest: credentialed production checks remain explicitly marked as manual project-owner verification.
+- Real assets/company profile PDF status verified and documented as pending where not supplied.
+- RFQ/Tracking/Admin safety verified (no schema, product data, or import/export changes).
+- Lint/build status: pass (`npm run lint`, `npm run build`).
