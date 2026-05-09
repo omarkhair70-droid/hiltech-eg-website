@@ -196,3 +196,8 @@ If email is **not** configured:
 - [ ] npm run lint passes
 - [ ] npm run build passes
 - [ ] No horizontal overflow at 360px, 390px, 430px
+
+## B3B Operational Notes
+- Analytics environment variables are optional; site conversion events fail safely/no-op when GA is not configured.
+- Real assets must be explicitly approved before any "real project" wording is published.
+- Revisit `docs/PERFORMANCE_AUDIT.md` after approved client assets are delivered and re-run performance checks.
