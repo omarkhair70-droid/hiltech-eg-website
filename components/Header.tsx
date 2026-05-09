@@ -8,6 +8,7 @@ import { readRFQItems } from '@/lib/rfq';
 import SiteSearch from '@/components/SiteSearch';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { arNavigation } from '@/content/ar/navigation';
+import { getLocalizedPath } from '@/lib/i18n/routes';
 
 const desktopNav = [
   ['Solutions', '/solutions', arNavigation.solutions],
@@ -36,7 +37,7 @@ export default function Header() {
     };
   }, []);
 
-  const localizeHref = (href: string) => (isArabic ? `/ar${href === '/' ? '' : href}` : href);
+  const localizeHref = (href: string) => getLocalizedPath(href, isArabic ? 'ar' : 'en');
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 shadow-[0_4px_14px_rgba(15,23,42,0.05)] backdrop-blur-md">
