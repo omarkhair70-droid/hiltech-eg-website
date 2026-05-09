@@ -722,3 +722,13 @@ Visual assets used in Phase 28B:
 - Added a disclaimer that references do not imply formal partnership unless explicitly stated.
 - No admin/API/RFQ/search/product data/schema changes were made in this phase.
 - Mobile containment was checked to keep the references image readable without horizontal overflow.
+
+## L1 — Launch Trust & Conversion Pass (May 2026)
+- Sharpened homepage hero message for direct B2B value and updated CTA hierarchy to prioritize **Request Project Quote**, with **View Field Work** secondary and **Track RFQ** as a low-emphasis text action.
+- Unified public brand naming to **HILTECH** for primary UI and **Hiltech Network System - H.N.S** for official company context.
+- Simplified overly technical public copy into customer-facing language while preserving technical meaning.
+- Added a compact RFQ confidence explanation block on `/rfq` outlining what happens after submission.
+- Improved trust-focused launch language on RFQ success confirmation and public CTA labels without adding fake claims.
+- Clarified public product guidance labels (e.g., **Technical Notes**) while preserving existing routes/behavior.
+- Preserved product, RFQ backend, admin, search, and API behavior with no schema, migration, or product data changes.
+- Mobile trust/density QA is required for first-viewport clarity, CTA hierarchy, card compactness, and no overflow regressions.

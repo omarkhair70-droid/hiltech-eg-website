@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
           <p className="mt-2.5 text-slate-100">{site.officialName}</p>
           <p className="text-orange-300">{site.slogan}</p>
-          <p className="mt-1 text-sm text-slate-300">Reliable Network Infrastructure, Delivered with Precision.</p>
+          <p className="mt-1 text-sm text-slate-300">Network infrastructure support for business facilities in Egypt.</p>
           <p className="mt-3 text-sm text-slate-300">© HILTECH. All rights reserved.
             <span className="block text-xs text-slate-400" dir="rtl">حلول البنية التحتية التقنية للمشروعات داخل مصر.</span></p>
         </div>
@@ -39,7 +39,7 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-          <Link href="/rfq" className="mt-3 inline-flex rounded-md border border-orange-300/40 px-3 py-1.5 text-sm font-semibold text-orange-300 hover:bg-white/10">Start RFQ</Link>
+          <Link href="/rfq" className="mt-3 inline-flex rounded-md border border-orange-300/40 px-3 py-1.5 text-sm font-semibold text-orange-300 hover:bg-white/10">Request Project Quote</Link>
         </div>
 
         <div>
