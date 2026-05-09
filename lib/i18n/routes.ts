@@ -24,6 +24,10 @@ function getArabicPath(pathname: string): string {
 
   if (ARABIC_STATIC_ROUTE_MAP[pathname]) return ARABIC_STATIC_ROUTE_MAP[pathname];
 
+  if (pathname.startsWith('/resources/')) return '/ar';
+
+  if (pathname.startsWith('/solutions/')) return '/ar/solutions';
+
   if (pathname.startsWith('/products-partners/')) {
     return `/ar${pathname}`;
   }
