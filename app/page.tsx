@@ -17,7 +17,10 @@ export const metadata: Metadata = {
   title: 'HILTECH | Network Infrastructure, Fiber Optics & RFQ in Egypt',
   description:
     'HILTECH supports network infrastructure delivery in Egypt with fiber optics, structured cabling, data room readiness, testing before handover, and RFQ coordination.',
-  alternates: { canonical: `${site.siteUrl}/` },
+  alternates: {
+    canonical: `${site.siteUrl}/`,
+    languages: { en: `${site.siteUrl}/`, ar: `${site.siteUrl}/ar`, 'x-default': `${site.siteUrl}/` },
+  },
   openGraph: {
     title: 'HILTECH | Enterprise Network Infrastructure & Project Supply',
     description:

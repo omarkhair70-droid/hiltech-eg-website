@@ -9,7 +9,7 @@ import { site } from '@/content/site';
 export const metadata: Metadata = {
   title: 'Field Work & Infrastructure Proof | HILTECH',
   description: 'Selected field visuals, testing workflows, and reference materials for HILTECH infrastructure delivery.',
-  alternates: { canonical: `${site.siteUrl}/work` },
+  alternates: { canonical: `${site.siteUrl}/work`, languages: { en: `${site.siteUrl}/work`, ar: `${site.siteUrl}/ar/work`, 'x-default': `${site.siteUrl}/` } },
   openGraph: { title: 'Field Work & Infrastructure Proof | HILTECH', description: 'Selected field visuals, testing workflows, and reference materials for HILTECH infrastructure delivery.', url: `${site.siteUrl}/work`, images: [site.ogImage] },
   twitter: { card: 'summary_large_image', images: [site.ogImage] },
 };

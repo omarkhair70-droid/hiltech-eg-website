@@ -5,7 +5,7 @@ import { site } from '@/content/site';
 export const metadata: Metadata = {
   title: 'About HILTECH | Network Infrastructure Delivery in Egypt',
   description: 'Learn how HILTECH delivers network infrastructure scope alignment, field execution, testing before handover, and RFQ coordination across Egypt.',
-  alternates: { canonical: `${site.siteUrl}/company` },
+  alternates: { canonical: `${site.siteUrl}/company`, languages: { en: `${site.siteUrl}/company`, ar: `${site.siteUrl}/ar/company`, 'x-default': `${site.siteUrl}/` } },
   openGraph: { title: 'About HILTECH | Network Infrastructure Delivery in Egypt', description: 'HILTECH company profile and delivery approach for network infrastructure projects in Egypt.', url: `${site.siteUrl}/company`, images: [site.ogImage] },
 };
 

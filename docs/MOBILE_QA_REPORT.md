@@ -50,3 +50,9 @@ Final B3C mobile QA pass for launch-critical public flows: Home, Products, Produ
 - Company profile PDF status documented (deferred until approved PDF is supplied).
 - RFQ summary no longer allows unrealistic total units.
 - Remaining visual follow-up: only approved real HILTECH photos/PDF if supplied.
+
+## BIL4 — Arabic RTL QA Note (Staging/Local)
+- Verify `/ar`, `/ar/products-partners`, `/ar/rfq`, `/ar/track`, `/ar/company`, `/ar/contact`, `/ar/work`, and `/ar/services` render with RTL direction.
+- Confirm no horizontal overflow at 360px, 390px, and 430px viewport widths.
+- Confirm forms and labels on Arabic RFQ and tracking screens align naturally for RTL and preserve readability for mixed LTR values (RFQ refs, phone, email).
+- Note: This is a QA checklist note and does not claim production testing execution.

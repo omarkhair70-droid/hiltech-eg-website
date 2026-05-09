@@ -8,7 +8,7 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: 'تتبع طلب عرض السعر | HILTECH',
   description: 'تابع حالة طلب عرض السعر من HILTECH باستخدام رقم الطلب ونفس رقم الهاتف أو البريد الإلكتروني المستخدم عند الإرسال.',
-  alternates: { canonical: `${site.siteUrl}/ar/track` },
+  alternates: { canonical: `${site.siteUrl}/ar/track`, languages: { en: `${site.siteUrl}/track`, ar: `${site.siteUrl}/ar/track`, 'x-default': `${site.siteUrl}/` } },
 };
 
 export default async function Page({ searchParams }: { searchParams?: Promise<{ request_code?: string }> }) {
