@@ -5,20 +5,20 @@ import { CTAButton, PremiumCard, SectionHeader, SectionShell } from '@/component
 
 const deliveryPillars = [
   {
-    title: 'Enterprise Facilities',
-    description: 'Business sites, offices, and technical spaces with practical infrastructure scope.',
+    title: 'Business Network Facilities',
+    description: 'Business sites, offices, and technical spaces with practical network requirements.',
   },
   {
-    title: 'Field Execution',
-    description: 'Fiber, rack, and cabling tasks prepared for deployment and handover.',
+    title: 'Field Installation',
+    description: 'Fiber, rack, and cabling tasks prepared for installation and handover.',
   },
   {
-    title: 'Project Supply',
-    description: 'Catalog-led item selection with one RFQ path for requirements.',
+    title: 'Project Components Supply',
+    description: 'Catalog-based item selection with one RFQ path for project requirements.',
   },
   {
-    title: 'Validation Discipline',
-    description: 'Structured checks before final project handover.',
+    title: 'Testing Before Handover',
+    description: 'Structured testing before final project handover.',
   },
 ];
 
@@ -29,17 +29,17 @@ export function Hero() {
     <SectionShell className="bg-gradient-to-br from-navy-900 via-navy-900 to-slate-900 py-8 text-white sm:py-12 md:py-20">
       <div className="grid items-start gap-4 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-8">
         <div className="max-w-3xl">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-orange-300 sm:text-sm">Network Infrastructure Delivery — Egypt</p>
-          <h1 className="mt-2.5 text-[1.62rem] font-bold leading-[1.16] sm:mt-3 sm:text-4xl md:text-5xl">Field-Ready Network Infrastructure for Business Facilities</h1>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-orange-300 sm:text-sm">NETWORK INFRASTRUCTURE IN EGYPT</p>
+          <h1 className="mt-2.5 text-[1.62rem] font-bold leading-[1.16] sm:mt-3 sm:text-4xl md:text-5xl">Network infrastructure supply and installation for business facilities</h1>
           <p className="mt-3 text-sm text-slate-100 sm:mt-4 sm:text-base">
-            HILTECH supports network infrastructure projects across survey, supply, installation readiness, testing workflows, and RFQ coordination.
+            HILTECH supports companies with fiber optic cabling, data networks, racks, patch panels, testing, and project-ready RFQ coordination.
           </p>
           <p className="mt-2.5 text-sm text-slate-100 sm:mt-3 sm:text-base" dir="rtl">
-            توريد وتنفيذ ودعم فني لمشروعات البنية التحتية للشبكات داخل مصر.
+            Fiber • Racks • Data Cabling • ODF • Testing • Handover
           </p>
           <div className="mt-4 flex flex-col gap-2 pr-14 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3 sm:pr-0">
             <CTAButton href="/products-partners" className="w-full justify-center sm:w-auto">
-              Browse Products
+              Request Project Quote
             </CTAButton>
             <CTAButton href="/work" variant="secondary" className="w-full justify-center sm:w-auto">
               View Field Work
@@ -88,7 +88,7 @@ export function WhatHiltechDoes() {
       <SectionHeader
         eyebrow="Delivery Capabilities"
         title="Who we support and how delivery is handled"
-        description="Compact project support for infrastructure-heavy facilities."
+        description="Compact project support for business network facilities."
       />
       <div className="mt-5 grid gap-2.5 sm:mt-7 sm:gap-4 sm:grid-cols-2">
         {deliveryPillars.map((card) => (
@@ -107,7 +107,7 @@ export function ProductsRFQPreview() {
     <SectionShell>
       <SectionHeader
         eyebrow="Procurement Flow"
-        title="Move from product browsing to one structured RFQ"
+        title="Move from product browsing to one project RFQ"
         description="Browse relevant products, add required items, and submit project requirements without losing scope context."
       />
       <div className="mt-5 grid gap-2.5 md:mt-6 md:grid-cols-3 md:gap-4">
@@ -155,7 +155,7 @@ export function FieldWorkPreview() {
     <SectionShell className="bg-slate-50">
       <SectionHeader
         eyebrow="Field Delivery"
-        title="Infrastructure work prepared for handover"
+        title="Infrastructure work ready for installation and review"
         description="Practical support across fiber, racks, cabling, and testing workflows — shown through selected field visuals."
       />
       <div className="mt-5 grid gap-3 sm:grid-cols-2 md:mt-6 md:gap-4">
@@ -222,5 +222,5 @@ export function TrustPreview() {
 export function ServicesGrid() { return <SectionShell><SectionHeader title="Core Infrastructure Services" description="Delivery services aligned to installation, validation, and long-term infrastructure support." /><div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{siteServices.map((s) => <PremiumCard key={s.title} className="bg-slate-50"><p className="text-xs font-semibold uppercase tracking-wide text-orange-600">{s.label}</p><h3 className="mt-2 font-semibold text-slate-900">{s.title}</h3><p className="mt-2 text-sm text-slate-700">{s.description}</p></PremiumCard>)}</div></SectionShell>; }
 
 export function FinalCTA() {
-  return <SectionShell className="mt-5 bg-navy-800 py-8 text-white sm:mt-8 sm:py-10"><div><SectionHeader title="Ready to define your project scope?" description="Start with products, review field proof, then send your requirements for quotation and availability review." className="text-white [&>h2]:text-white [&>p]:text-slate-100" /><div className="mt-4 flex flex-col gap-2.5 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3"><CTAButton href="/rfq" className="w-full justify-center sm:w-auto">Send Project Requirements</CTAButton></div><p className="mt-3 text-sm text-slate-200 sm:mt-4"><Link href="/contact" className="underline underline-offset-4 hover:text-white">Contact HILTECH</Link> <span className="px-1">/</span> <Link href="/track" className="underline underline-offset-4 hover:text-white">Track RFQ</Link></p></div></SectionShell>;
+  return <SectionShell className="mt-5 bg-navy-800 py-8 text-white sm:mt-8 sm:py-10"><div><SectionHeader title="Ready to send project requirements?" description="Start with products, review field proof, then send your requirements for quotation and availability review." className="text-white [&>h2]:text-white [&>p]:text-slate-100" /><div className="mt-4 flex flex-col gap-2.5 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3"><CTAButton href="/rfq" className="w-full justify-center sm:w-auto">Send Project Requirements</CTAButton></div><p className="mt-3 text-sm text-slate-200 sm:mt-4"><Link href="/contact" className="underline underline-offset-4 hover:text-white">Contact HILTECH</Link> <span className="px-1">/</span> <Link href="/track" className="underline underline-offset-4 hover:text-white">Track RFQ</Link></p></div></SectionShell>;
 }
