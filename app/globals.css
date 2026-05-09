@@ -45,6 +45,16 @@ body {
   line-height: 1.2;
 }
 
+[dir='rtl'] .public-eyebrow {
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.7;
+  word-break: normal;
+  overflow-wrap: normal;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
 .public-copy {
   @apply text-[15px] leading-7 sm:text-base;
   color: var(--text-muted);
