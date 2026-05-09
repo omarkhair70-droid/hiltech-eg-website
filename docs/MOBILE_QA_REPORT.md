@@ -40,3 +40,13 @@ Final B3C mobile QA pass for launch-critical public flows: Home, Products, Produ
 - Re-run the same page checklist on `https://hiltech-eg.com` with real devices at 360/390/430 widths.
 - Complete end-to-end RFQ submit and tracking checks using production Supabase data.
 - Confirm admin-updated quote visibility states render without overflow on real customer records.
+
+
+## Final video review follow-up
+- Quantity validation fixed (shared min/max normalization with 1..9999 clamp).
+- Product Intelligence public copy removed from public product/detail UI labels.
+- Official production domain documented as https://hiltech-eg.com.
+- Real assets status documented in `docs/REAL_ASSETS_NEEDED.md`.
+- Company profile PDF status documented (deferred until approved PDF is supplied).
+- RFQ summary no longer allows unrealistic total units.
+- Remaining visual follow-up: only approved real HILTECH photos/PDF if supplied.

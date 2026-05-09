@@ -46,7 +46,7 @@ export default function ProductDetailActions({ product, intelligenceHref }: Prop
     <div className="mt-5 space-y-3">
       <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
         <button type="button" onClick={addToRFQ} className="btn-primary w-full justify-center sm:w-auto">Add to RFQ</button>
-        {intelligenceHref ? <Link href={intelligenceHref} className="inline-flex w-full items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 sm:w-auto">Product Intelligence</Link> : null}
+        {intelligenceHref ? <Link href={intelligenceHref} className="inline-flex w-full items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 sm:w-auto">Technical Notes</Link> : null}
         <Link href="/products-partners" className="inline-flex w-full items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-600 sm:w-auto">Back to products</Link>
       </div>
       {added ? <p className="text-sm font-medium text-emerald-700">Added to RFQ</p> : null}

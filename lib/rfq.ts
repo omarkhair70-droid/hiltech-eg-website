@@ -1,6 +1,19 @@
 export const RFQ_STORAGE_KEY = 'hiltech_rfq_basket_v2';
 export const RFQ_PHONE_NUMBER = '201555357807';
 
+export const MIN_RFQ_QUANTITY = 1;
+export const MAX_RFQ_QUANTITY = 9999;
+export const RFQ_QUANTITY_ERROR = 'Quantity must be between 1 and 9999.';
+
+export function normalizeRFQQuantity(value: unknown): number {
+  const numeric = typeof value === 'string' && value.trim() === '' ? Number.NaN : Number(value);
+  if (!Number.isFinite(numeric) || Number.isNaN(numeric)) return MIN_RFQ_QUANTITY;
+  const floored = Math.floor(numeric);
+  if (floored < MIN_RFQ_QUANTITY) return MIN_RFQ_QUANTITY;
+  if (floored > MAX_RFQ_QUANTITY) return MAX_RFQ_QUANTITY;
+  return floored;
+}
+
 export type RFQUrgency = 'Standard' | 'Urgent';
 
 export interface RFQItem {
@@ -38,7 +51,7 @@ export function normalizeRFQItem(item: Partial<RFQItem> & { id: string; name: st
     category: item.category ?? 'General',
     brand: item.brand ?? 'Not specified',
     specs: item.specs ?? 'Not specified',
-    quantity: Math.max(1, Number(item.quantity) || 1),
+    quantity: normalizeRFQQuantity(item.quantity),
     unit: item.unit?.trim() || 'pcs',
     notes: item.notes ?? '',
     urgency: item.urgency,
@@ -88,7 +101,7 @@ export function buildRFQWhatsappMessage(items: RFQItem[], project?: RFQProjectDe
   if (items.length === 0) {
     lines.push('No specific items selected yet. Please advise based on project details.');
   } else {
-    items.forEach((item, index) => {
+    items.map((item) => normalizeRFQItem(item)).forEach((item, index) => {
       lines.push(`${index + 1}. ${item.name}`);
       lines.push(`Category: ${safe(item.category)}`);
       lines.push(`Brand: ${safe(item.brand)}`);

@@ -29,7 +29,7 @@ HILTECH serves B2B infrastructure demand across:
 - Homepage and corporate pages (`/`, `/services`, `/company`, `/work`, `/about`, `/contact`, etc.)
 - Product catalog and category browsing (`/products-partners`)
 - Product detail pages (`/products-partners/[productCode]`)
-- Product intelligence and solutions content
+- Technical notes and solutions content
 
 ### RFQ flow
 - RFQ basket (add/edit/remove quantities + notes)
