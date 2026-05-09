@@ -1,11 +1,19 @@
 import { NextResponse } from 'next/server';
 import { submitQuoteCustomerResponse, getTrackingFailureMessage } from '@/lib/server/rfq-track';
 import { validateRFQTrackPayload } from '@/lib/validators/rfq-track';
+import { checkRateLimit, getClientIp } from '@/lib/server/rate-limit';
 
 const noStoreHeaders = { 'Cache-Control': 'no-store' };
 const RESPONSE_STATUSES = ['accepted', 'rejected', 'changes_requested'] as const;
 
 export async function POST(request: Request) {
+
+  const ip = getClientIp(request);
+  const rate = checkRateLimit({ key: `rfq-quote-response:${ip}`, windowMs: 10 * 60 * 1000, maxRequests: 10 });
+  if (!rate.allowed) {
+    return NextResponse.json({ ok: false, error: 'Too many quote response attempts. Please wait and try again.' }, { status: 429, headers: { ...noStoreHeaders, 'Retry-After': String(rate.retryAfter) } });
+  }
+
   try {
     const payload = await request.json() as Record<string, unknown>;
     const validatedTrack = validateRFQTrackPayload(payload);

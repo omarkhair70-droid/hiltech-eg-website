@@ -1,10 +1,18 @@
 import { NextResponse } from 'next/server';
 import { getTrackingFailureMessage, lookupRFQTracking } from '@/lib/server/rfq-track';
 import { validateRFQTrackPayload } from '@/lib/validators/rfq-track';
+import { checkRateLimit, getClientIp } from '@/lib/server/rate-limit';
 
 const noStoreHeaders = { 'Cache-Control': 'no-store' };
 
 export async function POST(request: Request) {
+
+  const ip = getClientIp(request);
+  const rate = checkRateLimit({ key: `rfq-track:${ip}`, windowMs: 10 * 60 * 1000, maxRequests: 30 });
+  if (!rate.allowed) {
+    return NextResponse.json({ ok: false, error: 'Too many tracking attempts. Please wait and try again.' }, { status: 429, headers: { ...noStoreHeaders, 'Retry-After': String(rate.retryAfter) } });
+  }
+
   try {
     const payload = await request.json();
     const validated = validateRFQTrackPayload(payload);

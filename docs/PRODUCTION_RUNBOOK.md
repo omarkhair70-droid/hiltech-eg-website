@@ -161,3 +161,38 @@ If email is **not** configured:
 - [ ] Mobile QA completed for core public + RFQ pages.
 - [ ] Domain, SSL, canonical URL, sitemap, robots verified.
 - [ ] Product backup export downloaded before any import activity.
+
+## Final 10/10 Smoke Test Checklist
+
+### Public Website
+- [ ] Home opens on https://hiltech-eg.com
+- [ ] Hero CTA goes to /rfq
+- [ ] Work CTA goes to /rfq
+- [ ] Contact shows Call / WhatsApp / Email clearly
+- [ ] Products search works
+- [ ] Product category deep links work
+
+### RFQ
+- [ ] Add product to basket
+- [ ] Review basket
+- [ ] Submit missing fields → inline errors
+- [ ] Submit valid RFQ
+- [ ] Copy reference
+- [ ] Send WhatsApp
+- [ ] Track by email
+- [ ] Track by local Egyptian phone
+- [ ] Track by international Egyptian phone
+
+### Admin
+- [ ] Wrong password rate limited after attempts
+- [ ] Correct login works
+- [ ] New RFQ visible
+- [ ] Status update works
+- [ ] Quote visibility does not leak admin notes
+
+### Technical
+- [ ] /sitemap.xml works
+- [ ] /robots.txt blocks /admin and /api
+- [ ] npm run lint passes
+- [ ] npm run build passes
+- [ ] No horizontal overflow at 360px, 390px, 430px
