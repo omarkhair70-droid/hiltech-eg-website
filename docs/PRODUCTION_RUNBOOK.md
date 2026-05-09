@@ -233,3 +233,13 @@ If email is **not** configured:
 - Confirm success state Arabic.
 - Confirm `/ar/track` link from RFQ success.
 - Confirm English `/products-partners` and `/rfq` still work.
+
+## BIL3 QA
+- Verify `/ar/track?request_code=RFQ-123` query prefill and tracking form behavior.
+- Verify tracking works with email identifier.
+- Verify tracking works with phone identifier.
+- Verify `/ar/company` PDF link opens `/hiltech-company-profile.pdf`.
+- Verify `/ar/contact` shows official contact details.
+- Verify `/ar/work` approved visual/copy wording.
+- Verify `/ar/services` CTA links to `/ar/rfq` and `/ar/products-partners`.
+- Verify language switcher parity for company/contact/work/services/track pages.

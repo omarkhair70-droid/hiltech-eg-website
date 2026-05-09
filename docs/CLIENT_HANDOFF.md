@@ -954,3 +954,12 @@ Visual assets used in Phase 28B:
 - Product names/model names remain original where appropriate.
 - Arabic product detail pages are deferred (Arabic listing links still route safely).
 - No Admin/Supabase/Tracking/backend/schema changes.
+
+## BIL3 — Arabic Tracking and Public Page Polish
+- `/ar/track` now uses real Arabic tracking UI with existing verification logic.
+- `/ar/company`, `/ar/contact`, `/ar/work`, `/ar/services` now have professional Arabic content.
+- Company Profile PDF remains linked at `/hiltech-company-profile.pdf`.
+- Work visuals are described as approved real HILTECH visuals without client/project-name claims.
+- English routes remain unchanged.
+- Admin remains English and untouched.
+- No schema/backend/auth changes were made.
