@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { requireAdminSession } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { getAdminProductAnalyticsData, isAdminProductAnalyticsBackendConfigured, parseProductAnalyticsRange } from '@/lib/server/admin-product-analytics';
 import AdminShell from '@/components/admin/AdminShell';
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 function fmtMoney(value: number) { return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EGP', maximumFractionDigits: 2 }).format(value || 0); }
 
 export default async function AdminProductAnalyticsPage({ searchParams }: { searchParams: Promise<{ range?: string }> }) {
-  await requireAdminSession();
+  await requirePermission('reports:view');
   const params = await searchParams;
   const range = parseProductAnalyticsRange(params.range);
 

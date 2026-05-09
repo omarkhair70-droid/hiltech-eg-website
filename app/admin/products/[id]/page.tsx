@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { requireAdminSession } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { getProductAdmin } from '@/lib/server/products-admin';
 import { ProductForm } from '../product-form';
 import { updateProductStatusAction } from '../actions';
@@ -12,7 +12,7 @@ export const revalidate = 0;
 export const metadata: Metadata = { title: 'Edit Product', robots: { index: false, follow: false } };
 
 export default async function EditProductPage({ params }: { params: Promise<{ id: string }> }) {
-  await requireAdminSession();
+  await requirePermission('product:update');
   const { id } = await params;
   const product = await getProductAdmin(id);
   if (!product) notFound();

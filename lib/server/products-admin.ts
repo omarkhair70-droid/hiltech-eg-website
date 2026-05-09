@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { logAdminAction } from '@/lib/server/admin-audit';
 import { PRODUCT_STATUSES, PRODUCT_STOCK_STATUSES, type ProductAdminFilters, type ProductAdminWritePayload, type ProductRow, type ProductStatus } from '@/lib/types/products';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
@@ -79,6 +80,7 @@ export async function createProductAdmin(payload: ProductAdminWritePayload): Pro
   const rows = await response.json() as ProductRow[];
   const row = rows[0];
   if (!row) throw new Error('Product create failed: missing created row');
+  void logAdminAction({ action: 'product.created', entityType: 'product', entityId: row.id, metadata: { product_code: row.product_code } });
   return row;
 }
 
@@ -91,6 +93,7 @@ export async function updateProductAdmin(id: string, payload: Partial<ProductAdm
   const rows = await response.json() as ProductRow[];
   const row = rows[0];
   if (!row) throw new Error('Product update failed: product not found or no changes returned');
+  void logAdminAction({ action: 'product.updated', entityType: 'product', entityId: row.id, metadata: { product_code: row.product_code } });
   return row;
 }
 

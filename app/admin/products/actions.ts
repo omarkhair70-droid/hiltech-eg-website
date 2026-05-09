@@ -1,7 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { requireAdminSession } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { createProductAdmin, updateProductAdmin, updateProductStatus } from '@/lib/server/products-admin';
 import { PRODUCT_STATUSES, PRODUCT_STOCK_STATUSES, type ProductAdminWritePayload, type ProductStatus, type ProductStockStatus } from '@/lib/types/products';
 
@@ -88,7 +88,7 @@ function parsePayload(formData: FormData): ProductAdminWritePayload {
 }
 
 export async function createProductAction(_: ProductFormState, formData: FormData): Promise<ProductFormState> {
-  await requireAdminSession();
+  await requirePermission('product:update');
   try {
     const row = await createProductAdmin(parsePayload(formData));
     redirect(`/admin/products/${row.id}`);
@@ -98,7 +98,7 @@ export async function createProductAction(_: ProductFormState, formData: FormDat
 }
 
 export async function updateProductAction(id: string, _: ProductFormState, formData: FormData): Promise<ProductFormState> {
-  await requireAdminSession();
+  await requirePermission('product:update');
   try {
     await updateProductAdmin(id, parsePayload(formData));
     return {};
@@ -108,7 +108,7 @@ export async function updateProductAction(id: string, _: ProductFormState, formD
 }
 
 export async function updateProductStatusAction(id: string, status: ProductStatus) {
-  await requireAdminSession();
+  await requirePermission('product:update');
   await updateProductStatus(id, status);
   redirect(`/admin/products/${id}`);
 }

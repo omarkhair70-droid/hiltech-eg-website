@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { isAdminAuthenticated } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { listRFQRequests } from '@/lib/server/rfq-admin';
 
 export async function GET(request: Request) {
-  if (!(await isAdminAuthenticated())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  try { await requirePermission('rfq:view'); } catch { return NextResponse.json({ error: 'Unauthorized' }, { status: 401 }); }
   const { searchParams } = new URL(request.url);
   const data = await listRFQRequests({
     status: searchParams.get('status') || undefined,

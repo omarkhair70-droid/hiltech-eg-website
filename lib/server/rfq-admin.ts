@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { cache } from 'react';
+import { logAdminAction } from '@/lib/server/admin-audit';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -90,12 +91,18 @@ export async function updateQuoteCustomerVisibility(id: string, payload: { quote
     if (existing.quotation_status === 'ready') patch.quotation_status = 'sent';
   }
   await supabaseFetch(`rfq_requests?id=eq.${id}`, { method: 'PATCH', headers: { Prefer: 'return=minimal' }, body: JSON.stringify(patch) });
+  void logAdminAction({ action: payload.quoteCustomerVisible ? 'rfq.quote.published' : 'rfq.quote.hidden', entityType: 'rfq', entityId: id, metadata: { visible: payload.quoteCustomerVisible } });
 }
 
-export async function updateRFQRequestWorkflow(id: string, payload: { status: RFQStatus; salesPriority: RFQSalesPriority; nextFollowUpAt: string | null; internalNotes: string | null; }) {
+
+export async function updateRFQRequestWorkflow(id: string, payload: { status: RFQStatus; salesPriority: RFQSalesPriority; nextFollowUpAt: string | null; internalNotes: string | null; previousStatus?: string | null; previousSalesPriority?: string | null; previousNextFollowUpAt?: string | null; previousInternalNotesLength?: number | null; }) {
   if (!RFQ_STATUSES.includes(payload.status)) throw new Error('Invalid status value');
   if (!RFQ_SALES_PRIORITIES.includes(payload.salesPriority)) throw new Error('Invalid sales priority value');
   await supabaseFetch(`rfq_requests?id=eq.${id}`, { method: 'PATCH', headers: { Prefer: 'return=minimal' }, body: JSON.stringify({ status: payload.status, sales_priority: payload.salesPriority, next_follow_up_at: payload.nextFollowUpAt, internal_notes: payload.internalNotes, last_status_changed_at: new Date().toISOString(), last_admin_action_at: new Date().toISOString() }) });
+  void logAdminAction({ action: 'rfq.status.updated', entityType: 'rfq', entityId: id, metadata: { status_from: payload.previousStatus ?? null, status_to: payload.status } });
+  void logAdminAction({ action: 'rfq.priority.updated', entityType: 'rfq', entityId: id, metadata: { priority_from: payload.previousSalesPriority ?? null, priority_to: payload.salesPriority } });
+  void logAdminAction({ action: 'rfq.follow_up.updated', entityType: 'rfq', entityId: id, metadata: { follow_up_from: payload.previousNextFollowUpAt ?? null, follow_up_to: payload.nextFollowUpAt ?? null } });
+  void logAdminAction({ action: 'rfq.internal_notes.updated', entityType: 'rfq', entityId: id, metadata: { previous_length: payload.previousInternalNotesLength ?? null, next_length: payload.internalNotes?.length ?? 0 } });
 }
 
 
@@ -155,4 +162,6 @@ export async function updateRFQQuotationDraft(id: string, payload: {
       }),
     });
   }
+  void logAdminAction({ action: 'rfq.quote.updated', entityType: 'rfq', entityId: id, metadata: { quotation_status: payload.quotationStatus } });
 }
+

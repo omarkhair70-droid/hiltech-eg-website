@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { requireAdminSession } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { isProductsAdminBackendConfigured, listProductsAdmin } from '@/lib/server/products-admin';
 import { PRODUCT_STOCK_STATUSES, type ProductStockStatus } from '@/lib/types/products';
 
@@ -9,7 +9,7 @@ export const revalidate = 0;
 export const metadata: Metadata = { title: 'Product Admin', robots: { index: false, follow: false } };
 
 export default async function AdminProductsPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
-  await requireAdminSession();
+  await requirePermission('product:view');
   const query = await searchParams;
   if (!isProductsAdminBackendConfigured()) return <main className="section"><div className="container"><h1 className="text-2xl font-semibold">Product Admin</h1><p className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-red-700">Supabase admin backend is not configured.</p></div></main>;
   const rows = await listProductsAdmin({ search: query.search, status: query.status as any, category: query.category, brand: query.brand, stock_status: query.stock_status as ProductStockStatus });

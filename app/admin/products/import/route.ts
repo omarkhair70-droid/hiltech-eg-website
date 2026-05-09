@@ -1,12 +1,14 @@
+export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
-import { requireAdminSession } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { normalizeImportRows, parseCsv, processProductsCsvImport } from '@/lib/server/products-csv';
+import { logAdminAction } from '@/lib/server/admin-audit';
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 const MAX_ROWS = 500;
 
 export async function POST(request: Request) {
-  await requireAdminSession();
+  await requirePermission('product:import');
   try {
     const form = await request.formData();
     const file = form.get('file');
@@ -23,6 +25,7 @@ export async function POST(request: Request) {
 
     const normalized = normalizeImportRows(headers, rows);
     const summary = await processProductsCsvImport(normalized, { dryRun, createMissing });
+    void logAdminAction({ action: 'product.imported', entityType: 'product', entityId: 'csv-import', metadata: { dry_run: dryRun, create_missing: createMissing, rows: rows.length } });
     return NextResponse.json({ ok: true, dryRun, createMissing, summary });
   } catch (error) {
     console.error('Product CSV import failed', error);
