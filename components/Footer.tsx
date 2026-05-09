@@ -22,7 +22,7 @@ export default function Footer() {
 
   const servicesLinks = isArabic
     ? [
-        { label: 'حلول البنية التحتية للشبكات', href: '/ar/services' },
+        { label: 'حلول البنية التحتية للشبكات', href: '/ar/solutions' },
         { label: 'المنتجات', href: '/ar/products-partners' },
         { label: 'أعمالنا', href: '/ar/work' },
         { label: 'الشركة', href: '/ar/company' },
@@ -80,7 +80,7 @@ export default function Footer() {
             <li dir="ltr"><a className="underline decoration-slate-500 underline-offset-4" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
             <li dir="ltr"><a className="underline decoration-slate-500 underline-offset-4" href={`tel:${site.contact.phone}`}>{site.contact.phone}</a></li>
             <li dir="ltr"><a className="underline decoration-slate-500 underline-offset-4" href={site.contact.whatsappGeneralLink}>{site.contact.whatsappIntl}</a></li>
-            <li>{site.contact.addressEn}</li>
+            <li>{isArabic ? site.contact.addressAr || site.contact.addressEn : site.contact.addressEn}</li>
           </ul>
         </div>
 

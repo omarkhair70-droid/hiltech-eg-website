@@ -24,6 +24,28 @@ export type ArProductsMessages = {
   reference: string;
   finalQuoteNote: string;
   noResults: string;
+
+  clearFilters: string;
+  showingOfProducts: string;
+  showingResultsFor: string;
+  specsLabel: string;
+  priceRefLabel: string;
+  loadMoreProducts: string;
+  needHelpScoping: string;
+  startScopeFinder: string;
+  technicalNotesOptional: string;
+  technicalGuidesHelp: string;
+  viewTechnicalNotes: string;
+  close: string;
+  basketIntro: string;
+  browseProducts: string;
+  qtyLabel: string;
+  addItemNotes: string;
+  removeItem: string;
+  sendViaWhatsapp: string;
+  clearBasket: string;
+  reviewRfqBasket: string;
+  noProductsFound: string;
   categoryLabels: Record<string, string>;
 };
 
@@ -53,6 +75,28 @@ export const arProductsMessages: ArProductsMessages = {
   reference: 'مرجع',
   finalQuoteNote: 'يتم تأكيد السعر النهائي بعد مراجعة طلب عرض السعر.',
   noResults: 'لا توجد منتجات مطابقة للبحث الحالي.',
+
+  clearFilters: 'مسح الفلاتر',
+  showingOfProducts: 'عرض {shown} من {total} منتج',
+  showingResultsFor: 'عرض {count} نتيجة عن "{query}"',
+  specsLabel: 'المواصفات:',
+  priceRefLabel: 'مرجع السعر',
+  loadMoreProducts: 'عرض المزيد من المنتجات',
+  needHelpScoping: 'تحتاج مساعدة في تحديد نطاق الطلب؟',
+  startScopeFinder: 'ابدأ تحديد النطاق',
+  technicalNotesOptional: 'ملاحظات فنية اختيارية',
+  technicalGuidesHelp: 'استخدم هذه الملاحظات عند الحاجة إلى سياق فني أعمق بعد تجهيز طلب العرض.',
+  viewTechnicalNotes: 'عرض الملاحظات الفنية',
+  close: 'إغلاق',
+  basketIntro: 'جهّز طلب توريد مشروعك، أضف الكميات والملاحظات، ثم أرسله إلى HILTECH. يتم تأكيد السعر النهائي بعد مراجعة الطلب.',
+  browseProducts: 'تصفح المنتجات',
+  qtyLabel: 'الكمية',
+  addItemNotes: 'أضف ملاحظات للعنصر',
+  removeItem: 'حذف العنصر',
+  sendViaWhatsapp: 'إرسال عبر واتساب',
+  clearBasket: 'تفريغ السلة',
+  reviewRfqBasket: 'مراجعة سلة طلب العرض',
+  noProductsFound: 'لا توجد منتجات مطابقة للبحث الحالي.',
   categoryLabels: {
     'Fiber Optic Systems': 'أنظمة الفايبر',
     'Copper / CAT6 Cabling': 'كابلات النحاس / CAT6',
