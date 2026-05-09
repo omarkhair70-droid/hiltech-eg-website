@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { requireAdminSession } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { getQuoteCustomerResponseSummary, getRFQSummaryCounts, isRFQAdminBackendConfigured, listRFQRequests } from '@/lib/server/rfq-admin';
 
 const quotationClass=(s:string)=>({draft:'bg-amber-100 text-amber-700',ready:'bg-emerald-100 text-emerald-700'}[s]||'bg-slate-100 text-slate-700');
@@ -22,7 +22,7 @@ function statusClass(status: string) {
 }
 
 export default async function AdminRFQPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
-  await requireAdminSession();
+  await requirePermission('rfq:view');
   const query = await searchParams;
 
   if (!isRFQAdminBackendConfigured()) {

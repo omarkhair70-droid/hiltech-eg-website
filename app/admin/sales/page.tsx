@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { requireAdminSession } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { getAdminSalesDashboardData, isAdminSalesDashboardBackendConfigured, parseSalesRange } from '@/lib/server/admin-sales-dashboard';
 import AdminShell from '@/components/admin/AdminShell';
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: 'Sales Dashboard', robots: { index: f
 const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EGP', maximumFractionDigits: 2 });
 
 export default async function AdminSalesDashboardPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
-  await requireAdminSession();
+  await requirePermission('reports:view');
   const query = await searchParams;
   const range = parseSalesRange(query.range);
 

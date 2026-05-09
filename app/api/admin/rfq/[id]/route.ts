@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { isAdminAuthenticated } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { getRFQRequest, RFQ_SALES_PRIORITIES, RFQ_STATUSES, updateRFQRequestWorkflow } from '@/lib/server/rfq-admin';
 
 export async function GET(_: Request, { params }: { params: Promise<{ id: string }> }) {
-  if (!(await isAdminAuthenticated())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  try { await requirePermission('rfq:view'); } catch { return NextResponse.json({ error: 'Unauthorized' }, { status: 401 }); }
   const { id } = await params;
   const data = await getRFQRequest(id);
   if (!data) return NextResponse.json({ error: 'Not found' }, { status: 404 });
@@ -11,7 +11,7 @@ export async function GET(_: Request, { params }: { params: Promise<{ id: string
 }
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  if (!(await isAdminAuthenticated())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  try { await requirePermission('rfq:update'); } catch { return NextResponse.json({ error: 'Unauthorized' }, { status: 401 }); }
   const { id } = await params;
   const body = await request.json();
   const status = String(body?.status || '');

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdminShell from '@/components/admin/AdminShell';
-import { requireAdminSession } from '@/lib/server/admin-auth';
+import { requirePermission } from '@/lib/server/admin-session';
 import { getAdminInsightsData } from '@/lib/server/admin-insights';
 
 export const dynamic = 'force-dynamic';
@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: 'HILTECH Insights', robots: { index: 
 const priorityClass = { high: 'bg-red-100 text-red-800', medium: 'bg-amber-100 text-amber-800', low: 'bg-slate-100 text-slate-700' };
 
 export default async function AdminInsightsPage() {
-  await requireAdminSession();
+  await requirePermission('reports:view');
   const { insights, isUnavailable } = await getAdminInsightsData();
   const high = insights.filter((x) => x.priority === 'high').length;
   const medium = insights.filter((x) => x.priority === 'medium').length;

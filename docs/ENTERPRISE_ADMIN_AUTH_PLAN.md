@@ -469,3 +469,8 @@ Example production rollback steps:
 - EAA2 foundation implementation is now added in code/docs as a non-breaking legacy-first step.
 - Reference implementation docs: `docs/ENTERPRISE_ADMIN_AUTH.md`.
 - Full permissions enforcement and critical audit instrumentation remain scheduled for EAA3.
+
+## EAA3 Status
+
+- ✅ Enforcement and audit phase completed.
+- See implementation notes in `docs/ENTERPRISE_ADMIN_AUTH.md` (EAA3 section).

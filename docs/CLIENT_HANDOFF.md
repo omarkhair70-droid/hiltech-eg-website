@@ -890,3 +890,16 @@ Visual assets used in Phase 28B:
 - No admin audit UI yet.
 - No RFQ/Product/Tracking public behavior changes.
 
+
+## EAA3 — Enterprise Admin Permissions & Audit Enforcement
+
+- Centralized admin permission enforcement added.
+- Critical admin actions are now audit logged (best-effort).
+- RFQ/quote/product/report admin actions are permission-protected.
+- Admin no-store/cache hardening reviewed.
+- Legacy shared-password fallback preserved.
+- No admin users UI yet (EAA4).
+- No audit UI yet (EAA4).
+- No MFA yet (EAA4).
+- No public RFQ/tracking/product behavior changes.
+- No schema changes introduced in this phase.

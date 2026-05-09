@@ -93,3 +93,13 @@ MFA is **not** implemented in EAA2. MFA will be evaluated in EAA4 / Phase 2B.
 - Legacy login remains functional.
 - Migration adds only enterprise admin auth tables.
 - No RFQ/product/tracking public behavior changes.
+
+## EAA3 — Enterprise Admin Permissions & Audit Enforcement
+
+- Centralized permission enforcement is now applied via `requireAdmin`/`requirePermission` checks across admin pages and sensitive admin mutations.
+- Critical admin actions now write best-effort audit events (auth, RFQ workflow, quote visibility/update, product updates/import/export, report export).
+- Admin no-store/dynamic behavior was reviewed and preserved for sensitive admin surfaces.
+- Legacy shared-password mode remains the default fallback (`ADMIN_AUTH_MODE` unchanged), so current production admin remains functional.
+- Supabase mode is still not fully activated end-to-end in this phase.
+- Admin users management UI and audit log UI remain deferred to EAA4.
+- MFA remains deferred to EAA4.
