@@ -99,7 +99,7 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
                 <p className="rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-slate-300">Confirm availability before quotation</p>
               </div>
 
-              <ProductDetailActions product={product} intelligenceHref={intelligenceSlug ? `/products-partners/intelligence/${intelligenceSlug}` : undefined} labels={{ addToRFQ: 'Add to RFQ', technicalNotes: 'Technical notes' }} />
+              <ProductDetailActions product={product} intelligenceHref={intelligenceSlug ? `/products-partners/intelligence/${intelligenceSlug}` : undefined} labels={{ addToRFQ: 'Add to RFQ', technicalNotes: 'Technical notes', backToProducts: 'Back to Products', addedToRFQ: 'Added to RFQ' }} />
             </div>
           </div>
         </section>
