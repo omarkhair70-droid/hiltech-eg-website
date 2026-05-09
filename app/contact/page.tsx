@@ -1,9 +1,37 @@
-import Image from 'next/image';
 import type { Metadata } from 'next';
-import { quoteOptions, site } from '@/content/site';
-import { BadgePill, CTAButton, NoticeBox, PremiumCard, SectionShell } from '@/components/ui/primitives';
-import RFQSummary from './RFQSummary';
+import { CTAButton, PremiumCard, SectionShell } from '@/components/ui/primitives';
+import { site } from '@/content/site';
 
-export const metadata: Metadata = { title: 'Contact HILTECH | RFQ for Infrastructure Projects', description: 'Request quotations for structured cabling, fiber optics, data room infrastructure, CCTV connectivity, testing, and project supply in Egypt.', alternates: { canonical: `${site.siteUrl}/contact` }, openGraph: { title: 'Contact HILTECH | Project RFQ in Egypt', description: 'RFQ-focused contact flow for network infrastructure, fiber optics, data room systems, CCTV connectivity, and project supply in Egypt.', url: `${site.siteUrl}/contact`, images: [site.ogImage] }, twitter: { card: 'summary_large_image', images: [site.ogImage] } };
+export const metadata: Metadata = { title: 'Contact HILTECH | RFQ for Infrastructure Projects', description: 'Request quotations for structured cabling, fiber optics, data room infrastructure, CCTV connectivity, testing, and project supply in Egypt.', alternates: { canonical: `${site.siteUrl}/contact` } };
 
-export default function Page() { return <main><SectionShell><div className="grid gap-6 md:gap-8 md:grid-cols-2"><div><div className="mb-4 flex min-h-[52px] items-center gap-2.5 rounded-xl border border-slate-200/80 bg-navy-900 px-3.5 py-2 text-white shadow-sm"><Image src="/logo-dark.png" alt="HILTECH" width={80} height={26} className="h-5.5 w-auto" /><span className="text-xs font-medium tracking-wide text-slate-200">RFQ Coordination Desk</span></div><BadgePill tone="orange">Enterprise RFQ Intake</BadgePill><h1 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Contact HILTECH</h1><p className="mt-3 text-slate-700">For project quotations, please use our RFQ flow so your request is structured, tracked, and routed to the right team.</p><p className="mt-2 text-sm text-slate-700" dir="rtl">لطلبات التسعير، المسار الأفضل هو نموذج RFQ لضمان سرعة المتابعة ودقة النطاق.</p><div className="mt-3"><NoticeBox tone="highlight"><div>Primary quote path: Start RFQ. Use WhatsApp for urgent coordination and faster handoff.</div><div className="mt-1" dir="rtl">المسار المعتمد للتسعير: ابدأ RFQ، وواتساب للحالات العاجلة.</div></NoticeBox></div><div className="mt-4 flex flex-wrap gap-2"><CTAButton href="/rfq">Start RFQ</CTAButton><CTAButton href={site.contact.whatsappGeneralLink} variant="secondary">WhatsApp HILTECH</CTAButton></div><ul className="mt-5 space-y-1.5 text-sm"><li>Email: <a className="text-navy-900 underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li><li>Phone: <a className="text-navy-900 underline" href={`tel:${site.contact.phone}`}>{site.contact.phone}</a></li><li>WhatsApp: <a className="text-navy-900 underline" href={site.contact.whatsappGeneralLink}>{site.contact.whatsappIntl} / {site.contact.whatsappLocal}</a></li><li>Address: {site.contact.addressEn}</li></ul><p className="mt-4 text-sm text-slate-700">Already submitted a request? <a className="font-semibold text-navy-900 underline" href="/track">Track RFQ</a>.</p><p className="mt-4 text-sm text-slate-700">Need checklist help before submission? <a className="font-semibold text-navy-900 underline" href="/resources/rfq-guide">Open RFQ Preparation Guide</a>.</p></div><div><RFQSummary /><PremiumCard className="mt-4"><p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Secondary contact</p><h2 className="mt-2 text-lg font-bold text-slate-900">General inquiries (non-RFQ)</h2><p className="mt-2 text-sm text-slate-700">Use this email template only for non-quotation questions such as profile requests, partnership introductions, or documentation follow-up.</p><form className="mt-4 space-y-3.5" action={`mailto:${site.contact.email}`} method="post" encType="text/plain"><label className="block text-sm font-medium">Full Name *<input name="fullName" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2.5" placeholder="Enter full name" required /></label><label className="block text-sm font-medium">Company Name<input name="company" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2.5" placeholder="Enter company name" /></label><div className="grid gap-3 sm:grid-cols-2"><label className="block text-sm font-medium">Phone Number<input name="phone" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2.5" placeholder="Enter phone number" /></label><label className="block text-sm font-medium">Email Address *<input name="email" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2.5" type="email" placeholder="Enter email" required /></label></div><label className="block text-sm font-medium">Topic<select name="service" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2.5"><option>General inquiry</option>{quoteOptions.map((s) => <option key={s}>{s}</option>)}</select></label><label className="block text-sm font-medium">Message<textarea name="details" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2.5" placeholder="Write your non-RFQ inquiry." rows={4} /></label><button className="inline-flex justify-center rounded-md border border-slate-300 bg-white px-5 py-2.5 font-semibold text-slate-700 hover:bg-slate-50" type="submit">Send inquiry email</button></form></PremiumCard></div></div></SectionShell></main>; }
+export default function Page() {
+  return (
+    <main>
+      <SectionShell>
+        <h1 className="text-3xl font-bold sm:text-4xl">Contact HILTECH</h1>
+        <p className="mt-3 text-slate-700">Request Project Quote is the primary path for project scope, product requirements, and quotation follow-up.</p>
+        <div className="mt-4"><CTAButton href="/rfq">Request Project Quote</CTAButton></div>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <PremiumCard className="bg-white p-4">
+            <h2 className="text-xl font-bold text-slate-900">Contact channels</h2>
+            <ul className="mt-3 space-y-2 text-sm text-slate-700">
+              <li><span className="font-semibold">WhatsApp / RFQ:</span> <a className="underline" href={site.contact.whatsappGeneralLink}>{site.contact.whatsappLocal}</a></li>
+              <li><span className="font-semibold">Call:</span> <a className="underline" href={`tel:${site.contact.phone}`}>{site.contact.phone}</a></li>
+              <li><span className="font-semibold">Email:</span> <a className="underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
+              <li><span className="font-semibold">Location:</span> Cairo, Egypt</li>
+            </ul>
+          </PremiumCard>
+          <PremiumCard className="bg-slate-50 p-4">
+            <h2 className="text-xl font-bold text-slate-900">What to prepare before contacting</h2>
+            <ul className="mt-3 space-y-2 text-sm text-slate-700">
+              <li>• Site type (office, factory, data room, or commercial site).</li>
+              <li>• Required scope (fiber, structured cabling, racks, CCTV infrastructure, testing).</li>
+              <li>• Quantity estimates or product references if available.</li>
+              <li>• Target timeline and contact person details.</li>
+            </ul>
+          </PremiumCard>
+        </div>
+      </SectionShell>
+    </main>
+  );
+}

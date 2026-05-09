@@ -767,3 +767,12 @@ Visual assets used in Phase 28B:
 - RFQ submission/tracking/admin verification steps documented for launch QA.
 - Rollback guidance and common failure-case troubleshooting added.
 - This phase is documentation-only; no runtime/code behavior changes.
+
+## G1 — Global Public Website Polish
+- Homepage structure refined to: Hero, Trust Strip, What HILTECH Does, Core Network Infrastructure Services, Field Work, RFQ Process, Product Categories, Product References, Contact Confidence, Final CTA.
+- Hero and trust strip sharpened for 5-second clarity on service scope, audience, and RFQ action.
+- Field Work and Product References wording clarified to avoid unverified partnership claims.
+- Public copy simplified across Home, Company, Services, Work, and Contact pages with practical wording.
+- Company, Work, and Contact pages polished for clearer contact paths and project messaging.
+- Visual system and mobile density reviewed to keep cards/images compact and avoid oversized sections.
+- No backend/admin/RFQ schema/product data/import-export changes in this phase.

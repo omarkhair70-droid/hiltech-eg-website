@@ -53,7 +53,7 @@ export default function Page() {
   return (
     <main className="section">
       <div className="container">
-        <h1 className="text-3xl font-bold leading-tight sm:text-4xl">Project-Ready Infrastructure Services</h1>
+        <h1 className="text-3xl font-bold leading-tight sm:text-4xl">Core Network Infrastructure Services</h1>
         <p className="mt-3 text-slate-700">HILTECH supports routing, racks, fiber, copper, and testing workflows across planning, execution readiness, and handover support.</p>
       </div>
 
@@ -62,7 +62,7 @@ export default function Page() {
       <section className="section pt-0">
         <div className="container">
           <div className="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-            <h2 className="text-2xl font-bold text-slate-900">Field-proven infrastructure work</h2>
+            <h2 className="text-2xl font-bold text-slate-900">Field Work</h2>
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               {proofAreas.map((item) => (
                 <article key={item.title} className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
@@ -103,10 +103,10 @@ export default function Page() {
       <section className="section pt-0">
         <div className="container">
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
-            <h2 className="text-2xl font-bold text-slate-900">Field proof and references</h2>
+            <h2 className="text-2xl font-bold text-slate-900">Field work and product references</h2>
             <p className="mt-2 text-sm text-slate-700">View selected project visuals and reference materials in our dedicated public proof page.</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Link href="/work" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">View Field Work & References</Link>
+              <Link href="/work" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">View Field Work</Link>
               <Link href="/resources/company-profile" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Company Profile Content</Link>
               <Link href="/resources" className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy-900 hover:bg-slate-100">Resources Hub</Link>
             </div>
@@ -117,7 +117,7 @@ export default function Page() {
       <section className="section pt-0">
         <div className="container">
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
-            <h2 className="text-2xl font-bold text-slate-900">Map services to solution pathways</h2>
+            <h2 className="text-2xl font-bold text-slate-900">What HILTECH Delivers</h2>
             <p className="mt-2 text-sm text-slate-700">Move from service scope to business-outcome solution pages for planning and RFQ readiness.</p>
             <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {[
