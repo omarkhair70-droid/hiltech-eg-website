@@ -1,5 +1,10 @@
 # HILTECH Client Handoff
 
+## Company Profile PDF Update (May 2026)
+- Company Profile PDF was added at `/hiltech-company-profile.pdf` and linked from the Company page (`/company`).
+- No admin/auth/Supabase/schema/RFQ/product data changes were made in this update.
+- Remaining asset follow-up is real approved project photos only if not yet supplied.
+
 ## Website pages
 
 - Home (`/`)
