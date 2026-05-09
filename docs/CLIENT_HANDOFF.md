@@ -945,3 +945,12 @@ Visual assets used in Phase 28B:
 - Admin remains English and untouched.
 - RFQ/Tracking full Arabic UI deferred to BIL2/BIL3.
 - SEO/hreflang/sitemap full pass deferred to BIL4.
+
+## BIL2 — Arabic Products + RFQ UI
+- `/ar/products-partners` now uses the real product catalog with Arabic UI labels.
+- `/ar/rfq` now uses shared RFQ logic with Arabic UI labels.
+- English product/RFQ routes remain unchanged.
+- RFQ basket remains shared across languages.
+- Product names/model names remain original where appropriate.
+- Arabic product detail pages are deferred (Arabic listing links still route safely).
+- No Admin/Supabase/Tracking/backend/schema changes.

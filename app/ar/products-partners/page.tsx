@@ -1,11 +1,29 @@
-import Link from 'next/link';
+import type { Metadata } from 'next';
+import { arProductsMessages } from '@/content/ar/products';
+import { site } from '@/content/site';
+import { NoticeBox, SectionHeader, SectionShell } from '@/components/ui/primitives';
+import { getPublicProducts } from '@/lib/server/products-public';
+import ProductsClient from '@/app/products-partners/ProductsClient';
 
-export default function Page() {
+export const metadata: Metadata = {
+  title: 'منتجات وحلول البنية التحتية | HILTECH',
+  description: 'منتجات ومراجع للشبكات والفايبر والراك وتجهيزات البنية التحتية، مع إمكانية إضافتها إلى طلب عرض سعر منظم.',
+  alternates: { canonical: `${site.siteUrl}/ar/products-partners` },
+};
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+export default async function ArabicProductsPartnersPage() {
+  const { products } = await getPublicProducts();
+
   return (
-    <main className="container section">
-      <h1 className="text-3xl font-bold text-navy-900">products-partners (AR)</h1>
-      <p className="public-copy mt-3">هذه صفحة انتقالية ضمن المرحلة الأولى (BIL1) لتوفير تغطية مسارات عربية بدون كسر التدفق الحالي.</p>
-      <div className="mt-5"><Link href="/products-partners" className="btn-secondary">فتح النسخة الإنجليزية الحالية</Link></div>
+    <main className="section" dir="rtl">
+      <SectionShell>
+        <SectionHeader title={arProductsMessages.pageTitle} description={arProductsMessages.pageIntro} />
+        <NoticeBox>{arProductsMessages.confirmAvailability}</NoticeBox>
+        <ProductsClient initialProducts={products} locale="ar" rfqHref="/ar/rfq" productsHref="/ar/products-partners" messages={arProductsMessages} />
+      </SectionShell>
     </main>
   );
 }

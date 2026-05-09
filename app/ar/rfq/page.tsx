@@ -1,11 +1,20 @@
-import Link from 'next/link';
+import type { Metadata } from 'next';
+import { arRFQMessages } from '@/content/ar/rfq';
+import { site } from '@/content/site';
+import RFQReviewClient from '@/app/rfq/rfq-review-client';
 
-export default function Page() {
+export const metadata: Metadata = {
+  title: 'طلب عرض سعر | HILTECH',
+  description: 'أرسل طلب عرض سعر منظم لمنتجات أو أعمال الشبكات والفايبر والراك، وتابع حالة الطلب لاحقًا برقم المرجع.',
+  alternates: { canonical: `${site.siteUrl}/ar/rfq` },
+};
+
+export default function ArabicRFQPage() {
   return (
-    <main className="container section">
-      <h1 className="text-3xl font-bold text-navy-900">rfq (AR)</h1>
-      <p className="public-copy mt-3">هذه صفحة انتقالية ضمن المرحلة الأولى (BIL1) لتوفير تغطية مسارات عربية بدون كسر التدفق الحالي.</p>
-      <div className="mt-5"><Link href="/rfq" className="btn-secondary">فتح النسخة الإنجليزية الحالية</Link></div>
+    <main className="section" dir="rtl">
+      <div className="container">
+        <RFQReviewClient locale="ar" messages={arRFQMessages} productsHref="/ar/products-partners" trackHrefBase="/ar/track" contactHref="/ar/contact" />
+      </div>
     </main>
   );
 }
