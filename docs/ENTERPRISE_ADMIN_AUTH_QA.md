@@ -62,3 +62,13 @@
 - [ ] Test each role in preview.
 - [ ] Test rollback to `ADMIN_AUTH_MODE=legacy`.
 - [ ] Enable production only after preview success.
+
+## EAA5 Supabase Login Checklist
+
+- [ ] Valid owner login succeeds.
+- [ ] Wrong password is rejected with safe error.
+- [ ] Inactive admin profile is blocked.
+- [ ] Auth user without `admin_profiles` row is blocked.
+- [ ] Logout clears session.
+- [ ] Role permissions work after login.
+- [ ] Rollback to `ADMIN_AUTH_MODE=legacy` is tested.

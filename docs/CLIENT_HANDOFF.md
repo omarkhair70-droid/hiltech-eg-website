@@ -915,3 +915,11 @@ Visual assets used in Phase 28B:
 - `ADMIN_AUTH_MODE` remains `legacy` by default unless manually changed.
 - No public RFQ/tracking/product behavior changes.
 - Production Supabase auth activation requires first-owner setup and manual verification.
+
+## EAA5 — Supabase Admin Login Activation
+
+- Supabase admin login mode is available behind `ADMIN_AUTH_MODE=supabase`.
+- Legacy fallback is preserved for rollback and staged transition.
+- Production activation remains manual after preview verification.
+- No public RFQ/tracking/product behavior changes.
+- No fake MFA is included in this phase.

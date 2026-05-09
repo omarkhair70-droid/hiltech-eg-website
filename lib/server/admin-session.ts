@@ -2,6 +2,7 @@ import 'server-only';
 
 import { isAdminAuthenticated } from '@/lib/server/admin-auth';
 import { ADMIN_PERMISSIONS, canAdmin, type AdminPermission, type AdminRole, ROLE_PERMISSIONS } from '@/lib/server/admin-permissions';
+import { getSupabaseAdminCookies, getSupabaseUser, loadAdminProfile } from '@/lib/server/supabase-auth';
 
 export type AdminAuthMode = 'legacy' | 'supabase';
 
@@ -36,7 +37,25 @@ async function getCurrentLegacyAdmin(): Promise<CurrentAdmin | null> {
 }
 
 async function getCurrentSupabaseAdmin(): Promise<CurrentAdmin | null> {
-  return null;
+  try {
+    const { accessToken } = await getSupabaseAdminCookies();
+    if (!accessToken) return null;
+    const user = await getSupabaseUser(accessToken);
+    const profile = await loadAdminProfile(user.id);
+
+    return {
+      id: user.id,
+      email: profile.email || user.email || null,
+      fullName: profile.full_name,
+      role: profile.role,
+      permissions: ROLE_PERMISSIONS[profile.role],
+      isActive: profile.is_active,
+      authMode: 'supabase',
+      isLegacy: false,
+    };
+  } catch {
+    return null;
+  }
 }
 
 export async function getCurrentAdmin(): Promise<CurrentAdmin | null> {
@@ -47,7 +66,6 @@ export async function getCurrentAdmin(): Promise<CurrentAdmin | null> {
 export async function requireAdmin(): Promise<CurrentAdmin> {
   const admin = await getCurrentAdmin();
   if (!admin) {
-    if (getAdminAuthMode() === 'supabase') throw new Error('Unauthorized: Supabase admin mode is not fully wired in this foundation release.');
     throw new Error('Unauthorized');
   }
   return admin;
