@@ -101,3 +101,7 @@ body {
   .section { @apply py-10; }
   .public-proof-image { min-height: 11rem; }
 }
+
+[dir='rtl'] {
+  text-align: right;
+}
