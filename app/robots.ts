@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { site } from '@/content/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin', '/admin/', '/api', '/api/'],
     },
-    sitemap: 'https://hiltech-eg.com/sitemap.xml',
+    sitemap: `${site.siteUrl}/sitemap.xml`,
   };
 }

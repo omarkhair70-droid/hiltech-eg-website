@@ -12,7 +12,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const onePager = onePagers.find((item) => item.slug === params.slug);
   if (!onePager) return {};
-  const url = `https://hiltech-eg.com/resources/one-pagers/${onePager.slug}`;
+  const url = `${site.siteUrl}/resources/one-pagers/${onePager.slug}`;
   return {
     title: `${onePager.title} | HILTECH Resources`,
     description: onePager.shortIntro,

@@ -1,3 +1,7 @@
+const defaultSiteUrl = 'https://hiltech-eg-website.vercel.app';
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const normalizedSiteUrl = configuredSiteUrl ? configuredSiteUrl.replace(/\/$/, '') : defaultSiteUrl;
+
 const whatsappBase = 'https://wa.me/201555357807';
 
 const whatsappMessages = {
@@ -13,7 +17,7 @@ export const site = {
   defaultTitle: 'HILTECH | Network Infrastructure, Fiber Optics & Project Supply',
   defaultDescription:
     'HILTECH delivers structured cabling, fiber optic systems, data room infrastructure, CCTV connectivity, network testing, and project-based supply for enterprise environments across Egypt.',
-  siteUrl: 'https://hiltech-eg.com',
+  siteUrl: normalizedSiteUrl,
   ogImage: '/og-image.png',
   contact: {
     email: 'info@hiltech-eg.com',
