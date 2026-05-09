@@ -983,3 +983,12 @@ Visual assets used in Phase 28B:
 - Arabic product detail pages and long technical notes may remain deferred if not implemented.
 - Company Profile PDF remains available at `/hiltech-company-profile.pdf`.
 - No `/en` route was introduced.
+
+## BIL5 — Arabic Experience Final Polish
+- Arabic homepage upgraded with stronger trust/product/work/contact sections.
+- Arabic footer localized.
+- Arabic site search localized.
+- Final RTL/mobile QA pass completed.
+- English routes unchanged.
+- Admin/RFQ API/Supabase/schema unchanged.
+- Arabic product detail pages/long technical notes remain optional future polish if not implemented.

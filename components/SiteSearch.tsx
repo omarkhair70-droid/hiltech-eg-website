@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { popularSearchShortcuts, siteSearchIndex, type SearchEntry, type SearchType } from '@/lib/site-search';
 
 interface SiteSearchProps {
@@ -19,6 +20,8 @@ const typeStyles: Record<SearchType, string> = {
 };
 
 export default function SiteSearch({ onNavigate, className }: SiteSearchProps) {
+  const pathname = usePathname();
+  const isArabic = pathname?.startsWith('/ar');
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -69,7 +72,7 @@ export default function SiteSearch({ onNavigate, className }: SiteSearchProps) {
         aria-expanded={open}
         aria-haspopup="dialog"
       >
-        Search
+        {isArabic ? 'بحث' : 'Search'}
       </button>
       {open ? (
         <div className="fixed inset-0 z-[60] bg-slate-900/35 p-3 sm:p-6" role="dialog" aria-modal="true">
@@ -80,27 +83,27 @@ export default function SiteSearch({ onNavigate, className }: SiteSearchProps) {
                 type="text"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search products, solutions, RFQ, resources..."
+                placeholder={isArabic ? 'ابحث عن المنتجات أو الحلول أو طلب عرض السعر...' : 'Search products, solutions, RFQ, resources...'}
                 className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500/60 placeholder:text-slate-400 focus:ring"
               />
             </div>
             <div className="max-h-[70vh] overflow-y-auto p-3 sm:p-4">
-              {grouped.length === 0 ? <p className="text-sm text-slate-500">No matching results found.</p> : null}
+              {grouped.length === 0 ? <p className="text-sm text-slate-500">{isArabic ? 'لا توجد نتائج مطابقة.' : 'No matching results found.'}</p> : null}
               <div className="space-y-5">
                 {grouped.map((group) => (
                   <section key={group.type}>
-                    <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{group.type}</h3>
+                    <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{getTypeLabel(group.type, Boolean(isArabic))}</h3>
                     <div className="space-y-2">
                       {group.items.map((item) => (
-                        <Link key={`${group.type}-${item.title}-${item.href}`} href={item.href} onClick={closeSearch} className="block rounded-lg border border-slate-200 bg-white p-3 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-orange-500/40">
+                        <Link key={`${group.type}-${item.title}-${item.href}`} href={getLocalizedHref(item.href, Boolean(isArabic))} onClick={closeSearch} className="block rounded-lg border border-slate-200 bg-white p-3 transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-orange-500/40">
                           <div className="flex flex-wrap items-center gap-2">
                             <p className="text-sm font-semibold text-slate-900">{item.title}</p>
                             <span className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${typeStyles[item.type]}`}>{item.type}</span>
                           </div>
                           <p className="mt-1 text-xs text-slate-600">{item.description}</p>
                           <div className="mt-2 flex items-center justify-between gap-2"> 
-                            <p className="truncate text-xs font-medium text-slate-500">{item.href}</p>
-                            {item.type === 'Products' ? <span className="text-[11px] font-semibold text-orange-700">Open in Products</span> : null}
+                            <p className="truncate text-xs font-medium text-slate-500">{getLocalizedHref(item.href, Boolean(isArabic))}</p>
+                            {item.type === 'Products' ? <span className="text-[11px] font-semibold text-orange-700">فتح ضمن المنتجات</span> : null}
                           </div>
                         </Link>
                       ))}
@@ -129,4 +132,38 @@ function scoreEntry(entry: SearchEntry, normalizedQuery: string): number {
   if (description.includes(normalizedQuery)) return 20;
   if (entry.type.toLowerCase().includes(normalizedQuery)) return 10;
   return 0;
+}
+
+
+const arabicTypeLabels: Record<SearchType, string> = {
+  Products: 'المنتجات',
+  Solutions: 'الحلول',
+  Services: 'الخدمات',
+  Resources: 'الموارد',
+  Guides: 'الأدلة',
+  Pages: 'الصفحات',
+};
+
+const arabicRouteMap: Record<string, string> = {
+  '/products-partners': '/ar/products-partners',
+  '/rfq': '/ar/rfq',
+  '/track': '/ar/track',
+  '/company': '/ar/company',
+  '/contact': '/ar/contact',
+  '/work': '/ar/work',
+  '/services': '/ar/services',
+  '/resources': '/ar/resources',
+  '/resources/rfq-guide': '/ar/resources/rfq-guide',
+};
+
+function getTypeLabel(type: SearchType, isArabic: boolean): string {
+  return isArabic ? arabicTypeLabels[type] : type;
+}
+
+function getLocalizedHref(href: string, isArabic: boolean): string {
+  if (!isArabic || href.startsWith('/ar/') || href === '/ar') return href;
+  const [path, query = ''] = href.split('?');
+  const localizedBase = arabicRouteMap[path];
+  if (!localizedBase) return href;
+  return query ? `${localizedBase}?${query}` : localizedBase;
 }
