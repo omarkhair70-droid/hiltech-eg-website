@@ -100,15 +100,15 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
   return (
     <main>
       <SectionShell>
-        <nav className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-600">
-          <Link className="hover:text-slate-900" href="/solutions">
+        <nav className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-300">
+          <Link className="hover:text-white" href="/solutions">
             Solutions
           </Link>
           <span>/</span>
-          <span className="font-medium text-slate-900">{solution.shortTitle}</span>
+          <span className="font-medium text-white">{solution.shortTitle}</span>
         </nav>
 
-        <section className="rounded-2xl border border-navy-900/20 bg-gradient-to-br from-navy-900 to-slate-900 p-6 text-white md:p-8">
+        <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#0b1f3a] via-[#0d2444] to-[#101a2d] p-6 text-white md:p-8">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-300">{solution.eyebrow}</p>
           <h1 className="mt-2 text-3xl font-bold md:text-4xl">{solution.title}</h1>
           <p className="mt-3 max-w-4xl text-sm text-slate-200 md:text-base">{solution.intro}</p>
@@ -123,58 +123,58 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
           </Link>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-          <h2 className="text-xl font-bold text-slate-900">Scope snapshot</h2>
+        <section className="mt-8 rounded-2xl border border-white/10 bg-slate-900/70 p-5 md:p-6">
+          <h2 className="text-xl font-bold text-white">Scope snapshot</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {scopeSnapshot.map((item) => (
-              <div key={item.title} className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+              <div key={item.title} className="rounded-lg border border-white/10 bg-slate-950/70 px-4 py-3">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{item.title}</p>
-                <p className="mt-1 text-sm text-slate-700">{item.value}</p>
+                <p className="mt-1 text-sm text-slate-300">{item.value}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section className="mt-8">
-          <h2 className="text-xl font-bold text-slate-900">Approach flow</h2>
+          <h2 className="text-xl font-bold text-white">Approach flow</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-5">
             {approachFlow.map((step, i) => (
-              <div key={step} className="rounded-lg border border-slate-200 bg-white px-4 py-3">
+              <div key={step} className="rounded-lg border border-white/10 bg-slate-900/70 px-4 py-3">
                 <p className="text-xs font-semibold tracking-wide text-orange-600">{String(i + 1).padStart(2, '0')}</p>
-                <p className="mt-1 text-sm text-slate-700">{step}</p>
+                <p className="mt-1 text-sm text-slate-300">{step}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-          <h2 className="text-xl font-bold text-slate-900">Where this helps</h2>
+        <section className="mt-8 rounded-2xl border border-white/10 bg-slate-900/70 p-5 md:p-6">
+          <h2 className="text-xl font-bold text-white">Where this helps</h2>
           <div className="mt-4 grid gap-5 md:grid-cols-2">
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">The challenge</h3>
-              <p className="mt-2 text-sm text-slate-700">{solution.problemStatement}</p>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-300">The challenge</h3>
+              <p className="mt-2 text-sm text-slate-300">{solution.problemStatement}</p>
             </div>
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">HILTECH support</h3>
-              <p className="mt-2 text-sm text-slate-700">{solution.solutionSummary}</p>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-300">HILTECH support</h3>
+              <p className="mt-2 text-sm text-slate-300">{solution.solutionSummary}</p>
             </div>
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-          <h2 className="text-xl font-bold text-slate-900">Delivery scope and components</h2>
+        <section className="mt-8 rounded-2xl border border-white/10 bg-slate-900/70 p-5 md:p-6">
+          <h2 className="text-xl font-bold text-white">Delivery scope and components</h2>
           <div className="mt-4 grid gap-6 lg:grid-cols-2">
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Delivery scope</h3>
-              <ul className="mt-3 space-y-2 text-sm text-slate-700">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-300">Delivery scope</h3>
+              <ul className="mt-3 space-y-2 text-sm text-slate-300">
                 {solution.deliveryScope.map((item) => (
                   <li key={item}>• {item}</li>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-600">Typical components</h3>
-              <ul className="mt-3 space-y-2 text-sm text-slate-700">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-300">Typical components</h3>
+              <ul className="mt-3 space-y-2 text-sm text-slate-300">
                 {solution.typicalComponents.map((item) => (
                   <li key={item}>• {item}</li>
                 ))}
@@ -184,17 +184,17 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
         </section>
 
         <section className="mt-8">
-          <h2 className="text-xl font-bold text-slate-900">Expected outcomes</h2>
-          <ul className="mt-4 space-y-2 rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-700 md:p-6">
+          <h2 className="text-xl font-bold text-white">Expected outcomes</h2>
+          <ul className="mt-4 space-y-2 rounded-2xl border border-white/10 bg-slate-900/70 p-5 text-sm text-slate-300 md:p-6">
             {solution.keyOutcomes.map((item) => (
               <li key={item}>✓ {item}</li>
             ))}
           </ul>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-          <h2 className="text-xl font-bold text-slate-900">Related product context</h2>
-          <p className="mt-2 text-sm text-slate-600">
+        <section className="mt-8 rounded-2xl border border-white/10 bg-slate-900/70 p-5 md:p-6">
+          <h2 className="text-xl font-bold text-white">Related product context</h2>
+          <p className="mt-2 text-sm text-slate-300">
             Browse product categories and intelligence guides that commonly support this solution scope.
           </p>
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -202,7 +202,7 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
               <Link
                 key={slug}
                 href={`/products-partners/intelligence/${slug}`}
-                className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="rounded-lg border border-white/10 px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-950/70"
               >
                 {productIntelligenceBySlug[slug]?.shortTitle ?? slug}
               </Link>
@@ -215,9 +215,9 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-          <h2 className="text-xl font-bold text-slate-900">Before you send the request</h2>
-          <ul className="mt-4 space-y-2 text-sm text-slate-700">
+        <section className="mt-8 rounded-2xl border border-white/10 bg-slate-900/70 p-5 md:p-6">
+          <h2 className="text-xl font-bold text-white">Before you send the request</h2>
+          <ul className="mt-4 space-y-2 text-sm text-slate-300">
             {solution.rfqChecklist.map((item) => (
               <li key={item}>✓ {item}</li>
             ))}
@@ -230,9 +230,9 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
           <p className="mt-4 text-xs text-slate-500">{solution.disclaimer}</p>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
-          <h2 className="text-lg font-bold text-slate-900 md:text-xl">Need field proof before sending scope?</h2>
-          <p className="mt-2 text-sm text-slate-700">
+        <section className="mt-8 rounded-2xl border border-white/10 bg-slate-950/70 p-5 md:p-6">
+          <h2 className="text-lg font-bold text-white md:text-xl">Need field proof before sending scope?</h2>
+          <p className="mt-2 text-sm text-slate-300">
             Review field snapshots across racks, fiber, cabling, and validation workflows.
           </p>
           <div className="mt-4">
@@ -242,14 +242,14 @@ export default function SolutionDetailPage({ params }: { params: Params }) {
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-          <h2 className="text-lg font-bold text-slate-900 md:text-xl">Ready to define this scope?</h2>
-          <p className="mt-2 text-sm text-slate-700">
+        <section className="mt-8 rounded-2xl border border-white/10 bg-slate-900/70 p-5 md:p-6">
+          <h2 className="text-lg font-bold text-white md:text-xl">Ready to define this scope?</h2>
+          <p className="mt-2 text-sm text-slate-300">
             Send your project requirements for quotation and availability review.
           </p>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
             <CTAButton href="/rfq">Send Project Requirements</CTAButton>
-            <Link href="/contact" className="text-sm font-medium text-slate-700 underline-offset-4 hover:underline">
+            <Link href="/contact" className="text-sm font-medium text-slate-300 underline-offset-4 hover:underline">
               Contact HILTECH
             </Link>
             <Link href="/track" className="text-sm text-slate-500 underline-offset-4 hover:underline">

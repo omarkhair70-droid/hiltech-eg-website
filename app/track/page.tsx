@@ -18,5 +18,20 @@ export default async function TrackPage({ searchParams }: TrackPageProps) {
   const params = await searchParams;
   const initialRequestCode = typeof params?.request_code === 'string' ? params.request_code : '';
 
-  return <main className="section"><div className="container max-w-3xl"><div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 p-5"><p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Customer tracking</p><h1 className="mt-2 text-2xl font-bold text-slate-900">Track Your RFQ</h1><p className="mt-2 text-sm text-slate-700">Enter your RFQ reference and the same phone or email used during submission.</p><p className="mt-2 text-sm text-slate-700" dir="rtl">أدخل رقم RFQ ونفس رقم الهاتف أو البريد المستخدم وقت الإرسال.</p></div><TrackClient initialRequestCode={initialRequestCode} /></div></main>;
+  return (
+    <main className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 min-h-screen">
+      <section className="py-16">
+        <div className="container max-w-3xl space-y-8">
+          <div className="rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-8 space-y-4">
+            <p className="text-xs font-bold uppercase tracking-widest text-orange-400">Customer Tracking</p>
+            <h1 className="text-3xl sm:text-4xl font-black text-white">Track Your RFQ</h1>
+            <p className="text-slate-300">Enter your RFQ reference and the same phone or email used during submission.</p>
+            <p className="text-slate-300 text-sm" dir="rtl">أدخل رقم RFQ ونفس رقم الهاتف أو البريد المستخدم وقت الإرسال.</p>
+          </div>
+          <TrackClient initialRequestCode={initialRequestCode} />
+        </div>
+      </section>
+    </main>
+  );
 }
+

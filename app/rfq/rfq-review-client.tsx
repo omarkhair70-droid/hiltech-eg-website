@@ -182,12 +182,12 @@ export default function RFQReviewClient({
 
   return (
     <div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="space-y-6">
-      <header className="public-card rounded-2xl border border-slate-200 bg-white p-5">
-        <h1 className="text-2xl font-bold text-slate-900">{t.pageTitle}</h1>
-        <p className="mt-2 text-sm text-slate-700">{t.pageSubtitle}</p>
+      <header className="public-card rounded-2xl border border-white/15 bg-white/5 p-5">
+        <h1 className="text-2xl font-bold text-white">{t.pageTitle}</h1>
+        <p className="mt-2 text-sm text-slate-200">{t.pageSubtitle}</p>
         <div className="mt-4 grid gap-2 text-sm sm:grid-cols-3">
           {[t.step1, t.step2, t.step3].map((step) => (
-            <div key={step} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-700">
+            <div key={step} className="rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 px-3 py-2 font-medium text-slate-200">
               {step}
             </div>
           ))}
@@ -195,10 +195,10 @@ export default function RFQReviewClient({
       </header>
 
       {submitState.status === 'success' && submitState.requestCode ? (
-        <section className="public-card rounded-2xl border border-slate-200 bg-white p-5">
-          <h2 className="text-xl font-semibold text-slate-900">{t.successTitle}</h2>
-          <p className="mt-2 text-sm text-slate-700">{t.successBody}</p>
-          <p className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-800">
+        <section className="public-card rounded-2xl border border-white/15 bg-white/5 p-5">
+          <h2 className="text-xl font-semibold text-white">{t.successTitle}</h2>
+          <p className="mt-2 text-sm text-slate-200">{t.successBody}</p>
+          <p className="mt-4 rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 p-3 text-sm text-slate-100">
             {t.reference}: <strong dir="ltr" className="font-mono text-base">{submitState.requestCode}</strong>
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -210,26 +210,26 @@ export default function RFQReviewClient({
       ) : (
         <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
           <div className="space-y-6">
-            <section className="public-card rounded-2xl border border-slate-200 bg-white p-5">
-              <h2 className="text-xl font-semibold text-slate-900">{t.itemsCardTitle}</h2>
+            <section className="public-card rounded-2xl border border-white/15 bg-white/5 p-5">
+              <h2 className="text-xl font-semibold text-white">{t.itemsCardTitle}</h2>
               {isBasketEmpty ? (
-                <div className="mt-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-700">
+                <div className="mt-3 rounded-xl border border-dashed border-white/20 bg-gradient-to-br from-white/10 to-white/5 p-4 text-sm text-slate-200">
                   <p>{t.emptyBasket}</p>
                   <Link className="btn-secondary mt-3 inline-flex" href={productsHref}>{t.browseProducts}</Link>
                 </div>
               ) : (
                 <div className="mt-4 space-y-3">
                   {items.map((item) => (
-                    <article key={item.id} className="rounded-xl border border-slate-200 p-4">
-                      <h3 className="font-semibold text-slate-900">{item.name}</h3>
-                      <p className="text-sm text-slate-600">{item.category} • {item.brand}</p>
-                      <p className="mt-2 text-sm text-slate-700">{t.priceReference}: {item.priceNote || t.priceOnRequest}</p>
+                    <article key={item.id} className="rounded-xl border border-white/15 p-4">
+                      <h3 className="font-semibold text-white">{item.name}</h3>
+                      <p className="text-sm text-slate-300">{item.category} • {item.brand}</p>
+                      <p className="mt-2 text-sm text-slate-200">{t.priceReference}: {item.priceNote || t.priceOnRequest}</p>
                       <p className="text-xs text-slate-500">{t.availabilityNote}</p>
                       <div className="mt-3 flex flex-wrap items-center gap-2">
-                        <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 p-1">
-                          <button type="button" className="h-9 w-9 rounded border border-slate-200" onClick={() => updateItem(item.id, { quantity: normalizeRFQQuantity(item.quantity - 1) })}>-</button>
+                        <div className="inline-flex items-center gap-2 rounded-lg border border-white/15 p-1">
+                          <button type="button" className="h-9 w-9 rounded border border-white/15" onClick={() => updateItem(item.id, { quantity: normalizeRFQQuantity(item.quantity - 1) })}>-</button>
                           <span className="min-w-20 text-center text-sm">{t.quantity}: {item.quantity}</span>
-                          <button type="button" className="h-9 w-9 rounded border border-slate-200" onClick={() => updateItem(item.id, { quantity: normalizeRFQQuantity(item.quantity + 1) })}>+</button>
+                          <button type="button" className="h-9 w-9 rounded border border-white/15" onClick={() => updateItem(item.id, { quantity: normalizeRFQQuantity(item.quantity + 1) })}>+</button>
                         </div>
                         <button type="button" className="btn-secondary ms-auto" onClick={() => setItems((prev) => prev.filter((entry) => entry.id !== item.id))}>{t.remove}</button>
                       </div>
@@ -240,58 +240,60 @@ export default function RFQReviewClient({
               {quantityError ? <p className="mt-3 text-sm text-red-600">{quantityError}</p> : null}
             </section>
 
-            <section className="public-card rounded-2xl border border-slate-200 bg-white p-5">
-              <h2 className="text-xl font-semibold text-slate-900">{t.projectDetails}</h2>
-              <p className="mt-2 text-sm text-slate-600">{t.prepareHint}</p>
+
+
+            <section className="public-card rounded-2xl border border-white/15 bg-white/5 p-5">
+              <h2 className="text-xl font-semibold text-white">{t.projectDetails}</h2>
+              <p className="mt-2 text-sm text-slate-300">{t.prepareHint}</p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                <label className="block text-sm text-slate-700">
+                <label className="block text-sm text-slate-200">
                   <span className="mb-1 block font-medium">{t.fullName}</span>
-                  <input ref={fullNameRef} type="text" className="w-full rounded-xl border border-slate-300 px-3 py-2" value={project.fullName || ''} onChange={(e) => setProject((prev) => ({ ...prev, fullName: e.target.value }))} />
+                  <input ref={fullNameRef} type="text" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.fullName || ''} onChange={(e) => setProject((prev) => ({ ...prev, fullName: e.target.value }))} />
                   {errors.fullName ? <span className="mt-1 block text-xs text-red-600">{errors.fullName}</span> : null}
                 </label>
-                <label className="block text-sm text-slate-700">
+                <label className="block text-sm text-slate-200">
                   <span className="mb-1 block font-medium">{t.phoneNumber}</span>
-                  <input ref={phoneRef} type="tel" dir="ltr" className="w-full rounded-xl border border-slate-300 px-3 py-2" value={project.phoneNumber || ''} onChange={(e) => setProject((prev) => ({ ...prev, phoneNumber: e.target.value }))} />
+                  <input ref={phoneRef} type="tel" dir="ltr" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.phoneNumber || ''} onChange={(e) => setProject((prev) => ({ ...prev, phoneNumber: e.target.value }))} />
                   {errors.phoneNumber ? <span className="mt-1 block text-xs text-red-600">{errors.phoneNumber}</span> : null}
                 </label>
-                <label className="block text-sm text-slate-700">
+                <label className="block text-sm text-slate-200">
                   <span className="mb-1 block font-medium">{t.emailAddress}</span>
-                  <input ref={emailRef} type="email" dir="ltr" className="w-full rounded-xl border border-slate-300 px-3 py-2" value={project.emailAddress || ''} onChange={(e) => setProject((prev) => ({ ...prev, emailAddress: e.target.value }))} />
+                  <input ref={emailRef} type="email" dir="ltr" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.emailAddress || ''} onChange={(e) => setProject((prev) => ({ ...prev, emailAddress: e.target.value }))} />
                   {errors.emailAddress ? <span className="mt-1 block text-xs text-red-600">{errors.emailAddress}</span> : null}
                 </label>
-                <label className="block text-sm text-slate-700">
+                <label className="block text-sm text-slate-200">
                   <span className="mb-1 block font-medium">{t.companyName}</span>
-                  <input type="text" className="w-full rounded-xl border border-slate-300 px-3 py-2" value={project.companyName || ''} onChange={(e) => setProject((prev) => ({ ...prev, companyName: e.target.value }))} />
+                  <input type="text" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.companyName || ''} onChange={(e) => setProject((prev) => ({ ...prev, companyName: e.target.value }))} />
                 </label>
-                <label className="block text-sm text-slate-700 sm:col-span-2">
+                <label className="block text-sm text-slate-200 sm:col-span-2">
                   <span className="mb-1 block font-medium">{t.projectLocation}</span>
-                  <input type="text" className="w-full rounded-xl border border-slate-300 px-3 py-2" value={project.projectLocation || ''} onChange={(e) => setProject((prev) => ({ ...prev, projectLocation: e.target.value }))} />
+                  <input type="text" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.projectLocation || ''} onChange={(e) => setProject((prev) => ({ ...prev, projectLocation: e.target.value }))} />
                 </label>
               </div>
-              <label className="mt-4 block text-sm text-slate-700">
+              <label className="mt-4 block text-sm text-slate-200">
                 <span className="mb-1 block font-medium">{t.projectNotes}</span>
-                <textarea className="min-h-28 w-full rounded-xl border border-slate-300 px-3 py-2" value={project.projectNotes || ''} onChange={(e) => setProject((prev) => ({ ...prev, projectNotes: e.target.value }))} />
+                <textarea className="min-h-28 w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.projectNotes || ''} onChange={(e) => setProject((prev) => ({ ...prev, projectNotes: e.target.value }))} />
               </label>
             </section>
 
-            <section className="public-card rounded-2xl border border-slate-200 bg-white p-5">
-              <h2 className="text-xl font-semibold text-slate-900">{t.submitSectionTitle}</h2>
+            <section className="public-card rounded-2xl border border-white/15 bg-white/5 p-5">
+              <h2 className="text-xl font-semibold text-white">{t.submitSectionTitle}</h2>
               {isBasketEmpty ? (
                 <div className="mt-3 space-y-4">
-                  <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4">
-                    <h3 className="text-base font-semibold text-slate-900">{t.emptyStateTitle}</h3>
-                    <p className="mt-1 text-sm text-slate-700">{t.emptyStateBody}</p>
+                  <div className="rounded-xl border border-dashed border-white/20 bg-gradient-to-br from-white/10 to-white/5 p-4">
+                    <h3 className="text-base font-semibold text-white">{t.emptyStateTitle}</h3>
+                    <p className="mt-1 text-sm text-slate-200">{t.emptyStateBody}</p>
                     <Link className="btn-primary mt-4 inline-flex" href={productsHref}>{t.browseProducts}</Link>
                   </div>
-                  <div className="rounded-xl border border-slate-200 bg-white p-4">
-                    <h3 className="text-base font-semibold text-slate-900">{t.projectOnlyTitle}</h3>
-                    <p className="mt-1 text-sm text-slate-700">{t.projectOnlyBody}</p>
+                  <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+                    <h3 className="text-base font-semibold text-white">{t.projectOnlyTitle}</h3>
+                    <p className="mt-1 text-sm text-slate-200">{t.projectOnlyBody}</p>
                     <a className="btn-secondary mt-4 inline-flex" href={getRFQWhatsappLink(items, project)} target="_blank" rel="noopener noreferrer">{t.sendProjectOnly}</a>
                   </div>
                 </div>
               ) : (
                 <>
-                  <p className="mt-2 text-sm text-slate-600">{t.finalQuotationNote}</p>
+                  <p className="mt-2 text-sm text-slate-300">{t.finalQuotationNote}</p>
                   <div className="mt-4 flex flex-col gap-3">
                     <button type="button" className="btn-primary w-full" onClick={submit} disabled={submitState.status === 'submitting'}>
                       {submitState.status === 'submitting' ? t.submitting : t.submitRFQ}
@@ -301,16 +303,16 @@ export default function RFQReviewClient({
                 </>
               )}
               {submitState.status === 'error' ? <p className="mt-3 text-sm text-red-600">{submitState.message}</p> : null}
-              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
+              <div className="mt-4 rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 p-3 text-sm text-slate-200">
                 <span>{t.contactHelper} </span>
                 <a className="font-semibold underline" href={contactHref}>{t.contactHiltech}</a>
               </div>
             </section>
           </div>
 
-          <aside className="public-card h-fit rounded-2xl border border-slate-200 bg-white p-5">
-            <h2 className="text-lg font-semibold text-slate-900">{t.nextTitle}</h2>
-            <ul className="mt-3 list-disc space-y-2 ps-5 text-sm text-slate-700">
+          <aside className="public-card h-fit rounded-2xl border border-white/15 bg-white/5 p-5">
+            <h2 className="text-lg font-semibold text-white">{t.nextTitle}</h2>
+            <ul className="mt-3 list-disc space-y-2 ps-5 text-sm text-slate-200">
               <li>{t.nextPoint1}</li>
               <li>{t.nextPoint2}</li>
               <li>{t.nextPoint3}</li>

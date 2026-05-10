@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function RFQPage() {
   return (
-    <main className="section">
+    <main className="section bg-slate-950">
       <div className="container">
         <RFQReviewClient />
       </div>

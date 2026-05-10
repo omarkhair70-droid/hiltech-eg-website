@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  /* Light theme (legacy) */
   --surface-navy-950: #071526;
   --surface-navy-900: #0f172a;
   --surface-light: #f8fafc;
@@ -19,6 +20,13 @@
   --section-y-mobile: 2.75rem;
   --section-y-desktop: 5rem;
   --container-max: 72rem;
+  
+  /* Dark theme */
+  --dark-bg: #0f172a;
+  --dark-bg-secondary: #1a2847;
+  --dark-border: rgba(255, 255, 255, 0.1);
+  --dark-text: #e2e8f0;
+  --dark-text-secondary: #cbd5e1;
 }
 
 * { box-sizing: border-box; }
@@ -26,8 +34,8 @@
 html, body { overflow-x: clip; }
 
 body {
-  @apply bg-slate-50 antialiased;
-  color: var(--text-strong);
+  @apply bg-slate-950 antialiased text-slate-100;
+  color: var(--dark-text);
 }
 
 .container {
@@ -71,17 +79,20 @@ body {
 .btn-secondary {
   @apply inline-flex items-center justify-center border px-5 py-2.5 font-semibold transition-colors;
   border-radius: var(--radius-button);
-  border-color: var(--border-soft);
-  color: var(--text-strong);
-  background: var(--surface-white);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+  background: color-mix(in srgb, var(--dark-bg) 78%, transparent);
+  backdrop-filter: blur(4px);
 }
-.btn-secondary:hover { @apply bg-slate-100; }
+.btn-secondary:hover { background: color-mix(in srgb, var(--dark-bg-secondary) 72%, transparent); }
 
 .public-card {
-  @apply border bg-white;
-  border-color: var(--border-soft);
+  @apply border;
+  border-color: var(--dark-border);
+  background: linear-gradient(145deg, rgba(15,23,42,0.84), rgba(30,41,59,0.72));
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 18px 36px rgba(2, 6, 23, 0.35);
+  backdrop-filter: blur(8px);
   position: relative;
 }
 

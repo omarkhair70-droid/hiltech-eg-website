@@ -20,5 +20,16 @@ export const revalidate = 0;
 export default async function Page() {
   const { products } = await getPublicProducts();
 
-  return <main><SectionShell><SectionHeader title="Products & Project Supply" description="Search products, filter by category, and add items to your RFQ basket for one structured request." /><ProductsClient initialProducts={products} /><div className="mt-6 space-y-4"><NoticeBox>Product visuals are provided for catalog clarity. Final specifications, availability, and quotation are confirmed through HILTECH.</NoticeBox><NoticeBox tone="highlight">{productDisclaimer}</NoticeBox></div></SectionShell></main>;
+  return (
+    <main className="bg-slate-950">
+      <SectionShell>
+        <SectionHeader title="Products & Project Supply" description="Search products, filter by category, and add items to your RFQ basket for one structured request." className="[&>h2]:text-white [&>p]:text-slate-300" />
+        <ProductsClient initialProducts={products} />
+        <div className="mt-6 space-y-4">
+          <NoticeBox>Product visuals are provided for catalog clarity. Final specifications, availability, and quotation are confirmed through HILTECH.</NoticeBox>
+          <NoticeBox tone="highlight">{productDisclaimer}</NoticeBox>
+        </div>
+      </SectionShell>
+    </main>
+  );
 }
