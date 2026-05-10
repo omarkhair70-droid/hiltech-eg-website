@@ -58,6 +58,10 @@ export type ArProductsMessages = {
   missingFromScope: string;
   addRecommendation: string;
   scopeComplete: string;
+  chooseStartLabel: string;
+  buildByProject: string;
+  browseModeHelper: string;
+  projectModeHelper: string;
 };
 
 export const arProductsMessages: ArProductsMessages = {
@@ -119,6 +123,10 @@ export const arProductsMessages: ArProductsMessages = {
   missingFromScope: 'ناقص من هذا النطاق',
   addRecommendation: 'أضف التوصية',
   scopeComplete: 'النطاق مكتمل',
+  chooseStartLabel: 'اختر طريقة البداية',
+  buildByProject: 'ابدأ حسب نوع المشروع',
+  browseModeHelper: 'ابحث أو صفّ المنتجات وأضف العناصر المطلوبة إلى سلة طلب العرض.',
+  projectModeHelper: 'ابدأ من نطاق مشروع جاهز، ثم عدّل الطلب داخل سلة عرض السعر.',
   categoryLabels: {
     'Fiber Optic Systems': 'أنظمة الفايبر',
     'Copper / CAT6 Cabling': 'كابلات النحاس / CAT6',
