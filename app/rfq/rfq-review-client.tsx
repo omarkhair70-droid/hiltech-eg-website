@@ -241,7 +241,7 @@ export default function RFQReviewClient({
               {quantityError ? <p className="mt-3 text-sm text-red-600">{quantityError}</p> : null}
             </section>
 
-            {!isBasketEmpty && <BasketRecommendations productIds={items.map(i => i.id)} isArabic={locale === 'ar'} onAddProduct={(product) => setItems((prev) => [...prev, normalizeRFQItem({ ...product, quantity: 1, unit: 'unit', notes: '' })])} />}
+            {!isBasketEmpty && <BasketRecommendations productIds={items.map(i => i.id)} isArabic={locale === 'ar'} onAddProduct={(product) => setItems((prev) => [...prev, normalizeRFQItem({ id: product.id, name: product.name, quantity: 1, unit: 'unit', notes: '', category: product.category, brand: product.brand, priceNote: '' })])} />}
 
             <section className="public-card rounded-2xl border border-white/15 bg-white/5 p-5">
               <h2 className="text-xl font-semibold text-white">{t.projectDetails}</h2>
