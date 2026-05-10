@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { trackEvent } from '@/lib/client/analytics';
 import { arRFQMessages, type RFQMessages } from '@/content/ar/rfq';
+import { products as catalogProducts } from '@/content/products';
+import { getBestMatchingBundleForBasket, getMissingBundleRequirements, getSuggestedProductsForMissingRequirements } from '@/lib/project-bundles';
 import {
   buildRFQWhatsappMessage,
   getRFQWhatsappLink,
@@ -75,6 +77,11 @@ const en = {
   nextPoint2: 'Availability and suitable alternatives are confirmed.',
   nextPoint3: 'The team contacts you by phone or WhatsApp if clarification is needed.',
   nextPoint4: 'You receive quotation follow-up and can track the RFQ using your reference.',
+  scopeCompletion: 'Scope completion',
+  requiredItemsCovered: 'required scope items covered',
+  missingFromScope: 'Missing from this scope',
+  scopeComplete: 'Scope complete',
+  addRecommendation: 'Add',
 } as const;
 
 export default function RFQReviewClient({
@@ -104,6 +111,21 @@ export default function RFQReviewClient({
   useEffect(() => writeRFQItems(items), [items]);
   const count = useMemo(() => items.reduce((s, i) => s + normalizeRFQQuantity(i.quantity), 0), [items]);
   const isBasketEmpty = items.length === 0;
+
+  const bestBundleMatch = useMemo(() => getBestMatchingBundleForBasket(items), [items]);
+  const missingRequirements = useMemo(() => (bestBundleMatch ? getMissingBundleRequirements(bestBundleMatch.bundle, items) : []), [bestBundleMatch, items]);
+  const missingSuggestions = useMemo(() => (bestBundleMatch ? getSuggestedProductsForMissingRequirements(bestBundleMatch.bundle, items, catalogProducts) : []), [bestBundleMatch, items]);
+
+  const addSuggestedItem = (productId: string) => {
+    const product = catalogProducts.find((entry) => entry.id === productId);
+    if (!product) return;
+    setItems((prev) => {
+      if (prev.some((entry) => entry.id === product.id)) return prev;
+      const next = [...prev, normalizeRFQItem({ id: product.id, name: product.name, category: product.category, brand: product.brand, specs: product.shortSpecs, quantity: 1, priceNote: product.priceNote })];
+      trackEvent('aov_missing_item_add', { product_id: product.id, bundle_id: bestBundleMatch ? bestBundleMatch.bundle.id : 'none', source: 'rfq_review' });
+      return next;
+    });
+  };
 
   const updateItem = (id: string, patch: Partial<RFQItem>) => {
     setItems((prev) => prev.map((entry) => (entry.id === id ? normalizeRFQItem({ ...entry, ...patch }) : entry)));
@@ -241,6 +263,14 @@ export default function RFQReviewClient({
             </section>
 
 
+
+            {bestBundleMatch ? (
+              <section className="public-card rounded-2xl border border-white/15 bg-white/5 p-5">
+                <h2 className="text-xl font-semibold text-white">{t.scopeCompletion}: {bestBundleMatch.bundle.title}</h2>
+                <p className="mt-2 text-sm text-slate-300">{bestBundleMatch.completion.completedRequiredCount} {locale === 'ar' ? 'من' : 'of'} {bestBundleMatch.completion.totalRequiredCount} {t.requiredItemsCovered} • {bestBundleMatch.completion.completionPercentage}%</p>
+                {missingRequirements.length === 0 ? <p className="mt-3 text-sm font-semibold text-emerald-300">{t.scopeComplete}</p> : <div className="mt-3 space-y-2"><p className="text-sm text-slate-200">{t.missingFromScope}</p>{missingSuggestions.map((suggestion) => <div key={suggestion.id} className="flex items-center justify-between rounded-lg border border-white/10 px-3 py-2"><span className="text-sm text-slate-100">{suggestion.name}</span><button type="button" className="rounded border border-orange-500/40 px-2 py-1 text-xs text-orange-200" onClick={() => addSuggestedItem(suggestion.id)}>{t.addRecommendation}</button></div>)}</div>}
+              </section>
+            ) : null}
 
             <section className="public-card rounded-2xl border border-white/15 bg-white/5 p-5">
               <h2 className="text-xl font-semibold text-white">{t.projectDetails}</h2>
