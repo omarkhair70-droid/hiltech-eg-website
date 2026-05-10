@@ -49,6 +49,15 @@ export type ArProductsMessages = {
   basketEmptyHint: string;
   basketScopeHint: string;
   categoryLabels: Record<string, string>;
+  addStarterScope: string;
+  starterScopeAdded: string;
+  commonlyAddedWithItem: string;
+  completeYourScope: string;
+  scopeCompletion: string;
+  requiredItemsCovered: string;
+  missingFromScope: string;
+  addRecommendation: string;
+  scopeComplete: string;
 };
 
 export const arProductsMessages: ArProductsMessages = {
@@ -101,6 +110,15 @@ export const arProductsMessages: ArProductsMessages = {
   noProductsFound: 'لا توجد منتجات مطابقة للبحث الحالي.',
   basketEmptyHint: 'أضف منتجات لتجهيز طلب عرض السعر بشكل أسرع.',
   basketScopeHint: 'أضف كل العناصر المطلوبة قبل الإرسال حتى يتمكن فريق HILTECH من تسعير نطاق المشروع بالكامل.',
+  addStarterScope: 'أضف نطاق البداية لطلب العرض',
+  starterScopeAdded: 'تمت إضافة نطاق البداية',
+  commonlyAddedWithItem: 'غالبًا يضاف مع هذا العنصر',
+  completeYourScope: 'أكمل نطاق مشروعك',
+  scopeCompletion: 'اكتمال النطاق',
+  requiredItemsCovered: 'عناصر مطلوبة مغطاة',
+  missingFromScope: 'ناقص من هذا النطاق',
+  addRecommendation: 'أضف التوصية',
+  scopeComplete: 'النطاق مكتمل',
   categoryLabels: {
     'Fiber Optic Systems': 'أنظمة الفايبر',
     'Copper / CAT6 Cabling': 'كابلات النحاس / CAT6',
