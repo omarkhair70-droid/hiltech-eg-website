@@ -198,7 +198,7 @@ export default function RFQReviewClient({
         <section className="public-card rounded-2xl border border-white/15 bg-white/5 p-5">
           <h2 className="text-xl font-semibold text-white">{t.successTitle}</h2>
           <p className="mt-2 text-sm text-slate-200">{t.successBody}</p>
-          <p className="mt-4 rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 p-3 text-sm text-slate-800">
+          <p className="mt-4 rounded-xl border border-white/15 bg-gradient-to-br from-white/10 to-white/5 p-3 text-sm text-slate-100">
             {t.reference}: <strong dir="ltr" className="font-mono text-base">{submitState.requestCode}</strong>
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -248,31 +248,31 @@ export default function RFQReviewClient({
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <label className="block text-sm text-slate-200">
                   <span className="mb-1 block font-medium">{t.fullName}</span>
-                  <input ref={fullNameRef} type="text" className="w-full rounded-xl border border-white/20 px-3 py-2" value={project.fullName || ''} onChange={(e) => setProject((prev) => ({ ...prev, fullName: e.target.value }))} />
+                  <input ref={fullNameRef} type="text" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.fullName || ''} onChange={(e) => setProject((prev) => ({ ...prev, fullName: e.target.value }))} />
                   {errors.fullName ? <span className="mt-1 block text-xs text-red-600">{errors.fullName}</span> : null}
                 </label>
                 <label className="block text-sm text-slate-200">
                   <span className="mb-1 block font-medium">{t.phoneNumber}</span>
-                  <input ref={phoneRef} type="tel" dir="ltr" className="w-full rounded-xl border border-white/20 px-3 py-2" value={project.phoneNumber || ''} onChange={(e) => setProject((prev) => ({ ...prev, phoneNumber: e.target.value }))} />
+                  <input ref={phoneRef} type="tel" dir="ltr" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.phoneNumber || ''} onChange={(e) => setProject((prev) => ({ ...prev, phoneNumber: e.target.value }))} />
                   {errors.phoneNumber ? <span className="mt-1 block text-xs text-red-600">{errors.phoneNumber}</span> : null}
                 </label>
                 <label className="block text-sm text-slate-200">
                   <span className="mb-1 block font-medium">{t.emailAddress}</span>
-                  <input ref={emailRef} type="email" dir="ltr" className="w-full rounded-xl border border-white/20 px-3 py-2" value={project.emailAddress || ''} onChange={(e) => setProject((prev) => ({ ...prev, emailAddress: e.target.value }))} />
+                  <input ref={emailRef} type="email" dir="ltr" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.emailAddress || ''} onChange={(e) => setProject((prev) => ({ ...prev, emailAddress: e.target.value }))} />
                   {errors.emailAddress ? <span className="mt-1 block text-xs text-red-600">{errors.emailAddress}</span> : null}
                 </label>
                 <label className="block text-sm text-slate-200">
                   <span className="mb-1 block font-medium">{t.companyName}</span>
-                  <input type="text" className="w-full rounded-xl border border-white/20 px-3 py-2" value={project.companyName || ''} onChange={(e) => setProject((prev) => ({ ...prev, companyName: e.target.value }))} />
+                  <input type="text" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.companyName || ''} onChange={(e) => setProject((prev) => ({ ...prev, companyName: e.target.value }))} />
                 </label>
                 <label className="block text-sm text-slate-200 sm:col-span-2">
                   <span className="mb-1 block font-medium">{t.projectLocation}</span>
-                  <input type="text" className="w-full rounded-xl border border-white/20 px-3 py-2" value={project.projectLocation || ''} onChange={(e) => setProject((prev) => ({ ...prev, projectLocation: e.target.value }))} />
+                  <input type="text" className="w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.projectLocation || ''} onChange={(e) => setProject((prev) => ({ ...prev, projectLocation: e.target.value }))} />
                 </label>
               </div>
               <label className="mt-4 block text-sm text-slate-200">
                 <span className="mb-1 block font-medium">{t.projectNotes}</span>
-                <textarea className="min-h-28 w-full rounded-xl border border-white/20 px-3 py-2" value={project.projectNotes || ''} onChange={(e) => setProject((prev) => ({ ...prev, projectNotes: e.target.value }))} />
+                <textarea className="min-h-28 w-full rounded-xl border border-white/20 px-3 py-2 bg-slate-950/80 text-slate-100" value={project.projectNotes || ''} onChange={(e) => setProject((prev) => ({ ...prev, projectNotes: e.target.value }))} />
               </label>
             </section>
 
