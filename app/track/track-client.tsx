@@ -25,20 +25,20 @@ export default function TrackClient({ initialRequestCode = '', locale = 'en', me
   const fmtDate = (value?: string | null) => (value ? new Date(value).toLocaleString(locale === 'ar' ? 'ar-EG' : undefined) : null);
 
   return <div className="grid gap-6" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-    <form onSubmit={onSubmit} className="rounded-xl border border-slate-200 bg-white p-4">
+    <form onSubmit={onSubmit} className="rounded-xl border border-white/15 bg-white/5 p-4 backdrop-blur-sm">
       <div className="grid gap-3 md:grid-cols-2">
-        <label className="text-sm font-medium text-slate-700">{messages.rfqReference}<input value={requestCode} onChange={(event) => setRequestCode(event.target.value)} required className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm" dir="ltr" /></label>
-        <label className="text-sm font-medium text-slate-700">{messages.phoneOrEmail}<input value={phoneOrEmail} onChange={(event) => setPhoneOrEmail(event.target.value)} required className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm" dir="ltr" /></label>
+        <label className="text-sm font-medium text-slate-200">{messages.rfqReference}<input value={requestCode} onChange={(event) => setRequestCode(event.target.value)} required className="mt-1 w-full rounded-md border border-white/20 bg-slate-950/70 px-3 py-2 text-sm text-slate-100" dir="ltr" /></label>
+        <label className="text-sm font-medium text-slate-200">{messages.phoneOrEmail}<input value={phoneOrEmail} onChange={(event) => setPhoneOrEmail(event.target.value)} required className="mt-1 w-full rounded-md border border-white/20 bg-slate-950/70 px-3 py-2 text-sm text-slate-100" dir="ltr" /></label>
       </div>
-      <button disabled={loading} className="mt-4 rounded-md bg-navy-900 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">{loading ? messages.tracking : messages.trackButton}</button>
+      <button disabled={loading} className="mt-4 rounded-md bg-orange-600 hover:bg-orange-500 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">{loading ? messages.tracking : messages.trackButton}</button>
     </form>
-    {result && !hasResult && <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">{result.error || `${messages.notFound} ${messages.verificationHint}`}</div>}
+    {result && !hasResult && <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-200">{result.error || `${messages.notFound} ${messages.verificationHint}`}</div>}
     {hasResult && tracked ? <section className="grid gap-4">
-      <article className="rounded-xl border border-slate-200 bg-white p-5 text-sm"><h2 className="text-xl font-semibold text-slate-900"><span dir="ltr">{tracked.requestCode}</span></h2><p className="mt-2 inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase text-slate-700">{messages.status}: {tracked.status}</p><ul className="mt-4 space-y-1 text-slate-700"><li><b>{messages.created}:</b> {fmtDate(tracked.createdAt)}</li><li><b>{messages.lastUpdate}:</b> {fmtDate(tracked.lastUpdatedAt)}</li></ul></article>
-      <article className="rounded-xl border border-slate-200 bg-white p-5 text-sm"><h3 className="font-semibold text-slate-900">{messages.nextStep}</h3><p className="mt-2 text-slate-700">{stepMessage}</p></article>
-      <article className="rounded-xl border border-slate-200 bg-white p-5 text-sm"><h3 className="font-semibold text-slate-900">{messages.requestedItems}</h3><p className="mt-2 text-slate-700">{tracked.itemCount}</p></article>
-      {quoteResponseAllowed ? <p className="text-xs text-slate-500">Quote response actions are available after review.</p> : null}
-      <div className="flex flex-wrap gap-3 text-sm"><Link href={contactHref} className="text-orange-700 underline">{messages.contactHiltech}</Link><Link href={rfqHref} className="text-orange-700 underline">{messages.backToRFQ}</Link></div>
+      <article className="rounded-xl border border-white/15 bg-white/5 p-5 text-sm"><h2 className="text-xl font-semibold text-white"><span dir="ltr">{tracked.requestCode}</span></h2><p className="mt-2 inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase text-slate-200">{messages.status}: {tracked.status}</p><ul className="mt-4 space-y-1 text-slate-300"><li><b>{messages.created}:</b> {fmtDate(tracked.createdAt)}</li><li><b>{messages.lastUpdate}:</b> {fmtDate(tracked.lastUpdatedAt)}</li></ul></article>
+      <article className="rounded-xl border border-white/15 bg-white/5 p-5 text-sm"><h3 className="font-semibold text-white">{messages.nextStep}</h3><p className="mt-2 text-slate-300">{stepMessage}</p></article>
+      <article className="rounded-xl border border-white/15 bg-white/5 p-5 text-sm"><h3 className="font-semibold text-white">{messages.requestedItems}</h3><p className="mt-2 text-slate-300">{tracked.itemCount}</p></article>
+      {quoteResponseAllowed ? <p className="text-xs text-slate-400">Quote response actions are available after review.</p> : null}
+      <div className="flex flex-wrap gap-3 text-sm"><Link href={contactHref} className="text-orange-300 underline">{messages.contactHiltech}</Link><Link href={rfqHref} className="text-orange-300 underline">{messages.backToRFQ}</Link></div>
     </section> : null}
   </div>;
 }
