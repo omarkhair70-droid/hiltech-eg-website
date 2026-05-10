@@ -34,27 +34,25 @@ const normalizeBasket = (basketItems: BasketItemLike[]) => {
   return { basketProductIds, basketCategories };
 };
 
-const isRequirementMatched = (
+const isRequirementCompleted = (requirement: BundleRequirement, basketProductIds: Set<string>) =>
+  requirement.completionProductIds.some((productId) => basketProductIds.has(productId));
+
+const hasRequirementIntentSignal = (
   requirement: BundleRequirement,
   basketProductIds: Set<string>,
   basketCategories: Set<string>,
-) => {
-  const hasRecommendedProduct = requirement.recommendedProductIds.some((productId) => basketProductIds.has(productId));
-  if (hasRecommendedProduct) return true;
-
-  return requirement.acceptedCategories.some((category) => basketCategories.has(category));
-};
+) =>
+  requirement.recommendedProductIds.some((productId) => basketProductIds.has(productId)) ||
+  requirement.acceptedCategories.some((category) => basketCategories.has(category));
 
 export function getProjectBundleById(bundleId: string): ProjectBundle | null {
   return projectBundles.find((bundle) => bundle.id === bundleId) ?? null;
 }
 
 export function getBundleCompletion(bundle: ProjectBundle, basketItems: BasketItemLike[]): BundleCompletion {
-  const { basketProductIds, basketCategories } = normalizeBasket(basketItems);
+  const { basketProductIds } = normalizeBasket(basketItems);
   const requiredRequirements = bundle.requirements.filter((requirement) => requirement.required);
-  const matchedRequired = requiredRequirements.filter((requirement) =>
-    isRequirementMatched(requirement, basketProductIds, basketCategories),
-  );
+  const matchedRequired = requiredRequirements.filter((requirement) => isRequirementCompleted(requirement, basketProductIds));
 
   const totalRequiredCount = requiredRequirements.length;
   const completedRequiredCount = matchedRequired.length;
@@ -73,10 +71,10 @@ export function getBundleCompletion(bundle: ProjectBundle, basketItems: BasketIt
 }
 
 export function getMissingBundleRequirements(bundle: ProjectBundle, basketItems: BasketItemLike[]): BundleRequirement[] {
-  const { basketProductIds, basketCategories } = normalizeBasket(basketItems);
+  const { basketProductIds } = normalizeBasket(basketItems);
 
   return bundle.requirements.filter(
-    (requirement) => requirement.required && !isRequirementMatched(requirement, basketProductIds, basketCategories),
+    (requirement) => requirement.required && !isRequirementCompleted(requirement, basketProductIds),
   );
 }
 
@@ -109,29 +107,26 @@ export function getBestMatchingBundleForBasket(basketItems: BasketItemLike[]) {
   const { basketProductIds, basketCategories } = normalizeBasket(basketItems);
   const scoredBundles = projectBundles.map((bundle) => {
     const completion = getBundleCompletion(bundle, basketItems);
-    const requiredRequirements = bundle.requirements.filter((requirement) => requirement.required);
-    const optionalMatches = bundle.requirements.filter(
-      (requirement) =>
-        !requirement.required && isRequirementMatched(requirement, basketProductIds, basketCategories),
+    const intentSignals = bundle.requirements.filter((requirement) =>
+      hasRequirementIntentSignal(requirement, basketProductIds, basketCategories),
     ).length;
 
     return {
       bundle,
       completion,
-      score: completion.completedRequiredCount * 10 + optionalMatches,
-      requiredCount: requiredRequirements.length,
+      score: completion.completedRequiredCount * 100 + intentSignals,
+      intentSignals,
     };
   });
 
-  const meaningfulMatches = scoredBundles.filter(({ completion }) => completion.completedRequiredCount > 0);
+  const meaningfulMatches = scoredBundles.filter(({ completion, intentSignals }) =>
+    completion.completedRequiredCount > 0 || intentSignals >= 2,
+  );
   if (meaningfulMatches.length === 0) return null;
 
   meaningfulMatches.sort((a, b) => {
     if (b.score !== a.score) return b.score - a.score;
-    if (b.completion.completionPercentage !== a.completion.completionPercentage) {
-      return b.completion.completionPercentage - a.completion.completionPercentage;
-    }
-    return b.requiredCount - a.requiredCount;
+    return b.completion.completionPercentage - a.completion.completionPercentage;
   });
 
   const best = meaningfulMatches[0];
