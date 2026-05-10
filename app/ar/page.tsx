@@ -11,7 +11,14 @@ export const metadata: Metadata = {
 
 const capabilities = ['فايبر أوبتك', 'كابلات منظمة', 'تجهيز الراك', 'اختبار قبل التسليم'];
 const services = ['تمديد ولحام الفايبر', 'تركيب وتنظيم الراك', 'تمديد الكابلات النحاسية', 'تصميم ومعاينة الموقع', 'اختبارات الشبكات', 'إدارة مشاريع الشبكات'];
-const productCategories = ['فايبر أوبتك', 'كابلات CAT6', 'باتش كورد وربط', 'راك وكبائن', 'CCTV والبنية الأمنية', 'ملحقات الشبكات'];
+const productCategories = [
+  { label: 'فايبر أوبتك', category: 'Fiber Optic Systems' },
+  { label: 'كابلات CAT6', category: 'Copper / CAT6 Cabling' },
+  { label: 'باتش كورد وربط', category: 'Patch Cords & Connectivity' },
+  { label: 'راك وكبائن', category: 'Cabinets / Racks / PDU' },
+  { label: 'CCTV والبنية الأمنية', category: 'CCTV & Security' },
+  { label: 'ملحقات الشبكات', category: 'Cable Management / Duct Systems' },
+];
 const scopeStarters = [
   { title: 'تجهيز شبكة مكتب', items: ['كابلات CAT6', 'باتش بانل', 'فيس بليت', 'ملحقات الراك', 'الاختبار'] },
   { title: 'تجهيز راك وغرفة بيانات', items: ['راك', 'PDU', 'تنظيم الكابلات', 'باتش بانل', 'التسمية والاختبار'] },
@@ -127,12 +134,12 @@ export default function ArabicHomePage() {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {productCategories.map((category) => (
                 <Link
-                  key={category}
-                  href="/ar/products-partners"
+                  key={category.label}
+                  href={`/ar/products-partners?category=${encodeURIComponent(category.category)}`}
                   className="group relative rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 hover:border-orange-500/50 p-3 text-center transition-all"
                 >
                   <p className="text-xs sm:text-sm font-semibold text-slate-200 group-hover:text-orange-300 transition-colors">
-                    {category}
+                    {category.label}
                   </p>
                 </Link>
               ))}
@@ -212,11 +219,11 @@ export default function ArabicHomePage() {
 
           <div className="grid gap-5 sm:grid-cols-3">
             {[
-              { title: 'تجهيز الراك وغرف البيانات', src: '/rack-front-cabling.jpg', desc: 'تنظيم الراك ومسارات الكابلات بمعايير احترافية' },
-              { title: 'أعمال الفايبر / ODF', src: '/fiber-splicing-workbench.jpg', desc: 'تجهيز المسار والـ ODF للتسليم والتشغيل' },
-              { title: 'الاختبار والتحقق', src: '/testing-otdr-device.jpg', desc: 'اختبار قبل التسليم والتشغيل الفعلي' },
+              { title: 'تجهيز الراك وغرف البيانات', src: '/rack-front-cabling.jpg', desc: 'تنظيم الراك ومسارات الكابلات بمعايير احترافية', href: '/ar/work#rack-data-room' },
+              { title: 'أعمال الفايبر / ODF', src: '/fiber-splicing-workbench.jpg', desc: 'تجهيز المسار والـ ODF للتسليم والتشغيل', href: '/ar/work#fiber-odf' },
+              { title: 'الاختبار والتحقق', src: '/testing-otdr-device.jpg', desc: 'اختبار قبل التسليم والتشغيل الفعلي', href: '/ar/work#testing-handover' },
             ].map((item) => (
-              <Link key={item.title} href="/ar/work" className="group relative rounded-xl overflow-hidden border border-white/15 bg-white/5 hover:border-orange-500/50 transition-all">
+              <Link key={item.title} href={item.href} className="group relative rounded-xl overflow-hidden border border-white/15 bg-white/5 hover:border-orange-500/50 transition-all">
                 <div className="relative aspect-[16/10] w-full">
                   <Image
                     src={item.src}

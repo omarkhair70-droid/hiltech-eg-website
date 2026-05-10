@@ -27,7 +27,7 @@ export default function Page() {
 
         <section className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {arWorkContent.cards.map((card) => (
-            <article key={card.title} className="public-card overflow-hidden rounded-2xl bg-slate-900/70 p-0">
+            <article id={card.title.includes('الراك') ? 'rack-data-room' : card.title.includes('الفايبر') ? 'fiber-odf' : card.title.includes('الاختبار') ? 'testing-handover' : undefined} key={card.title} className="public-card overflow-hidden rounded-2xl bg-slate-900/70 p-0">
               <div className="relative aspect-[16/10] border-b border-white/10 bg-slate-950/70">
                 <Image src={card.image} alt={card.alt} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               </div>
