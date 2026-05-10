@@ -22,7 +22,7 @@ export default function SolutionsPage() {
   return (
     <main>
       <SectionShell>
-        <section className="rounded-2xl border border-navy-900/20 bg-gradient-to-br from-navy-900 to-slate-900 p-6 text-white md:p-8">
+        <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#0b1f3a] via-[#0d2444] to-[#101a2d] p-6 text-white md:p-8">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-300">Enterprise Infrastructure Solutions</p>
           <h1 className="mt-2 text-3xl font-bold md:text-4xl">Enterprise Infrastructure Solutions</h1>
           <p className="mt-3 max-w-4xl text-sm text-slate-200 md:text-base">
@@ -40,8 +40,8 @@ export default function SolutionsPage() {
             {solutions.map((solution) => (
               <PremiumCard key={solution.slug} className="flex h-full flex-col">
                 <p className="text-xs font-semibold uppercase tracking-wide text-orange-600">{solution.eyebrow}</p>
-                <h2 className="mt-2 text-lg font-bold text-slate-900">{solution.shortTitle}</h2>
-                <p className="mt-2 text-sm text-slate-600">{solution.intro}</p>
+                <h2 className="mt-2 text-lg font-bold text-white">{solution.shortTitle}</h2>
+                <p className="mt-2 text-sm text-slate-300">{solution.intro}</p>
                 <div className="mt-4">
                   <Link className="text-sm font-semibold text-navy-900 underline underline-offset-4" href={`/solutions/${solution.slug}`}>
                     View solution details
@@ -52,9 +52,9 @@ export default function SolutionsPage() {
           </div>
         </section>
 
-        <section className="mt-10 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-          <h2 className="text-xl font-bold text-slate-900">Solution pathways</h2>
-          <p className="mt-2 text-sm text-slate-600">Choose the infrastructure path that matches your project scope.</p>
+        <section className="mt-10 rounded-2xl border border-white/10 bg-slate-900/70 p-5 md:p-6">
+          <h2 className="text-xl font-bold text-white">Solution pathways</h2>
+          <p className="mt-2 text-sm text-slate-300">Choose the infrastructure path that matches your project scope.</p>
           <div className="mt-4 space-y-2">
             {[
               { title: 'Structured Cabling', href: '/solutions/structured-cabling' },
@@ -67,7 +67,7 @@ export default function SolutionsPage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center justify-between rounded-lg border border-slate-200 px-3 py-3 text-sm font-medium text-slate-800 hover:bg-slate-50"
+                className="flex items-center justify-between rounded-lg border border-white/10 px-3 py-3 text-sm font-medium text-slate-200 hover:bg-slate-950/70"
               >
                 <span>{item.title}</span>
                 <span className="text-xs text-slate-500">View details</span>
@@ -76,23 +76,23 @@ export default function SolutionsPage() {
           </div>
         </section>
 
-        <section className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
-          <h2 className="text-2xl font-bold text-slate-900">How HILTECH approaches delivery</h2>
+        <section className="mt-10 rounded-2xl border border-white/10 bg-slate-950/70 p-5 md:p-6">
+          <h2 className="text-2xl font-bold text-white">How HILTECH approaches delivery</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-3">
             {[
               'Scope-first planning',
               'Availability confirmation before quotation',
               'Testing-oriented validation before handover',
             ].map((item) => (
-              <div key={item} className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-medium text-slate-700">
+              <div key={item} className="rounded-xl border border-white/10 bg-slate-900/70 p-4 text-sm font-medium text-slate-300">
                 {item}
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mt-10 rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-          <h2 className="text-xl font-bold text-slate-900">Next step for your project</h2>
+        <section className="mt-10 rounded-2xl border border-white/10 bg-slate-900/70 p-5 md:p-6">
+          <h2 className="text-xl font-bold text-white">Next step for your project</h2>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             <CTAButton href="/rfq">Start RFQ</CTAButton>
             <CTAButton href="/products-partners" variant="secondary">
@@ -100,7 +100,7 @@ export default function SolutionsPage() {
             </CTAButton>
           </div>
           <p className="mt-4 text-xs text-slate-500">Final scope, availability, and technical requirements are confirmed per project.</p>
-          <p className="mt-2 text-xs text-slate-600">
+          <p className="mt-2 text-xs text-slate-300">
             Need client-facing summaries?{' '}
             <Link className="font-semibold text-navy-900 underline" href="/resources">
               Visit Sales & Project Resources
