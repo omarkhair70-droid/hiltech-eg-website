@@ -29,7 +29,14 @@ const projectScopes = [
   { title: 'Fiber Backbone Scope', items: ['fiber cable', 'ODF', 'patch cords', 'splicing/testing'] },
   { title: 'CCTV Infrastructure Scope', items: ['network points', 'cabling', 'rack preparation', 'power/network readiness'] },
 ];
-const productCategories = ['Fiber Optics', 'Structured Cabling', 'Racks & Cabinets', 'Patch Panels & Connectivity', 'CCTV & Security', 'Testing Tools'];
+const productCategories = [
+  { label: 'Fiber Optics', category: 'Fiber Optic Systems' },
+  { label: 'Structured Cabling', category: 'Copper / CAT6 Cabling' },
+  { label: 'Racks & Cabinets', category: 'Cabinets / Racks / PDU' },
+  { label: 'Patch Panels & Connectivity', category: 'Patch Cords & Connectivity' },
+  { label: 'CCTV & Security', category: 'CCTV & Security' },
+  { label: 'Testing & Handover', category: 'Faceplates / Keystone / RJ45' },
+];
 const metrics = [
   { value: '10+', label: 'Years of Experience' },
   { value: '500+', label: 'Projects Delivered' },
@@ -139,12 +146,12 @@ export default function HomePage() {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {productCategories.map((category) => (
                 <Link
-                  key={category}
-                  href="/products-partners"
+                  key={category.label}
+                  href={`/products-partners?category=${encodeURIComponent(category.category)}`}
                   className="group relative rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 hover:border-orange-500/50 p-3 text-center transition-all"
                 >
                   <p className="text-xs sm:text-sm font-semibold text-slate-200 group-hover:text-orange-300 transition-colors">
-                    {category}
+                    {category.label}
                   </p>
                 </Link>
               ))}
@@ -224,11 +231,11 @@ export default function HomePage() {
 
           <div className="grid gap-5 sm:grid-cols-3">
             {[
-              { title: 'Rack & data room preparation', src: '/rack-front-cabling.jpg', desc: 'Scope note: layout, patching flow, and maintainable routing.' },
-              { title: 'Fiber / ODF work', src: '/fiber-splicing-workbench.jpg', desc: 'Scope note: backbone readiness and termination context.' },
-              { title: 'Structured cabling and testing', src: '/testing-otdr-device.jpg', desc: 'Confidence note: validation before handover.' },
-            ].map((item) => (
-              <Link key={item.title} href="/work" className="group relative rounded-xl overflow-hidden border border-white/15 bg-white/5 hover:border-orange-500/50 transition-all">
+              { title: 'Rack & data room preparation', src: '/rack-front-cabling.jpg', desc: 'Scope note: layout, patching flow, and maintainable routing.', href: '/work#rack-data-room' },
+              { title: 'Fiber / ODF work', src: '/fiber-splicing-workbench.jpg', desc: 'Scope note: backbone readiness and termination context.', href: '/work#fiber-odf' },
+              { title: 'Structured cabling and testing', src: '/testing-otdr-device.jpg', desc: 'Confidence note: validation before handover.', href: '/work#testing-handover' },
+            ] .map((item) => (
+              <Link key={item.title} href={item.href} className="group relative rounded-xl overflow-hidden border border-white/15 bg-white/5 hover:border-orange-500/50 transition-all">
                 <div className="relative aspect-[16/10] w-full">
                   <Image
                     src={item.src}

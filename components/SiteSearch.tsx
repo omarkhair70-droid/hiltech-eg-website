@@ -76,8 +76,8 @@ export default function SiteSearch({ onNavigate, className }: SiteSearchProps) {
         {isArabic ? 'بحث' : 'Search'}
       </button>
       {open ? (
-        <div className="fixed inset-0 z-[60] bg-slate-900/35 p-3 sm:p-6" role="dialog" aria-modal="true">
-          <div className="mx-auto mt-10 w-full max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
+        <div className="fixed inset-0 z-[60] bg-slate-900/35 p-3 sm:p-6" role="dialog" aria-modal="true" onClick={() => setOpen(false)}>
+          <div className="mx-auto mt-10 w-full max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl" onClick={(event) => event.stopPropagation()}>
             <div className="border-b border-slate-200 p-3 sm:p-4">
               <input
                 ref={inputRef}
