@@ -38,12 +38,12 @@ export default function SolutionsPage() {
           />
           <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {solutions.map((solution) => (
-              <PremiumCard key={solution.slug} className="flex h-full flex-col">
+              <PremiumCard key={solution.slug} className="flex h-full flex-col transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10">
                 <p className="text-xs font-semibold uppercase tracking-wide text-orange-600">{solution.eyebrow}</p>
                 <h2 className="mt-2 text-lg font-bold text-white">{solution.shortTitle}</h2>
                 <p className="mt-2 text-sm text-slate-300">{solution.intro}</p>
                 <div className="mt-4">
-                  <Link className="text-sm font-semibold text-navy-900 underline underline-offset-4" href={`/solutions/${solution.slug}`}>
+                  <Link className="text-sm font-semibold text-orange-200 underline underline-offset-4 transition hover:text-orange-100" href={`/solutions/${solution.slug}`}>
                     View solution details
                   </Link>
                 </div>
@@ -102,7 +102,7 @@ export default function SolutionsPage() {
           <p className="mt-4 text-xs text-slate-500">Final scope, availability, and technical requirements are confirmed per project.</p>
           <p className="mt-2 text-xs text-slate-300">
             Need client-facing summaries?{' '}
-            <Link className="font-semibold text-navy-900 underline" href="/resources">
+            <Link className="font-semibold text-orange-200 underline underline-offset-4 transition hover:text-orange-100" href="/resources">
               Visit Sales & Project Resources
             </Link>
             .
