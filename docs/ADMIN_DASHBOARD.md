@@ -171,3 +171,33 @@ Notes:
 ### Public vs Admin-only
 - Public: quote summary, quoted prices/totals, terms, validity, public message.
 - Admin-only: internal_notes, inventory notes, stock quantities/thresholds, provider error fields.
+
+## Phase 32D.1 - Website Analytics Snapshot (GA4)
+
+### Scope
+- `/admin` now includes an admin-only **Website Analytics** section that reads aggregated GA4 metrics server-side.
+- Public tracking behavior is unchanged, and admin routes remain excluded from frontend GA tagging.
+
+### New environment variables
+- `GA4_PROPERTY_ID` (numeric GA4 Property ID, e.g. `123456789`, **not** the `G-XXXX` measurement ID)
+- `GA_CLIENT_EMAIL` (Google service account email)
+- `GA_PRIVATE_KEY` (Google service account private key)
+
+### Server-only security and privacy notes
+- GA credentials are used only in `lib/server/google-analytics-admin.ts`.
+- `GA_PRIVATE_KEY` is normalized by replacing escaped `\n` with real newlines for Vercel compatibility.
+- Only aggregate metrics are shown in admin UI:
+  - last 7 days: active users, sessions, views, event count
+  - last 30 days: top pages and key event totals
+- No names, emails, phones, RFQ request codes, notes, or message content are queried from GA.
+- If GA is missing or temporarily unavailable, `/admin` still loads and shows a friendly status card.
+
+### Setup steps (Vercel + GA)
+1. In Google Cloud, enable **Google Analytics Data API** for your project.
+2. Create a service account in Google Cloud and generate a JSON key.
+3. In GA4 Property Access Management, add the service account email as **Viewer**.
+4. In Vercel Project Environment Variables, add:
+   - `GA4_PROPERTY_ID`
+   - `GA_CLIENT_EMAIL`
+   - `GA_PRIVATE_KEY`
+5. Redeploy the application.
